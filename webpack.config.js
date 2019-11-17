@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: "production",
   // 入口是 tsx, 但程序不认识 jsx, 配置 rules
@@ -22,5 +23,11 @@ module.exports = {
         loader: "awesome-typescript-loader"
       }
     ]
-  }
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			title: 'YUI',
+			template: 'index.html'
+		})
+	]
 };
