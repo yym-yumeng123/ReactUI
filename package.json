@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/yym-yumeng123/ReactUI/issues"
   },
-  "homepage": "https://github.com/yym-yumeng123/ReactUI#readme"
+  "homepage": "https://github.com/yym-yumeng123/ReactUI#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
 }
