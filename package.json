@@ -1,0 +1,20 @@
+{
+  "name": "ReactUI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yym-yumeng123/ReactUI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yym-yumeng123/ReactUI/issues"
+  },
+  "homepage": "https://github.com/yym-yumeng123/ReactUI#readme"
+}
