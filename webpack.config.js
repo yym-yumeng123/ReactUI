@@ -1,5 +1,5 @@
 const path = require("path");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: "production",
   // 入口是 tsx, 但程序不认识 jsx, 配置 rules
@@ -29,5 +29,5 @@ module.exports = {
 			title: 'YUI',
 			template: 'index.html'
 		})
-	]
+  ],
 };
