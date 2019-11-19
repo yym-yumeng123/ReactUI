@@ -1,1 +1,1 @@
-declare const div: HTMLDivElement;
+export {};
