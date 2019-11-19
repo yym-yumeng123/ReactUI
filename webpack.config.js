@@ -15,6 +15,11 @@ module.exports = {
     // 库最后导出的格式
     libraryTarget: "umd"
   },
+
+  // 配置 import 引入
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
+  },
   module: {
     rules: [
       // 配置 ts tsx
