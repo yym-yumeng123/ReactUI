@@ -26,28 +26,11 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: "awesome-typescript-loader"
+      },
+      {
+        test: /\.svg$/,
+        loader: "svg-sprite-loader"
       }
     ]
 	},
-	// plugins: [
-	// 	new HtmlWebpackPlugin({
-	// 		title: 'YUI',
-	// 		template: 'index.html'
-	// 	})
-  // ],
-  // 不属于内部的库, 外部的
-  // externals: {
-  //   react: {
-  //     commonjs: 'react',
-  //     commonjs2: 'react',
-  //     amd: 'react',
-  //     root: 'React'
-  //   },
-  //   'react-dom': {
-  //     commonjs: 'react',
-  //     commonjs2: 'react',
-  //     amd: 'react',
-  //     root: 'React'
-  //   }
-  // }
 };
