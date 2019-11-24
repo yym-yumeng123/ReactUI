@@ -1,8 +1,15 @@
 import React from 'react'
-export default function Icon() {
+
+interface IconProps {
+  name: string;
+}
+
+const Icon: React.FunctionComponent<IconProps> = props => {
   return (
     <div>
-      你好, 我是ICon
+      {props.name}
     </div>
   )
 }
+
+export default Icon
