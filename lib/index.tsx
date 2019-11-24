@@ -1,5 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from "./button";
+import Icon from "./Icon/icon";
 
-ReactDOM.render(<Button></Button>, document.body);
+ReactDOM.render(<Icon />, document.body);
