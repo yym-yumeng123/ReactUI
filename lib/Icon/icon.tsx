@@ -6,8 +6,9 @@ interface IconProps extends React.SVGAttributes<SVGElement> {
 }
 
 const Icon: React.FunctionComponent<IconProps> = props => {
+  const { className, ...restProps } = props
   return (
-    <svg className="yui-icon" {...props}>
+    <svg className={`yui-icon ${className}`} {...restProps}>
       <use xlinkHref={`#${props.name}`}></use>
     </svg>
   );
