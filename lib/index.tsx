@@ -7,4 +7,4 @@ const fn: React.MouseEventHandler = (e) => {
   console.log(e.target)
 }
 
-ReactDOM.render(<Icon name="wechat" onClick={fn} />, document.body.querySelector('#root'));
+ReactDOM.render(<Icon name="wechat" onClick={fn} onMouseEnter={() => console.log('enter')} />, document.body.querySelector('#root'));
