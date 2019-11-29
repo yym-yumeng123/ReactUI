@@ -1,9 +1,10 @@
 {
-  "name": "reactui",
-  "version": "1.0.0",
+  "name": "reactui0000",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index",
+  "files": ["/dist/**/*"],
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js",
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.js",
