@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="10" failures="0" time="7.635">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2019-11-28T15:38:37" time="4.879" tests="1">
-    <testcase classname=" add" name=" add" time="0.005">
+<testsuites name="jest tests" tests="10" failures="0" time="4.815">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2019-11-29T14:27:10" time="2.778" tests="1">
+    <testcase classname=" add" name=" add" time="0.006">
     </testcase>
   </testsuite>
-  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2019-11-28T15:38:37" time="5.49" tests="5">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2019-11-29T14:27:10" time="2.822" tests="1">
+    <testcase classname=" button" name=" button" time="0.022">
+    </testcase>
+  </testsuite>
+  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2019-11-29T14:27:10" time="2.869" tests="5">
     <testcase classname="classes 接收一个 classname" name="classes 接收一个 classname" time="0.005">
     </testcase>
     <testcase classname="classes 接收两个 classname" name="classes 接收两个 classname" time="0.001">
     </testcase>
-    <testcase classname="classes 接收参数一个 undefined" name="classes 接收参数一个 undefined" time="0">
+    <testcase classname="classes 接收参数一个 undefined" name="classes 接收参数一个 undefined" time="0.001">
     </testcase>
-    <testcase classname="classes 接收多个值" name="classes 接收多个值" time="0.001">
+    <testcase classname="classes 接收多个值" name="classes 接收多个值" time="0">
     </testcase>
-    <testcase classname="classes 接收空" name="classes 接收空" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2019-11-28T15:38:37" time="5.535" tests="1">
-    <testcase classname=" button" name=" button" time="0.016">
+    <testcase classname="classes 接收空" name="classes 接收空" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="测试Icon" errors="0" failures="0" skipped="0" timestamp="2019-11-28T15:38:37" time="5.806" tests="3">
-    <testcase classname="测试Icon render success" name="测试Icon render success" time="0.016">
+  <testsuite name="测试Icon" errors="0" failures="0" skipped="0" timestamp="2019-11-29T14:27:10" time="3.001" tests="3">
+    <testcase classname="测试Icon render success" name="测试Icon render success" time="0.024">
     </testcase>
-    <testcase classname="测试Icon onClick" name="测试Icon onClick" time="0.046">
+    <testcase classname="测试Icon onClick" name="测试Icon onClick" time="0.045">
     </testcase>
-    <testcase classname="测试Icon onClick jest.fn()" name="测试Icon onClick jest.fn()" time="0.004">
+    <testcase classname="测试Icon onClick jest.fn()" name="测试Icon onClick jest.fn()" time="0.005">
     </testcase>
   </testsuite>
 </testsuites>
