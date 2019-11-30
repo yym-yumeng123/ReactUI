@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index",
-  "files": ["/dist/**/*"],
+  "files": [
+    "/dist/**/*"
+  ],
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js",
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.js",
@@ -28,6 +30,7 @@
     "@types/jest": "^24.0.23",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
+    "@types/react-router-dom": "^5.1.3",
     "@types/react-test-renderer": "^16.9.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-jest": "^24.9.0",
@@ -52,6 +55,8 @@
   },
   "dependencies": {
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2"
   }
 }
