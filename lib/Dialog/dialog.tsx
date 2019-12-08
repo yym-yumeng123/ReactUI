@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import "./dialog.scss";
+import React, { Fragment } from 'react';
+import './dialog.scss';
 
 interface DialogProps {
   visible: boolean;
