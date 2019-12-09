@@ -75,5 +75,8 @@
     "react-dom": "^16.12.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2"
-  }
+  },
+  "checkFiles": [
+    "lib/**/*.scss"
+  ]
 }
