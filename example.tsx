@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { HashRouter as Router, Route, Link } from "react-router-dom";
-import ButtonExample from "./lib/Button/button.example";
-import IconExample from "./lib/Icon/icon.example";
-import DialogExample from "./lib/Dialog/dialog.example"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import ButtonExample from './lib/Button/button.example';
+import IconExample from './lib/Icon/icon.example';
+import DialogExample from './lib/Dialog/dialog.example';
 
 ReactDOM.render(
   <Router>
@@ -31,5 +31,5 @@ ReactDOM.render(
       </div>
     </div>
   </Router>,
-  document.querySelector("#root")
+  document.querySelector('#root'),
 );
