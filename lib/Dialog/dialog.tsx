@@ -1,28 +1,31 @@
 import React, { Fragment } from 'react';
 import './dialog.scss';
-import Icon from '../Icon/icon'
+import Icon from '../Icon/icon';
+import { scopedClassMaker } from '../utils/classes';
 
 interface DialogProps {
   visible: boolean;
 }
 
+const scopedClass = scopedClassMaker('yui-dialog');
+
 const Dialog: React.FunctionComponent<DialogProps> = props => {
   return props.visible ? (
     <Fragment>
-      <div className="yui-dialog">
-        <div className="yui-dialog-close">
+      <div className={scopedClass()}>
+        <div className={scopedClass('close')}>
           <Icon name="close" />
         </div>
-        <header className="yui-dialog-header">提示标题</header>
-        <main className="yui-dialog-main">
+        <header className={scopedClass('header')}>提示标题</header>
+        <main className={scopedClass('main')}>
           {props.children}
         </main>
-        <footer className="yui-dialog-footer">
+        <footer className={scopedClass('footer')}>
           <button>确定</button>
           <button>取消</button>
         </footer>
       </div>
-      <div className="yui-dialog-mask"></div>
+      <div className={scopedClass('mask')}></div>
     </Fragment>
   ) : null;
 };
