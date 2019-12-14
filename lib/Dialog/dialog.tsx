@@ -10,7 +10,7 @@ interface DialogProps {
 const scopedClass = scopedClassMaker('yui-dialog');
 
 const Dialog: React.FunctionComponent<DialogProps> = props => {
-  return props.visible ? (
+  return !props.visible ? (
     <Fragment>
       <div className={scopedClass()}>
         <div className={scopedClass('close')}>

@@ -7,9 +7,12 @@ export default function () {
     <>
       <button onClick={() => setvisible(!visible)}>按钮</button>
       <Dialog visible={visible}>
-        <em>
+        <strong>
           hi
-        </em>
+        </strong>
+        <p>这是一段文字</p>
+        <p>这是一段文字</p>
+        <p>这是一段文字</p>
       </Dialog>
     </>
   )
