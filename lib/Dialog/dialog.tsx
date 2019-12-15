@@ -8,14 +8,18 @@ interface DialogProps {
   footer?: ReactElement | null;
   onCancel: React.MouseEventHandler;
   onOk: React.MouseEventHandler;
+  onOkText?: string;
+  onCancelText?: string;
   maskClosable?: boolean;
+  closable?: boolean;
+  title?: string;
 }
 
 const scopedClass = scopedClassMaker('yui-dialog');
 
 const Dialog: React.FunctionComponent<DialogProps> = props => {
   const handlerOk: React.MouseEventHandler = event => {
-    props.onOk(event)
+    props.onOk(event);
   };
 
   const handlerClose: React.MouseEventHandler = (event) => {
@@ -26,17 +30,22 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
     if(props.maskClosable) {
       props.onCancel(event);
     }
-  }
+  };
 
   console.log(props.footer, '1121');
 
   return props.visible ? (
     <Fragment>
       <div className={scopedClass()}>
-        <div className={scopedClass('close')} onClick={handlerClose}>
-          <Icon name="close" />
-        </div>
-        <header className={scopedClass('header')}>提示标题</header>
+        {
+          props.closable ?
+            <div className={scopedClass('close')} onClick={handlerClose}>
+              <Icon name="close" />
+            </div>
+            :
+            null
+        }
+        <header className={scopedClass('header')}>{props.title}</header>
         <main className={scopedClass('main')}>
           {props.children}
         </main>
@@ -45,8 +54,8 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
             <footer className={scopedClass('footer')}>
               {props.footer ? props.footer : (
                 <>
-                  <button onClick={handlerOk}>确定</button>
-                  <button onClick={handlerClose}>取消</button>
+                  <button onClick={handlerOk}>{props.onOkText}</button>
+                  <button onClick={handlerClose}>{props.onCancelText}</button>
                 </>
               )}
             </footer>
@@ -58,7 +67,11 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
 };
 
 Dialog.defaultProps = {
-  maskClosable: true
+  maskClosable: true,
+  closable: true,
+  title: '标题',
+  onOkText: '确定',
+  onCancelText: '取消'
 };
 
 export default Dialog;
