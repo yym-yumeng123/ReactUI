@@ -1,4 +1,5 @@
 import React, { Fragment, ReactElement } from 'react';
+import ReactDOM from 'react-dom';
 import './dialog.scss';
 import { Icon } from '../index';
 import { scopedClassMaker } from '../utils/classes';
@@ -32,9 +33,7 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
     }
   };
 
-  console.log(props.footer, '1121');
-
-  return props.visible ? (
+  const DialogPor = props.visible ? (
     <Fragment>
       <div className={scopedClass()}>
         {
@@ -64,6 +63,11 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
       <div className={scopedClass('mask')} onClick={handlerCloseMask}></div>
     </Fragment>
   ) : null;
+
+  return ReactDOM.createPortal(
+    DialogPor,
+    document.body
+  );
 };
 
 Dialog.defaultProps = {
