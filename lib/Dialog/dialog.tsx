@@ -5,18 +5,32 @@ import { scopedClassMaker } from '../utils/classes';
 
 interface DialogProps {
   visible: boolean;
-  buttons: Array<ReactElement>;
-  onClose: React.MouseEventHandler;
+  footer?: ReactElement | null;
+  onCancel: React.MouseEventHandler;
+  onOk: React.MouseEventHandler;
+  maskClosable?: boolean;
 }
 
 const scopedClass = scopedClassMaker('yui-dialog');
 
 const Dialog: React.FunctionComponent<DialogProps> = props => {
-  const handlerClose: React.MouseEventHandler = (event) => {
-    props.onClose(event);
+  const handlerOk: React.MouseEventHandler = event => {
+    props.onOk(event)
   };
 
-  return !props.visible ? (
+  const handlerClose: React.MouseEventHandler = (event) => {
+    props.onCancel(event);
+  };
+
+  const handlerCloseMask: React.MouseEventHandler = (event) => {
+    if(props.maskClosable) {
+      props.onCancel(event);
+    }
+  }
+
+  console.log(props.footer, '1121');
+
+  return props.visible ? (
     <Fragment>
       <div className={scopedClass()}>
         <div className={scopedClass('close')} onClick={handlerClose}>
@@ -26,13 +40,25 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
         <main className={scopedClass('main')}>
           {props.children}
         </main>
-        <footer className={scopedClass('footer')}>
-          {props.buttons}
-        </footer>
+        {
+          props.footer === null ? null :
+            <footer className={scopedClass('footer')}>
+              {props.footer ? props.footer : (
+                <>
+                  <button onClick={handlerOk}>确定</button>
+                  <button onClick={handlerClose}>取消</button>
+                </>
+              )}
+            </footer>
+        }
       </div>
-      <div className={scopedClass('mask')}></div>
+      <div className={scopedClass('mask')} onClick={handlerCloseMask}></div>
     </Fragment>
   ) : null;
+};
+
+Dialog.defaultProps = {
+  maskClosable: true
 };
 
 export default Dialog;

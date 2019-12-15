@@ -4,4 +4,4 @@ function scopedClassMaker(prefix: string) {
   };
 }
 
-export { scopedClassMaker }
+export {scopedClassMaker};
