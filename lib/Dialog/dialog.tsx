@@ -23,12 +23,12 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
     props.onOk(event);
   };
 
-  const handlerClose: React.MouseEventHandler = (event) => {
+  const handlerClose: React.MouseEventHandler = event => {
     props.onCancel(event);
   };
 
-  const handlerCloseMask: React.MouseEventHandler = (event) => {
-    if(props.maskClosable) {
+  const handlerCloseMask: React.MouseEventHandler = event => {
+    if (props.maskClosable) {
       props.onCancel(event);
     }
   };
@@ -36,38 +36,31 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
   const DialogPor = props.visible ? (
     <Fragment>
       <div className={scopedClass()}>
-        {
-          props.closable ?
-            <div className={scopedClass('close')} onClick={handlerClose}>
-              <Icon name="close" />
-            </div>
-            :
-            null
-        }
+        {props.closable ? (
+          <div className={scopedClass('close')} onClick={handlerClose}>
+            <Icon name="close" />
+          </div>
+        ) : null}
         <header className={scopedClass('header')}>{props.title}</header>
-        <main className={scopedClass('main')}>
-          {props.children}
-        </main>
-        {
-          props.footer === null ? null :
-            <footer className={scopedClass('footer')}>
-              {props.footer ? props.footer : (
-                <>
-                  <button onClick={handlerOk}>{props.onOkText}</button>
-                  <button onClick={handlerClose}>{props.onCancelText}</button>
-                </>
-              )}
-            </footer>
-        }
+        <main className={scopedClass('main')}>{props.children}</main>
+        {props.footer === null ? null : (
+          <footer className={scopedClass('footer')}>
+            {props.footer ? (
+              props.footer
+            ) : (
+              <>
+                <button onClick={handlerOk}>{props.onOkText}</button>
+                <button onClick={handlerClose}>{props.onCancelText}</button>
+              </>
+            )}
+          </footer>
+        )}
       </div>
       <div className={scopedClass('mask')} onClick={handlerCloseMask}></div>
     </Fragment>
   ) : null;
 
-  return ReactDOM.createPortal(
-    DialogPor,
-    document.body
-  );
+  return ReactDOM.createPortal(DialogPor, document.body);
 };
 
 Dialog.defaultProps = {
@@ -77,5 +70,9 @@ Dialog.defaultProps = {
   onOkText: '确定',
   onCancelText: '取消'
 };
+
+const alert = (content: string) => {};
+
+export { alert };
 
 export default Dialog;
