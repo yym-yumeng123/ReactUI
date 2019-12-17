@@ -71,7 +71,17 @@ Dialog.defaultProps = {
   onCancelText: '取消'
 };
 
-const alert = (content: string) => {};
+const alert = (content: string) => {
+  const component = <Dialog visible={true} onOk={() => {}} onCancel={() => {
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+    // 卸载
+    ReactDOM.unmountComponentAtNode(div);
+    div.remove();
+  }} footer={null}>{content}</Dialog>;
+  const div = document.createElement('div');
+  document.body.append(div);
+  ReactDOM.render(component, div);
+};
 
 export { alert };
 

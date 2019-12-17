@@ -24,7 +24,6 @@
     padding-bottom: 10px;
     font-size: $title;
     color: $B900;
-    border-bottom: 1px solid $B300;
   }
 
   &-main {
@@ -35,7 +34,6 @@
     display: flex;
     justify-content: flex-end;
     padding-top: 10px;
-    border-top: 1px solid $B300;
 
     button {
       cursor: pointer;

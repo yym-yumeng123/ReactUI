@@ -5,11 +5,17 @@ export default function() {
   const [visible, setVisible] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [visible3, setVisible3] = useState(false);
+
+  const handlerAlert = () => {
+    alert('我是alert');
+  };
+
   return (
     <>
       <button onClick={() => setVisible(!visible)}>按钮</button>
       <button onClick={() => setVisible2(true)}>按钮2</button>
       <button onClick={() => setVisible3(true)}>按钮3</button>
+      <button onClick={handlerAlert}>alert</button>
       <Dialog
         visible={visible}
         onOk={() => {
