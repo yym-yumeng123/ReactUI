@@ -1,8 +1,8 @@
-import React, { Fragment, ReactElement } from 'react';
-import ReactDOM from 'react-dom';
-import './dialog.scss';
-import { Icon } from '../index';
-import { scopedClassMaker } from '../utils/classes';
+import React, { Fragment, ReactElement } from "react";
+import ReactDOM from "react-dom";
+import "./dialog.scss";
+import { Icon } from "../index";
+import { scopedClassMaker } from "../utils/classes";
 
 interface DialogProps {
   visible: boolean;
@@ -16,7 +16,7 @@ interface DialogProps {
   title?: string;
 }
 
-const scopedClass = scopedClassMaker('yui-dialog');
+const scopedClass = scopedClassMaker("yui-dialog");
 
 const Dialog: React.FunctionComponent<DialogProps> = props => {
   const handlerOk: React.MouseEventHandler = event => {
@@ -37,14 +37,14 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
     <Fragment>
       <div className={scopedClass()}>
         {props.closable ? (
-          <div className={scopedClass('close')} onClick={handlerClose}>
+          <div className={scopedClass("close")} onClick={handlerClose}>
             <Icon name="close" />
           </div>
         ) : null}
-        <header className={scopedClass('header')}>{props.title}</header>
-        <main className={scopedClass('main')}>{props.children}</main>
+        <header className={scopedClass("header")}>{props.title}</header>
+        <main className={scopedClass("main")}>{props.children}</main>
         {props.footer === null ? null : (
-          <footer className={scopedClass('footer')}>
+          <footer className={scopedClass("footer")}>
             {props.footer ? (
               props.footer
             ) : (
@@ -56,7 +56,7 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
           </footer>
         )}
       </div>
-      <div className={scopedClass('mask')} onClick={handlerCloseMask}></div>
+      <div className={scopedClass("mask")} onClick={handlerCloseMask}></div>
     </Fragment>
   ) : null;
 
@@ -66,23 +66,68 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
 Dialog.defaultProps = {
   maskClosable: true,
   closable: true,
-  title: '标题',
-  onOkText: '确定',
-  onCancelText: '取消'
+  title: "标题",
+  onOkText: "确定",
+  onCancelText: "取消"
 };
 
-const alert = (content: string) => {
-  const component = <Dialog visible={true} onOk={() => {}} onCancel={() => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-    // 卸载
-    ReactDOM.unmountComponentAtNode(div);
-    div.remove();
-  }} footer={null}>{content}</Dialog>;
+const Alert = (content: string) => {
+  const component = (
+    <Dialog
+      visible={true}
+      onOk={() => {}}
+      onCancel={() => {
+        ReactDOM.render(React.cloneElement(component, { visible: false }), div);
+        // 卸载
+        ReactDOM.unmountComponentAtNode(div);
+        div.remove();
+      }}
+      footer={null}
+    >
+      {content}
+    </Dialog>
+  );
   const div = document.createElement('div');
   document.body.append(div);
   ReactDOM.render(component, div);
 };
 
-export { alert };
+const Confirm = (content: string, yes?: () => void, no?: () => void) => {
+  const onYes = () => {
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+    ReactDOM.unmountComponentAtNode(div);
+    div.remove();
+    yes && yes();
+  };
+
+  const onNo = () => {
+    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+    ReactDOM.unmountComponentAtNode(div);
+    div.remove();
+    no && no();
+  };
+
+  const component = (
+    <Dialog
+      visible={true}
+      onCancel={onNo}
+      onOk={() => {}}
+      footer={
+        <>
+          <button onClick={onYes}>ok</button>
+          <button onClick={onNo}>cancel</button>
+        </>
+      }
+    >
+      {content}
+    </Dialog>
+  );
+
+  const div = document.createElement('div');
+  document.body.appendChild(div);
+  ReactDOM.render(component, div);
+};
+
+export { Alert, Confirm };
 
 export default Dialog;

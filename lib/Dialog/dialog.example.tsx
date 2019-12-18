@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dialog, { alert } from './dialog';
+import Dialog, { Alert, Confirm } from './dialog';
 
 export default function() {
   const [visible, setVisible] = useState(false);
@@ -7,7 +7,11 @@ export default function() {
   const [visible3, setVisible3] = useState(false);
 
   const handlerAlert = () => {
-    alert('我是alert');
+    Alert('我是alert');
+  };
+
+  const handlerConfirm = () => {
+    Confirm('我是Confirm');
   };
 
   return (
@@ -16,6 +20,7 @@ export default function() {
       <button onClick={() => setVisible2(true)}>按钮2</button>
       <button onClick={() => setVisible3(true)}>按钮3</button>
       <button onClick={handlerAlert}>alert</button>
+      <button onClick={handlerConfirm}>confirm</button>
       <Dialog
         visible={visible}
         onOk={() => {
