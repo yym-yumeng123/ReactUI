@@ -8,7 +8,7 @@
     "space-before-function-paren": false,
     "no-namespace": false,
     "label-position": false,
-    "quotemark": [true, "single", "jsx-double"],
+    "quotemark": [true, "double", "jsx-double"],
     "member-access": false,
     "semicolon": [true, "always", "ignore-bound-class-methods"],
     "no-unused-expression": [true, "allow-fast-null-checks"],

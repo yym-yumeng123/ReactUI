@@ -87,21 +87,21 @@ const Alert = (content: string) => {
       {content}
     </Dialog>
   );
-  const div = document.createElement('div');
+  const div = document.createElement("div");
   document.body.append(div);
   ReactDOM.render(component, div);
 };
 
 const Confirm = (content: string, yes?: () => void, no?: () => void) => {
   const onYes = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
     ReactDOM.unmountComponentAtNode(div);
     div.remove();
     yes && yes();
   };
 
   const onNo = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
     ReactDOM.unmountComponentAtNode(div);
     div.remove();
     no && no();
@@ -123,7 +123,7 @@ const Confirm = (content: string, yes?: () => void, no?: () => void) => {
     </Dialog>
   );
 
-  const div = document.createElement('div');
+  const div = document.createElement("div");
   document.body.appendChild(div);
   ReactDOM.render(component, div);
 };

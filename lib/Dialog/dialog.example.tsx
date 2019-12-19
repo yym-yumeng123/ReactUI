@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Dialog, { Alert, Confirm } from './dialog';
+import React, { useState } from "react";
+import Dialog, { Alert, Confirm } from "./dialog";
 
 export default function() {
   const [visible, setVisible] = useState(false);
@@ -7,11 +7,11 @@ export default function() {
   const [visible3, setVisible3] = useState(false);
 
   const handlerAlert = () => {
-    Alert('我是alert');
+    Alert("我是alert");
   };
 
   const handlerConfirm = () => {
-    Confirm('我是Confirm');
+    Confirm("我是Confirm");
   };
 
   return (
