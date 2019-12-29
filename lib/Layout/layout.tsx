@@ -3,7 +3,7 @@ import React from "react";
 const Layout: React.FunctionComponent = () => {
   return (
     <div>
-      Layout
+      你好
     </div>
   );
 };
