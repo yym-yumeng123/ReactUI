@@ -1,9 +1,12 @@
 import React from "react";
+import { scopedClassMaker } from "../utils/classes";
 
-const Header: React.FunctionComponent = () => {
+const scopedClass = scopedClassMaker("yui-layout");
+
+const Header: React.FunctionComponent = (props) => {
   return (
-    <div>
-      Header
+    <div className={scopedClass("header")}>
+      {props.children}
     </div>
   );
 };

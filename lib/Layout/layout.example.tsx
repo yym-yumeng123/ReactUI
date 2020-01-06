@@ -9,7 +9,7 @@ export default function() {
     <div>
       第一个例子:
       <Layout>
-        <Header>header</Header>
+        <Header>header11</Header>
         <Content>content</Content>
         <Footer>footer</Footer>
       </Layout>
