@@ -1,5 +1,7 @@
 import React from "react";
 import { scopedClassMaker } from "../utils/classes";
+import classes from "../helpers/classes";
+import "./layout.scss";
 const scopedClass = scopedClassMaker("yui-layout");
 
 // 1. 可能还有 id 等等 html属性
@@ -14,7 +16,7 @@ interface LayoutProps extends React.HTMLAttributes<HTMLElement> {}
 const Layout: React.FunctionComponent<LayoutProps> = (props) => {
   const { className, ...restProps } = props;
   return (
-    <div style={{}} className={scopedClass()} {...restProps}>
+    <div className={classes(scopedClass(), className)} {...restProps}>
       {props.children}
     </div>
   );

@@ -8,7 +8,7 @@ export default function() {
   return (
     <div>
       第一个例子:
-      <Layout>
+      <Layout className="hi">
         <Header>header11</Header>
         <Content>content</Content>
         <Footer>footer</Footer>
