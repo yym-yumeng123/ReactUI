@@ -8,7 +8,7 @@ import SiderBar from "./sidebar";
 export default function() {
   return (
     <div>
-      {/* 第一个例子:
+      第一个例子:
       <Layout className="hi" style={{height: "300px",}}>
         <Header>王向芬-header</Header>
         <Content>content</Content>
@@ -31,7 +31,7 @@ export default function() {
           <SiderBar>侧边</SiderBar>
         </Layout>
         <Footer>dibu </Footer>
-      </Layout> */}
+      </Layout>
       第四个例子:
       <Layout style={{height: "300px",}}>
         <SiderBar>侧边</SiderBar>

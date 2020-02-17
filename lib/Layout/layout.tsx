@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNodeArray } from "react";
+import React, { ReactElement } from "react";
 import { scopedClassMaker } from "../utils/classes";
 import classes from "../helpers/classes";
 import "./layout.scss";
@@ -15,20 +15,27 @@ interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
   children: ReactElement | ReactElement[];
 }
 
-const Layout: React.FunctionComponent<LayoutProps> = (props) => {
+const Layout: React.FunctionComponent<LayoutProps> = props => {
   const { className, ...restProps } = props;
 
   let hasAside = false;
-  if((props.children as ReactElement[]).length) {
+  if ((props.children as ReactElement[]).length) {
     (props.children as ReactElement[]).map(node => {
-      if(node.type === "Sidebar") {
+      if (node.type.name === "Sidebar") {
         hasAside = true;
       }
     });
   }
 
-  return (
-    <div className={classes(scopedClass(), className, "yui-layout-hasAside")} {...restProps}>
+  return hasAside ? (
+    <div
+      className={classes(scopedClass(), className, "yui-layout-hasAside")}
+      {...restProps}
+    >
+      {props.children}
+    </div>
+  ) : (
+    <div className={classes(scopedClass(), className)} {...restProps}>
       {props.children}
     </div>
   );
