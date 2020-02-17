@@ -17,15 +17,14 @@ interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
 
 const Layout: React.FunctionComponent<LayoutProps> = props => {
   const { className, ...restProps } = props;
+  const children = props.children as ReactElement[];
 
-  let hasAside = false;
-  if ((props.children as ReactElement[]).length) {
-    (props.children as ReactElement[]).map(node => {
-      if (node.type.name === "Sidebar") {
-        hasAside = true;
-      }
-    });
-  }
+  const hasAside =
+    children.length &&
+    children.reduce(
+      (result, node) => result || node.type.name === "Sidebar",
+      false
+    );
 
   return hasAside ? (
     <div
