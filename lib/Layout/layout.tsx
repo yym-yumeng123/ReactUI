@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import { scopedClassMaker } from "../utils/classes";
 import classes from "../helpers/classes";
 import "./layout.scss";
+import Sidebar from "./sidebar";
 const scopedClass = scopedClassMaker("yui-layout");
 
 // 1. 可能还有 id 等等 html属性
@@ -22,7 +23,7 @@ const Layout: React.FunctionComponent<LayoutProps> = props => {
   const hasAside =
     children.length &&
     children.reduce(
-      (result, node) => result || node.type.name === "Sidebar",
+      (result, node) => result || node.type === Sidebar,
       false
     );
 
