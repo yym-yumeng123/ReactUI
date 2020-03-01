@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import ButtonExample from "./lib/Button/button.example";
 import IconExample from "./lib/Icon/icon.example";
 import DialogExample from "./lib/Dialog/dialog.example";
@@ -11,32 +11,35 @@ import "./example.scss";
 ReactDOM.render(
   <Router>
     <Layout className="pageWrapper">
-      <Header>YUI</Header>
+      <Header className="g-header">
+        <img src="./logo.png" alt="logo"/>
+      </Header>
       <Layout>
-        <SideBar>
+        <SideBar className="g-aside">
+          <h2>组件</h2>
           <ul>
             <li>
-              <Link to="/icon">icon</Link>
+              <NavLink to="/icon">icon</NavLink>
             </li>
             <li>
-              <Link to="/button">按钮</Link>
+              <NavLink to="/button">按钮</NavLink>
             </li>
             <li>
-              <Link to="/dialog">弹窗组件-Dialog</Link>
+              <NavLink to="/dialog">弹窗组件-Dialog</NavLink>
             </li>
             <li>
-              <Link to="/layout">容器组件-Layout</Link>
+              <NavLink to="/layout">容器组件-Layout</NavLink>
             </li>
           </ul>
         </SideBar>
-        <Content>
+        <Content className="g-main">
           <Route path="/icon" component={IconExample}></Route>
           <Route path="/button" component={ButtonExample}></Route>
           <Route path="/dialog" component={DialogExample}></Route>
           <Route path="/layout" component={LayoutExample}></Route>
         </Content>
       </Layout>
-      <Footer>footer</Footer>
+      <Footer className="g-footer">&copy; 杨雨蒙</Footer>
     </Layout>
   </Router>,
   document.querySelector("#root"),
