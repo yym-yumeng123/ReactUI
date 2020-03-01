@@ -4,8 +4,8 @@ module.exports = {
   // mode: "production",
   // 入口是 tsx, 但程序不认识 jsx, 配置 rules
   entry: {
-		index:  "./lib/index.tsx"
-	},
+    index: "./lib/index.tsx"
+  },
   // 输出目录
   output: {
     // 因为不同的操作系统, 路径不一样, 所以使用 __dirname, 当前路径
@@ -18,7 +18,7 @@ module.exports = {
 
   // 配置 import 引入
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: [".ts", ".tsx", ".js", ".jsx"]
   },
   module: {
     rules: [
@@ -34,8 +34,12 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|jpeg|jpg|gif)$/,
+        use: ["file-loader"]
       }
     ]
-	},
+  }
 };

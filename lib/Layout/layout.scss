@@ -3,12 +3,10 @@
 .yui-layout {
   display: flex;
   flex-direction: column;
-  border: 1px solid blue;
 
   & & {
     flex-grow: 1;
     flex-direction: row;
-    border: 1px solid green;
   }
 
   &.yui-layout-hasAside {
@@ -21,6 +19,5 @@
 
   &-content {
     flex-grow: 1;
-    border: 1px solid red;
   }
 }
