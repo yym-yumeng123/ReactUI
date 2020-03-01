@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter as Router, Route, Link, NavLink } from "react-router-dom";
+import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import ButtonExample from "./lib/Button/button.example";
-import IconExample from "./lib/Icon/icon.example";
+import IconDemo from "./lib/Icon/icon.demo";
 import DialogExample from "./lib/Dialog/dialog.example";
 import LayoutExample from "./lib/Layout/layout.example";
 import {Layout, Footer, Header, SideBar, Content } from "./lib/Layout/layout";
@@ -33,7 +33,7 @@ ReactDOM.render(
           </ul>
         </SideBar>
         <Content className="g-main">
-          <Route path="/icon" component={IconExample}></Route>
+          <Route path="/icon" component={IconDemo}></Route>
           <Route path="/button" component={ButtonExample}></Route>
           <Route path="/dialog" component={DialogExample}></Route>
           <Route path="/layout" component={LayoutExample}></Route>
