@@ -35,6 +35,8 @@ a {
 $padding: 16px;
 
 .pageWrapper {
+  min-height: 100vh;
+
   .g-main {
     padding-top: $padding;
   }
