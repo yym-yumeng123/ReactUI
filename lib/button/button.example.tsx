@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const ButtonExample: React.FunctionComponent = () => {
-  return <div>button</div>
-}
+  return <div>button</div>;
+};
 
-export default ButtonExample
+export default ButtonExample;
