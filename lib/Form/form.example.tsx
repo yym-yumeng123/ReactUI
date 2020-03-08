@@ -23,7 +23,24 @@ const FormExample: React.FunctionComponent = () => {
       }
     }
   ]);
-  return <Form value={formData} fields={fields} />;
+
+  const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(formData);
+  };
+
+  return (
+    <Form
+      value={formData}
+      fields={fields}
+      buttons={
+        <>
+          <button type="submit">提交</button>
+          <button>返回</button>
+        </>
+      }
+      onSubmit={handlerSubmit}
+    />
+  );
 };
 
 export default FormExample;
