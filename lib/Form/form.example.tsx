@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Form from "./form";
+import Form, { FormValue } from "./form";
 
 const FormExample: React.FunctionComponent = () => {
-  const [formData] = useState({
+  const [formData, setFromData] = useState<FormValue>({
     username: "",
     password: ""
   });
@@ -16,7 +16,7 @@ const FormExample: React.FunctionComponent = () => {
       }
     },
     {
-      name: "passsword",
+      name: "password",
       label: "密码",
       input: {
         type: "password"
@@ -25,7 +25,7 @@ const FormExample: React.FunctionComponent = () => {
   ]);
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(formData);
+    console.log(formData, "form...");
   };
 
   return (
@@ -38,6 +38,7 @@ const FormExample: React.FunctionComponent = () => {
           <button>返回</button>
         </>
       }
+      onChange={(newValue) => setFromData(newValue)}
       onSubmit={handlerSubmit}
     />
   );
