@@ -25,6 +25,8 @@ const FormExample: React.FunctionComponent = () => {
     }
   ]);
 
+  const [errors, setErrors] = useState({});
+
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     const rules = [
       { key: "username", required: true },
@@ -34,6 +36,7 @@ const FormExample: React.FunctionComponent = () => {
       { key: "password", required: true },
     ];
     const errors = Validator(formData, rules);
+    setErrors(errors);
     console.log(errors, "form...");
   };
 
@@ -47,6 +50,7 @@ const FormExample: React.FunctionComponent = () => {
           <button>返回</button>
         </>
       }
+      errors={errors}
       onChange={newValue => setFromData(newValue)}
       onSubmit={handlerSubmit}
     />
