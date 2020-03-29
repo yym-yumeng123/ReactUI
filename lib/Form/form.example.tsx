@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Form, { FormValue } from "./form";
+import Validator from "./validator";
 
 const FormExample: React.FunctionComponent = () => {
   const [formData, setFromData] = useState<FormValue>({
@@ -25,7 +26,9 @@ const FormExample: React.FunctionComponent = () => {
   ]);
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log(formData, "form...");
+    const rules = [{ key: "username", required: true }];
+    const errors = Validator(formData, rules);
+    console.log(errors, "form...");
   };
 
   return (
@@ -38,7 +41,7 @@ const FormExample: React.FunctionComponent = () => {
           <button>返回</button>
         </>
       }
-      onChange={(newValue) => setFromData(newValue)}
+      onChange={newValue => setFromData(newValue)}
       onSubmit={handlerSubmit}
     />
   );
