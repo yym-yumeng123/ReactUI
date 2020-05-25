@@ -5,3 +5,11 @@
 ```
 运行生成文档脚本  sh doc.sh
 ```
+
+
+git 技巧
+```
+git remote add xxx git@github.com:yym/yyy.git
+
+git push -u xxx master
+```
