@@ -9,6 +9,7 @@
 
 git 技巧
 ```
+// 将代码上传到多个仓库
 git remote add xxx git@github.com:yym/yyy.git
 
 git push -u xxx master
