@@ -32,6 +32,7 @@ module.exports = {
         test: /\.svg$/,
         loader: "svg-sprite-loader"
       },
+      // 使用, 从右往左
       {
         test: /\.s[ac]ss$/,
         use: ["style-loader", "css-loader", "sass-loader"]
