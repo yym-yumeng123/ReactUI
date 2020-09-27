@@ -2,11 +2,13 @@ import React from "react";
 import Icon from "./icon";
 
 const IconExample: React.FunctionComponent = () => {
-  const fn = (e: React.MouseEvent) => {
+  const fn: React.MouseEventHandler = (e) => {
+
     console.log(e);
     console.log(e.target);
 
     // as 把某个东西当做什么类处理
+    // as 断言
     console.log((e.target as SVGUseElement).href);
     console.log((e.target as HTMLDivElement).style);
   }
