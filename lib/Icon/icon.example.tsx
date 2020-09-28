@@ -10,11 +10,11 @@ const IconExample: React.FunctionComponent = () => {
   return (
     <div>
       <Icon name="message" color="blue" />
-      <Icon name="view" />
+      <Icon name="renew" />
       <Icon name="view_off" className="icon" />
-      <Icon name="edit" className="icon" color="red" />
-      <Icon name="close" className="icon" color="red" size="20px" />
-      <Icon name="upload" onClick={fn} />
+      <Icon name="time" className="icon" color="red" />
+      <Icon name="view" className="icon" color="red" size="20px" />
+      <Icon name="record" onClick={fn} />
     </div>
   );
 };
