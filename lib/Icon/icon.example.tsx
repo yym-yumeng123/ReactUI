@@ -9,6 +9,7 @@ const IconExample: React.FunctionComponent = () => {
 
   return (
     <div>
+      <Icon name="message" color="blue" />
       <Icon name="view" />
       <Icon name="view_off" className="icon" />
       <Icon name="edit" className="icon" color="red" />
