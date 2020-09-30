@@ -1,31 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="10" failures="0" time="12.437">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2019-12-09T12:04:03" time="3.909" tests="1">
-    <testcase classname=" add" name=" add" time="0.003">
+<testsuites name="jest tests" tests="9" failures="1" time="15.54">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-09-30T09:06:34" time="4.065" tests="1">
+    <testcase classname=" add" name=" add" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2019-12-09T12:04:03" time="4.465" tests="1">
-    <testcase classname=" button" name=" button" time="0.014">
-    </testcase>
-  </testsuite>
-  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2019-12-09T12:04:03" time="5.909" tests="5">
+  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2020-09-30T09:06:34" time="6.248" tests="5">
     <testcase classname="classes 接收一个 classname" name="classes 接收一个 classname" time="0.003">
     </testcase>
-    <testcase classname="classes 接收两个 classname" name="classes 接收两个 classname" time="0">
+    <testcase classname="classes 接收两个 classname" name="classes 接收两个 classname" time="0.001">
     </testcase>
-    <testcase classname="classes 接收参数一个 undefined" name="classes 接收参数一个 undefined" time="0.001">
+    <testcase classname="classes 接收参数一个 undefined" name="classes 接收参数一个 undefined" time="0">
     </testcase>
     <testcase classname="classes 接收多个值" name="classes 接收多个值" time="0">
     </testcase>
-    <testcase classname="classes 接收空" name="classes 接收空" time="0">
+    <testcase classname="classes 接收空" name="classes 接收空" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="测试Icon" errors="0" failures="0" skipped="0" timestamp="2019-12-09T12:04:03" time="6.203" tests="3">
-    <testcase classname="测试Icon render success" name="测试Icon render success" time="0.024">
+  <testsuite name="测试Icon" errors="0" failures="1" skipped="0" timestamp="2020-09-30T09:06:34" time="6.534" tests="3">
+    <testcase classname="测试Icon render success" name="测试Icon render success" time="0.016">
+      <failure>Error: expect(received).toMatchSnapshot()
+
+Snapshot name: `测试Icon render success 1`
+
+- Snapshot
++ Received
+
+  &lt;svg
+    className=&quot;yui-icon&quot;
++   style={
++     Object {
++       &quot;fill&quot;: undefined,
++       &quot;fontSize&quot;: undefined,
++     }
++   }
+  &gt;
+    &lt;use
+      xlinkHref=&quot;#qq&quot;
+    /&gt;
+  &lt;/svg&gt;
+    at Object.&lt;anonymous&gt; (C:\Users\18026\Desktop\ReactUI\lib\Icon\__tests__\icon.unit.jsx:9:18)
+    at Object.asyncJestTest (C:\Users\18026\Desktop\ReactUI\node_modules\jest-jasmine2\build\jasmineAsyncInstall.js:102:37)
+    at C:\Users\18026\Desktop\ReactUI\node_modules\jest-jasmine2\build\queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (C:\Users\18026\Desktop\ReactUI\node_modules\jest-jasmine2\build\queueRunner.js:26:19)
+    at C:\Users\18026\Desktop\ReactUI\node_modules\jest-jasmine2\build\queueRunner.js:73:41
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
     </testcase>
-    <testcase classname="测试Icon onClick" name="测试Icon onClick" time="0.046">
+    <testcase classname="测试Icon onClick" name="测试Icon onClick" time="0.036">
     </testcase>
-    <testcase classname="测试Icon onClick jest.fn()" name="测试Icon onClick jest.fn()" time="0.011">
+    <testcase classname="测试Icon onClick jest.fn()" name="测试Icon onClick jest.fn()" time="0.005">
     </testcase>
   </testsuite>
 </testsuites>
