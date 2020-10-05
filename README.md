@@ -65,3 +65,5 @@ ReactUI
 - classes.tsx ==> icon 的 className 函数
 - __tests__ ==>  classes 的测试函数
 ```
+
+2. `snapshot` 测试里面的快照, 每次都跟上一次正确的作对比

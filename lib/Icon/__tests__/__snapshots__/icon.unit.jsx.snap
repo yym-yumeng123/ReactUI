@@ -3,9 +3,15 @@
 exports[`测试Icon render success 1`] = `
 <svg
   className="yui-icon"
+  style={
+    Object {
+      "fill": undefined,
+      "fontSize": undefined,
+    }
+  }
 >
   <use
-    xlinkHref="#qq"
+    xlinkHref="#time"
   />
 </svg>
 `;

@@ -4,8 +4,9 @@ import Icon from '../icon'
 import { mount } from  'enzyme'
 
 describe('测试Icon', () => {
-  xit('render success', () => {
+  it('render success', () => {
     const json = renderer.create(<Icon name="time" />).toJSON()
+    // snapshot 快照
     expect(json).toMatchSnapshot()
   })
   it('onClick', () => {
