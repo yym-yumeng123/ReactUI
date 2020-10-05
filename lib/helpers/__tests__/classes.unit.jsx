@@ -1,5 +1,9 @@
 import classes from  '../classes';
+
+// 描述一个东西 describe
 describe('classes', () => {
+
+  // it 它怎么怎么样
   it('接收一个 classname', () => {
     const res = classes('a')
     expect(res).toEqual('a')

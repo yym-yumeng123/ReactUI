@@ -59,3 +59,9 @@ ReactUI
 ├── webpack.config.prod.js  // prd
 └── yarn.lock
 ```
+
+1. `lib/helpers/`
+```
+- classes.tsx ==> icon 的 className 函数
+- __tests__ ==>  classes 的测试函数
+```
