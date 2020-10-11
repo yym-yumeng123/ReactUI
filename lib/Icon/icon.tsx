@@ -18,7 +18,7 @@ const Icon: React.FunctionComponent<IconProps> = ({
 }) => {
   return (
     <svg
-      style={{ fill: color, fontSize: size, }}
+      style={{ fill: color || '#000', fontSize: size || '1em', }}
       className={classes("yui-icon", className)}
       {...restProps}
     >
