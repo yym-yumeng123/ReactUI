@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ObjectHTMLAttributes } from "react";
 import "./importAllIcons";
 import classes from "../helpers/classes";
 import "./icon.scss";
@@ -16,9 +16,20 @@ const Icon: React.FunctionComponent<IconProps> = ({
   size,
   ...restProps
 }) => {
+  const styles = () => {
+    let style: any = {};
+    if (color) {
+      style.fill = color;
+    }
+    if (size) {
+      style.fontSize = `${size}px`;
+    }
+    return style;
+  };
+
   return (
     <svg
-      style={{ fill: color || '#000', fontSize: size || '1em', }}
+      style={styles()}
       className={classes("yui-icon", className)}
       {...restProps}
     >
