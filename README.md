@@ -38,7 +38,7 @@ ReactUI
 │   ├── __tests__
 │   └── setupTests.js
 ├── .gitignore  // 忽略某些文件不需要提交
-├── .travis.yml
+├── .travis.yml  // https://travis-ci.org/  自动测试集成
 ├── demo.tsx
 ├── doc.sh
 ├── example.html
