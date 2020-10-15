@@ -1,4 +1,4 @@
-import React, { ObjectHTMLAttributes } from "react";
+import React from "react";
 import "./importAllIcons";
 import classes from "../helpers/classes";
 import "./icon.scss";
