@@ -3,12 +3,7 @@
 exports[`测试Icon render success 1`] = `
 <svg
   className="yui-icon"
-  style={
-    Object {
-      "fill": "#000",
-      "fontSize": "1em",
-    }
-  }
+  style={Object {}}
 >
   <use
     xlinkHref="#time"

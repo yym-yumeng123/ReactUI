@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import "./importAllIcons";
 import classes from "../helpers/classes";
 import "./icon.scss";
@@ -37,5 +38,13 @@ const Icon: React.FunctionComponent<IconProps> = ({
     </svg>
   );
 };
+
+Icon.displayName = 'Icon'
+Icon.defaultProps = {}
+Icon.propTypes = {
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  size: PropTypes.string
+}
 
 export default Icon;

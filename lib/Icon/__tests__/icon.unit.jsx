@@ -1,6 +1,8 @@
+// 单元测试一般要先失败一次, 在成功一次
 import * as renderer from 'react-test-renderer'
 import * as React from 'react'
 import Icon from '../icon'
+// 一个 react 测试框架
 import { mount } from  'enzyme'
 
 describe('测试Icon', () => {
@@ -14,7 +16,10 @@ describe('测试Icon', () => {
     const fn = () => {
       n = 2
     }
+
+    // mount 加载
     const component = mount(<Icon name="time" onClick={fn} />)
+    // 找到 svg 模仿点击
     component.find('svg').simulate('click')
     expect(n).toEqual(2)
   })
