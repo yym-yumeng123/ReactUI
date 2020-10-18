@@ -33,7 +33,7 @@ ReactUI
 │   ├── utils
 │   ├── index.d.ts
 │   └── index.tsx
-├── test
+├── test  // 测试配置
 │   ├── __mocks__
 │   ├── __tests__
 │   └── setupTests.js
@@ -44,9 +44,9 @@ ReactUI
 ├── example.html
 ├── example.scss
 ├── example.tsx
-├── jest.config.js
-├── junit.xml
-├── LICENSE
+├── jest.config.js  // jest 测试配置
+├── junit.xml  // 测试生成的 xml 文件
+├── LICENSE  // 协议
 ├── logo.png
 ├── package.json
 ├── README.md
@@ -59,11 +59,3 @@ ReactUI
 ├── webpack.config.prod.js  // prd
 └── yarn.lock
 ```
-
-1. `lib/helpers/`
-```
-- classes.tsx ==> icon 的 className 函数
-- __tests__ ==>  classes 的测试函数
-```
-
-2. `snapshot` 测试里面的快照, 每次都跟上一次正确的作对比

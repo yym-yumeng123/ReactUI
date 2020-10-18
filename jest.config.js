@@ -3,7 +3,7 @@
 module.exports = {
   verbose: true,
   clearMocks: false,
-
+  // 是否收集
   collectCoverage: true,
   // 测试那些, 不测试哪些
   collectCoverageFrom: ["lib/**/*.{js,jsx,ts,tsx}", "!**/node_modules/**"],
