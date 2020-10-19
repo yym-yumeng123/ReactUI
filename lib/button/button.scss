@@ -1,29 +1,45 @@
+@import "../styles/variable.scss";
+
+// 基本样式
 .yui-button {
-  color: #575757;
-  font-size: 14px;
+  font-weight: $btn-font-weight;
   border: none;
-  border-radius: 6px;
-  background: #f7f7fa;
-  padding: 8px 12px;
+  @include button-size(
+    $btn-padding-x,
+    $btn-padding-y,
+    $btn-font-size,
+    $btn-radius
+  );
 
-  &:hover {
-    background: #e5e5ea;
-  }
+  background-image: none;
+  cursor: pointer;
 
+  // focus 公用
   &:focus {
     outline: none;
   }
 
-  &:active {
-    background: #d9d9d9;
-  }
-
-  &.yui-button-disabled {
+  // 默认
+  &.yui-button-default {
+    color: #575757;
     background: #f7f7fa;
-    color: #c5c6c7;
-    cursor: not-allowed;
+
+    &:hover {
+      background: #e5e5ea;
+    }
+
+    &:active {
+      background: #d9d9d9;
+    }
+
+    &.yui-button-disabled {
+      background: #f7f7fa;
+      color: #c5c6c7;
+      cursor: not-allowed;
+    }
   }
 
+  // primary
   &.yui-button-primary {
     color: #fff;
     background: #3498ff;
@@ -42,6 +58,7 @@
     }
   }
 
+  // danger
   &.yui-button-danger {
     color: #fff;
     background: #ff7875;
@@ -60,6 +77,7 @@
     }
   }
 
+  // link
   &.yui-button-link {
     color: #1675e0;
     background: none;
@@ -81,8 +99,36 @@
     }
   }
 
+  // block
   &.yui-button-block {
     width: 100%;
     border-radius: 0;
   }
+}
+
+.yui-button-lg {
+  @include button-size(
+    $btn-padding-x-lg,
+    $btn-padding-y-lg,
+    $btn-font-size-lg,
+    $btn-radius
+  );
+}
+
+.yui-button-sm {
+  @include button-size(
+    $btn-padding-x-sm,
+    $btn-padding-y-sm,
+    $btn-font-size-sm,
+    $btn-radius
+  );
+}
+
+.yui-button-xs {
+  @include button-size(
+    $btn-padding-x-xs,
+    $btn-padding-y-xs,
+    $btn-font-size-xs,
+    $btn-radius
+  );
 }

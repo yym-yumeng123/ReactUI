@@ -1,1 +1,29 @@
-@import "./helper"
+@import "./helper";
+
+// button
+$btn-font-size: 14px;
+$btn-padding-x: 12px;
+$btn-padding-y: 8px;
+$btn-font-weight: 400;
+$btn-radius: 6px;
+
+$btn-font-size-lg: 16px;
+$btn-padding-x-lg: 16px;
+$btn-padding-y-lg: 10px;
+
+$btn-font-size-sm: 14px;
+$btn-padding-x-sm: 10px;
+$btn-padding-y-sm: 5px;
+
+$btn-font-size-xs: 12px;
+$btn-padding-x-xs: 8px;
+$btn-padding-y-xs: 2px;
+
+// 改变 size, 就是改变这几个属性
+@mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+// 也可以 type 结合

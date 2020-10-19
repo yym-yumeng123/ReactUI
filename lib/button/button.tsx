@@ -16,39 +16,45 @@ export enum ButtonType {
 
 interface ButtonProps {
   children: React.ReactNode;
-  lever?: 'primary' | 'danger' | 'link';
-  size?: ButtonSize;
+  level?: "default" | "primary" | "danger" | "link" | ButtonType;
+  size?: "lg" | "sm" | "xs" | ButtonSize;
   disabled?: boolean;
   className?: string;
   href?: string;
   block?: boolean;
-  onClick?: () => void
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = props => {
-  const { children, lever, size, disabled, href, onClick, block } = props;
+  const { children, level, size, disabled, href, onClick, block } = props;
 
   // class 不同属性
   const classes = classNames("yui-button", {
-    [`yui-button-${lever}`]: lever,
+    [`yui-button-${level}`]: level,
     [`yui-button-${size}`]: size,
-    ['yui-button-disabled']: disabled,
-    ['yui-button-block']: block,
-
+    ["yui-button-disabled"]: disabled,
+    ["yui-button-block"]: block
   });
   return (
     <>
-      {lever === "link" ? (
-        <a href={href} target="_blank" className={classes}>
+      {level === "link" ? (
+        <a className={classes} href={href} target="_blank">
           {children}
         </a>
       ) : (
-        <button onClick={onClick} className={classes}>
+        // button 自带 disabled   disabled={disabled}
+        <button className={classes} onClick={onClick}>
           {children}
         </button>
       )}
     </>
   );
+};
+
+Button.defaultProps = {
+  level: "default",
+  disabled: false,
+  block: false
 };
 
 export default Button;
