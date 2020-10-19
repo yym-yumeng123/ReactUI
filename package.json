@@ -86,7 +86,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router": "^5.1.2",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "stylelint-scss": "^3.18.0"
   },
   "checkFiles": [
     "lib/**/*.scss"
