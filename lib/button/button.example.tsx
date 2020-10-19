@@ -2,6 +2,10 @@ import React from "react";
 import Button, { ButtonSize } from "./button";
 
 const ButtonExample: React.FunctionComponent = () => {
+  const fn = e => {
+    console.log(e, '1212');
+
+  }
   return (
     <div>
       <Button>普通按钮</Button>
@@ -16,7 +20,7 @@ const ButtonExample: React.FunctionComponent = () => {
 
       <div>
         <br />
-        <Button level="primary" block>
+        <Button level="primary" block onClick={fn}>
           block 按钮
         </Button>
       </div>

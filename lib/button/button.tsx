@@ -14,7 +14,7 @@ export enum ButtonType {
   Link = "link"
 }
 
-interface ButtonProps {
+interface BaseButtonProps {
   children: React.ReactNode;
   level?: "default" | "primary" | "danger" | "link" | ButtonType;
   size?: "lg" | "sm" | "xs" | ButtonSize;
@@ -22,14 +22,31 @@ interface ButtonProps {
   className?: string;
   href?: string;
   block?: boolean;
-  onClick?: () => void;
 }
 
+// 联合类型 button
+type NativeButtonProps = BaseButtonProps &
+  React.ButtonHTMLAttributes<HTMLElement>;
+// a链接 联合类型
+type AnchorButtonProps = BaseButtonProps &
+  React.AnchorHTMLAttributes<HTMLElement>;
+// a 链接 和 button 属性有的不同   Partial 都是可选的属性
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
+
 const Button: React.FC<ButtonProps> = props => {
-  const { children, level, size, disabled, href, onClick, block } = props;
+  const {
+    children,
+    level,
+    size,
+    disabled,
+    href,
+    block,
+    className,
+    ...restProps
+  } = props;
 
   // class 不同属性
-  const classes = classNames("yui-button", {
+  const classes = classNames("yui-button", className, {
     [`yui-button-${level}`]: level,
     [`yui-button-${size}`]: size,
     ["yui-button-disabled"]: disabled,
@@ -38,12 +55,12 @@ const Button: React.FC<ButtonProps> = props => {
   return (
     <>
       {level === "link" ? (
-        <a className={classes} href={href} target="_blank">
+        <a className={classes} href={href} target="_blank" {...restProps}>
           {children}
         </a>
       ) : (
         // button 自带 disabled   disabled={disabled}
-        <button className={classes} onClick={onClick}>
+        <button className={classes} {...restProps}>
           {children}
         </button>
       )}
