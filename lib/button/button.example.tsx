@@ -2,10 +2,9 @@ import React from "react";
 import Button, { ButtonSize } from "./button";
 
 const ButtonExample: React.FunctionComponent = () => {
-  const fn = e => {
-    console.log(e, '1212');
-
-  }
+  const fn = () => {
+    console.log("我被点击了");
+  };
   return (
     <div>
       <Button>普通按钮</Button>

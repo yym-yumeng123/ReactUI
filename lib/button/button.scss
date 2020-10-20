@@ -4,6 +4,7 @@
 .yui-button {
   font-weight: $btn-font-weight;
   border: none;
+
   @include button-size(
     $btn-padding-x,
     $btn-padding-y,
