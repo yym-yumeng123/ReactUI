@@ -1,7 +1,7 @@
 import React, { Fragment, ReactElement } from "react";
 import ReactDOM from "react-dom";
 import "./dialog.scss";
-import { Icon } from "../index";
+import { Icon, Button } from "../index";
 import { scopedClassMaker } from "../utils/classes";
 
 interface DialogProps {
@@ -16,6 +16,7 @@ interface DialogProps {
   title?: string;
 }
 
+// 类名 复用
 const scopedClass = scopedClassMaker("yui-dialog");
 
 const Dialog: React.FunctionComponent<DialogProps> = props => {
@@ -37,6 +38,7 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
     <Fragment>
       <div className={scopedClass()}>
         {props.closable ? (
+          // 类名 ==> yui-dialog-close
           <div className={scopedClass("close")} onClick={handlerClose}>
             <Icon name="close" />
           </div>
@@ -49,8 +51,8 @@ const Dialog: React.FunctionComponent<DialogProps> = props => {
               props.footer
             ) : (
               <>
-                <button onClick={handlerOk}>{props.onOkText}</button>
-                <button onClick={handlerClose}>{props.onCancelText}</button>
+                <Button level="primary" onClick={handlerOk}>{props.onOkText}</Button>
+                <Button onClick={handlerClose}>{props.onCancelText}</Button>
               </>
             )}
           </footer>
@@ -114,8 +116,8 @@ const Confirm = (content: string, yes?: () => void, no?: () => void) => {
       onOk={() => {}}
       footer={
         <>
-          <button onClick={onYes}>ok</button>
-          <button onClick={onNo}>cancel</button>
+          <Button level="primary" onClick={onYes}>ok</Button>
+          <Button onClick={onNo}>cancel</Button>
         </>
       }
     >

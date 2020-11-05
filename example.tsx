@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import IconDemo from "./lib/Icon/icon.demo";
-import ButtonExample from './lib/button/button.example'
+import ButtonExample from './lib/Button/button.example'
 import DialogExample from "./lib/Dialog/dialog.example";
 import LayoutExample from "./lib/Layout/layout.example";
 import FormExample from "./lib/Form/form.example";

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Dialog, { Alert, Confirm } from "./dialog";
+import { Button } from "../index";
 
 export default function() {
   const [visible, setVisible] = useState(false);
@@ -16,11 +17,11 @@ export default function() {
 
   return (
     <>
-      <button onClick={() => setVisible(!visible)}>按钮</button>
-      <button onClick={() => setVisible2(true)}>按钮2</button>
-      <button onClick={() => setVisible3(true)}>按钮3</button>
-      <button onClick={handlerAlert}>alert</button>
-      <button onClick={handlerConfirm}>confirm</button>
+      <Button level="primary" onClick={() => setVisible(!visible)}>按钮</Button>
+      <Button level="primary" onClick={() => setVisible2(true)}>按钮2</Button>
+      <Button level="primary" onClick={() => setVisible3(true)}>按钮3</Button>
+      <Button level="primary" onClick={handlerAlert}>alert</Button>
+      <Button level="primary" onClick={handlerConfirm}>confirm</Button>
       <Dialog
         visible={visible}
         onOk={() => {
@@ -41,8 +42,8 @@ export default function() {
         visible={visible2}
         footer={
           <>
-            <button onClick={() => setVisible2(false)}>ok</button>
-            <button>cancel</button>
+            <Button level="primary" onClick={() => setVisible2(false)}>ok</Button>
+            <Button>cancel</Button>
           </>
         }
         onCancel={() => {
