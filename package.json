@@ -1,7 +1,7 @@
 {
-  "name": "reactui0000",
+  "name": "yym-react-ui",
   "version": "0.0.2",
-  "description": "",
+  "description": "react + typescript UI组件库",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index",
   "files": [
