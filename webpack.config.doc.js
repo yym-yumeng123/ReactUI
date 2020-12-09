@@ -4,14 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = Object.assign({}, base, {
   mode: "production",
   entry: {
-    example: './example.tsx',
+    example: './views/view.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'doc')
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'example.html',
+      template: './views/view.html',
       filename: 'index.html'
     }),
   ],

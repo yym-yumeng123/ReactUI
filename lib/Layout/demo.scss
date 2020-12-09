@@ -1,0 +1,36 @@
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.yym-demo-sider {
+  width: 256px;
+  background-color: #7dbcea;
+}
+
+.yym-demo-layout {
+  height: 300px;
+  color: #fff;
+
+  .yym-demo-header {
+    @include center;
+
+    height: 64px;
+    background-color: #7dbcea;
+  }
+
+  .yym-demo-content {
+    @include center;
+
+    min-width: 120px;
+    background-color: rgba(16, 142, 233, 1);
+  }
+
+  .yym-demo-footer {
+    @include center;
+
+    height: 64px;
+    background-color: #7dbcea;
+  }
+}

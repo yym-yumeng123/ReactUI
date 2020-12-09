@@ -4,17 +4,18 @@ import Header from "./header";
 import Content from "./content";
 import Footer from "./footer";
 import SiderBar from "./sidebar";
+import "./demo.scss";
 
 export default function() {
   return (
     <div>
-      {/* 第一个例子:
-      <Layout className="hi" style={{height: "300px",}}>
-        <Header>王向芬-header</Header>
-        <Content>content</Content>
-        <Footer>footer</Footer>
+      <h2>第一个例子</h2>
+      <Layout className="yym-demo-layout">
+        <Header className="yym-demo-header">Header</Header>
+        <Content className="yym-demo-content">Content</Content>
+        <Footer className="yym-demo-footer">Footer</Footer>
       </Layout>
-      第二个例子:
+      {/*第二个例子:
       <Layout style={{height: "300px",}}>
         <Header>头部</Header>
         <Layout>
@@ -32,13 +33,13 @@ export default function() {
         </Layout>
         <Footer>dibu </Footer>
       </Layout> */}
-      第四个例子:
-      <Layout style={{height: "300px",}}>
-        <SiderBar>侧边</SiderBar>
-        <Layout>
-          <Header>头部</Header>
-          <Content>中间</Content>
-          <Footer>底部</Footer>
+      <h2>第四个例子</h2>
+      <Layout>
+        <SiderBar className="yym-demo-sider">SiderBar</SiderBar>
+        <Layout className="yym-demo-layout">
+          <Header className="yym-demo-header">Header</Header>
+          <Content className="yym-demo-content">Content</Content>
+          <Footer className="yym-demo-footer">Footer</Footer>
         </Layout>
       </Layout>
     </div>
