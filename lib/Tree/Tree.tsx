@@ -12,6 +12,7 @@ interface TreeProps {
 const Tree: React.FC<TreeProps> = props => {
   const { sourceData } = props;
 
+  // 递归 children
   const TreeItem = (item: SourceDataItem) => {
     return (
       <div key={item.value}>
