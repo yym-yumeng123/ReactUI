@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter as Router, Route, NavLink } from "react-router-dom";
+import { HashRouter as Router, Route, NavLink, Redirect } from "react-router-dom";
+import All from './lib/All/all'
 import IconDemo from "./lib/Icon/icon.demo";
-import ButtonExample from './lib/Button/button.example'
+import ButtonExample from "./lib/Button/button.example";
 import DialogExample from "./lib/Dialog/dialog.example";
 import LayoutExample from "./lib/Layout/layout.example";
 import FormExample from "./lib/Form/form.example";
-import {Layout, Footer, Header, SideBar, Content } from "./lib/Layout/layout";
+import { Layout, Footer, Header, SideBar, Content } from "./lib/Layout/layout";
 import TreeDemo from "./lib/Tree/tree.example";
 import "./example.scss";
 
@@ -14,7 +15,7 @@ ReactDOM.render(
   <Router>
     <Layout className="pageWrapper">
       <Header className="g-header">
-        <img src="./logo.png" alt="logo"/>
+        <img src="./logo.png" alt="logo" />
       </Header>
       <Layout>
         <SideBar className="g-aside">
@@ -41,6 +42,8 @@ ReactDOM.render(
           </ul>
         </SideBar>
         <Content className="g-main">
+          <Redirect path="/" to="/all" />
+          <Route path="/all" component={All}></Route>
           <Route path="/icon" component={IconDemo}></Route>
           <Route path="/button" component={ButtonExample}></Route>
           <Route path="/dialog" component={DialogExample}></Route>
@@ -52,5 +55,5 @@ ReactDOM.render(
       <Footer className="g-footer">&copy; 杨雨蒙</Footer>
     </Layout>
   </Router>,
-  document.querySelector("#root"),
+  document.querySelector("#root")
 );
