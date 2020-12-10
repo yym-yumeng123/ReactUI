@@ -12,7 +12,7 @@ module.exports = Object.assign({}, base, {
   plugins: [
     new HtmlWebpackPlugin({
       template: './views/view.html',
-      filename: 'index.html'
+      filename: 'doc/index.html'
     }),
   ],
 });
