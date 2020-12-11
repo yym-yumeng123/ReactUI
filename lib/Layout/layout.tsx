@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import { scopedClassMaker, classes } from "../utils/classes";
 import Sidebar from "./sidebar";
+import { scopedClassMaker, classes } from "../utils/classes";
 import "./layout.scss";
 
 // 前缀

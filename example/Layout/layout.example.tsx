@@ -1,9 +1,9 @@
 import React from "react";
-import Layout from "./layout";
-import Header from "./header";
-import Content from "./content";
-import Footer from "./footer";
-import SiderBar from "./sidebar";
+import Layout from "../../lib/Layout/layout";
+import Header from "../../lib/Layout/header";
+import Content from "../../lib/Layout/content";
+import Footer from "../../lib/Layout/footer";
+import SiderBar from "../../lib/Layout/sidebar";
 import "./demo.scss";
 
 export default function() {

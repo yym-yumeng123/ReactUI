@@ -59,3 +59,8 @@ ReactUI
 ├── webpack.config.prod.js  // prd
 └── yarn.lock
 ```
+
+- example 例子文件夹
+- lib 源代码文件夹
+- views 预览文件
+- assert 图标以及图片资源

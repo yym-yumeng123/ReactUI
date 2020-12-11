@@ -22,7 +22,7 @@
     "noUnusedLocals": true
   },
   "include": [
-    "lib/**/*"
+    "lib/**/*", "example/Icon/icon.demo.tsx", "example/Icon/icon.example.tsx"
   ],
   "exclude": [
     "node_modules",
