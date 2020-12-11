@@ -1,5 +1,5 @@
 import React from "react";
-import { scopedClassMaker, classes } from "../utils/utils";
+import { scopedClassMaker, classes } from "../utils/classes";
 
 // 初始化class
 const scopedClass = scopedClassMaker("yui-layout");

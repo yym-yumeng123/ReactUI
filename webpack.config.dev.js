@@ -1,5 +1,4 @@
 const base = require('./webpack.config');
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 

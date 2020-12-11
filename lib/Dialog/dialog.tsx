@@ -1,7 +1,7 @@
 import React, { Fragment, ReactElement } from "react";
 import ReactDOM from "react-dom";
 import { Icon, Button } from "../index";
-import { scopedClassMaker } from "../utils/utils";
+import { scopedClassMaker } from "../utils/classes";
 import "./dialog.scss";
 
 interface DialogProps {
