@@ -4,6 +4,9 @@ interface Props {
   code: string;
 }
 
+/**
+ * @description 代码高亮 demo
+ */
 const Demo: React.FunctionComponent<Props> = props => {
   const [codeVisible, setCodeVisible] = useState(false);
   const code = (
