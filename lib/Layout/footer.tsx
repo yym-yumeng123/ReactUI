@@ -1,6 +1,5 @@
 import React from "react";
-import { scopedClassMaker } from "../utils/classes";
-import classes from "../helpers/classes";
+import { scopedClassMaker, classes } from "../utils/utils";
 
 const scopedClass = scopedClassMaker("yui-layout");
 

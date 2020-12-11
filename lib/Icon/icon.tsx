@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import "./importAllIcons";
-import classes from "../helpers/classes";
+import { classes } from "../utils/utils";
 import "./icon.scss";
 
 interface IconProps extends React.SVGAttributes<SVGElement> {
@@ -39,12 +39,12 @@ const Icon: React.FunctionComponent<IconProps> = ({
   );
 };
 
-Icon.displayName = 'Icon'
-Icon.defaultProps = {}
+Icon.displayName = "Icon";
+Icon.defaultProps = {};
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string,
   size: PropTypes.string
-}
+};
 
 export default Icon;
