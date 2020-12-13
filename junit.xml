@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="9" failures="0" time="10.577">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-10-18T13:32:07" time="2.143" tests="1">
-    <testcase classname=" add" name=" add" time="0.004">
+<testsuites name="jest tests" tests="10" failures="0" time="5.495">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2020-12-13T14:41:51" time="1.518" tests="1">
+    <testcase classname=" add" name=" add" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2020-10-18T13:32:07" time="3.585" tests="5">
+  <testsuite name="测试Icon" errors="0" failures="0" skipped="0" timestamp="2020-12-13T14:41:51" time="1.643" tests="3">
+    <testcase classname="测试Icon render success" name="测试Icon render success" time="0.011">
+    </testcase>
+    <testcase classname="测试Icon onClick" name="测试Icon onClick" time="0.027">
+    </testcase>
+    <testcase classname="测试Icon onClick jest.fn()" name="测试Icon onClick jest.fn()" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2020-12-13T14:41:51" time="2.449" tests="6">
     <testcase classname="classes 接收一个 classname" name="classes 接收一个 classname" time="0.002">
     </testcase>
-    <testcase classname="classes 接收两个 classname" name="classes 接收两个 classname" time="0">
+    <testcase classname="classes 接收两个 classname" name="classes 接收两个 classname" time="0.001">
     </testcase>
-    <testcase classname="classes 接收参数一个 undefined" name="classes 接收参数一个 undefined" time="0.001">
+    <testcase classname="classes 接收参数一个 undefined" name="classes 接收参数一个 undefined" time="0">
     </testcase>
     <testcase classname="classes 接收多个值" name="classes 接收多个值" time="0">
     </testcase>
     <testcase classname="classes 接收空" name="classes 接收空" time="0">
     </testcase>
-  </testsuite>
-  <testsuite name="测试Icon" errors="0" failures="0" skipped="0" timestamp="2020-10-18T13:32:07" time="5.31" tests="3">
-    <testcase classname="测试Icon render success" name="测试Icon render success" time="0.01">
-    </testcase>
-    <testcase classname="测试Icon onClick" name="测试Icon onClick" time="0.029">
-    </testcase>
-    <testcase classname="测试Icon onClick jest.fn()" name="测试Icon onClick jest.fn()" time="0.002">
+    <testcase classname="mergeClassOrScoped 接收字符串或对象" name="mergeClassOrScoped 接收字符串或对象" time="0">
     </testcase>
   </testsuite>
 </testsuites>
