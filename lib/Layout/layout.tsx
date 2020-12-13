@@ -19,8 +19,11 @@ interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
 
 const Layout: React.FunctionComponent<LayoutProps> = props => {
   const { className, ...restProps } = props;
+
+  // ts 断言, children 当做数组来用
   const children = props.children as ReactElement[];
 
+  // 得到子元素是否有 SideBar, 有添加类名
   const hasAside =
     children.length &&
     children.reduce(

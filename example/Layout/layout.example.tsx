@@ -15,14 +15,14 @@ export default function() {
         <Content className="yym-demo-content">Content</Content>
         <Footer className="yym-demo-footer">Footer</Footer>
       </Layout>
-      {/*第二个例子:
+      第二个例子:
       <Layout style={{height: "300px",}}>
         <Header>头部</Header>
         <Layout>
           <SiderBar>侧边</SiderBar>
           <Content>中间</Content>
         </Layout>
-        <Footer>dibu </Footer>
+        <Footer>底部</Footer>
       </Layout>
       第三个例子:
       <Layout style={{height: "300px",}}>
@@ -31,8 +31,8 @@ export default function() {
           <Content>中间</Content>
           <SiderBar>侧边</SiderBar>
         </Layout>
-        <Footer>dibu </Footer>
-      </Layout> */}
+        <Footer>底部</Footer>
+      </Layout>
       <h2>第四个例子</h2>
       <Layout>
         <SiderBar className="yym-demo-sider">SiderBar</SiderBar>

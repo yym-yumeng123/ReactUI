@@ -5,7 +5,7 @@ const scopedClass = scopedClassMaker("yui-layout");
 
 interface ContentProps extends React.HTMLAttributes<HTMLElement> {}
 
-const Content: React.FunctionComponent<ContentProps> = (props) => {
+const Content: React.FC<ContentProps> = props => {
   const { className, ...restProps } = props;
   return (
     <div className={classes(scopedClass("content"), className)} {...restProps}>

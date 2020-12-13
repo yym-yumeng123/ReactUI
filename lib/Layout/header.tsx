@@ -8,7 +8,7 @@ const scopedClass = scopedClassMaker("yui-layout");
 
 interface HeaderProps extends React.HTMLAttributes<HTMLElement> {}
 
-const Header: React.FunctionComponent<HeaderProps> = (props) => {
+const Header: React.FC<HeaderProps> = (props) => {
   const { className, ...restProps } = props;
   return (
     <div className={classes(scopedClass("header"), className)} {...restProps}>
