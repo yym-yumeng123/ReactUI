@@ -28,7 +28,7 @@ describe("classes", () => {
 describe("mergeClassOrScoped", () => {
   it("接收字符串或对象", () => {
     const scopedClass = mergeClassOrScoped("yui-layout");
-    expect(scopedClass()).toEqual("yui-layout");
+    expect(scopedClass('')).toEqual("yui-layout");
     expect(scopedClass("x")).toEqual("yui-layout-x");
     expect(scopedClass({ y: true, z: false })).toEqual("yui-layout-y");
     expect(scopedClass({ y: true, z: true })).toEqual("yui-layout-y yui-layout-z");
