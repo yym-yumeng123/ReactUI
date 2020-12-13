@@ -16,25 +16,25 @@ export default function() {
         <Footer className="yym-demo-footer">Footer</Footer>
       </Layout>
       第二个例子:
-      <Layout style={{height: "300px",}}>
-        <Header>头部</Header>
-        <Layout>
-          <SiderBar>侧边</SiderBar>
-          <Content>中间</Content>
+      <Layout className="yym-demo-layout">
+        <Header className="yym-demo-header">头部</Header>
+        <Layout className="yym-demo-layout">
+          <SiderBar className="yym-demo-sider">侧边</SiderBar>
+          <Content className="yym-demo-content">中间</Content>
         </Layout>
         <Footer>底部</Footer>
       </Layout>
       第三个例子:
-      <Layout style={{height: "300px",}}>
-        <Header>头部</Header>
+      <Layout className="yym-demo-layout">
+        <Header className="yym-demo-header">头部</Header>
         <Layout>
-          <Content>中间</Content>
-          <SiderBar>侧边</SiderBar>
+          <Content className="yym-demo-content">中间</Content>
+          <SiderBar className="yym-demo-sider">侧边</SiderBar>
         </Layout>
-        <Footer>底部</Footer>
+        <Footer className="yym-demo-footer">底部</Footer>
       </Layout>
       <h2>第四个例子</h2>
-      <Layout>
+      <Layout className="yym-demo-layout">
         <SiderBar className="yym-demo-sider">SiderBar</SiderBar>
         <Layout className="yym-demo-layout">
           <Header className="yym-demo-header">Header</Header>

@@ -4,14 +4,16 @@
   align-items: center;
 }
 
-.yym-demo-sider {
-  width: 256px;
-  background-color: #7dbcea;
-}
-
 .yym-demo-layout {
   height: 300px;
   color: #fff;
+
+  .yym-demo-sider {
+    @include center;
+
+    width: 256px;
+    background-color: #3ba0e9;
+  }
 
   .yym-demo-header {
     @include center;
@@ -24,7 +26,7 @@
     @include center;
 
     min-width: 120px;
-    background-color: rgba(16, 142, 233, 1);
+    background-color: #108ee9;
   }
 
   .yym-demo-footer {
