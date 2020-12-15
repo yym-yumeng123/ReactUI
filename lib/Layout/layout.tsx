@@ -45,6 +45,7 @@ const Layout: React.FunctionComponent<LayoutProps> = props => {
   );
 };
 
+// 都从这里默认导出
 export default Layout;
 export {Layout};
 export {default as Header} from  "./header";

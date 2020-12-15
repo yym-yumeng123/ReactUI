@@ -14,12 +14,14 @@ import FormExample from "../lib/Form/form.example";
 import { Layout, Footer, Header, SideBar, Content } from "../lib/Layout/layout";
 import TreeDemo from "../lib/Tree/tree.example";
 import "./view.scss";
+// @ts-ignore
+import logo from './logo.png'
 
 ReactDOM.render(
   <Router>
     <Layout className="pageWrapper">
       <Header className="g-header">
-        <img src="./logo.png" alt="logo" />
+        <img src={logo} alt="logo" />
       </Header>
       <Layout>
         <SideBar className="g-aside">
