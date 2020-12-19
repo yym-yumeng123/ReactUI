@@ -21,6 +21,10 @@ h6 {
   font-size: normal;
 }
 
+pre {
+  font-family: "Fira Code Medium", Consolas, monospace;
+}
+
 ul,
 li,
 ol {
@@ -55,7 +59,6 @@ $padding: 16px;
   .g-aside {
     min-width: 256px;
     border-right: 1px solid #f2f2f5;
-    margin-right: 16px;
 
     h2 {
       padding: $padding;
@@ -90,5 +93,13 @@ $padding: 16px;
     color: #666;
     padding: $padding 0;
     border: 1px solid #f2f2f5;
+  }
+}
+
+.code-style {
+  margin-top: 16px;
+
+  .yui-button {
+    margin-bottom: 8px;
   }
 }

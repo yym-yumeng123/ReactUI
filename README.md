@@ -64,3 +64,10 @@ ReactUI
 - lib 源代码文件夹
 - views 预览文件
 - assert 图标以及图片资源
+
+// raw-loader 用于显示组件代码
+一个可以用于加载文件作为字符串使用的加载器
+
+// prism-react-renderer
+语法高亮
+
