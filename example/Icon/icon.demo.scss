@@ -1,0 +1,29 @@
+.ym-icon-wrap {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -8px;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 15.5%;
+      height: 100px;
+      background: #cce9ff;
+      margin-left: 8px;
+      margin-bottom: 8px;
+
+      &:hover {
+        color: #fff;
+        background: #3498ff;
+        cursor: pointer;
+      }
+
+      span {
+        margin-top: 8px;
+      }
+    }
+  }
+}
