@@ -28,9 +28,11 @@ function classes(...names: Array<string | undefined | boolean>) {
 }
 
 /**
- * @description 合并 上面两个函数
+ * @description 接受多个 classnames
+ * @param name 可以是字符串, 也可以是对象 '' || {}
+ * @param options 接受一个 extra 额外的 class
  */
-const mergeClassOrScoped = (prefix: string) => (
+const addPrefixAndscopedClassMarker = (prefix: string) => (
   name: string | ClassToggles,
   options?: Options
 ) =>
@@ -42,4 +44,4 @@ const mergeClassOrScoped = (prefix: string) => (
     .concat(options?.extra || [])
     .join(" ");
 
-export { scopedClassMaker, classes, mergeClassOrScoped };
+export { scopedClassMaker, classes, addPrefixAndscopedClassMarker };

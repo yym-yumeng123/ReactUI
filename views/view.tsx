@@ -9,10 +9,9 @@ import {
 import All from "lib/All/all";
 import ButtonExample from "lib/Button/button.example";
 import DialogExample from "lib/Dialog/dialog.example";
-import { IconDemo, LayoutExample } from "example";
 import FormExample from "lib/Form/form.example";
 import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
-import TreeDemo from "lib/Tree/tree.example";
+import { IconDemo, LayoutExample, TreeDemo } from "example";
 import "./view.scss";
 // @ts-ignore
 import logo from './logo.png'

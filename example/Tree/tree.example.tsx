@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Tree from "./Tree";
+import Tree from "lib/Tree/Tree";
 const TreeDemo = () => {
   const [treeArray] = useState([
     {
