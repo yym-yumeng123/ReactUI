@@ -1,5 +1,7 @@
 import React from "react";
+import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
+import './tree.scss'
 
 const sc = addPrefixAndscopedClassMarker("yui-tree");
 interface SourceDataItem {
@@ -22,11 +24,11 @@ const Tree: React.FC<TreeProps> = props => {
   const renderItem = (item: SourceDataItem, level = 0) => {
     const classes = {
       [`level-${level}`]: true,
-      "item": true
+      item: true
     };
     return (
       <div key={item.key} className={sc(classes)}>
-        {item.title}
+        <div className={sc('title')}><Icon size="12" name="page_turning_right" />{item.title}</div>
         {item.children?.map(subItem => {
           // 每次渲染 级别 + 1
           return renderItem(subItem, level + 1);

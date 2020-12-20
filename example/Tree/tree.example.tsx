@@ -27,7 +27,7 @@ const TreeDemo = () => {
     }
   ]);
   return (
-    <div>
+    <div style={{width: 200, border: '1px solid green',}}>
       <Tree sourceData={treeArray} />
     </div>
   );
