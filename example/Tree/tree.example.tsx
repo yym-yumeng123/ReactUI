@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import Tree from "lib/Tree/Tree";
+import Tree, { SourceDataItem } from "lib/Tree/Tree";
 const TreeDemo = () => {
   const [treeArray] = useState([
     {
-      title: "一",
+      title: "1",
       key: "1",
       children: [
         {
-          title: "一之一",
+          title: "1.1",
           key: "1.1",
           children: [
             { title: "一之一之一", key: "1.1.1" },
             { title: "一之一之二", key: "1.1.2" }
           ]
         },
-        { title: "一之二", key: "1.2" }
+        { title: "1.2", key: "1.2" }
       ]
     },
     {
@@ -26,9 +26,21 @@ const TreeDemo = () => {
       ]
     }
   ]);
+
+  const [selecteValues, setSelecteValues] = useState(["1.1", "1.2"]);
+
+  const onChange = (item: SourceDataItem, bool: boolean) => {
+    bool === true
+      ? setSelecteValues([...selecteValues, item.title])
+      : setSelecteValues(selecteValues.filter(value => value !== item.title));
+  };
   return (
-    <div style={{width: 200, border: '1px solid green',}}>
-      <Tree sourceData={treeArray} />
+    <div style={{ width: 200, border: "1px solid", }}>
+      <Tree
+        sourceData={treeArray}
+        onChange={onChange}
+        selectedValues={selecteValues}
+      />
     </div>
   );
 };
