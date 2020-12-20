@@ -19,6 +19,10 @@ module.exports = {
   // 配置 import 引入
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".scss"],
+    alias: {
+      lib: path.resolve(__dirname, 'lib/'),
+      example: path.resolve(__dirname, 'example/')
+    }
   },
   module: {
     rules: [

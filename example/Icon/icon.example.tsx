@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "../../lib/Icon/icon";
+import Icon from "lib/Icon/icon";
 
 const IconExample: React.FunctionComponent = () => {
   const fn: React.MouseEventHandler = (e) => {
