@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Tree, { SourceDataItem } from "lib/Tree/Tree";
+import Tree from "lib/Tree/Tree";
 const TreeDemo = () => {
   const [treeArray] = useState([
     {
@@ -28,19 +28,32 @@ const TreeDemo = () => {
   ]);
 
   const [selecteValues, setSelecteValues] = useState(["1.1", "1.2"]);
-  const [selectedValue] = useState('1.1');
+  const [selectedValue, setSelecteValue] = useState('1.1');
+  const onChange = (val: string[]) => {
+    console.log(val, 'val');
+    setSelecteValues(val)
+  }
 
-  const onChange = (item: SourceDataItem, bool: boolean) => {
-    bool === true
-      ? setSelecteValues([...selecteValues, item.title])
-      : setSelecteValues(selecteValues.filter(value => value !== item.title));
-  };
+  const onChange1 = (val: string) => {
+    console.log(val, 'val');
+    setSelecteValue(val)
+  }
+
   return (
-    <div style={{ width: 200, border: "1px solid" }}>
-      {selectedValue}
+    <div style={{ width: 200, }}>
+      {selecteValues.join(',')}
       <Tree
         sourceData={treeArray}
         onChange={onChange}
+        selected={selecteValues}
+        multiple
+      />
+
+      <hr/>
+
+      <Tree
+        sourceData={treeArray}
+        onChange={onChange1}
         selected={selectedValue}
       />
     </div>

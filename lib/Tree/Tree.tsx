@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./tree.scss";
@@ -13,16 +13,20 @@ export interface SourceDataItem {
 // 联合类型 多选必为数组 单选为字符串
 type TreeProps = {
   sourceData: SourceDataItem[];
-  // 在哪一层勾选的, 勾上还是关掉
-  onChange: (item: SourceDataItem, bool: boolean) => void;
-} & (
-  | { selected: string[]; multiple: true }
-  | { selected: string; multiple?: false }
+} & ({
+      selected: string;
+      multiple?: false;
+      onChange: (values: string) => void;
+    }
+  | {
+      selected: string[];
+      multiple: true;
+      onChange: (values: string[]) => void;
+    }
 );
 
 const Tree: React.FC<TreeProps> = props => {
   const { sourceData, selected, onChange, multiple } = props;
-  console.log(selected, "dfddf");
 
   /**
    * 递归渲染树的每一项
@@ -37,6 +41,18 @@ const Tree: React.FC<TreeProps> = props => {
     const checked = multiple
       ? selected.indexOf(item.title) >= 0
       : selected === item.title;
+
+    const onSelectChange: ChangeEventHandler<HTMLInputElement> = e => {
+      if (multiple) {
+        if (e.target.checked) {
+          onChange([...selected, item.title]);
+        } else {
+          onChange(selected.filter(value => value !== item.title));
+        }
+      } else {
+        onChange(item.title)
+      }
+    };
     return (
       <div key={item.key} className={sc(classes)}>
         <div className={sc("title")}>
@@ -46,7 +62,7 @@ const Tree: React.FC<TreeProps> = props => {
             name=""
             id=""
             checked={checked}
-            onChange={e => onChange(item, e.target.checked)}
+            onChange={onSelectChange}
           />
           {item.title}
         </div>
