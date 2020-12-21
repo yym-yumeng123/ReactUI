@@ -55,7 +55,7 @@ const Tree: React.FC<TreeProps> = props => {
     };
     return (
       <div key={item.key} className={sc(classes)}>
-        <div className={sc("title")}>
+        <label className={sc("title")}>
           <Icon size="12" name="page_turning_right" />
           <input
             type="checkbox"
@@ -65,7 +65,7 @@ const Tree: React.FC<TreeProps> = props => {
             onChange={onSelectChange}
           />
           {item.title}
-        </div>
+        </label>
         {item.children?.map(subItem => {
           // 每次渲染 级别 + 1
           return renderItem(subItem, level + 1);
