@@ -35,11 +35,13 @@ const TreeDemo = () => {
       : setSelecteValues(selecteValues.filter(value => value !== item.title));
   };
   return (
-    <div style={{ width: 200, border: "1px solid", }}>
+    <div style={{ width: 200, border: "1px solid" }}>
+      {selecteValues}
       <Tree
         sourceData={treeArray}
         onChange={onChange}
-        selectedValues={selecteValues}
+        selected={selecteValues}
+        multiple
       />
     </div>
   );

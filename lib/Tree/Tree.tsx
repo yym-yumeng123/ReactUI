@@ -9,15 +9,19 @@ export interface SourceDataItem {
   key: string;
   children?: SourceDataItem[] | undefined | null;
 }
-interface TreeProps {
+
+// 联合类型 多选必为数组 单选为字符串
+type TreeProps = {
   sourceData: SourceDataItem[];
-  selectedValues: string[];
   // 在哪一层勾选的, 勾上还是关掉
   onChange: (item: SourceDataItem, bool: boolean) => void;
-}
+} & (
+  | { selected: string[], multiple: true }
+  | { selected: string, multiple: false }
+);
 
 const Tree: React.FC<TreeProps> = props => {
-  const { sourceData, selectedValues, onChange } = props;
+  const { sourceData, selected, onChange, multiple } = props;
 
   /**
    * 递归渲染树的每一项
@@ -26,8 +30,8 @@ const Tree: React.FC<TreeProps> = props => {
    */
   const renderItem = (
     item: SourceDataItem,
-    selectedValues: string[],
-    onChange:(item: SourceDataItem, bool: boolean) => void,
+    selected: string[],
+    onChange: (item: SourceDataItem, bool: boolean) => void,
     level = 0
   ) => {
     const classes = {
@@ -42,26 +46,32 @@ const Tree: React.FC<TreeProps> = props => {
             type="checkbox"
             name=""
             id=""
-            checked={selectedValues.indexOf(item.title) >= 0}
+            checked={selected.indexOf(item.title) >= 0}
             onChange={e => onChange(item, e.target.checked)}
           />
           {item.title}
         </div>
         {item.children?.map(subItem => {
           // 每次渲染 级别 + 1
-          return renderItem(subItem, selectedValues,onChange, level + 1);
+          return renderItem(subItem, selected, onChange, level + 1);
         })}
       </div>
     );
   };
 
-  return (
-    <div className={sc("")}>
-      {sourceData?.map(item => {
-        return renderItem(item, selectedValues, onChange);
-      })}
-    </div>
-  );
+  if (multiple) {
+    return (
+      <div className={sc("")}>
+        {sourceData?.map(item => {
+          return renderItem(item, selected, onChange);
+        })}
+      </div>
+    );
+  } else {
+    return (
+      <div>无数据</div>
+    )
+  }
 };
 
 export default Tree;
