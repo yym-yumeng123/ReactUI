@@ -16,28 +16,27 @@ type TreeProps = {
   // 在哪一层勾选的, 勾上还是关掉
   onChange: (item: SourceDataItem, bool: boolean) => void;
 } & (
-  | { selected: string[], multiple: true }
-  | { selected: string, multiple: false }
+  | { selected: string[]; multiple: true }
+  | { selected: string; multiple?: false }
 );
 
 const Tree: React.FC<TreeProps> = props => {
   const { sourceData, selected, onChange, multiple } = props;
+  console.log(selected, "dfddf");
 
   /**
    * 递归渲染树的每一项
    * @param item 数组的每一项
    * @param level 处于第几层, 默认为0层
    */
-  const renderItem = (
-    item: SourceDataItem,
-    selected: string[],
-    onChange: (item: SourceDataItem, bool: boolean) => void,
-    level = 0
-  ) => {
+  const renderItem = (item: SourceDataItem, level = 0) => {
     const classes = {
       [`level-${level}`]: true,
       item: true
     };
+    const checked = multiple
+      ? selected.indexOf(item.title) >= 0
+      : selected === item.title;
     return (
       <div key={item.key} className={sc(classes)}>
         <div className={sc("title")}>
@@ -46,32 +45,26 @@ const Tree: React.FC<TreeProps> = props => {
             type="checkbox"
             name=""
             id=""
-            checked={selected.indexOf(item.title) >= 0}
+            checked={checked}
             onChange={e => onChange(item, e.target.checked)}
           />
           {item.title}
         </div>
         {item.children?.map(subItem => {
           // 每次渲染 级别 + 1
-          return renderItem(subItem, selected, onChange, level + 1);
+          return renderItem(subItem, level + 1);
         })}
       </div>
     );
   };
 
-  if (multiple) {
-    return (
-      <div className={sc("")}>
-        {sourceData?.map(item => {
-          return renderItem(item, selected, onChange);
-        })}
-      </div>
-    );
-  } else {
-    return (
-      <div>无数据</div>
-    )
-  }
+  return (
+    <div className={sc("")}>
+      {sourceData?.map(item => {
+        return renderItem(item);
+      })}
+    </div>
+  );
 };
 
 export default Tree;

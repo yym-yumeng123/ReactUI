@@ -28,6 +28,7 @@ const TreeDemo = () => {
   ]);
 
   const [selecteValues, setSelecteValues] = useState(["1.1", "1.2"]);
+  const [selectedValue] = useState('1.1');
 
   const onChange = (item: SourceDataItem, bool: boolean) => {
     bool === true
@@ -36,12 +37,11 @@ const TreeDemo = () => {
   };
   return (
     <div style={{ width: 200, border: "1px solid" }}>
-      {selecteValues}
+      {selectedValue}
       <Tree
         sourceData={treeArray}
         onChange={onChange}
-        selected={selecteValues}
-        multiple
+        selected={selectedValue}
       />
     </div>
   );
