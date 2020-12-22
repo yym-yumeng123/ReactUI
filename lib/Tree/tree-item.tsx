@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, useState } from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
-import useUpdate from 'lib/hooks/useUpdate'
+import useUpdateCollapse from 'lib/hooks/useUpdateCollapse'
 const sc = addPrefixAndscopedClassMarker("yui-tree");
 
 interface TreeItemProps {
@@ -58,7 +58,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     setExpanded(true);
   };
 
-  useUpdate(expanded, () => {
+  useUpdateCollapse(expanded, () => {
     console.log(expanded, "扥顶级");
   });
 
