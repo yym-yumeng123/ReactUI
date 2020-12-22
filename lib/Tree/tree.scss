@@ -46,8 +46,12 @@
     }
   }
 
-  &-collapsed {
-    height: 0;
+  &-children {
+    transition: height 0.3s;
     overflow: hidden;
+
+    &-gone {
+      height: 0;
+    }
   }
 }

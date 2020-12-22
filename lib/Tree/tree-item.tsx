@@ -1,7 +1,7 @@
-import React, { ChangeEventHandler, useState } from "react";
+import React, { ChangeEventHandler, useRef, useState } from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
-import useUpdateCollapse from 'lib/hooks/useUpdateCollapse'
+import useUpdateCollapse from "lib/hooks/useUpdateCollapse";
 const sc = addPrefixAndscopedClassMarker("yui-tree");
 
 interface TreeItemProps {
@@ -24,6 +24,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
   } = props;
   // 展开
   const [expanded, setExpanded] = useState(true);
+  const divRef = useRef<HTMLDivElement>(null);
 
   const classes = {
     [`level-${level}`]: true,
@@ -59,7 +60,38 @@ const TreeItem: React.FC<TreeItemProps> = props => {
   };
 
   useUpdateCollapse(expanded, () => {
-    console.log(expanded, "扥顶级");
+    if (!divRef.current) return;
+    if (expanded) {
+      divRef.current.style.height = 'auto'
+      const { height } = divRef.current.getBoundingClientRect();
+      divRef.current.style.height = "0px";
+      divRef.current.getBoundingClientRect();
+      divRef.current.style.height = height + "px";
+
+      const afterExpand = () => {
+        if (!divRef.current) return;
+        divRef.current.style.height = ''
+        divRef.current.classList.add('yui-tree-children-present')
+        divRef.current.removeEventListener('transitionend', afterExpand)
+      }
+
+      divRef.current.addEventListener('transitionend', afterExpand)
+    } else {
+      const { height } = divRef.current.getBoundingClientRect();
+      console.log(height);
+      divRef.current.style.height = height + "px";
+      divRef.current.getBoundingClientRect();
+      divRef.current.style.height = "0px";
+
+      const afterCollapse = () => {
+        if (!divRef.current) return;
+        divRef.current.style.height = ''
+        divRef.current.classList.add('yui-tree-children-gone')
+        divRef.current.removeEventListener('transitionend', afterCollapse)
+      }
+
+      divRef.current.addEventListener('transitionend', afterCollapse)
+    }
   });
 
   return (
@@ -79,7 +111,10 @@ const TreeItem: React.FC<TreeItemProps> = props => {
         />
         {item.title}
       </div>
-      <div className={sc({ children: true, collapsed: !expanded })}>
+      <div
+        ref={divRef}
+        className={sc({ children: true, collapsed: !expanded })}
+      >
         {item.children?.map(subItem => (
           <TreeItem item={subItem} level={level + 1} treeProps={treeProps} />
         ))}
