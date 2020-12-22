@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./tree.scss";
@@ -13,7 +13,8 @@ export interface SourceDataItem {
 // 联合类型 多选必为数组 单选为字符串
 type TreeProps = {
   sourceData: SourceDataItem[];
-} & ({
+} & (
+  | {
       selected: string;
       multiple?: false;
       onChange: (values: string) => void;
@@ -34,6 +35,8 @@ const Tree: React.FC<TreeProps> = props => {
    * @param level 处于第几层, 默认为0层
    */
   const renderItem = (item: SourceDataItem, level = 0) => {
+    // 展开
+    const [expanded, setExpanded] = useState(true);
     const classes = {
       [`level-${level}`]: true,
       item: true
@@ -50,13 +53,27 @@ const Tree: React.FC<TreeProps> = props => {
           onChange(selected.filter(value => value !== item.title));
         }
       } else {
-        onChange(item.title)
+        onChange(item.title);
       }
+    };
+
+    const collapse = () => {
+      console.log("collapse");
+      setExpanded(false);
+    };
+
+    const expand = () => {
+      setExpanded(true);
+      console.log("expand");
     };
     return (
       <div key={item.key} className={sc(classes)}>
-        <label className={sc("title")}>
-          <Icon size="12" name="page_turning_right" />
+        <div className={sc("title")}>
+          {expanded ? (
+            <Icon size="12" name="show_more" onClick={collapse} />
+          ) : (
+            <Icon size="12" name="page_turning_right" onClick={expand} />
+          )}
           <input
             type="checkbox"
             name=""
@@ -65,11 +82,13 @@ const Tree: React.FC<TreeProps> = props => {
             onChange={onSelectChange}
           />
           {item.title}
-        </label>
-        {item.children?.map(subItem => {
-          // 每次渲染 级别 + 1
-          return renderItem(subItem, level + 1);
-        })}
+        </div>
+        <div className={sc({ children: true, collapsed: !expanded })}>
+          {item.children?.map(subItem => {
+            // 每次渲染 级别 + 1
+            return renderItem(subItem, level + 1);
+          })}
+        </div>
       </div>
     );
   };
