@@ -41,7 +41,11 @@ const TreeItem: React.FC<TreeItemProps> = props => {
         onChange(selected.filter(value => value !== item.title));
       }
     } else {
-      onChange(item.title);
+      if (e.target.checked) {
+        onChange(item.title);
+      } else {
+        onChange("");
+      }
     }
   };
 
