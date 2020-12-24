@@ -27,7 +27,7 @@ const TreeDemo = () => {
     }
   ]);
 
-  const [selecteValues, setSelecteValues] = useState(["1.1", "1.2"]);
+  const [selecteValues, setSelecteValues] = useState<string[]>([]);
   const [selectedValue, setSelecteValue] = useState('1.1');
   const onChange = (val: string[]) => {
     console.log(val, 'val');
@@ -41,7 +41,7 @@ const TreeDemo = () => {
 
   return (
     <div style={{ width: 200, }}>
-      {selecteValues.join(',')}
+      {selecteValues.join(', ')}
       <Tree
         sourceData={treeArray}
         onChange={onChange}

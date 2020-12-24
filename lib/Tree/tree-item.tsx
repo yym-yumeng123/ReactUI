@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler, useRef, useState } from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
+import { flatten } from "../utils/utils";
 import useUpdateCollapse from "lib/hooks/useUpdateCollapse";
 const sc = addPrefixAndscopedClassMarker("yui-tree");
 
@@ -35,12 +36,33 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     ? selected.indexOf(item.title) >= 0
     : selected === item.title;
 
+  /**
+   * @description 收集所有子元素
+   * @param item 每一项元素
+   */
+  const collectChildrenValues = (item: SourceDataItem): string[] => {
+    return flatten(
+      item.children?.map(subItem => [
+        subItem.title,
+        collectChildrenValues(subItem)
+      ])
+    );
+  };
+
   const onSelectChange: ChangeEventHandler<HTMLInputElement> = e => {
+    // chidren 的值
+    const childrenValues = collectChildrenValues(item);
+
     if (multiple) {
       if (e.target.checked) {
-        onChange([...selected, item.title]);
+        onChange([...selected, item.title, ...childrenValues]);
       } else {
-        onChange(selected.filter(value => value !== item.title));
+        onChange(
+          selected.filter(
+            value =>
+              value !== item.title && childrenValues.indexOf(value) === -1
+          )
+        );
       }
     } else {
       if (e.target.checked) {
@@ -62,7 +84,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
   useUpdateCollapse(expanded, () => {
     if (!divRef.current) return;
     if (expanded) {
-      divRef.current.style.height = 'auto'
+      divRef.current.style.height = "auto";
       const { height } = divRef.current.getBoundingClientRect();
       divRef.current.style.height = "0px";
       divRef.current.getBoundingClientRect();
@@ -70,12 +92,12 @@ const TreeItem: React.FC<TreeItemProps> = props => {
 
       const afterExpand = () => {
         if (!divRef.current) return;
-        divRef.current.style.height = ''
-        divRef.current.classList.add('yui-tree-children-present')
-        divRef.current.removeEventListener('transitionend', afterExpand)
-      }
+        divRef.current.style.height = "";
+        divRef.current.classList.add("yui-tree-children-present");
+        divRef.current.removeEventListener("transitionend", afterExpand);
+      };
 
-      divRef.current.addEventListener('transitionend', afterExpand)
+      divRef.current.addEventListener("transitionend", afterExpand);
     } else {
       const { height } = divRef.current.getBoundingClientRect();
       console.log(height);
@@ -85,12 +107,12 @@ const TreeItem: React.FC<TreeItemProps> = props => {
 
       const afterCollapse = () => {
         if (!divRef.current) return;
-        divRef.current.style.height = ''
-        divRef.current.classList.add('yui-tree-children-gone')
-        divRef.current.removeEventListener('transitionend', afterCollapse)
-      }
+        divRef.current.style.height = "";
+        divRef.current.classList.add("yui-tree-children-gone");
+        divRef.current.removeEventListener("transitionend", afterCollapse);
+      };
 
-      divRef.current.addEventListener('transitionend', afterCollapse)
+      divRef.current.addEventListener("transitionend", afterCollapse);
     }
   });
 
