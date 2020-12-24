@@ -6,12 +6,23 @@ import "./tree.scss";
 const sc = addPrefixAndscopedClassMarker("yui-tree");
 
 const Tree: React.FC<TreeProps> = props => {
-  const { sourceData } = props;
+  const { sourceData, onChange } = props;
+
+  const onItemChange = (values: string[]) => {
+    console.log("最终值", values);
+    onChange(values as string[]);
+  };
 
   return (
     <div className={sc("")}>
       {sourceData?.map(item => (
-        <TreeItem key={item.key} treeProps={props} item={item} level={0} />
+        <TreeItem
+          onItemChange={onItemChange}
+          key={item.key}
+          treeProps={props}
+          item={item}
+          level={0}
+        />
       ))}
     </div>
   );

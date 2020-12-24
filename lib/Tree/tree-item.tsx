@@ -1,4 +1,9 @@
-import React, { ChangeEventHandler, useRef, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  InputHTMLAttributes,
+  useRef,
+  useState
+} from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import { flatten } from "../utils/utils";
@@ -9,6 +14,7 @@ interface TreeItemProps {
   item: SourceDataItem;
   level: number;
   treeProps: TreeProps;
+  onItemChange: (value: string[]) => void;
 }
 
 /**
@@ -20,6 +26,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
   const {
     item,
     level = 0,
+    onItemChange,
     treeProps,
     treeProps: { multiple, selected, onChange }
   } = props;
@@ -55,9 +62,9 @@ const TreeItem: React.FC<TreeItemProps> = props => {
 
     if (multiple) {
       if (e.target.checked) {
-        onChange([...selected, item.title, ...childrenValues]);
+        onItemChange([...selected, item.title, ...childrenValues]);
       } else {
-        onChange(
+        onItemChange(
           selected.filter(
             value =>
               value !== item.title && childrenValues.indexOf(value) === -1
@@ -70,6 +77,40 @@ const TreeItem: React.FC<TreeItemProps> = props => {
       } else {
         onChange("");
       }
+    }
+  };
+
+  /**
+   *
+   * @param 交集
+   */
+  function intersect<T>(array1: T[], array2: T[]): T[] {
+    const result: T[] = [];
+    array1.map(item => {
+      if (array2.indexOf(item) >= 0) {
+        result.push(item);
+      }
+    });
+    return result;
+  }
+
+  // 子元素变化
+  const onItemChange1 = (values: any) => {
+    // 子代被全部选中
+    const childrenValues = collectChildrenValues(item);
+    console.log(childrenValues, "dslk");
+
+    const common = intersect(values, childrenValues);
+    console.log(common, "带领僧松开");
+    if (common.length !== 0) {
+      onItemChange(values.concat(item.title));
+      if (common.length === childrenValues.length) {
+        inputRef.current!.indeterminate = false
+      } else {
+        inputRef.current!.indeterminate = true
+      }
+    } else {
+      inputRef.current!.indeterminate = false
     }
   };
 
@@ -116,6 +157,8 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     }
   });
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
     <div key={item.key} className={sc(classes)}>
       <div className={sc("title")}>
@@ -125,6 +168,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
           <Icon size="12" name="page_turning_right" onClick={expand} />
         )}
         <input
+          ref={inputRef}
           type="checkbox"
           name=""
           id=""
@@ -138,7 +182,12 @@ const TreeItem: React.FC<TreeItemProps> = props => {
         className={sc({ children: true, collapsed: !expanded })}
       >
         {item.children?.map(subItem => (
-          <TreeItem item={subItem} level={level + 1} treeProps={treeProps} />
+          <TreeItem
+            item={subItem}
+            level={level + 1}
+            onItemChange={onItemChange1}
+            treeProps={treeProps}
+          />
         ))}
       </div>
     </div>
