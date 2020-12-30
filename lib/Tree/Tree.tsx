@@ -10,7 +10,7 @@ const Tree: React.FC<TreeProps> = props => {
 
   const onItemChange = (values: string[]) => {
     console.log("最终值", values);
-    onChange(values as string[]);
+    onChange(Array.from(new Set(values)) as string[]);
   };
 
   return (

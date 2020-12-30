@@ -103,13 +103,14 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     const common = intersect(values, childrenValues);
     console.log(common, "带领僧松开");
     if (common.length !== 0) {
-      onItemChange(values.concat(item.title));
+      onItemChange(Array.from(new Set(values.concat(item.title))));
       if (common.length === childrenValues.length) {
         inputRef.current!.indeterminate = false
       } else {
         inputRef.current!.indeterminate = true
       }
     } else {
+      onItemChange(values.filter((v: string) => v !== item.title))
       inputRef.current!.indeterminate = false
     }
   };
