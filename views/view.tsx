@@ -11,7 +11,7 @@ import ButtonExample from "lib/Button/button.example";
 import DialogExample from "lib/Dialog/dialog.example";
 import FormExample from "lib/Form/form.example";
 import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
-import { IconDemo, LayoutExample, TreeDemo } from "example";
+import { IconDemo, LayoutExample, TreeDemo, ScrollExample } from "example";
 import "./view.scss";
 // @ts-ignore
 import logo from './logo.png'
@@ -47,6 +47,9 @@ ReactDOM.render(
             <li>
               <NavLink to="/tree">Tree 树组件</NavLink>
             </li>
+            <li>
+              <NavLink to="/scroll">Scroll 滚动组件</NavLink>
+            </li>
           </ul>
         </SideBar>
         <Content className="g-main">
@@ -58,6 +61,7 @@ ReactDOM.render(
           <Route path="/layout" component={LayoutExample}></Route>
           <Route path="/form" component={FormExample}></Route>
           <Route path="/tree" component={TreeDemo}></Route>
+          <Route path="/scroll" component={ScrollExample}></Route>
         </Content>
       </Layout>
       <Footer className="g-footer">&copy; 杨雨蒙</Footer>
