@@ -6,11 +6,10 @@
   &-inner {
     position: absolute;
     top: 0;
-    // 1. 把里面的元素变宽, 超出外面的宽度
-    right: -14px;
+    right: 0;
     bottom: 0;
     left: 0;
     overflow: auto;
-    border: 3px solid blue;
+    border: 1px solid blue;
   }
 }
