@@ -65,22 +65,35 @@ const Scroll: React.FC<ScrollProps> = props => {
     startBarTopRef.current = barTopHeight;
   };
   const onMouseMoveBar = (e: MouseEvent) => {
+    const { current } = containerRef;
     if (draggingRef.current) {
       const delta = e.clientY - startYRef.current;
-      setBarTopHeight(delta + startBarTopRef.current);
+      const newBarTop = delta + startBarTopRef.current;
+      setBarTopHeight(newBarTop);
+      const scrollHeight = current!.scrollHeight;
+      const viewHeight = current!.getBoundingClientRect().height;
+      current!.scrollTop = (newBarTop * scrollHeight) / viewHeight;
     }
   };
   const onMouseUpBar = () => {
     draggingRef.current = false;
   };
 
+  const onSelect = (e: Event) => {
+    if (draggingRef.current) {
+      e.preventDefault();
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("mousemove", onMouseMoveBar);
     document.addEventListener("mouseup", onMouseUpBar);
+    document.addEventListener("selectstart", onSelect);
     return () => {
       document.removeEventListener("mousemove", onMouseMoveBar);
       document.removeEventListener("mouseup", onMouseUpBar);
-    }
+      document.removeEventListener("selectstart", onSelect);
+    };
   }, []);
 
   return (
