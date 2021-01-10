@@ -5,7 +5,7 @@
     "indentation": 2,
     "at-rule-no-unknown": null,
     "scss/at-rule-no-unknown": true,
-    "declaration-block-trailing-semicolon": "never",
+    "declaration-block-trailing-semicolon": "always",
     "function-name-case": null
   }
 }

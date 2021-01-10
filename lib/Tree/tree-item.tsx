@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useRef, useState } from "react";
+import React, { ChangeEventHandler, useRef } from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import { flatten, intersect } from "../utils/utils";

@@ -15,10 +15,13 @@ const prefix = addPrefixAndscopedClassMarker("yui-scroll");
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {}
 
+const isTouchDevice: boolean = "ontouchstart" in document.documentElement;
+
 const Scroll: React.FC<ScrollProps> = props => {
   const { children, ...restProps } = props;
   const [barHeight, setBarHeight] = useState(0);
   const [barTopHeight, _setBarTopHeight] = useState(0);
+  const [barVisible, setBarVisible] = useState<Boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const setBarTopHeight = (number: number) => {
@@ -107,16 +110,18 @@ const Scroll: React.FC<ScrollProps> = props => {
         {children}
       </div>
       {/* 滚动条 */}
-      <div className={prefix("track")}>
-        <div
-          onMouseDown={onMouseDownBar}
-          className={prefix("bar")}
-          style={{
-            height: barHeight,
-            transform: `translateY(${barTopHeight}px)`
-          }}
-        ></div>
-      </div>
+      {barVisible && (
+        <div className={prefix("track")}>
+          <div
+            onMouseDown={onMouseDownBar}
+            className={prefix("bar")}
+            style={{
+              height: barHeight,
+              transform: `translateY(${barTopHeight}px)`
+            }}
+          ></div>
+        </div>
+      )}
     </div>
   );
 };
