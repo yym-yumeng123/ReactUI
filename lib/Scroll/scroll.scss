@@ -10,6 +10,7 @@
     bottom: 0;
     left: 0;
     overflow: auto;
+    border: 1px solid black;
 
     &::-webkit-scrollbar {
       display: none;

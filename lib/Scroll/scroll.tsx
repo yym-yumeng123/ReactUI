@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  TouchEventHandler,
   MouseEventHandler,
   HTMLAttributes,
   UIEventHandler,
@@ -20,6 +21,7 @@ const Scroll: React.FC<ScrollProps> = props => {
   const [barHeight, setBarHeight] = useState(0);
   const [barTopHeight, _setBarTopHeight] = useState(0);
   const [barVisible, setBarVisible] = useState<Boolean>(false);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const timerIdRef = useRef<number | null>(null);
 
@@ -107,13 +109,44 @@ const Scroll: React.FC<ScrollProps> = props => {
     };
   }, []);
 
+  // 下拉的值
+  const [translateY, setTranslateY] = useState(0);
+  const lastYRef = useRef(0);
+
+  const onTouchStart: TouchEventHandler = e => {
+    lastYRef.current = e.touches[0].clientY;
+  };
+  const onTouchMove: TouchEventHandler = e => {
+    const deltaY = e.touches[0].clientY - lastYRef.current;
+    console.log(deltaY, "2323");
+
+    if (deltaY > 0) {
+      console.log("往下");
+      setTranslateY(translateY + deltaY);
+    } else {
+      console.log("网上");
+    }
+
+    lastYRef.current = e.touches[0].clientY;
+  };
+
+  const onTouchEnd: TouchEventHandler = e => {
+    setTranslateY(0);
+  };
+
   return (
     <div className={prefix("")} {...restProps}>
       <div
         className={prefix("inner")}
-        style={{ right: -scrollbarWidth() }}
+        style={{
+          right: -scrollbarWidth(),
+          transform: `translateY(${translateY}px)`
+        }}
         ref={containerRef}
         onScroll={onScroll}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
         {children}
       </div>
