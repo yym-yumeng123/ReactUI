@@ -71,3 +71,5 @@ ReactUI
 // prism-react-renderer
 语法高亮
 
+
+// const isTouchDevice: boolean = "ontouchstart" in document.documentElement; 判断是否触摸设备

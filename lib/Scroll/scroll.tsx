@@ -15,14 +15,13 @@ const prefix = addPrefixAndscopedClassMarker("yui-scroll");
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {}
 
-const isTouchDevice: boolean = "ontouchstart" in document.documentElement;
-
 const Scroll: React.FC<ScrollProps> = props => {
   const { children, ...restProps } = props;
   const [barHeight, setBarHeight] = useState(0);
   const [barTopHeight, _setBarTopHeight] = useState(0);
   const [barVisible, setBarVisible] = useState<Boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const timerIdRef = useRef<number | null>(null);
 
   const setBarTopHeight = (number: number) => {
     const { current } = containerRef;
@@ -34,6 +33,7 @@ const Scroll: React.FC<ScrollProps> = props => {
   };
 
   const onScroll: UIEventHandler = e => {
+    setBarVisible(true);
     const scrollHeight = e.currentTarget.scrollHeight;
     // 可见视图向上滚动的距离
     const scrollTop = e.currentTarget.scrollTop;
@@ -43,6 +43,14 @@ const Scroll: React.FC<ScrollProps> = props => {
     const barTopHeight = (scrollTop * viewHeight) / scrollHeight;
     setBarHeight(barHeight);
     setBarTopHeight(barTopHeight);
+
+    if (timerIdRef.current !== null) {
+      window.clearTimeout(timerIdRef.current);
+    }
+    timerIdRef.current = window.setTimeout(() => {
+      console.log("323");
+      setBarVisible(false);
+    }, 1000);
   };
 
   /**
