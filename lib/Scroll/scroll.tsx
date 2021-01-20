@@ -8,16 +8,17 @@ import {
   useRef,
   useState
 } from "react";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
+import {addPrefixAndscopedClassMarker} from "../utils/classes";
 import "./scroll.scss";
 import scrollbarWidth from "./scrollbar-width";
 
 const prefix = addPrefixAndscopedClassMarker("yui-scroll");
 
-interface ScrollProps extends HTMLAttributes<HTMLDivElement> {}
+interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
+}
 
 const Scroll: React.FC<ScrollProps> = props => {
-  const { children, ...restProps } = props;
+  const {children, ...restProps} = props;
   const [barHeight, setBarHeight] = useState(0);
   const [barTopHeight, _setBarTopHeight] = useState(0);
   const [barVisible, setBarVisible] = useState<Boolean>(false);
@@ -26,11 +27,13 @@ const Scroll: React.FC<ScrollProps> = props => {
   const timerIdRef = useRef<number | null>(null);
 
   const setBarTopHeight = (number: number) => {
-    const { current } = containerRef;
+    const {current} = containerRef;
     const scrollHeight = current!.scrollHeight;
     const viewHeight = current!.getBoundingClientRect().height;
     const maxBarTop = ((scrollHeight - viewHeight) * viewHeight) / scrollHeight;
-    if (number < 0 || number > maxBarTop) return;
+    if (number < 0 || number > maxBarTop) {
+      return;
+    }
     _setBarTopHeight(number);
   };
 
@@ -59,7 +62,7 @@ const Scroll: React.FC<ScrollProps> = props => {
    * @description 第一次进来计算 bar 的高度
    */
   useEffect(() => {
-    const { current } = containerRef;
+    const {current} = containerRef;
     // 视图包含 超出的高度
     const scrollHeight = current!.scrollHeight;
     // 可视高度
@@ -78,7 +81,7 @@ const Scroll: React.FC<ScrollProps> = props => {
     startBarTopRef.current = barTopHeight;
   };
   const onMouseMoveBar = (e: MouseEvent) => {
-    const { current } = containerRef;
+    const {current} = containerRef;
     if (draggingRef.current) {
       const delta = e.clientY - startYRef.current;
       const newBarTop = delta + startBarTopRef.current;
@@ -110,22 +113,48 @@ const Scroll: React.FC<ScrollProps> = props => {
   }, []);
 
   // 下拉的值
-  const [translateY, setTranslateY] = useState(0);
+  const [translateY, _setTranslateY] = useState(0);
+  const setTranslateY = (y: number) => {
+    if (y < 0) {
+      y = 0;
+    } else if (y > 100) {
+      y = 100
+    }
+    _setTranslateY(y);
+  };
   const lastYRef = useRef(0);
 
+  // 记录第几次在运动
+  const moveCount = useRef(0);
+  // 正在下拉状态, 默认不拉
+  const pulling = useRef(false);
+
   const onTouchStart: TouchEventHandler = e => {
+    // scrollTop 为 0时, 设置下拉状态
+    const scrollTop = containerRef.current!.scrollTop;
+    if (scrollTop !== 0) {
+      return;
+    }
+    pulling.current = true;
     lastYRef.current = e.touches[0].clientY;
+
+    moveCount.current = 0;
   };
   const onTouchMove: TouchEventHandler = e => {
+    // 每次 move moveCount++
+    moveCount.current++;
     const deltaY = e.touches[0].clientY - lastYRef.current;
+    if (moveCount.current === 1 && deltaY < 0) {
+      // 手指不是下拉, 是往上
+      pulling.current = false;
+    }
+    if (!pulling.current) {
+      return;
+    }
+
     console.log(deltaY, "2323");
 
-    if (deltaY > 0) {
-      console.log("往下");
-      setTranslateY(translateY + deltaY);
-    } else {
-      console.log("网上");
-    }
+    setTranslateY(translateY + deltaY);
 
     lastYRef.current = e.touches[0].clientY;
   };
