@@ -2,7 +2,6 @@
   position: relative;
   // 2. 超出的隐藏
   overflow: hidden;
-
   &-inner {
     position: absolute;
     top: 0;
@@ -10,13 +9,10 @@
     bottom: 0;
     left: 0;
     overflow: auto;
-    border: 1px solid black;
-
     &::-webkit-scrollbar {
       display: none;
     }
   }
-
   &-track {
     position: absolute;
     top: 0;
@@ -24,7 +20,6 @@
     height: 100%;
     width: 10px;
   }
-
   &-bar {
     position: absolute;
     left: 1px;
@@ -32,5 +27,12 @@
     width: 8px;
     border-radius: 4px;
     background: #ccc;
+  }
+  &-pulling {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid blue;
   }
 }

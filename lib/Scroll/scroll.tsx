@@ -11,6 +11,7 @@ import {
 import {addPrefixAndscopedClassMarker} from "../utils/classes";
 import "./scroll.scss";
 import scrollbarWidth from "./scrollbar-width";
+import Icon from "../Icon/icon";
 
 const prefix = addPrefixAndscopedClassMarker("yui-scroll");
 
@@ -118,7 +119,7 @@ const Scroll: React.FC<ScrollProps> = props => {
     if (y < 0) {
       y = 0;
     } else if (y > 100) {
-      y = 100
+      y = 100;
     }
     _setTranslateY(y);
   };
@@ -192,6 +193,11 @@ const Scroll: React.FC<ScrollProps> = props => {
           ></div>
         </div>
       )}
+
+      {/*下拉箭头*/}
+      <div className={prefix("pulling")} style={{height: translateY}}>
+        {translateY === 100 ? "开始刷新" : < Icon name="down_to_bottom"/>}
+      </div>
     </div>
   );
 };
