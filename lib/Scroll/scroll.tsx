@@ -16,10 +16,11 @@ import Icon from "../Icon/icon";
 const prefix = addPrefixAndscopedClassMarker("yui-scroll");
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
+  onPull?: () => void;
 }
 
 const Scroll: React.FC<ScrollProps> = props => {
-  const {children, ...restProps} = props;
+  const {children, onPull, ...restProps} = props;
   const [barHeight, setBarHeight] = useState(0);
   const [barTopHeight, _setBarTopHeight] = useState(0);
   const [barVisible, setBarVisible] = useState<Boolean>(false);
@@ -161,7 +162,11 @@ const Scroll: React.FC<ScrollProps> = props => {
   };
 
   const onTouchEnd: TouchEventHandler = e => {
-    setTranslateY(0);
+    if (pulling.current === true) {
+      setTranslateY(0);
+      onPull && onPull();
+      pulling.current = false;
+    }
   };
 
   return (

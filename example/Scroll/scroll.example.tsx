@@ -2,9 +2,13 @@ import React from "react";
 import Scroll from "lib/Scroll/scroll";
 
 const ScrollExample = () => {
+  const onPull = () => {
+    console.log("我知道了");
+  };
+
   return (
     <div>
-      <Scroll style={{ height: "200px"}}>
+      <Scroll style={{height: "200px"}} onPull={onPull}>
         <p>1</p>
         <p>2</p>
         <p>3</p>
