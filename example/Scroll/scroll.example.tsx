@@ -10,7 +10,7 @@ const ScrollExample = () => {
     <div>
       <Scroll style={{height: "200px"}} onPull={onPull}>
         {
-          Array(40).fill(20).map(item => <p>{item}</p>)
+          Array(40).fill(20).map(item => <p key={item}>{item}</p>)
         }
       </Scroll>
     </div>
