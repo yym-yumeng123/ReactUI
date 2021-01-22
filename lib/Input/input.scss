@@ -1,0 +1,52 @@
+.yui-input {
+  display: block;
+  min-width: 120px;
+  padding: 8px;
+  color: #575757;
+  font-size: 14px;
+  outline: none;
+  border-radius: 6px;
+  border: 1px solid #e5e5ea;
+  background: #fff;
+  &::-webkit-input-placeholder {
+    color: #8e8e93;
+    font-size: 14px;
+  }
+  &:hover {
+    border: 1px solid #3498fe;
+  }
+  &:focus {
+    font-size: 14px;
+    border: 1px solid #3498fe;
+    outline: none;
+  }
+  // size
+  &-lg {
+    padding: 11px 8px;
+    font-size: 16px;
+    &::-webkit-input-placeholder {
+      font-size: 16px;
+    }
+    &:focus {
+      font-size: 16px;
+    }
+  }
+  &-md {
+    padding: 7px 8px;
+    font-size: 14px;
+  }
+  &-sm {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+  &-xs {
+    padding: 3px 8px;
+    font-size: 12px;
+    &::-webkit-input-placeholder {
+      font-size: 12px;
+    }
+    &:focus {
+      font-size: 12px;
+    }
+  }
+}

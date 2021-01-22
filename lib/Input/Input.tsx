@@ -1,8 +1,13 @@
 import React, {FC, InputHTMLAttributes, ReactElement} from "react";
+import {addPrefixAndscopedClassMarker} from "../utils/classes";
 // import Icon from "lib/Icon/icon";
 
+import "./input.scss";
+
+const prefix = addPrefixAndscopedClassMarker("yui-input");
+
 // 定义 size
-type InputSize = "lg" | "sm";
+type InputSize = "lg" | "md" | "sm" | "xs";
 
 /**
  * 希望几个 HTML input 所有属性
@@ -21,9 +26,15 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, "size
 const Input: FC<InputProps> = (props) => {
   const {disabled, size, icon, prepand, append, ...restProps} = props;
   // 根据属性计算不同的 className
+
+  const classes = {
+    [`${size}`]: !!size,
+    "": true
+  };
+
   return (
     <>
-      <input type="text" {...restProps}/>
+      <input className={prefix(classes)} type="text" {...restProps}/>
     </>
   );
 };
