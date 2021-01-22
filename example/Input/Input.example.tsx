@@ -13,6 +13,10 @@ const InputExample = () => {
       <Input placeholder="md" size="md" />
       <Input placeholder="sm" size="sm" />
       <Input placeholder="ls" size="xs" />
+      <h1>Disabled</h1>
+      <Input placeholder="请输入" disabled={true} />
+      <Input placeholder="请输入" disabled={true} size="lg" />
+
     </div>
   );
 };

@@ -20,6 +20,14 @@
     border: 1px solid #3498fe;
     outline: none;
   }
+  &-disabled {
+    background: #f7f7fa;
+    border: 1px solid #e5e5ea;
+    pointer-events: none;
+    &:hover {
+      border: 1px solid #e5e5ea;
+    }
+  }
   // size
   &-lg {
     padding: 11px 8px;

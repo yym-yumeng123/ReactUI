@@ -29,6 +29,7 @@ const Input: FC<InputProps> = (props) => {
 
   const classes = {
     [`${size}`]: !!size,
+    ["disabled"]: !!disabled,
     "": true
   };
 
