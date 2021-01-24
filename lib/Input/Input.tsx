@@ -28,9 +28,9 @@ const Input: FC<InputProps> = (props) => {
   // 根据属性计算不同的 className
 
   const classes = {
+    "": true,
     [`${size}`]: !!size,
-    ["disabled"]: !!disabled,
-    "": true
+    ["disabled"]: !!disabled
   };
 
   return (
