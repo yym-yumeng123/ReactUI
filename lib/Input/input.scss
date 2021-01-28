@@ -1,60 +1,72 @@
-.yui-input {
-  display: block;
-  min-width: 120px;
-  padding: 8px;
-  color: #575757;
-  font-size: 14px;
-  outline: none;
-  border-radius: 6px;
-  border: 1px solid #e5e5ea;
-  background: #fff;
-  &::-webkit-input-placeholder {
-    color: #8e8e93;
+.yui-input-wrapper {
+  display: inline-block;
+  position: relative;
+  .yui-input {
+    display: block;
+    min-width: 120px;
+    padding: 8px;
+    color: #575757;
     font-size: 14px;
-  }
-  &:hover {
-    border: 1px solid #3498fe;
-  }
-  &:focus {
-    font-size: 14px;
-    border: 1px solid #3498fe;
     outline: none;
-  }
-  &-disabled {
-    background: #f7f7fa;
+    border-radius: 6px;
     border: 1px solid #e5e5ea;
-    pointer-events: none;
+    background: #fff;
+    &::-webkit-input-placeholder {
+      color: #8e8e93;
+      font-size: 14px;
+    }
     &:hover {
+      border: 1px solid #3498fe;
+    }
+    &:focus {
+      font-size: 14px;
+      border: 1px solid #3498fe;
+      outline: none;
+    }
+    &-disabled {
+      background: #f7f7fa;
       border: 1px solid #e5e5ea;
+      pointer-events: none;
+      &:hover {
+        border: 1px solid #e5e5ea;
+      }
     }
-  }
-  // size
-  &-lg {
-    padding: 11px 8px;
-    font-size: 16px;
-    &::-webkit-input-placeholder {
+    // size
+    &-lg {
+      padding: 11px 8px;
       font-size: 16px;
+      &::-webkit-input-placeholder {
+        font-size: 16px;
+      }
+      &:focus {
+        font-size: 16px;
+      }
     }
-    &:focus {
-      font-size: 16px;
+    &-md {
+      padding: 7px 8px;
+      font-size: 14px;
     }
-  }
-  &-md {
-    padding: 7px 8px;
-    font-size: 14px;
-  }
-  &-sm {
-    padding: 6px 8px;
-    font-size: 14px;
-  }
-  &-xs {
-    padding: 3px 8px;
-    font-size: 12px;
-    &::-webkit-input-placeholder {
+    &-sm {
+      padding: 6px 8px;
+      font-size: 14px;
+    }
+    &-xs {
+      padding: 3px 8px;
       font-size: 12px;
+      &::-webkit-input-placeholder {
+        font-size: 12px;
+      }
+      &:focus {
+        font-size: 12px;
+      }
     }
-    &:focus {
-      font-size: 12px;
+    // icon
+    &-icon {
+      //position: absolute;
+      //right: 8px;
+      //top: 7px;
+      ////font-size: 10px;
+      //cursor: pointer;
     }
   }
 }

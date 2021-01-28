@@ -16,7 +16,8 @@ const InputExample = () => {
       <h1>Disabled</h1>
       <Input placeholder="请输入" disabled={true} />
       <Input placeholder="请输入" disabled={true} size="lg" />
-
+      <h1>Icon</h1>
+      <Input placeholder="请输入名称" icon="search" />
     </div>
   );
 };

@@ -24,15 +24,12 @@
   &.yui-button-default {
     color: #575757;
     background: #f7f7fa;
-
     &:hover {
       background: #e5e5ea;
     }
-
     &:active {
       background: #d9d9d9;
     }
-
     &.yui-button-disabled {
       background: #f7f7fa;
       color: #c5c6c7;
@@ -44,15 +41,12 @@
   &.yui-button-primary {
     color: #fff;
     background: #3498ff;
-
     &:hover {
       background: #2589f5;
     }
-
     &:active {
       background: #1675e0;
     }
-
     &.yui-button-disabled {
       background: #cce9ff;
       cursor: not-allowed;
@@ -63,15 +57,12 @@
   &.yui-button-danger {
     color: #fff;
     background: #ff7875;
-
     &:hover {
       background: #e4383a;
     }
-
     &:active {
       background: #d42926;
     }
-
     &.yui-button-disabled {
       background: #eeb4b3;
       cursor: not-allowed;
@@ -83,16 +74,13 @@
     color: #1675e0;
     background: none;
     text-decoration: none;
-
     &:hover {
       text-decoration: underline;
     }
-
     &:active {
       text-decoration: none;
       color: #004299;
     }
-
     &.yui-button-disabled {
       color: #1675e0;
       opacity: 0.3;
@@ -106,7 +94,6 @@
     border-radius: 0;
   }
 }
-
 .yui-button-lg {
   @include button-size(
     $btn-padding-x-lg,
@@ -115,7 +102,6 @@
     $btn-radius
   );
 }
-
 .yui-button-sm {
   @include button-size(
     $btn-padding-x-sm,
@@ -124,7 +110,6 @@
     $btn-radius
   );
 }
-
 .yui-button-xs {
   @include button-size(
     $btn-padding-x-xs,
