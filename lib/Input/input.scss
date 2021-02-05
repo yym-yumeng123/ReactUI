@@ -1,10 +1,9 @@
 .yui-input-wrapper {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   .yui-input {
     display: block;
-    min-width: 120px;
-    padding: 8px;
+    min-width: 200px;
     color: #575757;
     font-size: 14px;
     outline: none;
@@ -23,6 +22,7 @@
       border: 1px solid #3498fe;
       outline: none;
     }
+    // disabled
     &-disabled {
       background: #f7f7fa;
       border: 1px solid #e5e5ea;
@@ -62,11 +62,46 @@
     }
     // icon
     &-icon {
-      //position: absolute;
-      //right: 8px;
-      //top: 7px;
-      ////font-size: 10px;
-      //cursor: pointer;
+      position: absolute;
+      right: 6px;
+      top: 6px;
+    }
+  }
+  &.yui-input-prepand {
+    display: flex;
+    .yui-input-left {
+      display: inline-block;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #575757;
+      background: #f7f7fa;
+      border: 1px solid #e5e5ea;
+      border-right: none;
+      //background: red;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+    .yui-input {
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      &:hover {
+        border: 1px solid #3498fe;
+      }
+      &:focus {
+        border: 1px solid #e5e5ea;
+        border-left: none;
+      }
+    }
+    &:hover {
+      .yui-input {
+        border: 1px solid #3498fe;
+        border-left: none;
+      }
+      .yui-input-left {
+        border: 1px solid #3498fe;
+        border-right: none;
+      }
     }
   }
 }

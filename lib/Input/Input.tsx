@@ -28,34 +28,41 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, "size
 }
 
 const Input: FC<InputProps> = (props) => {
-  const {disabled, size, icon, prepand, append, value, ...restProps} = props;
-  // 根据属性计算不同的 className
+    const {disabled, size, icon, prepand, append, value, ...restProps} = props;
+    // 根据属性计算不同的 className
 
-  const classes = {
-    "": true,
-    [`${size}`]: !!size,
-    "disabled": !!disabled,
-    "icon": !!icon
-  };
+    const classes = {
+      "": true,
+      [`${size}`]: !!size,
+      "disabled": !!disabled,
+    };
 
-  // const fixControlledValue = (value: any) => {
-  //   if (typeof value === "undefined" || value === null) {
-  //     return "";
-  //   }
-  //   return value;
-  // };
-  //
-  // if ("value" in props) {
-  //   delete restProps.defaultValue;
-  //   restProps.value = fixControlledValue((value));
-  // }
+    const parentClasses = {
+      wrapper: true,
+      prepand: !!prepand
+    };
 
-  return (
-    <div className={prefix("wrapper")}>
-      <input className={prefix(classes)} type="text" {...restProps}/>
-      {icon && <Icon size="10" color="#C5C6C7" name={icon}/>}
-    </div>
-  );
-};
+// const fixControlledValue = (value: any) => {
+//   if (typeof value === "undefined" || value === null) {
+//     return "";
+//   }
+//   return value;
+// };
+//
+// if ("value" in props) {
+//   delete restProps.defaultValue;
+//   restProps.value = fixControlledValue((value));
+// }
+
+    return (
+      <div className={prefix(parentClasses)}>
+        {prepand && <span className={prefix("left")}>{prepand}</span>}
+        <input className={prefix(classes)} style={{padding: `8px ${icon ? "26px" : "8px"} 8px 8px`}}
+               type="text" {...restProps}/>
+        {icon && <Icon className={prefix("icon")} size="10" color="#C5C6C7" name={icon}/>}
+      </div>
+    );
+  }
+;
 
 export default Input;
