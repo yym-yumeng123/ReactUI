@@ -15,11 +15,6 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "lint-staged": "lint-staged"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yym-yumeng123/ReactUI.git"
