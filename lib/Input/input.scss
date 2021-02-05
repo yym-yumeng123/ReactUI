@@ -77,7 +77,6 @@
       background: #f7f7fa;
       border: 1px solid #e5e5ea;
       border-right: none;
-      //background: red;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
     }
@@ -102,6 +101,47 @@
         border: 1px solid #3498fe;
         border-right: none;
       }
+    }
+  }
+  &.yui-input-append {
+    display: flex;
+    .yui-input-right {
+      display: inline-block;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #575757;
+      background: #f7f7fa;
+      border: 1px solid #e5e5ea;
+      border-left: none;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+    .yui-input {
+      border-right: none;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      &:hover {
+        border: 1px solid #3498fe;
+      }
+      &:focus {
+        border: 1px solid #e5e5ea;
+        border-right: none;
+      }
+    }
+    &:hover {
+      .yui-input {
+        border: 1px solid #3498fe;
+        border-right: none;
+      }
+      .yui-input-right {
+        border: 1px solid #3498fe;
+        border-left: none;
+      }
+    }
+  }
+  &.yui-input-append.yui-input-prepand {
+    .yui-input {
+      border-right: none;
     }
   }
 }

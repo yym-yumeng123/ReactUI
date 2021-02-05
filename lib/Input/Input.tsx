@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, InputHTMLAttributes, ReactElement} from "react";
+import React, { FC, InputHTMLAttributes, ReactElement} from "react";
 import {addPrefixAndscopedClassMarker} from "../utils/classes";
 import Icon from "lib/Icon/icon";
 
@@ -24,7 +24,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, "size
   prepand?: string | ReactElement;
   // 添加后缀
   append?: string | ReactElement;
-  onChange?: (e: ChangeEvent<HTMLElement>) => void;
+  // onChange?: (e: ChangeEvent<HTMLElement>) => void;
 }
 
 const Input: FC<InputProps> = (props) => {
@@ -39,7 +39,8 @@ const Input: FC<InputProps> = (props) => {
 
     const parentClasses = {
       wrapper: true,
-      prepand: !!prepand
+      prepand: !!prepand,
+      append: !!append,
     };
 
 // const fixControlledValue = (value: any) => {
@@ -60,6 +61,7 @@ const Input: FC<InputProps> = (props) => {
         <input className={prefix(classes)} style={{padding: `8px ${icon ? "26px" : "8px"} 8px 8px`}}
                type="text" {...restProps}/>
         {icon && <Icon className={prefix("icon")} size="10" color="#C5C6C7" name={icon}/>}
+        {append && <span className={prefix("right")}>{append}</span>}
       </div>
     );
   }

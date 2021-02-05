@@ -1,7 +1,13 @@
-import React from "react";
+import React, {ChangeEvent, useState} from "react";
 import Input from "lib/Input/Input";
 
 const InputExample = () => {
+  const [val, setVal] = useState(0);
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const {value} = e.target;
+    // @ts-ignore
+    setVal(value);
+  };
   return (
     <div>
       <h1>Default</h1>
@@ -24,6 +30,15 @@ const InputExample = () => {
       <br/>
       <Input placeholder="请输入名称" prepand="你好"/>
       <Input placeholder="请输入名称" prepand={<em style={{color: "red"}}>你好</em>}/>
+      <h1>append</h1>
+      <br/>
+      <Input placeholder="请输入名称" append="后面"/>
+      <br/>
+      <Input placeholder="请输入名称" prepand="https://" append=".com"/>
+
+      <h1>value</h1>
+      <Input defaultValue="我是默认值" onChange={onChange}/>
+      <span>{val}</span>
     </div>
   );
 };

@@ -20,9 +20,6 @@
       "pre-commit": "yarn lint-staged"
     }
   },
-  "lint-staged": {
-    "**/*.scss": "stylelint --syntax scss"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yym-yumeng123/ReactUI.git"
