@@ -30,11 +30,14 @@ const InputExample = () => {
       <br/>
       <Input placeholder="请输入名称" prepand="你好"/>
       <Input placeholder="请输入名称" prepand={<em style={{color: "red"}}>你好</em>}/>
+      <Input placeholder="请输入名称" prepand={<em style={{color: "red"}}>你好</em>} disabled={true}/>
       <h1>append</h1>
       <br/>
       <Input placeholder="请输入名称" append="后面"/>
+      <Input placeholder="请输入名称" append="后面" disabled={true}/>
       <br/>
       <Input placeholder="请输入名称" prepand="https://" append=".com"/>
+      <Input placeholder="请输入名称" prepand="https://" append=".com" disabled={true}/>
 
       <h1>value</h1>
       <Input defaultValue="我是默认值" onChange={onChange}/>

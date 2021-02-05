@@ -24,7 +24,6 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, "size
   prepand?: string | ReactElement;
   // 添加后缀
   append?: string | ReactElement;
-  // onChange?: (e: ChangeEvent<HTMLElement>) => void;
 }
 
 const Input: FC<InputProps> = (props) => {
@@ -41,19 +40,8 @@ const Input: FC<InputProps> = (props) => {
       wrapper: true,
       prepand: !!prepand,
       append: !!append,
+      disabled: (!!prepand || !!append) && !!disabled
     };
-
-// const fixControlledValue = (value: any) => {
-//   if (typeof value === "undefined" || value === null) {
-//     return "";
-//   }
-//   return value;
-// };
-//
-// if ("value" in props) {
-//   delete restProps.defaultValue;
-//   restProps.value = fixControlledValue((value));
-// }
 
     return (
       <div className={prefix(parentClasses)}>

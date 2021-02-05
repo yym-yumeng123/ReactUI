@@ -26,6 +26,7 @@
     &-disabled {
       background: #f7f7fa;
       border: 1px solid #e5e5ea;
+      cursor: not-allowed;
       pointer-events: none;
       &:hover {
         border: 1px solid #e5e5ea;
@@ -142,6 +143,66 @@
   &.yui-input-append.yui-input-prepand {
     .yui-input {
       border-right: none;
+      border-left: none;
     }
   }
+  &.yui-input-disabled {
+    cursor: not-allowed;
+    .yui-input,
+    .yui-input-right,
+    .yui-input-left {
+      color: #c5c6c7;
+    }
+  }
+  &.yui-input-append.yui-input-disabled {
+    &:hover {
+      .yui-input-right,
+      .yui-input {
+        border: 1px solid #e5e5ea;
+        pointer-events: none;
+      }
+      .yui-input-right {
+        border-left: none;
+      }
+      .yui-input {
+        border-right: none;
+      }
+    }
+  }
+  &.yui-input-prepand.yui-input-disabled {
+    &:hover {
+      .yui-input-left,
+      .yui-input {
+        border: 1px solid #e5e5ea;
+        pointer-events: none;
+      }
+      .yui-input-left {
+        border-right: none;
+      }
+      .yui-input {
+        border-left: none;
+      }
+    }
+  }
+  &.yui-input-append.yui-input-prepand.yui-input-disabled {
+    &:hover {
+      .yui-input-right,
+      .yui-input-left,
+      .yui-input {
+        border: 1px solid #e5e5ea;
+        pointer-events: none;
+      }
+      .yui-input-right {
+        border-left: none;
+      }
+      .yui-input-left {
+        border-right: none;
+      }
+      .yui-input {
+        border-left: none;
+        border-right: none;
+      }
+    }
+  }
+
 }
