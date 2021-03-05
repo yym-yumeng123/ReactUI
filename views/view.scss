@@ -3,15 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 *::after {
   box-sizing: border-box;
 }
-
 *::before {
   box-sizing: border-box;
 }
-
 h1,
 h2,
 h3,
@@ -20,65 +17,53 @@ h5,
 h6 {
   font-size: normal;
 }
-
 pre {
   font-family: "Fira Code Medium", Consolas, monospace;
   padding: 8px;
 }
-
 ul,
 li,
 ol {
   list-style: none;
 }
-
 a {
   text-decoration: none;
   color: inherit;
 }
-
 $padding: 16px;
-
 .pageWrapper {
   min-height: 100vh;
-
   .g-main {
+    //max-height: calc(100vh - 121px);
     padding: $padding;
+    overflow: auto;
   }
-
   .g-header {
     padding: 8px 0;
     background-color: #eee;
-
     img {
       padding: 0 $padding;
       width: 150px;
       height: 48px;
     }
   }
-
   .g-aside {
     min-width: 256px;
     border-right: 1px solid #f2f2f5;
-
     h2 {
       padding: $padding;
       font-size: 18px;
     }
-
     ul {
       min-width: 10em;
-
       li {
         a {
           display: block;
           padding: 8px $padding;
           color: #272c36;
-
           &:hover {
             color: #3498ff;
           }
-
           &.active {
             color: #fff;
             background-color: #3498ff;
@@ -87,7 +72,6 @@ $padding: 16px;
       }
     }
   }
-
   .g-footer {
     text-align: center;
     font-size: 14px;
@@ -96,10 +80,8 @@ $padding: 16px;
     border: 1px solid #f2f2f5;
   }
 }
-
 .code-style {
   margin-top: 16px;
-
   .yui-button {
     margin-bottom: 8px;
   }

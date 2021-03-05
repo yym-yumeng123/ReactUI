@@ -12,6 +12,8 @@ import DialogExample from "lib/Dialog/dialog.example";
 import FormExample from "lib/Form/form.example";
 import {Layout, Footer, Header, SideBar, Content} from "lib/Layout/layout";
 import {IconDemo, LayoutExample, TreeDemo, ScrollExample, InputExample} from "example";
+import Scroll from "../lib/Scroll/scroll";
+
 import "./view.scss";
 // @ts-ignore
 import logo from "./logo.png";
@@ -55,18 +57,20 @@ ReactDOM.render(
             </li>
           </ul>
         </SideBar>
-        <Content className="g-main">
-          <Redirect path="/" to="/all"/>
-          <Route path="/all" component={All}></Route>
-          <Route path="/icon" component={IconDemo}></Route>
-          <Route path="/button" component={ButtonExample}></Route>
-          <Route path="/dialog" component={DialogExample}></Route>
-          <Route path="/layout" component={LayoutExample}></Route>
-          <Route path="/form" component={FormExample}></Route>
-          <Route path="/tree" component={TreeDemo}></Route>
-          <Route path="/scroll" component={ScrollExample}></Route>
-          <Route path="/input" component={InputExample}></Route>
-        </Content>
+        <Scroll style={{height: "calc(100vh - 121px)", width: "100%"}}>
+          <Content className="g-main">
+            <Redirect path="/" to="/all"/>
+            <Route path="/all" component={All}></Route>
+            <Route path="/icon" component={IconDemo}></Route>
+            <Route path="/button" component={ButtonExample}></Route>
+            <Route path="/dialog" component={DialogExample}></Route>
+            <Route path="/layout" component={LayoutExample}></Route>
+            <Route path="/form" component={FormExample}></Route>
+            <Route path="/tree" component={TreeDemo}></Route>
+            <Route path="/scroll" component={ScrollExample}></Route>
+            <Route path="/input" component={InputExample}></Route>
+          </Content>
+        </Scroll>
       </Layout>
       <Footer className="g-footer">&copy; 杨雨蒙</Footer>
     </Layout>

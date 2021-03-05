@@ -8,9 +8,9 @@ const ScrollExample = () => {
 
   return (
     <div>
-      <Scroll style={{height: "200px"}} onPull={onPull}>
+      <Scroll style={{height: "200px", width: "50%", border: "1px solid #59afff"}} onPull={onPull}>
         {
-          Array(40).fill(20).map(item => <p key={item}>{item}</p>)
+          Array.from({length: 100}, (v, k) => k).map(item => <p key={item}>{item}</p>)
         }
       </Scroll>
     </div>
