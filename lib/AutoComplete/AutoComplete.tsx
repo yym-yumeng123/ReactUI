@@ -1,7 +1,12 @@
 import * as React from "react";
 
-const AutoComplete = () => {
-  return <div>AutoComplete</div>
+interface AutoCompleteProps {
+  dataSource: string[];
+  onChange: (keyWord: string) => string[];
 }
 
-export default AutoComplete
+const AutoComplete: React.FC<AutoCompleteProps> = () => {
+  return <div>AutoComplete</div>;
+};
+
+export default AutoComplete;
