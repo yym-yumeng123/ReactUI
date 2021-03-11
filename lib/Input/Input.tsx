@@ -17,7 +17,7 @@ type InputSize = "lg" | "md" | "sm" | "xs";
  */
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLElement>, "size"> {
-  // value: any;
+  value?: string;
   disabled?: boolean;
   size?: InputSize;
   icon?: string;
@@ -48,6 +48,7 @@ const Input: FC<InputProps> = props => {
     <div className={prefix(parentClasses)}>
       {prepand && <span className={prefix("left")}>{prepand}</span>}
       <input
+        value={value}
         className={prefix(classes)}
         style={{ padding: `8px ${icon ? "26px" : "8px"} 8px 8px` }}
         type="text"

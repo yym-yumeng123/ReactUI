@@ -17,11 +17,9 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   const [inputValue, setInputValue] = useState(value);
   // 数据源
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  console.log(suggestions, "sugg...");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
-    console.log(value, "value...");
     setInputValue(value);
     if (value) {
       const results = fetchSuggestions(value);
@@ -31,11 +29,21 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
     }
   };
 
+  const handleSelect = (item: string) => {
+    setInputValue(item);
+    setSuggestions([]);
+    onSelect && onSelect(item);
+  };
+
   const generateDropDown = () => {
     return (
       <ul>
         {suggestions.map((item, index) => {
-          return <li key={index}>{item}</li>
+          return (
+            <li key={index} onClick={() => handleSelect(item)}>
+              {item}
+            </li>
+          );
         })}
       </ul>
     );

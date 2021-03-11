@@ -7,7 +7,12 @@ const AutoCompleteExample = () => {
     return lake.filter(item => item.includes(query));
   };
 
-  return <AutoComplete fetchSuggestions={handleFetch} />;
+  const handleSelect = (item: string) => {
+    console.log(item, '2112');
+
+  }
+
+  return <AutoComplete fetchSuggestions={handleFetch} onSelect={handleSelect} />;
 };
 
 export default AutoCompleteExample;
