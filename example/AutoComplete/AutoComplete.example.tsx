@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import AutoComplete from 'lib/AutoComplete/AutoComplete'
+import AutoComplete from "lib/AutoComplete/AutoComplete";
 
 const AutoCompleteExample = () => {
-  const [value, setValue] = useState<string[]>(['1', '2']);
+  const lake = ["abcd", "name", "bkdkdfj", "djkfsjkf", " erur", " dsdfs"];
+  const handleFetch = (query: string): string[] => {
+    return lake.filter(item => item.includes(query));
+  };
 
-  const handleChange = () => {
-    return ['1']
-  }
+  return <AutoComplete fetchSuggestions={handleFetch} />;
+};
 
-  return <AutoComplete dataSource={value} onChange={handleChange} />
-}
-
-export default AutoCompleteExample
+export default AutoCompleteExample;

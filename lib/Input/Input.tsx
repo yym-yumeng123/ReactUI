@@ -1,5 +1,5 @@
-import React, { FC, InputHTMLAttributes, ReactElement} from "react";
-import {addPrefixAndscopedClassMarker} from "../utils/classes";
+import React, { FC, InputHTMLAttributes, ReactElement } from "react";
+import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import Icon from "lib/Icon/icon";
 
 import "./input.scss";
@@ -15,7 +15,8 @@ type InputSize = "lg" | "md" | "sm" | "xs";
  * 1. 修改名称
  * 2. 使用 Omit
  */
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, "size"> {
+export interface InputProps
+  extends Omit<InputHTMLAttributes<HTMLElement>, "size"> {
   // value: any;
   disabled?: boolean;
   size?: InputSize;
@@ -26,33 +27,43 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, "size
   append?: string | ReactElement;
 }
 
-const Input: FC<InputProps> = (props) => {
-    const {disabled, size, icon, prepand, append, value, ...restProps} = props;
-    // 根据属性计算不同的 className
+const Input: FC<InputProps> = props => {
+  const { disabled, size, icon, prepand, append, value, ...restProps } = props;
+  // 根据属性计算不同的 className
 
-    const classes = {
-      "": true,
-      [`${size}`]: !!size,
-      "disabled": !!disabled,
-    };
+  const classes = {
+    "": true,
+    [`${size}`]: !!size,
+    disabled: !!disabled
+  };
 
-    const parentClasses = {
-      wrapper: true,
-      prepand: !!prepand,
-      append: !!append,
-      disabled: (!!prepand || !!append) && !!disabled
-    };
+  const parentClasses = {
+    wrapper: true,
+    prepand: !!prepand,
+    append: !!append,
+    disabled: (!!prepand || !!append) && !!disabled
+  };
 
-    return (
-      <div className={prefix(parentClasses)}>
-        {prepand && <span className={prefix("left")}>{prepand}</span>}
-        <input className={prefix(classes)} style={{padding: `8px ${icon ? "26px" : "8px"} 8px 8px`}}
-               type="text" {...restProps}/>
-        {icon && <Icon className={prefix("icon")} size="10" color="#C5C6C7" name={icon}/>}
-        {append && <span className={prefix("right")}>{append}</span>}
-      </div>
-    );
-  }
-;
+  return (
+    <div className={prefix(parentClasses)}>
+      {prepand && <span className={prefix("left")}>{prepand}</span>}
+      <input
+        className={prefix(classes)}
+        style={{ padding: `8px ${icon ? "26px" : "8px"} 8px 8px` }}
+        type="text"
+        {...restProps}
+      />
+      {icon && (
+        <Icon
+          className={prefix("icon")}
+          size="10"
+          color="#C5C6C7"
+          name={icon}
+        />
+      )}
+      {append && <span className={prefix("right")}>{append}</span>}
+    </div>
+  );
+};
 
 export default Input;
