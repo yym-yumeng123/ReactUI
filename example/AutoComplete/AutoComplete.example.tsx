@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import AutoComplete from "lib/AutoComplete/AutoComplete";
 
 const AutoCompleteExample = () => {

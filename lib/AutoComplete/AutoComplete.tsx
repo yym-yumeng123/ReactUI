@@ -40,7 +40,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
       <ul>
         {suggestions.map((item, index) => {
           return (
-            <li key={index} onClick={() => handleSelect(item)}>
+            <li className={prefix('content-item')} key={index} onClick={() => handleSelect(item)}>
               {item}
             </li>
           );
