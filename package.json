@@ -50,7 +50,7 @@
     "jest": "^24.9.0",
     "jest-junit": "^9.0.0",
     "lint-staged": "^9.5.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "prism-react-renderer": "^1.0.2",
     "raw-loader": "^4.0.0",
