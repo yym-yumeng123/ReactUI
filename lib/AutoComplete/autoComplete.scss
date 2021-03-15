@@ -1,3 +1,4 @@
+@import "lib/styles/helper.scss" ;
 .yui-auto {
   max-width: 500px;
   width: 100%;
@@ -10,10 +11,10 @@
     &-item {
       padding: 8px 12px;
       font-size: 14px;
-      color: #575757;
+      color: $B800;
       cursor: pointer;
       &:hover {
-        background: #f2faff;
+        background: $H050;
       }
     }
   }

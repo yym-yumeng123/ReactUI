@@ -1,18 +1,46 @@
 import React from "react";
-import AutoComplete from "lib/AutoComplete/AutoComplete";
+import AutoComplete, { DataSourceType } from "lib/AutoComplete/AutoComplete";
+
+interface Props {
+  value: string;
+  number: number;
+}
 
 const AutoCompleteExample = () => {
-  const lake = ["abcd", "name", "bkdkdfj", "djkfsjkf", " erur", " dsdfs"];
-  const handleFetch = (query: string): string[] => {
-    return lake.filter(item => item.includes(query));
+  const newData = [
+    { value: "ajkdjf", number: 23 },
+    { value: "gsdgsgs", number: 213 },
+    { value: "sgssgfsd", number: 253 },
+    { value: "dgsgh", number: 34 },
+    { value: "jttjjt", number: 256 },
+    { value: "yytnssr", number: 67 },
+    { value: "erwrwr", number: 234 },
+    { value: "ererer", number: 2111 }
+  ];
+  const handleFetch = (query: string) => {
+    return newData.filter(item => item.value.includes(query));
   };
 
-  const handleSelect = (item: string) => {
-    console.log(item, '2112');
+  const handleSelect = (item: DataSourceType) => {
+    console.log(item, "2112");
+  };
 
-  }
+  // 自定义模板
+  const renderOption = (item: DataSourceType<Props>) => {
+    return (
+      <em>
+        {item.value}~{item.number}
+      </em>
+    );
+  };
 
-  return <AutoComplete fetchSuggestions={handleFetch} onSelect={handleSelect} />;
+  return (
+    <AutoComplete
+      fetchSuggestions={handleFetch}
+      onSelect={handleSelect}
+      renderOption={renderOption}
+    />
+  );
 };
 
 export default AutoCompleteExample;
