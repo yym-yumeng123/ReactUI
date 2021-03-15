@@ -6,6 +6,11 @@ interface Props {
   number: number;
 }
 
+interface AsyncProps {
+  value: string;
+  node_id: number;
+}
+
 const AutoCompleteExample = () => {
   const newData = [
     { value: "ajkdjf", number: 23 },
@@ -34,12 +39,38 @@ const AutoCompleteExample = () => {
     );
   };
 
+  const handleFetchAsync = (query: string) => {
+    return fetch(`https://api.github.com/search/users?q=${query}`)
+      .then(res => res.json())
+      .then(({ items }) => {
+        console.log(items, "item");
+        return items
+          .slice(0, 10)
+          .map((subItem: any) => ({ value: subItem.login, ...subItem }));
+      });
+  };
+
+  const renderOptionAsync = (item: DataSourceType<AsyncProps>) => {
+    return (
+      <em>
+        {item.value}~{item.node_id}
+      </em>
+    );
+  };
+
   return (
-    <AutoComplete
-      fetchSuggestions={handleFetch}
-      onSelect={handleSelect}
-      renderOption={renderOption}
-    />
+    <>
+      <AutoComplete
+        fetchSuggestions={handleFetch}
+        onSelect={handleSelect}
+        renderOption={renderOption}
+      />
+      <AutoComplete
+        fetchSuggestions={handleFetchAsync}
+        // onSelect={handleSelect}
+        renderOption={renderOptionAsync}
+      />
+    </>
   );
 };
 

@@ -7,14 +7,16 @@ const prefix = addPrefixAndscopedClassMarker("yui-auto");
 
 // 复杂的数据结构
 interface DataSourceObject {
-  value: string
+  value: string;
 }
-export type DataSourceType<T = {}> = T & DataSourceObject
+export type DataSourceType<T = {}> = T & DataSourceObject;
 
 // Omit 忽略的属性
 export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
   // 参数是 str, 返回 带 value 的 复杂数据结构
-  fetchSuggestions: (str: string) => DataSourceType[];
+  fetchSuggestions: (
+    str: string
+  ) => DataSourceType[] | Promise<DataSourceType[]>;
   // 选择时 是一个数据项,
   onSelect?: (item: DataSourceType) => void;
   renderOption?: (item: DataSourceType) => ReactElement;
@@ -32,13 +34,23 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   const [inputValue, setInputValue] = useState(value);
   // 数据源
   const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setInputValue(value);
     if (value) {
       const results = fetchSuggestions(value);
-      setSuggestions(results);
+      // 返回结果是否是异步
+      if (results instanceof Promise) {
+        setLoading(true);
+        results.then(res => {
+          setLoading(false);
+          setSuggestions(res);
+        });
+      } else {
+        setSuggestions(results);
+      }
     } else {
       setSuggestions([]);
     }
@@ -75,6 +87,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
     <div className={prefix("")}>
       <Input value={inputValue} {...restProps} onChange={handleChange} />
       <section className={prefix("content")}>
+        {loading && "正在请求中"}
         {suggestions.length > 0 && generateDropDown()}
       </section>
     </div>
