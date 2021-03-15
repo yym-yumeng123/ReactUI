@@ -1,7 +1,8 @@
 import * as React from "react";
-import { ChangeEvent, ReactElement, useState } from "react";
+import { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import Input, { InputProps } from "lib/Input/Input";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
+import useDebounce from  'lib/hooks/useDebounce'
 import "./autoComplete.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-auto");
 
@@ -35,14 +36,16 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   // 数据源
   const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
   const [loading, setLoading] = useState(false);
+  const debounceValue = useDebounce(inputValue)
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
-    setInputValue(value);
-    if (value) {
-      const results = fetchSuggestions(value);
+  // 当 inputValue 变化, 操作请求值
+  useEffect(() => {
+    if (debounceValue) {
+      const results = fetchSuggestions(debounceValue);
       // 返回结果是否是异步
       if (results instanceof Promise) {
+        console.log('trigger..');
+
         setLoading(true);
         results.then(res => {
           setLoading(false);
@@ -54,6 +57,11 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
     } else {
       setSuggestions([]);
     }
+  }, [debounceValue]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.trim();
+    setInputValue(value);
   };
 
   const handleSelect = (item: DataSourceType) => {
