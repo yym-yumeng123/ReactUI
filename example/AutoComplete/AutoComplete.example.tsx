@@ -61,11 +61,13 @@ const AutoCompleteExample = () => {
   return (
     <>
       <AutoComplete
+        value="同步"
         fetchSuggestions={handleFetch}
         onSelect={handleSelect}
         renderOption={renderOption}
       />
       <AutoComplete
+        value="异步"
         fetchSuggestions={handleFetchAsync}
         // onSelect={handleSelect}
         renderOption={renderOptionAsync}

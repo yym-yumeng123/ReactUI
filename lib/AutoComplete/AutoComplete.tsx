@@ -1,8 +1,9 @@
 import * as React from "react";
 import { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import Input, { InputProps } from "lib/Input/Input";
+import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
-import useDebounce from  'lib/hooks/useDebounce'
+import useDebounce from "lib/hooks/useDebounce";
 import "./autoComplete.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-auto");
 
@@ -36,7 +37,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   // 数据源
   const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
   const [loading, setLoading] = useState(false);
-  const debounceValue = useDebounce(inputValue)
+  const debounceValue = useDebounce(inputValue);
 
   // 当 inputValue 变化, 操作请求值
   useEffect(() => {
@@ -44,7 +45,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
       const results = fetchSuggestions(debounceValue);
       // 返回结果是否是异步
       if (results instanceof Promise) {
-        console.log('trigger..');
+        console.log("trigger..");
 
         setLoading(true);
         results.then(res => {
@@ -95,7 +96,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
     <div className={prefix("")}>
       <Input value={inputValue} {...restProps} onChange={handleChange} />
       <section className={prefix("content")}>
-        {loading && "正在请求中"}
+        {loading && <Icon spin name="refresh" />}
         {suggestions.length > 0 && generateDropDown()}
       </section>
     </div>

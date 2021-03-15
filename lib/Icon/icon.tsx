@@ -8,6 +8,7 @@ interface IconProps extends React.SVGAttributes<SVGElement> {
   name: string;
   color?: string;
   size?: string;
+  spin?: boolean;
 }
 
 const Icon: React.FunctionComponent<IconProps> = ({
@@ -15,8 +16,10 @@ const Icon: React.FunctionComponent<IconProps> = ({
   name,
   color,
   size,
+  spin,
   ...restProps
 }) => {
+  const spinning = spin && 'yui-icon-spin'
   const styles = () => {
     let style: any = {};
     if (color) {
@@ -31,7 +34,7 @@ const Icon: React.FunctionComponent<IconProps> = ({
   return (
     <svg
       style={styles()}
-      className={classes("yui-icon", className)}
+      className={classes("yui-icon", className, spinning)}
       {...restProps}
     >
       <use xlinkHref={`#${name}`}></use>
