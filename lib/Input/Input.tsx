@@ -27,28 +27,28 @@ export interface InputProps
   append?: string | ReactElement;
 }
 
-const Input: FC<InputProps> = (props) => {
+const Input: FC<InputProps> = props => {
   const { disabled, size, icon, prepand, append, value, ...restProps } = props;
   // 根据属性计算不同的 className
 
   const classes = {
     "": true,
     [`${size}`]: !!size,
-    disabled: !!disabled,
+    disabled: !!disabled
   };
 
   const parentClasses = {
     wrapper: true,
     prepand: !!prepand,
     append: !!append,
-    disabled: (!!prepand || !!append) && !!disabled,
+    disabled: (!!prepand || !!append) && !!disabled
   };
 
   return (
     <div className={prefix(parentClasses)}>
       {prepand && <span className={prefix("left")}>{prepand}</span>}
       <input
-        value={value}
+        value={value || ""}
         className={prefix(classes)}
         style={{ padding: `8px ${icon ? "26px" : "8px"} 8px 8px` }}
         type="text"
