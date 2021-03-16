@@ -1,4 +1,4 @@
-@import "lib/styles/helper.scss" ;
+@import "lib/styles/helper.scss";
 .yui-auto {
   max-width: 500px;
   width: 100%;
@@ -16,6 +16,9 @@
       &:hover {
         background: $H050;
       }
+    }
+    .yui-auto-item-highlight {
+      background: $H050;
     }
   }
 }

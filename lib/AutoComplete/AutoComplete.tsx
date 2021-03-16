@@ -1,5 +1,11 @@
 import * as React from "react";
-import { ChangeEvent, ReactElement, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  ReactElement,
+  useEffect,
+  useState
+} from "react";
 import Input, { InputProps } from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
@@ -37,6 +43,8 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   // 数据源
   const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
   const [loading, setLoading] = useState(false);
+  // 键盘事件 上下 高亮
+  const [highlightIndex, setHighlightIndex] = useState(-1);
   const debounceValue = useDebounce(inputValue);
 
   // 当 inputValue 变化, 操作请求值
@@ -45,8 +53,6 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
       const results = fetchSuggestions(debounceValue);
       // 返回结果是否是异步
       if (results instanceof Promise) {
-        console.log("trigger..");
-
         setLoading(true);
         results.then(res => {
           setLoading(false);
@@ -55,6 +61,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
       } else {
         setSuggestions(results);
       }
+      setHighlightIndex(-1);
     } else {
       setSuggestions([]);
     }
@@ -63,6 +70,38 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setInputValue(value);
+  };
+
+  const highlight = (index: number) => {
+    if (index < 0) index = 0;
+    if (index >= suggestions.length) index = suggestions.length - 1;
+    setHighlightIndex(index);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    /**
+     * 上: 38
+     * 下: 40
+     * esc: 27
+     * enter: 13
+     */
+    switch (e.keyCode) {
+      case 13:
+        suggestions[highlightIndex] &&
+          handleSelect(suggestions[highlightIndex]);
+        break;
+      case 38:
+        highlight(highlightIndex - 1);
+        break;
+      case 40:
+        highlight(highlightIndex + 1);
+        break;
+      case 27:
+        setSuggestions([]);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleSelect = (item: DataSourceType) => {
@@ -79,9 +118,13 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
     return (
       <ul>
         {suggestions.map((item, index) => {
+          const classes = {
+            "content-item": true,
+            "item-highlight": index === highlightIndex
+          };
           return (
             <li
-              className={prefix("content-item")}
+              className={prefix(classes)}
               key={index}
               onClick={() => handleSelect(item)}
             >
@@ -94,7 +137,12 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   };
   return (
     <div className={prefix("")}>
-      <Input value={inputValue} {...restProps} onChange={handleChange} />
+      <Input
+        value={inputValue}
+        {...restProps}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
       <section className={prefix("content")}>
         {loading && <Icon spin name="refresh" />}
         {suggestions.length > 0 && generateDropDown()}
