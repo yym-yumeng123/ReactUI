@@ -62,6 +62,7 @@ const AutoCompleteExample = () => {
     <>
       <AutoComplete
         value="同步"
+        disabled
         fetchSuggestions={handleFetch}
         onSelect={handleSelect}
         renderOption={renderOption}

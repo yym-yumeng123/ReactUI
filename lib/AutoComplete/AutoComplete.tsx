@@ -11,6 +11,7 @@ import Input, { InputProps } from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import useDebounce from "lib/hooks/useDebounce";
+import useClickOutside from "lib/hooks/useClickOutside";
 import "./autoComplete.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-auto");
 
@@ -46,9 +47,15 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   const [loading, setLoading] = useState(false);
   // 键盘事件 上下 高亮
   const [highlightIndex, setHighlightIndex] = useState(-1);
+
   const triggerSearch = useRef(false);
+  const componentRef = useRef<HTMLDivElement>(null);
 
   const debounceValue = useDebounce(inputValue);
+
+  useClickOutside(componentRef, () => {
+    setSuggestions([]);
+  });
 
   // 当 debounceValue 变化, 操作请求值
   useEffect(() => {
@@ -141,12 +148,12 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
     );
   };
   return (
-    <div className={prefix("")}>
+    <div className={prefix("")} ref={componentRef}>
       <Input
         value={inputValue}
-        {...restProps}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        {...restProps}
       />
       <section className={prefix("content")}>
         {loading && <Icon spin name="refresh" />}
