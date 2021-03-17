@@ -4,6 +4,7 @@ import {
   KeyboardEvent,
   ReactElement,
   useEffect,
+  useRef,
   useState
 } from "react";
 import Input, { InputProps } from "lib/Input/Input";
@@ -45,11 +46,13 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   const [loading, setLoading] = useState(false);
   // 键盘事件 上下 高亮
   const [highlightIndex, setHighlightIndex] = useState(-1);
+  const triggerSearch = useRef(false);
+
   const debounceValue = useDebounce(inputValue);
 
-  // 当 inputValue 变化, 操作请求值
+  // 当 debounceValue 变化, 操作请求值
   useEffect(() => {
-    if (debounceValue) {
+    if (debounceValue && triggerSearch.current) {
       const results = fetchSuggestions(debounceValue);
       // 返回结果是否是异步
       if (results instanceof Promise) {
@@ -70,6 +73,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setInputValue(value);
+    triggerSearch.current = true;
   };
 
   const highlight = (index: number) => {
@@ -108,6 +112,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
     setInputValue(item.value);
     setSuggestions([]);
     onSelect && onSelect(item);
+    triggerSearch.current = false;
   };
 
   const renderTemplate = (item: DataSourceType) => {
