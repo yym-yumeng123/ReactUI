@@ -1,9 +1,12 @@
 .yui-input-wrapper {
   position: relative;
   display: inline-block;
+  width: 100%;
   .yui-input {
     display: block;
+    width: 100%;
     min-width: 200px;
+    padding: 8px;
     color: #575757;
     font-size: 14px;
     outline: none;
@@ -204,5 +207,4 @@
       }
     }
   }
-
 }

@@ -36,7 +36,7 @@ const InputExample = () => {
       <Input placeholder="请输入名称" append="后面"/>
       <Input placeholder="请输入名称" append="后面" disabled={true}/>
       <br/>
-      <Input placeholder="请输入名称" prepand="https://" append=".com"/>
+      <Input placeholder="请输入名称" prepand="https://www" append=".com"/>
       <Input placeholder="请输入名称" prepand="https://" append=".com" disabled={true}/>
 
       <h1>value</h1>
