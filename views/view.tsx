@@ -62,8 +62,7 @@ ReactDOM.render(
         </SideBar>
         <Scroll style={{height: "calc(100vh - 121px)", width: "100%",}}>
           <Content className="g-main">
-            <Redirect path="/" to="/all"/>
-            <Route path="/all" component={All}></Route>
+            <Route path="/all" component={All} exact></Route>
             <Route path="/icon" component={IconDemo}></Route>
             <Route path="/button" component={ButtonExample}></Route>
             <Route path="/dialog" component={DialogExample}></Route>
