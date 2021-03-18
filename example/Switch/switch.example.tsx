@@ -4,7 +4,7 @@ import Switch from "lib/Switch/switch";
 const SwitchExample = () => {
   return (
     <div>
-      <Switch />
+      <Switch checked />
     </div>
   );
 };
