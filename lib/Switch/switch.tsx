@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./switch.scss";
 
@@ -12,14 +12,16 @@ interface SwitchProps {
 
 const Switch: FC<SwitchProps> = props => {
   const { checked, disabled, onChange } = props;
+  const [toggle, setToggle] = useState(checked);
 
   const handleToggle = () => {
     onChange && onChange(!checked);
+    setToggle(!toggle);
   };
 
   const wrapClasses = {
     wrap: true,
-    checked: checked,
+    checked: onChange ? checked : toggle,
     disabled: !!disabled
   };
   return (
