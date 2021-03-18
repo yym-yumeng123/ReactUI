@@ -15,6 +15,11 @@
     height: 18px;
     border-radius: 9px;
     background: $B000;
+    transition: left 300ms;
+  }
+
+  &:focus {
+    outline: none;
   }
 
   &.yui-switch-checked {
