@@ -13,6 +13,8 @@ const SwitchExample = () => {
       <Switch checked={false} />
       <Switch checked disabled />
       <Switch checked={false} disabled />
+      <Switch checked size="lg" />
+      <Switch checked size="sm" />
     </div>
   );
 };

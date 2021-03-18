@@ -7,11 +7,12 @@ const prefix = addPrefixAndscopedClassMarker("yui-switch");
 interface SwitchProps {
   checked: boolean;
   disabled?: boolean;
+  size?: 'sm' | 'lg'
   onChange?: (value: boolean) => void;
 }
 
 const Switch: FC<SwitchProps> = props => {
-  const { checked, disabled, onChange } = props;
+  const { checked, disabled, size, onChange } = props;
   const [toggle, setToggle] = useState(checked);
 
   const handleToggle = () => {
@@ -22,7 +23,8 @@ const Switch: FC<SwitchProps> = props => {
   const wrapClasses = {
     wrap: true,
     checked: onChange ? checked : toggle,
-    disabled: !!disabled
+    disabled: !!disabled,
+    [`${size}`]: !!size
   };
   return (
     <button className={prefix(wrapClasses)} onClick={handleToggle}>
