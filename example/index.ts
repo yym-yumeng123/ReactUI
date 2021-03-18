@@ -4,6 +4,7 @@ import IconDemo from "./Icon/icon.demo";
 import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
 import InputExample from "./Input/Input.example";
+import SwitchExample from "./Switch/switch.example";
 
 export {
   LayoutExample,
@@ -11,5 +12,6 @@ export {
   TreeDemo,
   ScrollExample,
   InputExample,
-  AutoCompleteExample
+  AutoCompleteExample,
+  SwitchExample
 };
