@@ -23,10 +23,23 @@
     outline: none;
   }
 
+  &:active {
+    .yui-switch-square {
+      width: 22px;
+    }
+  }
+
   &.yui-switch-checked {
     background: $H500;
     .yui-switch-square {
-      left: calc(100% - 18px - 2px);
+      left: calc(100% - 21px);
+    }
+
+    &:active {
+      .yui-switch-square {
+        width: 22px;
+        margin-left: -4px;
+      }
     }
   }
 
