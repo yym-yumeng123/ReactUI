@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Dialog, { Alert, Confirm } from "./dialog";
-import { Button } from "../index";
+import Dialog, { Alert, Confirm } from "lib/Dialog/dialog";
+import Button from "lib/Button/button";
 
 export default function() {
   const [visible, setVisible] = useState(false);

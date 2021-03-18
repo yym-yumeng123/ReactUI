@@ -1,5 +1,5 @@
 import React from "react";
-import Button, { ButtonSize } from "./button";
+import Button, { ButtonSize } from "lib/Button/button";
 
 const ButtonExample: React.FunctionComponent = () => {
   const fn = () => {

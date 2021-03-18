@@ -5,6 +5,9 @@ import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
 import InputExample from "./Input/Input.example";
 import SwitchExample from "./Switch/switch.example";
+import ButtonExample from "./Button/button.example";
+import DialogExample from "./Dialog/dialog.example";
+import FormExample from "./Form/form.example";
 
 export {
   LayoutExample,
@@ -13,5 +16,8 @@ export {
   ScrollExample,
   InputExample,
   AutoCompleteExample,
-  SwitchExample
+  SwitchExample,
+  ButtonExample,
+  DialogExample,
+  FormExample
 };

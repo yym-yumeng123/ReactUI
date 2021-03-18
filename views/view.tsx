@@ -1,15 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-  HashRouter as Router,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import All from "lib/All/all";
-import ButtonExample from "lib/Button/button.example";
-import DialogExample from "lib/Dialog/dialog.example";
-import FormExample from "lib/Form/form.example";
-import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
 import {
   IconDemo,
   LayoutExample,
@@ -17,10 +9,14 @@ import {
   ScrollExample,
   InputExample,
   AutoCompleteExample,
-  SwitchExample
+  SwitchExample,
+  ButtonExample,
+  DialogExample,
+  FormExample
 } from "example";
-import Scroll from "../lib/Scroll/scroll";
 
+import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
+import Scroll from "lib/Scroll/scroll";
 import "./view.scss";
 // @ts-ignore
 import logo from "./logo.png";
