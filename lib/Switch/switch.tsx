@@ -1,36 +1,38 @@
 import React, { FC } from "react";
-import {addPrefixAndscopedClassMarker} from "../utils/classes";
-import './switch.scss'
+import { addPrefixAndscopedClassMarker } from "../utils/classes";
+import "./switch.scss";
 
-const prefix = addPrefixAndscopedClassMarker('yui-switch')
+const prefix = addPrefixAndscopedClassMarker("yui-switch");
 
 interface SwitchProps {
   checked: boolean;
-  onChange?: (value: boolean) => void
+  disabled?: boolean;
+  onChange?: (value: boolean) => void;
 }
 
 const Switch: FC<SwitchProps> = props => {
-  const { checked, onChange } = props
+  const { checked, disabled, onChange } = props;
 
-  const handleToggle = () =>{
-    console.log(onChange)
-    onChange(!checked)
-  }
+  const handleToggle = () => {
+    onChange && onChange(!checked);
+  };
 
   const wrapClasses = {
-    'wrap': true,
-    'checked': checked || false
-  }
+    wrap: true,
+    checked: checked,
+    disabled: !!disabled
+  };
   return (
     <button className={prefix(wrapClasses)} onClick={handleToggle}>
-      <span className={prefix('square')}></span>
+      <span className={prefix("square")}></span>
     </button>
   );
 };
 
 Switch.displayName = "switch";
 Switch.defaultProps = {
-  checked: false
+  checked: false,
+  disabled: false
 };
 
 export default Switch;

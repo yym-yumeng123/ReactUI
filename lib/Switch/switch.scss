@@ -7,6 +7,7 @@
   border-radius: 18px;
   border: none;
   background: $B300;
+  cursor: pointer;
   .yui-switch-square {
     position: absolute;
     top: 2px;
@@ -27,5 +28,17 @@
     .yui-switch-square {
       left: calc(100% - 18px - 2px);
     }
+  }
+
+  &.yui-switch-disabled {
+    background: $B050;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &.yui-switch-checked.yui-switch-disabled {
+    background: $H100;
+    pointer-events: none;
+    cursor: not-allowed;
   }
 }

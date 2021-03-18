@@ -8,9 +8,9 @@ const SwitchExample = () => {
   }
   return (
     <div>
-      <Switch checked={checked} onChange={handleChange} />
-      <Switch checked />
-      <Switch checked={false} />
+      <Switch checked={checked} onChange={handleChange}  />
+      <Switch checked disabled />
+      <Switch checked={false} disabled />
     </div>
   );
 };
