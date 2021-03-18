@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import {addPrefixAndscopedClassMarker} from "../utils/classes";
 import './switch.scss'
@@ -11,8 +11,18 @@ interface SwitchProps {
 
 const Switch: FC<SwitchProps> = props => {
   const { checked } = props;
+  const [toggle, setToggle] = useState(false);
+
+  const handleToggle = () =>{
+    setToggle(!toggle)
+  }
+
+  const wrapClasses = {
+    'wrap': true,
+    'checked': toggle
+  }
   return (
-    <button className={prefix('wrap')}>
+    <button className={prefix(wrapClasses)} onClick={handleToggle}>
       <span className={prefix('square')}></span>
     </button>
   );
