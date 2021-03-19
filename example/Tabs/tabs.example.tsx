@@ -10,7 +10,7 @@ const TabsExample = () => {
   return (
     <div>
       <Tabs active={value} onChange={handleSelect}>
-        <TabPane name="1" title="导航一">内容一</TabPane>
+        <TabPane name="1" title="导航一二三">内容一二三</TabPane>
         <TabPane name="2" title="导航二">内容二</TabPane>
         <TabPane name="3" title="导航三">内容三个</TabPane>
       </Tabs>

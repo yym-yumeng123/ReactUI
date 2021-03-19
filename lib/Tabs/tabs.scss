@@ -1,8 +1,8 @@
 $color: #F7F7FA;
 .yui-tabs {
-  &-header-wrap {
+  &-nav-wrap {
     border-bottom: 1px solid $color;
-    .yui-tabs-header {
+    .yui-tabs-nav {
       display: inline-block;
       padding: 8px 12px;
       font-size: 14px;
@@ -11,8 +11,12 @@ $color: #F7F7FA;
 
       &.yui-tabs-active {
         color: #1675E0;
-        border-bottom: 2px solid #1675E0;
       }
     }
+  }
+
+  &-indicator {
+    transition: all 300ms;
+    border-bottom: 2px solid #1675E0;
   }
 }
