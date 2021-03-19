@@ -8,6 +8,7 @@ import SwitchExample from "./Switch/switch.example";
 import ButtonExample from "./Button/button.example";
 import DialogExample from "./Dialog/dialog.example";
 import FormExample from "./Form/form.example";
+import TabsExample from "./Tabs/tabs.example";
 
 export {
   LayoutExample,
@@ -19,5 +20,6 @@ export {
   SwitchExample,
   ButtonExample,
   DialogExample,
-  FormExample
+  FormExample,
+  TabsExample
 };
