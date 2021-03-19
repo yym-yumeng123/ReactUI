@@ -1,0 +1,18 @@
+$color: #F7F7FA;
+.yui-tabs {
+  &-header-wrap {
+    border-bottom: 1px solid $color;
+    .yui-tabs-header {
+      display: inline-block;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #8e8e93;
+      cursor: pointer;
+
+      &.yui-tabs-active {
+        color: #1675E0;
+        border-bottom: 2px solid #1675E0;
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 export interface TabPaneProps {
   title: string;
+  name: string
 }
 
 const TabPane: FC<TabPaneProps> = props => {
@@ -12,7 +13,7 @@ const TabPane: FC<TabPaneProps> = props => {
 
 TabPane.propTypes = {
   title: PropTypes.string.isRequired,
-  // name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired
 };
 
 export default TabPane;
