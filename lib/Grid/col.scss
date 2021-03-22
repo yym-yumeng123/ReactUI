@@ -1,11 +1,21 @@
 .yui-col {
   height: 50px;
   border: 1px solid lightblue;
+  background: lightpink;
 
   $class-prefix: yui-col;
-  @for $n from 1 through 24 {
+  @for $n from 1 to 24 {
     &.#{$class-prefix}-#{$n} {
       width: ($n / 24) * 100%;
     }
   }
+
+  $class-prefix: yui-col-offset;
+  @for $n from 1 to 24 {
+    &.#{$class-prefix}-#{$n} {
+      margin-left: ($n / 24) * 100%;
+    }
+  }
+
+
 }
