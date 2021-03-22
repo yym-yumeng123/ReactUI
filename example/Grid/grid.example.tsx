@@ -42,6 +42,20 @@ const GridExample = () => {
         <Col span="10">1</Col>
         <Col span="14">2</Col>
       </Row>
+
+      <h1>align</h1>
+      <Row gutter="30" align="right">
+        <Col span="4">1</Col>
+        <Col span="4">2</Col>
+      </Row>
+      <Row gutter="30" align="left">
+        <Col span="5">1</Col>
+        <Col span="6">2</Col>
+      </Row>
+      <Row gutter="30" align="center">
+        <Col span="5">1</Col>
+        <Col span="6">2</Col>
+      </Row>
     </div>
   );
 };

@@ -6,11 +6,12 @@ const prefix = addPrefixAndscopedClassMarker("yui-row");
 
 interface RowProps {
   gutter?: number | string;
+  align?: 'left' | 'right' | 'center'
   children: Array<ReactElement>;
 }
 
 const Row: FC<RowProps> = props => {
-  const { children, gutter } = props;
+  const { children, gutter, align } = props;
 
   const styles = {
     marginLeft: `${-(gutter as number) / 2}px`,
@@ -21,7 +22,7 @@ const Row: FC<RowProps> = props => {
     return React.cloneElement(child, { gutter: gutter || 0 });
   });
   return (
-    <div className={prefix("")} style={styles}>
+    <div className={prefix({"": true, [`${align}`]: !!align})} style={styles}>
       {childWithProps}
     </div>
   );

@@ -1,3 +1,12 @@
 .yui-row {
   display: flex;
+  &-left {
+    justify-content: flex-start;
+  }
+  &-right {
+    justify-content: flex-end;
+  }
+  &-center {
+    justify-content: center;
+  }
 }
