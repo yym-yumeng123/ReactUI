@@ -36,6 +36,12 @@ const GridExample = () => {
         <Col span="6" offset="6">2</Col>
         <Col span="6">3</Col>
       </Row>
+
+      <h1>gutter</h1>
+      <Row gutter="20">
+        <Col span="12">1</Col>
+        <Col span="12">2</Col>
+      </Row>
     </div>
   );
 };
