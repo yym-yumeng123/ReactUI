@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect } from "react";
+import React, { FC, ReactElement } from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./row.scss";
 
@@ -13,19 +13,16 @@ const Row: FC<RowProps> = props => {
   const { children, gutter } = props;
 
   const styles = {
-    marginLeft: `${(gutter as number) / 2}px`,
-    marginRight: `${(gutter as number) / 2}px`
+    marginLeft: `${-(gutter as number) / 2}px`,
+    marginRight: `${-(gutter as number) / 2}px`
   };
 
-  useEffect(() => {
-    console.log(children, "12121");
-    children.forEach(vm => {
-      console.log(vm, "1212");
-    });
-  }, []);
+  const childWithProps = React.Children.map(children, child => {
+    return React.cloneElement(child, { gutter: gutter || 0 });
+  });
   return (
     <div className={prefix("")} style={styles}>
-      {children}
+      {childWithProps}
     </div>
   );
 };

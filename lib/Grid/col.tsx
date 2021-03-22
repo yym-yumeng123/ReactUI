@@ -6,15 +6,16 @@ const prefix = addPrefixAndscopedClassMarker("yui-col");
 interface ColProps {
   span: number | string;
   offset?: number | string;
+  gutter?: number | string;
 }
 
 const Col: FC<ColProps> = props => {
-  const { children, span, offset } = props;
-  const [gutter, setgGutter] = useState(0);
+  const { children, span, offset, gutter } = props;
+  console.log(props, "props....");
 
   const styles = {
-    paddingLeft: `${gutter}px`,
-    paddingRight: `${gutter}px`
+    paddingLeft: `${(gutter as number) / 2}px`,
+    paddingRight: `${(gutter as number) / 2}px`
   };
 
   const classes = {
@@ -25,7 +26,7 @@ const Col: FC<ColProps> = props => {
 
   return (
     <div className={prefix(classes)} style={styles}>
-      {children}
+      <div style={{border: '1px solid green', height: '100px'}}>{children}</div>
     </div>
   );
 };

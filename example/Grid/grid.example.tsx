@@ -4,8 +4,8 @@ import Col from "lib/Grid/col";
 
 const GridExample = () => {
   return (
-    <div>
-      <Row>
+    <div style={{border: '2px solid black'}}>
+      <Row gutter={20}>
         <Col span="12">1</Col>
         <Col span="12">2</Col>
       </Row>
@@ -38,9 +38,9 @@ const GridExample = () => {
       </Row>
 
       <h1>gutter</h1>
-      <Row gutter="20">
-        <Col span="12">1</Col>
-        <Col span="12">2</Col>
+      <Row gutter="30">
+        <Col span="10">1</Col>
+        <Col span="14">2</Col>
       </Row>
     </div>
   );
