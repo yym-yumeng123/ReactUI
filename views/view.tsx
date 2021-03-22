@@ -13,7 +13,8 @@ import {
   ButtonExample,
   DialogExample,
   FormExample,
-  TabsExample
+  TabsExample,
+  GridExample
 } from "example";
 
 import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
@@ -68,6 +69,9 @@ ReactDOM.render(
             <li>
               <NavLink to="/tabs">Tabs 标签</NavLink>
             </li>
+            <li>
+              <NavLink to="/grid">Grid 栅格布局</NavLink>
+            </li>
           </ul>
         </SideBar>
         <Scroll style={{ height: "calc(100vh - 121px)", width: "100%" }}>
@@ -84,6 +88,7 @@ ReactDOM.render(
             <Route path="/autoComplete" component={AutoCompleteExample}></Route>
             <Route path="/switch" component={SwitchExample}></Route>
             <Route path="/tabs" component={TabsExample}></Route>
+            <Route path="/grid" component={GridExample}></Route>
           </Content>
         </Scroll>
       </Layout>

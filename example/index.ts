@@ -9,6 +9,7 @@ import ButtonExample from "./Button/button.example";
 import DialogExample from "./Dialog/dialog.example";
 import FormExample from "./Form/form.example";
 import TabsExample from "./Tabs/tabs.example";
+import GridExample from "./Grid/grid.example";
 
 export {
   LayoutExample,
@@ -21,5 +22,6 @@ export {
   ButtonExample,
   DialogExample,
   FormExample,
-  TabsExample
+  TabsExample,
+  GridExample
 };
