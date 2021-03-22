@@ -1,0 +1,11 @@
+.yui-col {
+  height: 50px;
+  border: 1px solid lightblue;
+
+  $class-prefix: yui-col;
+  @for $n from 1 through 24 {
+    &.#{$class-prefix}-#{$n} {
+      width: ($n / 24) * 100%;
+    }
+  }
+}
