@@ -2,10 +2,13 @@
   position: relative;
   &-wrap {
     position: absolute;
-    left: 0;
-    bottom: 100%;
+    margin-bottom: 6px;
     padding: 12px;
     background: #fff;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06), 0 8px 8px 0 rgba(0, 0, 0, 0.12);
+    transform: translateY(-100%);
+  }
+  &-triggerWrap {
+    display: inline-block;
   }
 }
