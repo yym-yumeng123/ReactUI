@@ -1,12 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./col.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-col");
-
 interface ColProps {
-  span: number | string;
-  offset?: number | string;
-  gutter?: number | string;
+  span: number;
+  offset?: number;
+  gutter?: number;
 }
 
 const Col: FC<ColProps> = props => {
@@ -26,7 +25,9 @@ const Col: FC<ColProps> = props => {
 
   return (
     <div className={prefix(classes)} style={styles}>
-      <div style={{border: '1px solid green', height: '100px'}}>{children}</div>
+      <div style={{ border: "1px solid green", height: "100px" }}>
+        {children}
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import "./row.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-row");
 
 interface RowProps {
-  gutter?: number | string;
+  gutter?: number;
   align?: 'left' | 'right' | 'center'
   children: Array<ReactElement>;
 }
