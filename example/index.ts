@@ -10,6 +10,7 @@ import DialogExample from "./Dialog/dialog.example";
 import FormExample from "./Form/form.example";
 import TabsExample from "./Tabs/tabs.example";
 import GridExample from "./Grid/grid.example";
+import PopoverExample from "./Popover/popover.example";
 
 export {
   LayoutExample,
@@ -23,5 +24,6 @@ export {
   DialogExample,
   FormExample,
   TabsExample,
-  GridExample
+  GridExample,
+  PopoverExample
 };

@@ -14,7 +14,8 @@ import {
   DialogExample,
   FormExample,
   TabsExample,
-  GridExample
+  GridExample,
+  PopoverExample
 } from "example";
 
 import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
@@ -72,6 +73,9 @@ ReactDOM.render(
             <li>
               <NavLink to="/grid">Grid 栅格布局</NavLink>
             </li>
+            <li>
+              <NavLink to="/popover">Popover 气泡卡片</NavLink>
+            </li>
           </ul>
         </SideBar>
         <Scroll style={{ height: "calc(100vh - 121px)", width: "100%" }}>
@@ -89,6 +93,7 @@ ReactDOM.render(
             <Route path="/switch" component={SwitchExample}></Route>
             <Route path="/tabs" component={TabsExample}></Route>
             <Route path="/grid" component={GridExample}></Route>
+            <Route path="/popover" component={PopoverExample}></Route>
           </Content>
         </Scroll>
       </Layout>
