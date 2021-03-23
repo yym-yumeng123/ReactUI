@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactElement, useContext } from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./row.scss";
 
