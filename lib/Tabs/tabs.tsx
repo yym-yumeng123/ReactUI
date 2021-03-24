@@ -25,8 +25,8 @@ const Tabs: FC<TabsProps> = props => {
   let currentItemRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
   // 判断子元素是否都是 TabPane
-  const isChidlrenElement = children.every(item => item.type === TabPane);
-  if (!isChidlrenElement) {
+  const isChildlrenElement = children.every(item => item.type === TabPane);
+  if (!isChildlrenElement) {
     throw new Error("Tabs 子标签必须是 TabPane");
   }
 

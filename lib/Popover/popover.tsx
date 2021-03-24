@@ -1,4 +1,10 @@
-import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
+import React, {
+  FC,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import useClickOutside from "lib/hooks/useClickOutside";
 import "./popover.scss";
@@ -18,13 +24,15 @@ const Popover: FC<PopoverProps> = props => {
   const contentRef = useRef<HTMLDivElement>(null);
   const triggerWrapperRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(popRef, () => {
-    setVisible(false);
-  });
-
   const handlerToggle = () => {
     setVisible(!visible);
   };
+
+  useClickOutside(popRef, () => {
+    if (visible) {
+      setVisible(false);
+    }
+  });
 
   useEffect(() => {
     const {
@@ -33,8 +41,10 @@ const Popover: FC<PopoverProps> = props => {
     } = (triggerWrapperRef.current as HTMLDivElement).getBoundingClientRect();
 
     if (visible) {
-      (contentRef.current as HTMLDivElement).style.left = `${left + window.scrollX}px`;
-      (contentRef.current as HTMLDivElement).style.top = `${top + window.scrollY}px`;
+      (contentRef.current as HTMLDivElement).style.left = `${left +
+        window.scrollX}px`;
+      (contentRef.current as HTMLDivElement).style.top = `${top +
+        window.scrollY}px`;
     }
   }, [visible]);
 

@@ -6,9 +6,7 @@ const PopoverExample = () => {
   return (
     <div
       style={{
-        paddingTop: "100px",
         border: "1px solid red",
-        overflow: "hidden"
       }}
     >
       <Popover content={<em>内容</em>} title="我是标题">

@@ -1,5 +1,6 @@
-import React, { FC, ReactElement, useContext } from "react";
+import React, { FC, ReactElement } from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
+import Col from './col'
 import "./row.scss";
 
 const prefix = addPrefixAndscopedClassMarker("yui-row");
@@ -12,6 +13,14 @@ interface RowProps {
 
 const Row: FC<RowProps> = props => {
   const { children, gutter, align } = props;
+
+    // 判断子元素是否都是 TabPane
+    const isChildlrenElement = children.every(item => item.type === Col);
+    console.log(isChildlrenElement);
+
+    if (!isChildlrenElement) {
+      throw new Error("Row 子标签必须是 Col");
+    }
 
   const styles = {
     marginLeft: `${-(gutter as number) / 2}px`,

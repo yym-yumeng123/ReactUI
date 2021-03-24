@@ -1,12 +1,21 @@
+@import 'lib/styles/_helper.scss';
+
 .yui-popover {
   position: relative;
   &-wrap {
     position: absolute;
     margin-bottom: 6px;
     padding: 12px;
+    color: $B800;
     background: #fff;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06), 0 8px 8px 0 rgba(0, 0, 0, 0.12);
     transform: translateY(-100%);
+    .yui-popover-header {
+      font-size: 14px;
+    }
+    .yui-popover-content {
+      font-size: 12px;
+    }
   }
   &-triggerWrap {
     display: inline-block;
