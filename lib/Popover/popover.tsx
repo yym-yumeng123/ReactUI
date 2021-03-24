@@ -1,17 +1,11 @@
-import React, {
-  FC,
-  ReactNode,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import useClickOutside from "lib/hooks/useClickOutside";
 import "./popover.scss";
 import ReactDOM from "react-dom";
 
 interface PopoverProps {
-  title: string | ReactNode;
+  title?: string | ReactNode;
   content: string | ReactNode;
 }
 
@@ -20,6 +14,7 @@ const prefix = addPrefixAndscopedClassMarker("yui-popover");
 const Popover: FC<PopoverProps> = props => {
   const { children, title, content } = props;
   const [visible, setVisible] = useState(false);
+
   const popRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const triggerWrapperRef = useRef<HTMLDivElement>(null);
@@ -37,8 +32,10 @@ const Popover: FC<PopoverProps> = props => {
   useEffect(() => {
     const {
       left,
-      top
+      top,
+      width
     } = (triggerWrapperRef.current as HTMLDivElement).getBoundingClientRect();
+    console.log(width, left, "width");
 
     if (visible) {
       (contentRef.current as HTMLDivElement).style.left = `${left +
@@ -50,7 +47,7 @@ const Popover: FC<PopoverProps> = props => {
 
   const contentPortal = visible && (
     <div className={prefix("wrap")} ref={contentRef}>
-      <div className={prefix("header")}>{title}</div>
+      {title && <div className={prefix("header")}>{title}</div>}
       <div className={prefix("content")}>{content}</div>
     </div>
   );

@@ -4,17 +4,35 @@
   position: relative;
   &-wrap {
     position: absolute;
-    margin-bottom: 6px;
+    max-width: 20em;
     padding: 12px;
+    margin-top: -6px;
     color: $B800;
     background: #fff;
+    border-radius: 6px;
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06), 0 8px 8px 0 rgba(0, 0, 0, 0.12);
     transform: translateY(-100%);
+    word-break: break-all;
     .yui-popover-header {
-      font-size: 14px;
+      margin-bottom: 8px;
+      font-size: 16px;
     }
     .yui-popover-content {
-      font-size: 12px;
+      font-size: 14px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 12px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-top: 6px solid #fff;
+      border-bottom: 6px solid transparent;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
     }
   }
   &-triggerWrap {

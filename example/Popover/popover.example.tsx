@@ -4,12 +4,14 @@ import Button from "lib/Button/button";
 
 const PopoverExample = () => {
   return (
-    <div
-      style={{
-        border: "1px solid red",
-      }}
-    >
-      <Popover content={<em>内容</em>} title="我是标题">
+    <div>
+      <Popover content={<em>aaaaaaaaaaa</em>} title="我是标题">
+        <Button level="primary">按钮</Button>
+      </Popover>
+
+      <br/>
+
+      <Popover content={<em>aaaaaaaaaaa</em>}>
         <Button level="primary">按钮</Button>
       </Popover>
     </div>
