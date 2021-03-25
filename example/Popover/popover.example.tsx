@@ -14,6 +14,11 @@ const PopoverExample = () => {
       <Popover content={<em>aaaaaaaaaaa</em>}>
         <Button level="primary">按钮</Button>
       </Popover>
+
+      <br/>
+      <Popover content={<em>aaaaaaaaaaa</em>} placement="right">
+        <Button level="primary">按钮</Button>
+      </Popover>
     </div>
   );
 };

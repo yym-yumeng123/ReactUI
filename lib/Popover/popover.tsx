@@ -7,6 +7,7 @@ import ReactDOM from "react-dom";
 interface PopoverProps {
   title?: string | ReactNode;
   content: string | ReactNode;
+  placement?: 'top' | 'right' | 'bottom' | 'left'
 }
 
 const prefix = addPrefixAndscopedClassMarker("yui-popover");
@@ -63,5 +64,9 @@ const Popover: FC<PopoverProps> = props => {
     </div>
   );
 };
+
+Popover.defaultProps = {
+  placement: 'top'
+}
 
 export default Popover;
