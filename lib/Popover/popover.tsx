@@ -7,13 +7,13 @@ import ReactDOM from "react-dom";
 interface PopoverProps {
   title?: string | ReactNode;
   content: string | ReactNode;
-  placement?: 'top' | 'right' | 'bottom' | 'left'
+  placement?: "top" | "right" | "bottom" | "left";
 }
 
 const prefix = addPrefixAndscopedClassMarker("yui-popover");
 
 const Popover: FC<PopoverProps> = props => {
-  const { children, title, content } = props;
+  const { children, title, content, placement = "top" } = props;
   const [visible, setVisible] = useState(false);
 
   const popRef = useRef<HTMLDivElement>(null);
@@ -34,20 +34,50 @@ const Popover: FC<PopoverProps> = props => {
     const {
       left,
       top,
+      height,
       width
     } = (triggerWrapperRef.current as HTMLDivElement).getBoundingClientRect();
-    console.log(width, left, "width");
+    console.log(height, "width");
 
     if (visible) {
-      (contentRef.current as HTMLDivElement).style.left = `${left +
-        window.scrollX}px`;
-      (contentRef.current as HTMLDivElement).style.top = `${top +
-        window.scrollY}px`;
+      const contentRefCopy = contentRef.current as HTMLDivElement;
+      switch (placement) {
+        // 上下和按钮居中
+        case "right":
+          const {
+            height: contentHeightRight
+          } = contentRefCopy.getBoundingClientRect();
+          contentRefCopy.style.left = `${width + left + window.scrollX}px`;
+          contentRefCopy.style.top = `${top +
+            window.scrollY -
+            (contentHeightRight - height) / 2}px`;
+          break;
+        case "left":
+          const {
+            height: contentHeight
+          } = contentRefCopy.getBoundingClientRect();
+          contentRefCopy.style.left = `${left + window.scrollX}px`;
+          contentRefCopy.style.top = `${top +
+            window.scrollY -
+            (contentHeight - height) / 2}px`;
+          break;
+        case "bottom":
+          contentRefCopy.style.left = `${left + window.scrollX}px`;
+          contentRefCopy.style.top = `${top + height + window.scrollY}px`;
+          break;
+        default:
+          contentRefCopy.style.left = `${left + window.scrollX}px`;
+          contentRefCopy.style.top = `${top + window.scrollY}px`;
+          break;
+      }
     }
   }, [visible]);
 
   const contentPortal = visible && (
-    <div className={prefix("wrap")} ref={contentRef}>
+    <div
+      className={prefix({ wrap: true, [`${placement}`]: !!placement })}
+      ref={contentRef}
+    >
       {title && <div className={prefix("header")}>{title}</div>}
       <div className={prefix("content")}>{content}</div>
     </div>
@@ -66,7 +96,7 @@ const Popover: FC<PopoverProps> = props => {
 };
 
 Popover.defaultProps = {
-  placement: 'top'
-}
+  placement: "top"
+};
 
 export default Popover;

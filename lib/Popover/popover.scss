@@ -1,4 +1,4 @@
-@import 'lib/styles/_helper.scss';
+@import "lib/styles/_helper.scss";
 
 .yui-popover {
   position: relative;
@@ -6,12 +6,9 @@
     position: absolute;
     max-width: 20em;
     padding: 12px;
-    margin-top: -6px;
     color: $B800;
     background: #fff;
     border-radius: 6px;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06), 0 8px 8px 0 rgba(0, 0, 0, 0.12);
-    transform: translateY(-100%);
     word-break: break-all;
     .yui-popover-header {
       margin-bottom: 8px;
@@ -22,18 +19,72 @@
       font-size: 14px;
     }
 
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -12px;
-      left: 12px;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-top: 6px solid #fff;
-      border-bottom: 6px solid transparent;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
+    &.yui-popover-top {
+      margin-top: -6px;
+      transform: translateY(-100%);
+      box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06),
+        0 8px 8px 0 rgba(0, 0, 0, 0.12);
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 12px;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-top: 6px solid #fff;
+      }
+    }
+
+    &.yui-popover-right {
+      margin-left: 6px;
+      box-shadow: 8px 0 16px 8px rgba(0, 0, 0, 0.06),
+        -8px 0 8px 0 rgba(0, 0, 0, 0.12);
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -12px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-right: 6px solid #fff;
+      }
+    }
+
+    &.yui-popover-bottom {
+      margin-top: 6px;
+      box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06),
+        0 -8px 8px 0 rgba(0, 0, 0, 0.12);
+      &::after {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: 12px;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-bottom: 6px solid #fff;
+      }
+    }
+
+    &.yui-popover-left {
+      margin-left: -6px;
+      transform: translateX(-100%);
+      box-shadow: 8px 0 16px 8px rgba(0, 0, 0, 0.06),
+        8px 0 8px 0 rgba(0, 0, 0, 0.12);
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -12px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-left: 6px solid #fff;
+      }
     }
   }
   &-triggerWrap {

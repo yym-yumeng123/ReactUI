@@ -16,8 +16,16 @@ const PopoverExample = () => {
       </Popover>
 
       <br/>
-      <Popover content={<em>aaaaaaaaaaa</em>} placement="right">
-        <Button level="primary">按钮</Button>
+      <Popover content="我是右边" placement="right">
+        <Button level="primary">按钮右</Button>
+      </Popover>
+      <br/>
+      <Popover content="我是下面" placement="bottom">
+        <Button level="primary">按钮下</Button>
+      </Popover>
+      <br/>
+      <Popover content="我是左边" placement="left">
+        <Button level="primary">按钮左</Button>
       </Popover>
     </div>
   );
