@@ -9,12 +9,11 @@ interface ColProps {
 }
 
 const Col: FC<ColProps> = props => {
-  const { children, span, offset, gutter } = props;
-  console.log(props, "props....");
+  const { children, span, offset = 0, gutter = 0 } = props;
 
   const styles = {
-    paddingLeft: `${(gutter as number) / 2}px`,
-    paddingRight: `${(gutter as number) / 2}px`
+    paddingLeft: `${gutter / 2}px`,
+    paddingRight: `${gutter / 2}px`
   };
 
   const classes = {

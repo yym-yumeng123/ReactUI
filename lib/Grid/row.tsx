@@ -12,7 +12,7 @@ interface RowProps {
 }
 
 const Row: FC<RowProps> = props => {
-  const { children, gutter, align } = props;
+  const { children, gutter = 0, align = 'left' } = props;
 
     // 判断子元素是否都是 TabPane
     const isChildlrenElement = children.every(item => item.type === Col);
@@ -23,8 +23,8 @@ const Row: FC<RowProps> = props => {
     }
 
   const styles = {
-    marginLeft: `${-(gutter as number) / 2}px`,
-    marginRight: `${-(gutter as number) / 2}px`
+    marginLeft: `${-gutter / 2}px`,
+    marginRight: `${-gutter / 2}px`
   };
 
   const childWithProps = React.Children.map(children, child => {
