@@ -8,12 +8,20 @@ interface PopoverProps {
   title?: string | ReactNode;
   content: string | ReactNode;
   placement?: "top" | "right" | "bottom" | "left";
+  trigger?: "hover" | "click";
 }
 
 const prefix = addPrefixAndscopedClassMarker("yui-popover");
 
 const Popover: FC<PopoverProps> = props => {
-  const { children, title, content, placement = "top" } = props;
+  const {
+    children,
+    title,
+    content,
+    placement = "top",
+    trigger = "hover"
+  } = props;
+
   const [visible, setVisible] = useState(false);
 
   const popRef = useRef<HTMLDivElement>(null);
@@ -21,7 +29,21 @@ const Popover: FC<PopoverProps> = props => {
   const triggerWrapperRef = useRef<HTMLDivElement>(null);
 
   const handlerToggle = () => {
-    setVisible(!visible);
+    if (trigger === "click") {
+      setVisible(!visible);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    if (trigger === "hover") {
+      setVisible(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (trigger === "hover") {
+      setVisible(false);
+    }
   };
 
   useClickOutside(popRef, () => {
@@ -80,9 +102,15 @@ const Popover: FC<PopoverProps> = props => {
   const toBodyContent = ReactDOM.createPortal(contentPortal, document.body);
 
   return (
-    <div className={prefix("")} onClick={handlerToggle} ref={popRef}>
+    <div className={prefix("")} ref={popRef}>
       {toBodyContent}
-      <span className={prefix("triggerWrap")} ref={triggerWrapperRef}>
+      <span
+        onClick={handlerToggle}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={prefix("triggerWrap")}
+        ref={triggerWrapperRef}
+      >
         {children}
       </span>
     </div>

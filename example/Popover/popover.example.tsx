@@ -27,6 +27,13 @@ const PopoverExample = () => {
       <Popover content="我是左边" placement="left">
         <Button level="primary">按钮左</Button>
       </Popover>
+
+      <br/>
+      <h2>显示方式: hover | click</h2>
+      <br/>
+      <Popover content="我是clikc 进来的" trigger="click">
+        <Button level="primary">按钮</Button>
+      </Popover>
     </div>
   );
 };
