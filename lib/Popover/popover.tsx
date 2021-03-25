@@ -37,25 +37,19 @@ const Popover: FC<PopoverProps> = props => {
       height,
       width
     } = (triggerWrapperRef.current as HTMLDivElement).getBoundingClientRect();
-    console.log(height, "width");
 
     if (visible) {
       const contentRefCopy = contentRef.current as HTMLDivElement;
+      const { height: contentHeight } = contentRefCopy.getBoundingClientRect();
       switch (placement) {
         // 上下和按钮居中
         case "right":
-          const {
-            height: contentHeightRight
-          } = contentRefCopy.getBoundingClientRect();
           contentRefCopy.style.left = `${width + left + window.scrollX}px`;
           contentRefCopy.style.top = `${top +
             window.scrollY -
-            (contentHeightRight - height) / 2}px`;
+            (contentHeight - height) / 2}px`;
           break;
         case "left":
-          const {
-            height: contentHeight
-          } = contentRefCopy.getBoundingClientRect();
           contentRefCopy.style.left = `${left + window.scrollX}px`;
           contentRefCopy.style.top = `${top +
             window.scrollY -
