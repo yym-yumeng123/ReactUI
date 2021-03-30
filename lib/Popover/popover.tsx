@@ -52,40 +52,40 @@ const Popover: FC<PopoverProps> = props => {
     }
   });
 
-  useEffect(() => {
+  const positionContent = () => {
     const {
       left,
       top,
       height,
       width
     } = (triggerWrapperRef.current as HTMLDivElement).getBoundingClientRect();
-
-    if (visible) {
-      const contentRefCopy = contentRef.current as HTMLDivElement;
-      const { height: contentHeight } = contentRefCopy.getBoundingClientRect();
-      switch (placement) {
-        // 上下和按钮居中
-        case "right":
-          contentRefCopy.style.left = `${width + left + window.scrollX}px`;
-          contentRefCopy.style.top = `${top +
-            window.scrollY -
-            (contentHeight - height) / 2}px`;
-          break;
-        case "left":
-          contentRefCopy.style.left = `${left + window.scrollX}px`;
-          contentRefCopy.style.top = `${top +
-            window.scrollY -
-            (contentHeight - height) / 2}px`;
-          break;
-        case "bottom":
-          contentRefCopy.style.left = `${left + window.scrollX}px`;
-          contentRefCopy.style.top = `${top + height + window.scrollY}px`;
-          break;
-        default:
-          contentRefCopy.style.left = `${left + window.scrollX}px`;
-          contentRefCopy.style.top = `${top + window.scrollY}px`;
-          break;
+    const contentRefCopy = contentRef.current as HTMLDivElement;
+    const { height: contentHeight } = contentRefCopy.getBoundingClientRect();
+    let positions = {
+      top: {
+        top: `${top + window.scrollY}`,
+        left: `${left + window.scrollX}`
+      },
+      bottom: {
+        top: `${top + height + window.scrollY}`,
+        left: `${left + window.scrollX}`
+      },
+      left: {
+        top: `${top + window.scrollY - (contentHeight - height) / 2}`,
+        left: `${left + window.scrollX}`
+      },
+      right: {
+        top: `${top + window.scrollY - (contentHeight - height) / 2}`,
+        left: `${width + left + window.scrollX}`
       }
+    };
+    contentRefCopy.style.left = positions[placement].left + "px";
+    contentRefCopy.style.top = positions[placement].top + "px";
+  };
+
+  useEffect(() => {
+    if (visible) {
+      positionContent();
     }
   }, [visible]);
 
