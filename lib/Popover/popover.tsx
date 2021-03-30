@@ -19,7 +19,7 @@ const Popover: FC<PopoverProps> = props => {
     title,
     content,
     placement = "top",
-    trigger = "hover"
+    trigger = "hover",
   } = props;
 
   const [visible, setVisible] = useState(false);
