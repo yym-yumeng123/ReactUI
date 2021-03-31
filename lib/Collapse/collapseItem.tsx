@@ -1,4 +1,5 @@
 import React, { FC, ReactElement, useState } from "react";
+import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./collapse.scss";
 
@@ -18,7 +19,16 @@ const CollapseItem: FC<CollapseItemProps> = props => {
 
   return (
     <div className={prefix("")}>
-      <header onClick={handleOpen}>{title}</header>
+      <header onClick={handleOpen}>
+        <div className="title">{title}</div>
+        <div className="icon">
+          {!open ? (
+            <Icon name="arrow_down" size="12" />
+          ) : (
+            <Icon name="arrow_up" size="12" />
+          )}
+        </div>
+      </header>
       {open && <main>{children}</main>}
     </div>
   );

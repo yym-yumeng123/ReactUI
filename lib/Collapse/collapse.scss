@@ -8,6 +8,10 @@ $border-radius: 6px;
 
   &-item {
     header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid red;
       padding: 20px 0;
       font-size: 16px;
       color: #272c36;
@@ -15,6 +19,7 @@ $border-radius: 6px;
     main {
       font-size: 14px;
       color: #575757;
+      border: 3px solid green;
       border-bottom: 1px solid #e5e5e5;
     }
 
