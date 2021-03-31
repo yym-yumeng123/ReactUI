@@ -1,0 +1,27 @@
+@import "lib/styles/_helper.scss";
+
+$border-radius: 6px;
+.yui-collapse {
+  padding: 0 20px;
+  border-radius: $border-radius;
+  border: 1px solid $B200;
+
+  &-item {
+    header {
+      padding: 20px 0;
+      font-size: 16px;
+      color: #272c36;
+    }
+    main {
+      font-size: 14px;
+      color: #575757;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    &:last-child {
+      main {
+        border: none;
+      }
+    }
+  }
+}
