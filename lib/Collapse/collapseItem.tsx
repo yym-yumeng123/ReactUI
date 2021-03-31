@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactElement, useState } from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./collapse.scss";
 
@@ -9,11 +9,17 @@ interface CollapseItemProps {
 }
 
 const CollapseItem: FC<CollapseItemProps> = props => {
+  const [open, setOpen] = useState(false);
   const { title, children } = props;
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className={prefix("")}>
-      <header>{title}</header>
-      <main>{children}</main>
+      <header onClick={handleOpen}>{title}</header>
+      {open && <main>{children}</main>}
     </div>
   );
 };

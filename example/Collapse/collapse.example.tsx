@@ -8,7 +8,7 @@ const CollapseExample = () => {
       <Collapse>
         <CollapseItem title="内容1">1111</CollapseItem>
         <CollapseItem title="内容2">2222</CollapseItem>
-        <CollapseItem title="内容3"></CollapseItem>
+        <CollapseItem title="内容3">33333</CollapseItem>
       </Collapse>
     </div>
   );
