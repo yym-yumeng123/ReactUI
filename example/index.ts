@@ -11,6 +11,7 @@ import FormExample from "./Form/form.example";
 import TabsExample from "./Tabs/tabs.example";
 import GridExample from "./Grid/grid.example";
 import PopoverExample from "./Popover/popover.example";
+import CollapseExample from "./Collapse/collapse.example";
 
 export {
   LayoutExample,
@@ -25,5 +26,6 @@ export {
   FormExample,
   TabsExample,
   GridExample,
-  PopoverExample
+  PopoverExample,
+  CollapseExample
 };
