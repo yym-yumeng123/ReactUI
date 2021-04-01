@@ -7,10 +7,10 @@ const prefix = addPrefixAndscopedClassMarker("yui-collapse-item");
 
 interface CollapseItemProps {
   title: string | ReactElement;
-  // single?: boolean;
+  single?: boolean;
   index?: number;
   isCollapsed?: boolean;
-  handleClick: (index: number) => {};
+  handleClick?: (index: number, isCollapsed: boolean) => {};
 }
 
 const CollapseItem: FC<CollapseItemProps> = props => {
@@ -20,31 +20,28 @@ const CollapseItem: FC<CollapseItemProps> = props => {
     children,
     index = 0,
     isCollapsed = false,
+    single = false,
     handleClick
   } = props;
 
   const handleToggle = () => {
     setOpen(!open);
-      handleClick(index);
+    handleClick && handleClick(index, isCollapsed);
   };
-
-  useEffect(() => {
-    console.log(isCollapsed, props, "22332");
-  }, [open]);
 
   return (
     <div className={prefix("")}>
       <header>
         <div className={prefix("title")}>{title}</div>
         <div className={prefix("icon")} onClick={handleToggle}>
-          {!open ? (
+          {(single ? !isCollapsed : !open) ? (
             <Icon name="arrow_down" size="12" />
           ) : (
             <Icon name="arrow_up" size="12" />
           )}
         </div>
       </header>
-      {isCollapsed && <main>{children}</main>}
+      {(single ? isCollapsed : open) && <main>{children}</main>}
     </div>
   );
 };
