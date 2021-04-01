@@ -11,10 +11,15 @@ $border-radius: 6px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: 1px solid red;
       padding: 20px 0;
-      font-size: 16px;
-      color: #272c36;
+      .yui-collapse-item-title {
+        font-size: 16px;
+        color: #272c36;
+      }
+
+      .yui-collapse-item-icon {
+        cursor: pointer;
+      }
     }
     main {
       font-size: 14px;

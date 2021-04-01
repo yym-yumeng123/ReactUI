@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useState } from "react";
+import React, { FC, ReactElement, useEffect, useState } from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./collapse.scss";
@@ -7,21 +7,42 @@ const prefix = addPrefixAndscopedClassMarker("yui-collapse-item");
 
 interface CollapseItemProps {
   title: string | ReactElement;
+  single?: boolean;
+  index?: number;
+  parent?: Array<ReactElement>;
 }
 
 const CollapseItem: FC<CollapseItemProps> = props => {
   const [open, setOpen] = useState(false);
-  const { title, children } = props;
+  const { title, children, single = false, parent } = props;
 
-  const handleOpen = () => {
-    setOpen(!open);
+  const handleToggle = () => {
+    if (open) {
+      setOpen(false);
+    } else {
+      // TODO: 触发事件
+      setOpen(true);
+    }
   };
+
+  const close = () => {
+    setOpen(false)
+  }
+
+  useEffect(() => {
+    parent?.forEach(item => {
+      const { title: singleTitle } = item.props
+      if(open && singleTitle !== title) {
+        close()
+      }
+    })
+  }, [open]);
 
   return (
     <div className={prefix("")}>
-      <header onClick={handleOpen}>
-        <div className="title">{title}</div>
-        <div className="icon">
+      <header>
+        <div className={prefix("title")}>{title}</div>
+        <div className={prefix("icon")} onClick={handleToggle}>
           {!open ? (
             <Icon name="arrow_down" size="12" />
           ) : (

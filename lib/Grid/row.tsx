@@ -16,7 +16,6 @@ const Row: FC<RowProps> = props => {
 
     // 判断子元素是否都是 TabPane
     const isChildlrenElement = children.every(item => item.type === Col);
-    console.log(isChildlrenElement);
 
     if (!isChildlrenElement) {
       throw new Error("Row 子标签必须是 Col");
