@@ -12,6 +12,7 @@ import TabsExample from "./Tabs/tabs.example";
 import GridExample from "./Grid/grid.example";
 import PopoverExample from "./Popover/popover.example";
 import CollapseExample from "./Collapse/collapse.example";
+import ToastExample from "./Toast/toast.example";
 
 export {
   LayoutExample,
@@ -27,5 +28,6 @@ export {
   TabsExample,
   GridExample,
   PopoverExample,
-  CollapseExample
+  CollapseExample,
+  ToastExample
 };

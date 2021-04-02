@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect, useState } from "react";
+import React, { FC, ReactElement, useState } from "react";
 import Icon from "lib/Icon/icon";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./collapse.scss";
@@ -31,10 +31,14 @@ const CollapseItem: FC<CollapseItemProps> = props => {
 
   return (
     <div className={prefix("")}>
-      <header>
+      <header onClick={handleToggle}>
         <div className={prefix("title")}>{title}</div>
-        <div className={prefix("icon")} onClick={handleToggle}>
-          {(single ? !isCollapsed : !open) ? (
+        <div className={prefix("icon")}>
+          {(single ? (
+            !isCollapsed
+          ) : (
+            !open
+          )) ? (
             <Icon name="arrow_down" size="12" />
           ) : (
             <Icon name="arrow_up" size="12" />

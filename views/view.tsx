@@ -16,7 +16,8 @@ import {
   TabsExample,
   GridExample,
   PopoverExample,
-  CollapseExample
+  CollapseExample,
+  ToastExample
 } from "example";
 
 import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
@@ -80,6 +81,9 @@ ReactDOM.render(
             <li>
               <NavLink to="/collapse">Collapse 折叠面板</NavLink>
             </li>
+            <li>
+              <NavLink to="/toast">Toast 全局提示</NavLink>
+            </li>
           </ul>
         </SideBar>
         <Scroll style={{ height: "calc(100vh - 121px)", width: "100%" }}>
@@ -99,6 +103,7 @@ ReactDOM.render(
             <Route path="/grid" component={GridExample}></Route>
             <Route path="/popover" component={PopoverExample}></Route>
             <Route path="/collapse" component={CollapseExample}></Route>
+            <Route path="/toast" component={ToastExample}></Route>
           </Content>
         </Scroll>
       </Layout>
