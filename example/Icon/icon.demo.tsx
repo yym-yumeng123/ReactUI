@@ -12,7 +12,7 @@ const IconDemo = () => {
       <Demo code={code2.default}>
         <IconExample2 />
       </Demo>
-      <Demo code={code.default}>
+      <Demo code={code.default} buttonVisible={false}>
         <IconExample />
       </Demo>
     </>

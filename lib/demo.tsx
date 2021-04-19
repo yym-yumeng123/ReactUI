@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import Button from './Button/button'
+import Button from "./Button/button";
 interface Props {
   code: string;
+  buttonVisible?: boolean;
 }
 
 /**
  * @description 代码高亮 demo
  */
 const Demo: React.FunctionComponent<Props> = props => {
+  const { buttonVisible = true } = props;
   const [codeVisible, setCodeVisible] = useState(false);
   const code = (
     <Highlight {...defaultProps} code={props.code} language="jsx">
@@ -30,10 +32,14 @@ const Demo: React.FunctionComponent<Props> = props => {
   return (
     <div>
       <div className="content-style">{props.children}</div>
-      <div className="code-style">
-        <Button level="primary" onClick={() => setCodeVisible(!codeVisible)}>查看代码</Button>
-        {codeVisible && code}
-      </div>
+      {buttonVisible && (
+        <div className="code-style">
+          <Button level="primary" onClick={() => setCodeVisible(!codeVisible)}>
+            查看代码
+          </Button>
+          {codeVisible && code}
+        </div>
+      )}
     </div>
   );
 };
