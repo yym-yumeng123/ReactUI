@@ -1,0 +1,18 @@
+import React from "react";
+import Button from "lib/Button/button";
+
+const ButtonExample: React.FunctionComponent = () => {
+  return (
+    <div>
+      <h2>不可点击按钮</h2>
+      <Button disabled>普通按钮(disabled)</Button>
+      <Button level="primary" disabled>提醒按钮(disabled)</Button>
+      <Button level="danger" disabled>危险按钮(disabled)</Button>
+      <Button level="link" disabled>
+        链接按钮(disabled)
+      </Button>
+    </div>
+  );
+};
+
+export default ButtonExample;

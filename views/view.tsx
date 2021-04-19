@@ -4,13 +4,13 @@ import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import All from "lib/All/all";
 import {
   IconDemo,
+  ButtonDemo,
   LayoutExample,
   TreeDemo,
   ScrollExample,
   InputExample,
   AutoCompleteExample,
   SwitchExample,
-  ButtonExample,
   DialogExample,
   FormExample,
   TabsExample,
@@ -90,7 +90,7 @@ ReactDOM.render(
           <Content className="g-main">
             <Route path="/all" component={All} exact></Route>
             <Route path="/icon" component={IconDemo}></Route>
-            <Route path="/button" component={ButtonExample}></Route>
+            <Route path="/button" component={ButtonDemo}></Route>
             <Route path="/dialog" component={DialogExample}></Route>
             <Route path="/layout" component={LayoutExample}></Route>
             <Route path="/form" component={FormExample}></Route>
