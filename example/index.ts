@@ -2,6 +2,7 @@ import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import LayoutExample from "./Layout/layout.example";
 import IconDemo from "./Icon/icon.demo";
 import ButtonDemo from "./Button/button.demo";
+import PagerDemo from "./pager/pager.demo";
 import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
 import InputExample from "./Input/Input.example";
@@ -17,6 +18,7 @@ import ToastExample from "./Toast/toast.example";
 export {
   IconDemo,
   ButtonDemo,
+  PagerDemo,
   LayoutExample,
   TreeDemo,
   ScrollExample,

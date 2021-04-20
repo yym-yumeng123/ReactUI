@@ -5,6 +5,7 @@ import All from "lib/All/all";
 import {
   IconDemo,
   ButtonDemo,
+  PagerDemo,
   LayoutExample,
   TreeDemo,
   ScrollExample,
@@ -44,6 +45,9 @@ ReactDOM.render(
             </li>
             <li>
               <NavLink to="/button">Button 按钮</NavLink>
+            </li>
+            <li>
+              <NavLink to="/pager">Pager 分页</NavLink>
             </li>
             <li>
               <NavLink to="/dialog">Dialog 弹窗</NavLink>
@@ -91,6 +95,7 @@ ReactDOM.render(
             <Route path="/all" component={All} exact></Route>
             <Route path="/icon" component={IconDemo}></Route>
             <Route path="/button" component={ButtonDemo}></Route>
+            <Route path="/pager" component={PagerDemo}></Route>
             <Route path="/dialog" component={DialogExample}></Route>
             <Route path="/layout" component={LayoutExample}></Route>
             <Route path="/form" component={FormExample}></Route>
