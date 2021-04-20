@@ -28,4 +28,20 @@ function intersect<T>(array1: T[], array2: T[]): T[] {
   return result;
 }
 
-export { flatten, intersect };
+
+/**
+ * 数字去重
+ * @param []
+ * @returns []
+ */
+const unique = (arr: number[]) => {
+  const object: any = {};
+  arr.map((item: number) => {
+    object[item] = true;
+  });
+  return Object.keys(object).map(s => parseInt(s, 10))
+};
+
+export { flatten, intersect, unique };
+
+
