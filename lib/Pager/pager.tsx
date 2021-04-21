@@ -6,15 +6,16 @@ import "./pager.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-pager");
 
 interface PagerProps {
-  total: number;
+  totalPage: number;
   current?: number;
 }
 
 const Pager: FC<PagerProps> = props => {
-  const { current = 1, total = 0 } = props;
-  const [pages, setPages] = useState([
+  const { current = 1, totalPage = 0 } = props;
+
+  const [pages, setPages] = useState<Array<number>>([
     1,
-    total / 10,
+    totalPage,
     current,
     current - 1,
     current - 2,
@@ -24,13 +25,16 @@ const Pager: FC<PagerProps> = props => {
 
   useEffect(() => {
     const sortAndUniquePages = unique(pages.sort((a, b) => a - b));
-    const spreadPages = sortAndUniquePages.reduce((prev, cur, index, arr) => {
-      prev.push(cur);
-      arr[index + 1] !== undefined &&
-        arr[index + 1] - arr[index] > 1 &&
-        prev.push("...");
-      return prev;
-    }, []);
+    const spreadPages = sortAndUniquePages.reduce(
+      (prev: Array<any>, cur, index, arr) => {
+        prev.push(cur);
+        arr[index + 1] !== undefined &&
+          arr[index + 1] - arr[index] > 1 &&
+          prev.push("...");
+        return prev;
+      },
+      []
+    );
 
     setPages(spreadPages);
 
@@ -39,8 +43,14 @@ const Pager: FC<PagerProps> = props => {
 
   return (
     <div className={prefix("")}>
-      {pages.map(item => {
-        return <span>{item}</span>;
+      {pages.map((item, index) => {
+        return (
+          <span
+            className={prefix({ item: true, current: current === index + 1 })}
+          >
+            {item}
+          </span>
+        );
       })}
     </div>
   );

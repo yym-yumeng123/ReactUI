@@ -1,3 +1,31 @@
+@import '../styles/helper';
 .yui-pager {
-  border: 1px solid red;
+  display: flex;
+  &-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 23px;
+    height: 24px;
+    font-size: 12px;
+    // border-radius: 6px;
+    &:hover {
+      background: $B050;
+      border-radius: 6px;
+    }
+    &:active {
+      background: $B200;
+      border-radius: 6px;
+      color: $B900;
+    }
+
+    &.yui-pager-current {
+      color: $H700;
+      &:active {
+        background: $B200;
+        border-radius: 6px;
+        color: $H800;
+      }
+    }
+  }
 }

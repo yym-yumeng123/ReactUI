@@ -4,7 +4,7 @@ import Pager from "lib/Pager/pager";
 const PagerDemo = () => {
   return (
     <div>
-      <Pager total={200} current={3} />
+      <Pager totalPage={20} current={3} />
     </div>
   );
 };
