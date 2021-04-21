@@ -2,13 +2,12 @@
 .yui-pager {
   display: flex;
   &-item {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 23px;
-    height: 24px;
     font-size: 12px;
-    // border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
     &:hover {
       background: $B050;
       border-radius: 6px;
@@ -21,11 +20,23 @@
 
     &.yui-pager-current {
       color: $H700;
-      &:active {
-        background: $B200;
+      cursor: default;
+      &:hover {
+        background: $H500;
         border-radius: 6px;
-        color: $H800;
+        color: #fff;
+      }
+      &:active {
+        background: $H600;
+        border-radius: 6px;
+        color: #fff;
       }
     }
+
+    &.yui-pager-separator {
+      background: none;
+      cursor: default;
+    }
+
   }
 }

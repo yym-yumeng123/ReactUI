@@ -13,7 +13,7 @@ interface PagerProps {
 const Pager: FC<PagerProps> = props => {
   const { current = 1, totalPage = 0 } = props;
 
-  const [pages, setPages] = useState<Array<number>>([
+  const [pages, setPages] = useState<Array<any>>([
     1,
     totalPage,
     current,
@@ -43,10 +43,14 @@ const Pager: FC<PagerProps> = props => {
 
   return (
     <div className={prefix("")}>
-      {pages.map((item, index) => {
+      {pages.map(item => {
         return (
           <span
-            className={prefix({ item: true, current: current === index + 1 })}
+            className={prefix({
+              item: true,
+              current: current === item,
+              separator: item === "..."
+            })}
           >
             {item}
           </span>
