@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import Icon from "lib/Icon/icon";
 import { unique } from "../utils/utils";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
@@ -7,46 +7,51 @@ import "./pager.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-pager");
 
 interface PagerProps {
-  totalPage: number;
+  totalPage?: number;
   current?: number;
   onChange?: (n: number) => void;
 }
 
 const Pager: FC<PagerProps> = props => {
-  const { current = 1, totalPage = 0, onChange } = props;
+  const { current = 1, totalPage = 1, onChange } = props;
 
-  const [pages, setPages] = useState<Array<any>>([
-    1,
-    totalPage,
-    current,
-    current - 1,
-    current - 2,
-    current + 1,
-    current + 2
-  ]);
+  // const [pages, setPages] = useState( [
+  //   1,
+  //   totalPage,
+  //   current,
+  //   current - 1,
+  //   current - 2,
+  //   current + 1,
+  //   current + 2
+  // ]);
 
-  useEffect(() => {
-    const sortAndUniquePages = unique(
-      pages.filter(i => i >= 1 && i <= totalPage).sort((a, b) => a - b)
-    );
-    const spreadPages = sortAndUniquePages.reduce(
-      (prev: Array<any>, cur, index, arr) => {
-        prev.push(cur);
-        arr[index + 1] !== undefined &&
-          arr[index + 1] - arr[index] > 1 &&
-          prev.push("...");
-        return prev;
-      },
-      []
-    );
 
-    setPages(spreadPages);
 
-    console.log("122", spreadPages);
-  }, []);
+  const pages = useMemo(() => {
+    const spreadPages = unique(
+      [
+        1,
+        totalPage,
+        current,
+        current - 1,
+        current - 2,
+        current + 1,
+        current + 2
+      ]
+        .filter(i => i >= 1 && i <= totalPage)
+        .sort((a, b) => a - b)
+    ).reduce((prev: Array<any>, cur, index, arr) => {
+      prev.push(cur);
+      arr[index + 1] !== undefined &&
+        arr[index + 1] - arr[index] > 1 &&
+        prev.push("...");
+      return prev;
+    }, []);
+
+    return spreadPages;
+  }, [current]);
 
   const handleChangeCurrent = (page: number) => {
-    console.log("page", page);
     if (page < 1 || page > totalPage) return;
     onChange && onChange(page);
   };
