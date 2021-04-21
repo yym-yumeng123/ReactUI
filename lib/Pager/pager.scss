@@ -1,4 +1,4 @@
-@import '../styles/helper';
+@import "../styles/helper";
 .yui-pager {
   display: flex;
   &-item {
@@ -32,11 +32,9 @@
         color: #fff;
       }
     }
-
-    &.yui-pager-separator {
-      background: none;
-      cursor: default;
-    }
-
+  }
+  .yui-pager-separator {
+    background: none;
+    cursor: default;
   }
 }
