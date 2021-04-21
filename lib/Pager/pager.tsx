@@ -9,10 +9,11 @@ const prefix = addPrefixAndscopedClassMarker("yui-pager");
 interface PagerProps {
   totalPage: number;
   current?: number;
+  onChange?: (n: number) => void;
 }
 
 const Pager: FC<PagerProps> = props => {
-  const { current = 1, totalPage = 0 } = props;
+  const { current = 1, totalPage = 0, onChange } = props;
 
   const [pages, setPages] = useState<Array<any>>([
     1,
@@ -25,7 +26,9 @@ const Pager: FC<PagerProps> = props => {
   ]);
 
   useEffect(() => {
-    const sortAndUniquePages = unique(pages.filter(i => i >=1 && i <= totalPage).sort((a, b) => a - b));
+    const sortAndUniquePages = unique(
+      pages.filter(i => i >= 1 && i <= totalPage).sort((a, b) => a - b)
+    );
     const spreadPages = sortAndUniquePages.reduce(
       (prev: Array<any>, cur, index, arr) => {
         prev.push(cur);
@@ -42,6 +45,12 @@ const Pager: FC<PagerProps> = props => {
     console.log("122", spreadPages);
   }, []);
 
+  const handleChangeCurrent = (page: number) => {
+    console.log("page", page);
+    if (page < 1 || page > totalPage) return;
+    onChange && onChange(page);
+  };
+
   const pagerElement = pages.map(item => {
     if (item === current) {
       return (
@@ -57,15 +66,26 @@ const Pager: FC<PagerProps> = props => {
     } else if (item === "...") {
       return <span className={prefix("separator")}>...</span>;
     } else {
-      return <span className={prefix("item")}>{item}</span>;
+      return (
+        <span
+          className={prefix("item")}
+          onClick={() => handleChangeCurrent(item)}
+        >
+          {item}
+        </span>
+      );
     }
   });
 
   return (
     <div className={prefix("")}>
-      <Icon name="page_first" size="12" />
+      <span onClick={() => handleChangeCurrent(current - 1)}>
+        <Icon name="page_first" size="12" />
+      </span>
       {pagerElement}
-      <Icon name="page_last" size="12" />
+      <span onClick={() => handleChangeCurrent(current + 1)}>
+        <Icon name="page_last" size="12" />
+      </span>
     </div>
   );
 };
