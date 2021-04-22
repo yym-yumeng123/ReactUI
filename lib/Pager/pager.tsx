@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useMemo } from "react";
 import Icon from "lib/Icon/icon";
 import { unique } from "../utils/utils";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
@@ -15,20 +15,8 @@ interface PagerProps {
 const Pager: FC<PagerProps> = props => {
   const { current = 1, totalPage = 1, onChange } = props;
 
-  // const [pages, setPages] = useState( [
-  //   1,
-  //   totalPage,
-  //   current,
-  //   current - 1,
-  //   current - 2,
-  //   current + 1,
-  //   current + 2
-  // ]);
-
-
-
   const pages = useMemo(() => {
-    const spreadPages = unique(
+    return unique(
       [
         1,
         totalPage,
@@ -47,8 +35,6 @@ const Pager: FC<PagerProps> = props => {
         prev.push("...");
       return prev;
     }, []);
-
-    return spreadPages;
   }, [current]);
 
   const handleChangeCurrent = (page: number) => {
@@ -69,7 +55,11 @@ const Pager: FC<PagerProps> = props => {
         </span>
       );
     } else if (item === "...") {
-      return <span className={prefix("separator")}>...</span>;
+      return (
+        <span className={prefix("separator")}>
+          <Icon name="elipsis" size="12" />
+        </span>
+      );
     } else {
       return (
         <span
@@ -84,12 +74,18 @@ const Pager: FC<PagerProps> = props => {
 
   return (
     <div className={prefix("")}>
-      <span onClick={() => handleChangeCurrent(current - 1)}>
-        <Icon name="page_first" size="12" />
+      <span
+        className={prefix({"prev": true, disabled: current === 1})}
+        onClick={() => handleChangeCurrent(current - 1)}
+      >
+        <Icon className="position-icon" name="arrow-left-bold" />
       </span>
       {pagerElement}
-      <span onClick={() => handleChangeCurrent(current + 1)}>
-        <Icon name="page_last" size="12" />
+      <span
+        className={prefix({"next": true, disabled: current === totalPage})}
+        onClick={() => handleChangeCurrent(current + 1)}
+      >
+        <Icon className="position-icon" name="arrow-right-bold" />
       </span>
     </div>
   );

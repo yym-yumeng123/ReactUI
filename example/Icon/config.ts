@@ -1,4 +1,7 @@
 export const iconNames: string[] = [
+  "arrow-left-bold",
+  "arrow-right-bold",
+  "elipsis",
   "view_off",
   "view",
   "user",
