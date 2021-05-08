@@ -1,14 +1,24 @@
 @import "../styles/helper";
 
 .yui-table-wrap {
-  padding: 20px 0 30px;
-  background: #fff;
-  border-radius: 6px;
-  border: 1px solid $B100;
   .yui-table {
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
+    border-radius: 6px;
+    &.yui-table-bordered {
+      border: 1px solid $B100;
+      th,
+      td {
+        border: 1px solid $B100;
+      }
+    }
+    &.yui-table-compact {
+      td,
+      th {
+        padding: 5px;
+      }
+    }
     tr {
       text-align: left;
       border-bottom: 1px solid $B100;
@@ -20,28 +30,30 @@
       line-height: 20px;
       color: $B600;
       th {
-        padding: 10px 0;
+        padding: 10px;
         font-size: 12px;
         font-weight: normal;
       }
     }
     &-body {
       line-height: 20px;
-      tr {
-        // &:nth-child(odd) {
-        //   background: $B050;
-        // }
-        &:nth-child(even) {
-          background: $B050;
-        }
-        &:hover {
-          background: $H050;
-        }
-      }
       td {
-        padding: 13px 0;
+        padding: 13px 10px;
         font-size: 14px;
         color: $B800;
+      }
+    }
+
+    &.yui-table-striped {
+      .yui-table-body {
+        tr {
+          &:nth-child(even) {
+            background: $B050;
+          }
+          &:hover {
+            background: $H050;
+          }
+        }
       }
     }
   }

@@ -13,15 +13,18 @@ interface TableProps {
   columns: Columns[];
   dataSource: any[];
   numberVisible?: boolean;
+  bordered?: boolean;
+  compact?: boolean; // 紧凑减小 padding
+  striped?: boolean; // 条纹间隔
 }
 
 const Table: FC<TableProps> = props => {
-  const { columns, dataSource, numberVisible = true } = props;
+  const { columns, dataSource, numberVisible = true, bordered = false, compact = false, striped = true } = props;
   console.log(columns, dataSource);
 
   return (
     <div className={prefix("wrap")}>
-      <table className={prefix("")}>
+      <table className={prefix({ "": true, bordered, compact, striped })}>
         <thead className={prefix("head")}>
           <tr>
             {numberVisible && <th>序号</th>}

@@ -28,16 +28,33 @@ const TableDemo = () => {
       name: "胡彦祖",
       age: 42,
       address: "西湖区湖底公园1号"
+    },
+    {
+      key: "3",
+      name: "胡一同",
+      age: 33,
+      address: "西湖区湖底公园2号"
+    },
+    {
+      key: "4",
+      name: "胡东西",
+      age: 32,
+      address: "西湖区湖底公2323号"
     }
   ]);
 
   return (
     <div>
       <Table columns={columns} dataSource={dataSource} />
+      <br />
+      <Table columns={columns} dataSource={dataSource} bordered />
 
       <br />
+      <Table columns={columns} dataSource={dataSource} bordered compact />
 
-      <Table columns={columns} dataSource={dataSource} numberVisible={false} />
+      <br/>
+      <Table columns={columns} dataSource={dataSource} bordered compact striped={false} />
+
     </div>
   );
 };
