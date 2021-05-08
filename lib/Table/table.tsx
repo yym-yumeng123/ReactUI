@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { addPrefixAndscopedClassMarker } from "../utils/classes";
-import './table.scss'
+import "./table.scss";
 
 const prefix = addPrefixAndscopedClassMarker("yui-table");
 
@@ -12,11 +12,11 @@ interface Columns {
 interface TableProps {
   columns: Columns[];
   dataSource: any[];
-  numberVisible: boolean
+  numberVisible?: boolean;
 }
 
 const Table: FC<TableProps> = props => {
-  const { columns, dataSource } = props;
+  const { columns, dataSource, numberVisible = true } = props;
   console.log(columns, dataSource);
 
   return (
@@ -24,18 +24,18 @@ const Table: FC<TableProps> = props => {
       <table className={prefix("")}>
         <thead className={prefix("head")}>
           <tr>
-            <th>序号</th>
+            {numberVisible && <th>序号</th>}
             {columns.map(item => {
               return <th>{item.title}</th>;
             })}
           </tr>
         </thead>
 
-        <tbody  className={prefix("body")}>
+        <tbody className={prefix("body")}>
           {dataSource.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{index}</td>
+                {numberVisible && <td>{index + 1}</td>}
                 {columns.map(column => {
                   return (
                     <>

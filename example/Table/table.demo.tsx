@@ -5,7 +5,7 @@ const TableDemo = () => {
   const [columns, setcColumns] = useState([
     {
       title: "姓名",
-      key: "name",
+      key: "name"
     },
     {
       title: "年龄",
@@ -34,6 +34,10 @@ const TableDemo = () => {
   return (
     <div>
       <Table columns={columns} dataSource={dataSource} />
+
+      <br />
+
+      <Table columns={columns} dataSource={dataSource} numberVisible={false} />
     </div>
   );
 };
