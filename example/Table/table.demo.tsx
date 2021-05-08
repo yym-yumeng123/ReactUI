@@ -16,7 +16,7 @@ const TableDemo = () => {
       key: "address"
     }
   ]);
-  const [dataSource, setDataSource] = useState<Array<any>>([
+  const [dataSource, setDataSource] = useState([
     {
       key: "1",
       name: "胡彦斌",

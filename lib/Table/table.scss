@@ -1,0 +1,48 @@
+@import "../styles/helper";
+
+.yui-table-wrap {
+  padding: 20px 0 30px;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid $B100;
+  .yui-table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    tr {
+      text-align: left;
+      border-bottom: 1px solid $B100;
+      &:hover {
+        background: $H050;
+      }
+    }
+    &-head {
+      line-height: 20px;
+      color: $B600;
+      th {
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: normal;
+      }
+    }
+    &-body {
+      line-height: 20px;
+      tr {
+        // &:nth-child(odd) {
+        //   background: $B050;
+        // }
+        &:nth-child(even) {
+          background: $B050;
+        }
+        &:hover {
+          background: $H050;
+        }
+      }
+      td {
+        padding: 13px 0;
+        font-size: 14px;
+        color: $B800;
+      }
+    }
+  }
+}
