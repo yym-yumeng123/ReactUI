@@ -19,6 +19,18 @@
         padding: 5px;
       }
     }
+    &.yui-table-striped {
+      .yui-table-body {
+        tr {
+          &:nth-child(even) {
+            background: $B050;
+          }
+          &:hover {
+            background: $H050;
+          }
+        }
+      }
+    }
     tr {
       text-align: left;
       border-bottom: 1px solid $B100;
@@ -41,19 +53,6 @@
         padding: 13px 10px;
         font-size: 14px;
         color: $B800;
-      }
-    }
-
-    &.yui-table-striped {
-      .yui-table-body {
-        tr {
-          &:nth-child(even) {
-            background: $B050;
-          }
-          &:hover {
-            background: $H050;
-          }
-        }
       }
     }
   }

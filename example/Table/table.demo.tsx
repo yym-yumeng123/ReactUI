@@ -5,7 +5,11 @@ const TableDemo = () => {
   const [columns, setcColumns] = useState([
     {
       title: "姓名",
-      key: "name"
+      key: "name",
+      render: (text: any, record: object, index: number) => {
+        console.log(text, record, index);
+
+      }
     },
     {
       title: "年龄",

@@ -40,6 +40,8 @@ const Table: FC<TableProps> = props => {
               <tr key={index}>
                 {numberVisible && <td>{index + 1}</td>}
                 {columns.map(column => {
+                  console.log(column, '3232');
+
                   return (
                     <>
                       <td>{item[column.key]}</td>
