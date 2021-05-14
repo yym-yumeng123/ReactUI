@@ -7,12 +7,13 @@
 
   .yui-radio {
     position: relative;
+    padding: 10px;
 
     &-inner {
+      position: relative;
       display: block;
       width: 16px;
       height: 16px;
-      margin: 10px;
       border: 1px solid $B300;
       border-radius: 100%;
       background: #fff;
@@ -22,7 +23,19 @@
       }
 
       &.yui-radio-checked {
-        border: 1px solid red;
+        background: $H500;
+        border: none;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 5px;
+          left: 5px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #fff;
+        }
       }
     }
 
