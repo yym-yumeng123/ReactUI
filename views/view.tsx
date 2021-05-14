@@ -6,6 +6,7 @@ import {
   IconDemo,
   ButtonDemo,
   PagerDemo,
+  RadioDemo,
   TableDemo,
   LayoutExample,
   TreeDemo,
@@ -49,6 +50,9 @@ ReactDOM.render(
             </li>
             <li>
               <NavLink to="/pager">Pager 分页</NavLink>
+            </li>
+            <li>
+              <NavLink to="/radio">Radio 单选框</NavLink>
             </li>
             <li>
               <NavLink to="/table">Table 表格</NavLink>
@@ -100,6 +104,7 @@ ReactDOM.render(
             <Route path="/icon" component={IconDemo}></Route>
             <Route path="/button" component={ButtonDemo}></Route>
             <Route path="/pager" component={PagerDemo}></Route>
+            <Route path="/radio" component={RadioDemo}></Route>
             <Route path="/table" component={TableDemo}></Route>
             <Route path="/dialog" component={DialogExample}></Route>
             <Route path="/layout" component={LayoutExample}></Route>

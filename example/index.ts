@@ -3,6 +3,7 @@ import LayoutExample from "./Layout/layout.example";
 import IconDemo from "./Icon/icon.demo";
 import ButtonDemo from "./Button/button.demo";
 import PagerDemo from "./pager/pager.demo";
+import RadioDemo from './Radio/radio.demo';
 import TableDemo from "./Table/table.demo";
 import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
@@ -20,6 +21,7 @@ export {
   IconDemo,
   ButtonDemo,
   PagerDemo,
+  RadioDemo,
   TableDemo,
   LayoutExample,
   TreeDemo,
