@@ -1,5 +1,45 @@
-@import 'lib/styles/_helper.scss';
+@import "lib/styles/_helper.scss";
 
 .yui-radio-wrapper {
-  border: 1px solid red;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  .yui-radio {
+    position: relative;
+
+    &-inner {
+      display: block;
+      width: 16px;
+      height: 16px;
+      margin: 10px;
+      border: 1px solid $B300;
+      border-radius: 100%;
+      background: #fff;
+
+      &:hover {
+        border: 1px solid $H500;
+      }
+
+      &.yui-radio-checked {
+        border: 1px solid red;
+      }
+    }
+
+    &-input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      outline: none;
+      opacity: 0;
+    }
+  }
+
+  .yui-radio-label {
+    font-size: 14px;
+    color: $B800;
+  }
 }
