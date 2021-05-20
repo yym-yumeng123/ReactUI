@@ -1,5 +1,5 @@
 import React from "react";
-import Radio from "lib/Radio/radio";
+import Radio from "lib/Radio/Radio";
 
 const RadioDemo = () => {
   return (
@@ -13,5 +13,4 @@ const RadioDemo = () => {
   );
 };
 
-
-export default RadioDemo
+export default RadioDemo;
