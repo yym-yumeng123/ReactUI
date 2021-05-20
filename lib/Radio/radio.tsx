@@ -10,7 +10,7 @@ interface RadioProps {
 }
 
 const Radio: FC<RadioProps> = props => {
-  const { checked = false, children } = props;
+  const { children, checked = false } = props;
   const [defaultChecked, setDefaultChecked] = useState(checked);
 
   const chengeStatus = (e: any) => {
@@ -36,6 +36,6 @@ const Radio: FC<RadioProps> = props => {
   );
 };
 
-Radio.displayName = 'Radio';
+Radio.displayName = "Radio";
 
 export default Radio;

@@ -27,7 +27,7 @@ const Row: FC<RowProps> = props => {
   };
 
   const childWithProps = React.Children.map(children, child => {
-    return React.cloneElement(child, { gutter: gutter || 0 });
+    return React.cloneElement(child, { gutter });
   });
   return (
     <div className={prefix({"": true, [`${align}`]: !!align})} style={styles}>
