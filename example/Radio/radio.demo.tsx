@@ -4,7 +4,11 @@ import Radio from "lib/Radio/radio";
 const RadioDemo = () => {
   return (
     <div>
-      <Radio />
+      <Radio>单选</Radio>
+
+      <br />
+
+      <Radio checked>checked 为 true</Radio>
     </div>
   );
 };
