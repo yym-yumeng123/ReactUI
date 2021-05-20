@@ -7,15 +7,16 @@ const prefix = addPrefixAndscopedClassMarker("yui-radio");
 interface RadioProps {
   checked?: boolean;
   children: string;
+  onChange?: any;
 }
 
 const Radio: FC<RadioProps> = props => {
-  const { children, checked = false } = props;
+  const { children, onChange, checked = false } = props;
   const [defaultChecked, setDefaultChecked] = useState(checked);
 
-  const chengeStatus = (e: any) => {
-    const { checked } = e.target;
-    setDefaultChecked(checked);
+  const chengeStatus = () => {
+    setDefaultChecked(true);
+    onChange && onChange(children);
   };
 
   return (

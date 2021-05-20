@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Radio from "lib/Radio";
 
 const RadioDemo = () => {
+  const [val, setVal] = useState('');
+  const onChange = (val) => {
+    setVal(val)
+  }
+
   return (
     <div>
       <Radio>单选</Radio>
@@ -12,7 +17,7 @@ const RadioDemo = () => {
 
       <br />
 
-      <Radio.Group value="单选2">
+      <Radio.Group value={val} onChange={onChange}>
         <Radio>单选1</Radio>
         <Radio>单选2</Radio>
         <Radio>单选3</Radio>
