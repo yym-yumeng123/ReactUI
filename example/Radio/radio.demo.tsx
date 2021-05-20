@@ -1,6 +1,5 @@
 import React from "react";
-import Radio from "lib/Radio/Radio";
-import RadioGroup from "lib/Radio/Group";
+import Radio from "lib/Radio";
 
 const RadioDemo = () => {
   return (
@@ -13,11 +12,11 @@ const RadioDemo = () => {
 
       <br />
 
-      <RadioGroup value="单选2">
+      <Radio.Group value="单选2">
         <Radio>单选1</Radio>
         <Radio>单选2</Radio>
         <Radio>单选3</Radio>
-      </RadioGroup>
+      </Radio.Group>
     </div>
   );
 };
