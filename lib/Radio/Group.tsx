@@ -43,4 +43,6 @@ const RadioGroup: FC<RadioGroupProps> = props => {
   return <div>{renderGroup()}</div>;
 };
 
+
+// Radio.Group = RadioGroup
 export default RadioGroup;

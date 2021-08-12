@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import Radio from "lib/Radio";
+import RadioGroup from "lib/Radio/Group";
 
 const RadioDemo = () => {
-  const [val, setVal] = useState('');
-  const onChange = (val) => {
-    setVal(val)
-  }
+  const [val, setVal] = useState("");
+  const onChange = (val: any) => {
+    setVal(val);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e, "wwew");
+    console.log(e.target.value, "wwew");
+  };
 
   return (
     <div>
-      <Radio>单选</Radio>
+      <Radio onChange={handleChange} />
+      <Radio onChange={handleChange} value="我是value..." />
+      <Radio onChange={handleChange}>单选</Radio>
+      <Radio onChange={handleChange} value="真好">
+        11111
+      </Radio>
 
       <br />
 
@@ -17,11 +28,17 @@ const RadioDemo = () => {
 
       <br />
 
-      <Radio.Group value={val} onChange={onChange}>
+
+      <Radio disabled>disabled 为 true</Radio>
+      <Radio disabled checked>disabled 为 true</Radio>
+
+      <br />
+
+      <RadioGroup value={val} onChange={onChange}>
         <Radio>单选1</Radio>
         <Radio>单选2</Radio>
         <Radio>单选3</Radio>
-      </Radio.Group>
+      </RadioGroup>
     </div>
   );
 };

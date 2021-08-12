@@ -5,34 +5,45 @@ import "./radio.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-radio");
 
 interface RadioProps {
+  value?: string;
+  children?: string;
   checked?: boolean;
-  children: string;
-  onChange?: any;
+  disabled?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Radio: FC<RadioProps> = props => {
-  const { children, onChange, checked = false } = props;
+  const {
+    value,
+    children = "单选框",
+    onChange,
+    checked = false,
+    disabled = false
+  } = props;
   const [defaultChecked, setDefaultChecked] = useState(checked);
 
-  const chengeStatus = () => {
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDefaultChecked(true);
-    onChange && onChange(children);
+    onChange && onChange(e);
   };
 
   return (
-    <label className={prefix("wrapper")}>
+    <label className={prefix({ wrapper: true, disabled })}>
       <span className={prefix("")}>
+        {/* 模拟单选框 */}
         <span
           className={prefix({ inner: true, checked: defaultChecked })}
         ></span>
+        {/* 默认不可见 */}
         <input
           type="radio"
           checked={defaultChecked}
-          onChange={chengeStatus}
+          onChange={handleRadioChange}
           className={prefix("input")}
+          value={value || children}
         />
       </span>
-      <span className={prefix("label")}>{children}</span>
+      <span className={prefix("label")}>{value || children}</span>
     </label>
   );
 };
