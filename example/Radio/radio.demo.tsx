@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Radio from "lib/Radio";
-import RadioGroup from "lib/Radio/Group";
+import RadioGroup from "lib/Radio/group";
 
 const RadioDemo = () => {
   const [val, setVal] = useState("");
