@@ -5,8 +5,13 @@ import "./radio.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-radio");
 
 interface RadioProps {
-  value?: string;
-  children?: string;
+  // radio value
+  value?: string | number;
+  // 一组选中的value
+  selectedValue?: string | number;
+  // 是否是组
+  name?: string;
+  children?: string | number;
   checked?: boolean;
   disabled?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,6 +20,8 @@ interface RadioProps {
 const Radio: FC<RadioProps> = props => {
   const {
     value,
+    selectedValue,
+    name,
     children = "单选框",
     onChange,
     checked = false,
@@ -32,15 +39,21 @@ const Radio: FC<RadioProps> = props => {
       <span className={prefix("")}>
         {/* 模拟单选框 */}
         <span
-          className={prefix({ inner: true, checked: defaultChecked })}
+          className={prefix({
+            inner: true,
+            checked:
+              name === "group"
+                ? selectedValue === value || selectedValue === children
+                : defaultChecked
+          })}
         ></span>
         {/* 默认不可见 */}
         <input
           type="radio"
-          checked={defaultChecked}
           onChange={handleRadioChange}
           className={prefix("input")}
           value={value || children}
+          name={name}
         />
       </span>
       <span className={prefix("label")}>{value || children}</span>

@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FC, ReactElement, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  FC,
+  ReactElement,
+  useEffect,
+  useState
+} from "react";
 import Radio from "./radio";
 
 interface IRadioGroupProps {
@@ -9,10 +15,11 @@ interface IRadioGroupProps {
 
 const RadioGroup: FC<IRadioGroupProps> = props => {
   const { children, onChange, value = "" } = props;
+  const [selectedValue, setSelectedValue] = useState<string | number>(value);
 
   const handleGroupChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
     onChange && onChange(e);
+    setSelectedValue(e.target.value)
   };
 
   const renderGroup = () => {
@@ -22,7 +29,8 @@ const RadioGroup: FC<IRadioGroupProps> = props => {
       }
       return React.cloneElement(child, {
         ...child.props,
-        defauultValue: value,
+        name: 'group',
+        selectedValue,
         onChange: handleGroupChange
       });
     });

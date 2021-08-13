@@ -3,9 +3,8 @@ import Radio from "lib/Radio";
 import RadioGroup from "lib/Radio/group";
 
 const RadioDemo = () => {
-  const [val, setVal] = useState("");
   const onChange = (val: any) => {
-    setVal(val);
+    console.log(val.target.value, "我是group最外面的 值");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,13 +27,14 @@ const RadioDemo = () => {
 
       <br />
 
-
       <Radio disabled>disabled 为 true</Radio>
-      <Radio disabled checked>disabled 为 true</Radio>
+      <Radio disabled checked>
+        disabled 为 true
+      </Radio>
 
       <br />
 
-      <RadioGroup value={val} onChange={onChange}>
+      <RadioGroup value={""} onChange={onChange}>
         <Radio>单选1</Radio>
         <Radio>单选2</Radio>
         <Radio>单选3</Radio>
