@@ -7,6 +7,7 @@ import {
   ButtonDemo,
   PagerDemo,
   RadioDemo,
+  CheckboxDemo,
   TableDemo,
   LayoutExample,
   TreeDemo,
@@ -53,6 +54,9 @@ ReactDOM.render(
             </li>
             <li>
               <NavLink to="/radio">Radio 单选框</NavLink>
+            </li>
+            <li>
+              <NavLink to="/checkbox">CheckBox 多选框</NavLink>
             </li>
             <li>
               <NavLink to="/table">Table 表格</NavLink>
@@ -105,6 +109,7 @@ ReactDOM.render(
             <Route path="/button" component={ButtonDemo}></Route>
             <Route path="/pager" component={PagerDemo}></Route>
             <Route path="/radio" component={RadioDemo}></Route>
+            <Route path="/checkbox" component={CheckboxDemo}></Route>
             <Route path="/table" component={TableDemo}></Route>
             <Route path="/dialog" component={DialogExample}></Route>
             <Route path="/layout" component={LayoutExample}></Route>
