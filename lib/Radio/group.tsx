@@ -2,7 +2,6 @@ import React, {
   ChangeEvent,
   FC,
   ReactElement,
-  useEffect,
   useState
 } from "react";
 import Radio from "./radio";
