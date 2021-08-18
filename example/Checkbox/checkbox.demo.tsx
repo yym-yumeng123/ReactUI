@@ -9,6 +9,11 @@ const CheckboxDemo = () => {
       <Checkbox value={"多选框"} defaultChecked></Checkbox>
       <br />
       <Checkbox value={"多选框"}></Checkbox>
+      <br />
+      <Checkbox value={"多选框"} disabled></Checkbox>
+      <br />
+      <Checkbox value={"多选框"} defaultChecked disabled></Checkbox>
+
     </>
   );
 };

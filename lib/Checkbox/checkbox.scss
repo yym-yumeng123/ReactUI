@@ -1,6 +1,9 @@
 @import "lib/styles/_helper.scss";
 .yui-checkbox-wrapper {
+  display: inline-flex;
   position: relative;
+  padding: 10px 0;
+  user-select: none;
   .yui-checkbox {
     &-input {
       position: absolute;
@@ -13,7 +16,7 @@
     &-inner {
       position: absolute;
       left: 0;
-      bottom: 2px;
+      bottom: 12px;
       display: block;
       width: 16px;
       height: 16px;
@@ -35,13 +38,26 @@
           border: 2px solid #fff;
           border-top: none;
           border-left: none;
-          // border-radius: 50%;
-          // background: #fff;
         }
       }
     }
   }
   .yui-checkbox-label {
     margin-left: 26px;
+  }
+
+  &.yui-checkbox-disabled {
+    // pointer-events: none;
+    cursor: not-allowed;
+    .yui-checkbox-inner {
+      background: $B050;
+      border: none;
+      &.yui-checkbox-checked {
+        background: $H100;
+      }
+    }
+    .yui-checkbox-label {
+      color: $B400;
+    }
   }
 }
