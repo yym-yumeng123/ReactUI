@@ -1,29 +1,33 @@
 @import "lib/styles/_helper.scss";
 .yui-checkbox-wrapper {
   display: inline-flex;
-  position: relative;
   padding: 10px 0;
   user-select: none;
-  border: 1px solid red;
+  cursor: pointer;
   .yui-checkbox {
     &-input {
       position: absolute;
       top: 0;
+      right: 0;
       bottom: 0;
-      z-index: -1;
+      left: 0;
+      z-index: 1;
       outline: none;
       opacity: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     &-inner {
-      position: absolute;
+      position: relative;
       left: 0;
-      bottom: 12px;
-      display: block;
+      bottom: -2px;
+      display: inline-block;
       width: 16px;
       height: 16px;
       border: 1px solid $B300;
       border-radius: 3px;
       background: #fff;
+      transition: all .3s;
 
       &.yui-checkbox-checked {
         background: $H500;
@@ -44,7 +48,7 @@
     }
   }
   .yui-checkbox-label {
-    margin-left: 26px;
+    margin-left: 10px;
   }
 
   &.yui-checkbox-disabled {
