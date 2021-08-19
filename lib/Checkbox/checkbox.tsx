@@ -8,22 +8,29 @@ interface ICheckBoxProps {
   defaultChecked?: boolean;
   checked?: boolean;
   disabled?: boolean;
+  indeterminate?: boolean;
   children?: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Checkbox: FC<ICheckBoxProps> = props => {
   const {
-    children = '多选框',
+    children = "多选框",
     defaultChecked = false,
+    checked = false,
     disabled = false,
+    // 当checked 为true, 并且 indeterminate 为true 才会样式显示
+    indeterminate = false,
     onChange
   } = props;
-  const [selected, setSelected] = useState<boolean>(defaultChecked);
+  // 当前是否选中 ==> 只要 default & checked 有一个为 true 就是true
+  const [currentChecked, setCurrentChecked] = useState<boolean>(
+    checked || defaultChecked
+  );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
-    setSelected(!selected);
+    setCurrentChecked(!currentChecked);
     onChange && onChange(e);
   };
 
@@ -34,10 +41,16 @@ const Checkbox: FC<ICheckBoxProps> = props => {
           className={prefix("input")}
           type="checkbox"
           value={children}
-          defaultChecked={selected}
+          checked={currentChecked}
           onChange={handleChange}
         />
-        <span className={prefix({ inner: true, checked: selected })}></span>
+        <span
+          className={prefix({
+            inner: true,
+            checked: currentChecked,
+            indeterminate: currentChecked && indeterminate
+          })}
+        ></span>
       </span>
       <span className={prefix("label")}>{children}</span>
     </label>

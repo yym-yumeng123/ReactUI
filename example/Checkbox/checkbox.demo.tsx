@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Checkbox from "lib/Checkbox";
 
 const CheckboxDemo = () => {
@@ -7,11 +7,14 @@ const CheckboxDemo = () => {
   };
   return (
     <>
+      <br />
       <Checkbox onChange={handleTestChange}>苹果</Checkbox>
       <br />
-      <Checkbox defaultChecked>梨子</Checkbox>
+      <Checkbox defaultChecked checked={false}>
+        梨子
+      </Checkbox>
       <br />
-      <Checkbox>香蕉</Checkbox>
+      <Checkbox onChange={handleTestChange}>香蕉</Checkbox>
       <br />
       <Checkbox disabled>栗子</Checkbox>
       <br />
