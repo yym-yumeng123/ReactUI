@@ -5,17 +5,19 @@ import "./checkbox.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-checkbox");
 
 interface ICheckBoxProps {
+  value?: string;
+  children?: string;
   defaultChecked?: boolean;
   checked?: boolean;
   disabled?: boolean;
   indeterminate?: boolean;
-  children?: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Checkbox: FC<ICheckBoxProps> = props => {
   const {
-    children = "多选框",
+    value,
+    children,
     defaultChecked = false,
     checked = false,
     disabled = false,
@@ -40,7 +42,7 @@ const Checkbox: FC<ICheckBoxProps> = props => {
         <input
           className={prefix("input")}
           type="checkbox"
-          value={children}
+          value={value || children}
           checked={currentChecked}
           onChange={handleChange}
         />
@@ -52,7 +54,8 @@ const Checkbox: FC<ICheckBoxProps> = props => {
           })}
         ></span>
       </span>
-      <span className={prefix("label")}>{children}</span>
+      {/* 有 value props 就显示value, 无则显示children */}
+      <span className={prefix("label")}>{value || children}</span>
     </label>
   );
 };

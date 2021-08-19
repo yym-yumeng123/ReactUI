@@ -8,7 +8,9 @@ const CheckboxDemo = () => {
   return (
     <>
       <br />
+      <Checkbox onChange={handleTestChange} value={'我是,,,'}></Checkbox>
       <Checkbox onChange={handleTestChange}>苹果</Checkbox>
+      <Checkbox/>
       <br />
       <Checkbox defaultChecked checked={false}>
         梨子
