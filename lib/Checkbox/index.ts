@@ -1,3 +1,4 @@
 import Checkbox from "./checkbox";
+import Group from "./checkboxGroup";
 
-export default Checkbox;
+export { Checkbox, Group };
