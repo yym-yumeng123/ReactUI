@@ -5,8 +5,8 @@ import "./checkbox.scss";
 const prefix = addPrefixAndscopedClassMarker("yui-checkbox");
 
 interface ICheckBoxProps {
-  value?: string;
-  children?: string;
+  value?: string | number;
+  children?: string | number;
   defaultChecked?: boolean;
   checked?: boolean;
   disabled?: boolean;

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC } from "react";
 import Checkbox from "./checkbox";
 
 /**
@@ -8,10 +8,10 @@ import Checkbox from "./checkbox";
  */
 
 // value 的 类型
-export type CheckboxValueType = string | number | boolean;
+export type CheckboxValueType = string | number;
 
 export interface CheckboxOptionType {
-  label: React.ReactNode;
+  label: CheckboxValueType;
   value: CheckboxValueType;
   style?: React.CSSProperties;
   disabled?: boolean;
@@ -24,7 +24,7 @@ export interface CheckboxOptionType {
 export interface AbstractCheckboxGroupProps {
   // prefixCls?: string;
   // className?: string;
-  options?: Array<CheckboxOptionType | string>;
+  dataSource?: Array<CheckboxOptionType | string>;
   disabled?: boolean;
   style?: React.CSSProperties;
 }
@@ -37,14 +37,32 @@ interface IGroupProps extends AbstractCheckboxGroupProps {
   children?: React.ReactNode;
 }
 
-const Group: FC<IGroupProps> = ({ children }) => {
-  console.log(children);
+const Group: FC<IGroupProps> = ({ children, dataSource = [] }) => {
+  console.log(children, dataSource);
 
-  const renderItems = React.Children.map(children, (child, index) => {
-    return <Checkbox></Checkbox>;
-  });
+  // 获取传入的数组, 并转换 => 借鉴antd
+  const getDataSource = () =>
+    dataSource.map(item => {
+      if (typeof item === "string") {
+        return {
+          label: item,
+          value: item
+        };
+      }
+      return item;
+    });
 
-  return <div>{renderItems}</div>;
+  console.log(getDataSource(), "get,,,,,");
+
+  if (dataSource && dataSource.length > 0) {
+    children = getDataSource().map(item => (
+      <Checkbox value={item.value} key={item.value.toString()}>
+        {item.label}
+      </Checkbox>
+    ));
+  }
+
+  return <div>{children}</div>;
 };
 
 export default Group;
