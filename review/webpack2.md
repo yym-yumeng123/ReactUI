@@ -33,7 +33,7 @@ resolve: { // 配置模块如何解析
 
 ## 5.webpack mode
 
-```
+```js
 development & production
 
 开发环境 & 生产环境

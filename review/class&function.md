@@ -1,10 +1,10 @@
 ## Debug
-```
+```bash
 console.log('打印需要看到的值...')
 ```
 
 ## class 组件
-```
+```js
 import React from "react"
 import ReactDOM from "react-dom"
 import PropTypes from "prop-types"
@@ -62,7 +62,7 @@ ReactDOM.render(<App />, rootElement)
 
 ```
 
-```
+```js
 函数组件
 
 import React, { useState } from "react"

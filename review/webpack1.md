@@ -17,7 +17,7 @@ Git
 
 ## 3.初始化
 
-```
+```bash
 npm init -y // 初始化仓库 package.json
 
 npm install webpack webpack-cli --save-dev // 安装到开发者依赖 webpack
