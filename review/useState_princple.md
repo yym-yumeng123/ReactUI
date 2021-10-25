@@ -99,3 +99,47 @@ function App() {
   );
 }
 ```
+
+### 一个组件, 有两个 useState 怎么办?
+- 对于上文中 2 实现的 `useState` 代码, 如果我们还有一个state `count1`, 两个共用一个 `_state`, 会冲突
+- 所以我们尝试把`_state` 改为 数组 `_state = [0, 0]`
+
+```js
+/**
+ * @params 初始值
+ */
+let _state = []
+let index = 0
+function myUseState(initialValue) {
+  const currentIndex = index
+  index += 1
+  _state[currentIndex] = _state[currentIndex] === undefined ? initialValue : _state[currentIndex]
+  const setState = (newValue) => {
+    console.log(currentIndex)
+    _state[currentIndex] = newValue;
+    render();
+  };
+  return [_state[currentIndex], setState];
+}
+
+const render = () => {
+  // index 重置
+  index = 0
+  ReactDOM.render(<App />, document.getElementById('root'));
+};
+
+function App() {
+  console.log('App 运行了...');
+  const [count, setCount] = myUseState(0);
+  const [count1, setCount1] = myUseState(0);
+  return (
+    <div>
+      <h1>{count}</h1>
+      <h1>{count1}</h1>
+      <button onClick={() => setCount(count + 1)}>increment</button>
+      <button onClick={() => setCount1(count1 + 1)}>increment1</button>
+    </div>
+  );
+}
+
+```
