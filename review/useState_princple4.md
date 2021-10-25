@@ -148,7 +148,7 @@ function App() {
   - `App` 用了 `_state` 和 `index`, 其他组件用啥呢? -> 给每个组件创建一个 `_state index` 
   - 上面会产生其他问题,重名怎么办? -> 放在组件对应的虚拟节点对象上
 
-![更新图示](./patch.png)
+![更新图示](./images/patch.png)
 
 
 ### 总结
@@ -183,7 +183,7 @@ function App() {
 ReactDOM.render(<App />, rootElement);
 
 ```
-![每次渲染App, 都会产生一个新的n](./n_copy.png)
+![每次渲染App, 都会产生一个新的n](./images/n_copy.png)
 
 
 ### 面对上面有多个 n, 我们应该怎么做? 需要一个 始终的 变量  useRef
