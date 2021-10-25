@@ -222,3 +222,57 @@ function App() {
   );
 }
 ```
+
+### 除了 useRef , 还有 useContext -> 上下文
+```js
+// useContext 使用
+import React from "react";
+import ReactDOM from "react-dom";
+import "./styles.css";
+const rootElement = document.getElementById("root");
+
+const themeContext = React.createContext(null);
+function App() {
+  const [theme, setTheme] = React.useState("red");
+  return (
+    // Provide 作用域从这里开始
+    <themeContext.Provider value={{ theme, setTheme }}>
+      <div className={`App ${theme}`}>
+        <p>{theme}</p>
+        <div>
+          <ChildA />
+        </div>
+        <div>
+          <ChildB />
+        </div>
+      </div>
+    </themeContext.Provider>
+  );
+}
+
+function ChildA() {
+  const { setTheme } = React.useContext(themeContext);
+  return (
+    <div>
+      <button onClick={() => setTheme("red")}>red</button>
+    </div>
+  );
+}
+
+function ChildB() {
+  const { setTheme } = React.useContext(themeContext);
+  return (
+    <div>
+      <button onClick={() => setTheme("blue")}>blue</button>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, rootElement);
+
+```
+
+### 总结
+- 每次重新渲染, 组件函数就会执行
+- 对应所有 state 都会出现分身
+- 如果不希望出现分身, 使用 `useRef useContext`
