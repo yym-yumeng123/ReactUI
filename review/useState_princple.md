@@ -141,5 +141,46 @@ function App() {
     </div>
   );
 }
+```
+- 数组方案的缺点
+  - `useState` 的调用顺序不能乱 -> `顺序会改变下标`
+- 现在代码还有一个问题? 
+  - `App` 用了 `_state` 和 `index`, 其他组件用啥呢? -> 给每个组件创建一个 `_state index` 
+  - 上面会产生其他问题,重名怎么办? -> 放在组件对应的虚拟节点对象上
+
+![更新图示](./patch.png)
+
+
+### 总结
+- 每个函数组件对应一个React节点
+- 每个节点保存着 `state index`
+- `useState` 会读取 `state[index]`
+- `index` 由 `state` 出现顺序决定
+- `setState` 会修改 `state`, 触发更新
+
+
+### 问题展示
+- 先log, 后+1, 有bug; 先+1,后 log, 无bug, 结果不同, 为什么 `log` 出旧数据
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+const rootElement = document.getElementById("root");
+
+function App() {
+  const [n, setN] = React.useState(0);
+  const log = () => setTimeout(() => console.log(`n: ${n}`), 3000);
+  return (
+    <div className="App">
+      <p>{n}</p>
+      <p>
+        <button onClick={() => setN(n + 1)}>+1</button>
+        <button onClick={log}>log</button>
+      </p>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, rootElement);
 
 ```
+![每次渲染App, 都会产生一个新的n](./n_copy.png)
