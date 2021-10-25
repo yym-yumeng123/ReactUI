@@ -184,3 +184,41 @@ ReactDOM.render(<App />, rootElement);
 
 ```
 ![每次渲染App, 都会产生一个新的n](./n_copy.png)
+
+
+### 面对上面有多个 n, 我们应该怎么做? 需要一个 始终的 变量  useRef
+```js
+function App() {
+  const nRef = React.useRef(0);
+  const log = () => setTimeout(() => console.log(`n: ${nRef.current}`), 1000);
+  return (
+    <div className="App">
+      <p>{nRef.current} 这里并不能实时更新</p>
+      <p>
+        <button onClick={() => (nRef.current += 1)}>+1</button>
+        <button onClick={log}>log</button>
+      </p>
+    </div>
+  );
+}
+```
+```js
+// 上面的代码不能更新, 我们怎么让它更新
+function App() {
+  const nRef = React.useRef(0);
+  // 配合 useState 使用
+  const update = React.useState()[1];
+  const log = () => setTimeout(() => console.log(`n: ${nRef.current}`), 1000);
+  return (
+    <div className="App">
+      <p>{nRef.current} 这里并不能实时更新</p>
+      <p>
+        <button onClick={() => ((nRef.current += 1), update(nRef.current))}>
+          +1
+        </button>
+        <button onClick={log}>log</button>
+      </p>
+    </div>
+  );
+}
+```
