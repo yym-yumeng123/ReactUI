@@ -99,7 +99,7 @@ const initial = {
 };
 /**
  * 2. 创建操作 reducer
- * state: 旧的数据
+ * state: 旧的状态
  * action: 动作
  */
 const reducer = (state, action) => {
@@ -138,6 +138,78 @@ export default function App() {
       <h1>n: {state.n}</h1>
       <button onClick={onClickAdd}>add</button>
       <button onClick={onClickMulti}>multi</button>
+    </div>
+  );
+}
+
+```
+### 如何使用 useReducer 代替 Redux
+
+> 使用 `useReducer` 和 `useContext` 配合代替 Redux
+
+**步骤**
+1. 将数据集中在一个 `store` 对象
+2. 将所有操作集中在`reducer` 
+3. 创建一个 `Context`
+4. 创建对数据读写的 API, `useReducer`
+5. 将第四步内容 放到第三步 `Context` 中
+6. 用`Context.Provider` 将`Context`提供给所有组件
+7. 各个子组件就可以使用 `useContext` 获取`读写API`
+
+```js
+import React, { useEffect, createContext, useReducer, useContext } from 'react';
+
+// 1. store 对象
+const store = {
+  user: null,
+  books: null,
+  movies: null,
+};
+
+// 2. 创建一个 reducer 操作集合
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'setUser':
+      return { ...state, user: action.user };
+    case 'setBooke':
+      return { ...state, books: action.books };
+    case 'setMovies':
+      return { ...state, movies: action.movies };
+    default:
+      throw new Error();
+  }
+};
+
+// 3. 创建一个 Context
+const Context = createContext(null);
+
+export default function App() {
+  // 4. useReducer
+  const [state, dispatch] = useReducer(reducer, store);
+  return (
+    // 56. 使用Context上下文, 创建作用域, 并传参 state, dispatch
+    <Context.Provider value={{ state, dispatch }}>
+      <User />
+    </Context.Provider>
+  );
+}
+
+function User() {
+  // 7. 使用 useContext
+  const { state, dispatch } = useContext(Context);
+  // 使用 dispatch, 2s 后 设置值
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch({
+        type: 'setUser',
+        user: { name: 'yym' },
+      });
+    }, 2000);
+  }, []);
+  return (
+    <div>
+      <h1>个人信息</h1>
+      <div>name: {state.user ? state.user.name : ''}</div>
     </div>
   );
 }
