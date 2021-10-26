@@ -456,3 +456,116 @@ const Button2 = React.forwardRef((props, ref) => {
   return <button className="red" ref={ref} {...props} />;
 });
 ```
+
+### useImperativeHandle
+- 对 ref 进行 设置, 也就是 `setRef` 的意思, 用于自定义 ref
+```js
+function App() {
+  const buttonRef = useRef(null);
+  useEffect(() => {
+    console.log(buttonRef.current);
+  });
+  return (
+    <div className="App">
+      <Button2 ref={buttonRef}>按钮</Button2>
+      <button
+        className="close"
+        onClick={() => {
+          console.log(buttonRef);
+          buttonRef.current.x();
+        }}
+      >
+        x
+      </button>
+    </div>
+  );
+}
+
+const Button2 = React.forwardRef((props, ref) => {
+  const realButton = createRef(null);
+  const setRef = useImperativeHandle;
+  setRef(ref, () => {
+    return {
+      x: () => {
+        realButton.current.remove();
+      },
+      realButton: realButton
+    };
+  });
+  return <button ref={realButton} {...props} />;
+});
+```
+
+### 自定义 Hook
+```js
+// 自定义 hook
+import { useState, useEffect } from "react";
+
+const useList = () => {
+  const [list, setList] = useState(null);
+  useEffect(() => {
+    ajax("/list").then(list => {
+      setList(list);
+    });
+  }, []); // [] 确保只在第一次运行
+  // 暴露 增加 删除 api
+  return {
+    list: list,
+    addItem: name => {
+      setList([...list, { id: Math.random(), name: name }]);
+    },
+    deleteIndex: index => {
+      setList(list.slice(0, index).concat(list.slice(index + 1)));
+    }
+  };
+};
+export default useList;
+
+function ajax() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([
+        { id: "1", name: "Frank" },
+        { id: "2", name: "Jack" },
+        { id: "3", name: "Alice" },
+        { id: "4", name: "Bob" }
+      ]);
+    }, 2000);
+  });
+}
+
+```
+```js
+// 使用 上面的 hook
+import useList from "./hooks/useList";
+
+function App() {
+  const { list, deleteIndex } = useList();
+  return (
+    <div className="App">
+      <h1>List</h1>
+      {list ? (
+        <ol>
+          {list.map((item, index) => (
+            <li key={item.id}>
+              {item.name}
+              <button
+                onClick={() => {
+                  deleteIndex(index);
+                }}
+              >
+                x
+              </button>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        "加载中..."
+      )}
+    </div>
+  );
+}
+```
+
+### Stale Closure 过时闭包
+- 用来描述函数引用的变量 是之前产生的变量 -> 通过依赖避免
