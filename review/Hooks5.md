@@ -256,3 +256,64 @@ const Child = () => {
   );
 };
 ```
+
+### useEffect 副作用
+1. 什么是副作用?
+  - 对环境的改变就是副作用; 例: `document.title='11'` 
+2. 按顺序执行
+3. 主要作用可以代替 `class` 组件的三种钩子
+
+```js
+export default function App() {
+  const [count, setCount] = useState(0);
+  const [age, setAge] = useState(18);
+
+  const onClick = () => {
+    setCount((i) => i + 1);
+  };
+
+  const onClickAge = () => {
+    setAge((i) => i + 1);
+  };
+
+  // componentDidMount
+  useEffect(() => {
+    console.log('我只在第一次渲染, 点击不渲染');
+  }, []);
+
+  // componentDidUpdate
+  useEffect(() => {
+    console.log('count 变化我就渲染, 第一次也渲染, age变化我不渲染');
+  }, [count]);
+
+  useEffect(() => {
+    console.log('每次我都渲染, 无论那个变化');
+  });
+
+  // 做的改变, 可以在 return 离开时清楚 componentWillUnmount
+  useEffect(() => {
+    const id = setInterval(() => {
+      console.log('我 return')
+    }, 10000)
+    return () => {
+      window.clearInterval(id)
+    }
+  }, [])
+
+  return (
+    <div>
+      <p>我是count: {count}</p>
+      <p>我是age: {age}</p>
+      <button onClick={onClick}>count</button>
+      <button onClick={onClickAge}>age</button>
+    </div>
+  );
+}
+
+```
+### useLayoutEffect 布局副作用 和 useEffect 差不多
+1. `useEffect` 在浏览器渲染`完成后`执行
+2. `useLayoutEffect` 在浏览器渲染`完成前`执行
+3. `useLayoutEffect` 总是比 `useEffect` 先执行
+4. 使用 `useLayoutEffect` 里的任务最好影响了Layout
+5. 最好优先使用 `useEffect`
