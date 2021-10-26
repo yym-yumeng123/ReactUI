@@ -406,3 +406,28 @@ useCallback(x => log(x), [m])
 
 useMemo(() => x => log(x), [m])
 ```
+
+### useRef
+1. 如果你需要一个值, 在组件不断 render 时保持不变
+2. 初始化: `const count = useRef(0)`
+3. 读取: `count.current`
+4. 为什么current? 保证两次 `useRef` 是同一个值(只有引用能做到)
+5. `useRef` 值变化 但不会引起页面render
+```js
+// 如何才能 render 呢
+// 监听 ref . 当 ref.current 变化时, 调用 state 里面的 setState
+const count = useRef(0)
+const [_, setX] = useState(null)
+
+const click = () => {
+  count.current += 1
+  // 调用即可
+  setX(Math.random())
+}
+```
+---
+
+### 对比
+- `useState/useReducer` 每次都渲染
+- `useMemo/useCallback` 依赖变化时才变
+- `useRef` 永远不变
