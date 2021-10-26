@@ -317,3 +317,92 @@ export default function App() {
 3. `useLayoutEffect` 总是比 `useEffect` 先执行
 4. 使用 `useLayoutEffect` 里的任务最好影响了Layout
 5. 最好优先使用 `useEffect`
+
+
+### useMemo
+1. 要理解`useMemo`, 需要先理解 `React.memo`
+```js
+function App() {
+const [n, setN] = React.useState(0);
+const [m, setM] = React.useState(0);
+const onClick = () => {
+  setN(n + 1);
+};
+
+return (
+  <div className="App">
+    <div>
+      <button onClick={onClick}>update n {n}</button>
+    </div>
+    // Child 就是普通的组件. 每次更新 n, 都会执行 Child, 但我们不希望一直渲染
+    <Child data={m}/>
+    // Child2 被 React.memo 包裹, 每次更新 n, 可以避免渲染, 减少渲染次数
+    <Child2 data={m}/>
+  </div>
+);
+
+function Child(props) {
+  console.log("child 执行了");
+  console.log('假设这里有大量代码')
+  return <div>child: {props.data}</div>;
+}
+
+const Child2 = React.memo(Child);
+```
+2. 但是上面的 `React.memo` 有个 bug, 当我们的 props 是个 监听函数时, 会不生效,  因为 新旧函数地址不一样
+
+3. 所以我们来学习 `useMemo`
+  - 第一个参数 `useMemo(() => value)`
+  - 第二个参数依赖 `useMemo(() => value, [m, n])`
+  - 只有当依赖变化时, 才会计算新的 value, 依赖不变, 还用之前的value
+
+```js
+// 对上面的代码进行优化
+function App() {
+  const [n, setN] = React.useState(0);
+  const [m, setM] = React.useState(0);
+  const onClick = () => {
+    setN(n + 1);
+  };
+  const onClick2 = () => {
+    setM(m + 1);
+  };
+  // useMemo
+  const onClickChild = useMemo(() => {
+    const fn = div => {
+      console.log("on click child, m: " + m);
+      console.log(div);
+    };
+    return fn;
+  }, [m]); // 这里呃 [m] 改成 [n] 就会打印出旧的 m
+  return (
+    <div className="App">
+      <div>
+        <button onClick={onClick}>update n {n}</button>
+        <button onClick={onClick2}>update m {m}</button>
+      </div>
+      <Child2 data={m} onClick={onClickChild} />
+    </div>
+  );
+}
+
+function Child(props) {
+  console.log("child 执行了");
+  console.log("假设这里有大量代码");
+  return <div onClick={e => props.onClick(e.target)}>child: {props.data}</div>;
+}
+
+const Child2 = React.memo(Child);
+```
+4. `React.memo` 和 `useMemo` 搭配使用
+
+
+### useCallback 是 useMemo 的语法糖
+1. 用法
+```js
+useCallback(x => log(x), [m])
+
+==> 等价于
+
+useMemo(() => x => log(x), [m])
+```
