@@ -82,3 +82,64 @@ function App() {
   );
 }
 ```
+
+### useReducer
+使用 `useReducer` 分4步走
+- 创建初始值 `initialState`
+- 创建所有操作 `reducer(state, action)`
+- 使用 `useReducer(reducer, initialState)` 得到读写操作
+- 调用`写 ({type: 'action'})`
+- 总结: `useReducer 是复杂点的 useState`
+
+```js
+import React from 'react';
+// 1. 创建初始值
+const initial = {
+  n: 1,
+};
+/**
+ * 2. 创建操作 reducer
+ * state: 旧的数据
+ * action: 动作
+ */
+const reducer = (state, action) => {
+  if (action.type === 'add') {
+    return { n: state.n + action.number };
+  } else if (action.type === 'multi') {
+    return { n: state.n * action.number };
+  } else {
+    throw new Error('unknown type');
+  }
+};
+
+export default function App() {
+  /**
+   * 3. 是有 useReducer
+   * reducer 所有操作
+   * initial 初始值
+   * return [state, dispatch] 读/写操作
+   */
+  const [state, dispatch] = React.useReducer(reducer, initial);
+  // 4. 写入 action
+  const onClickAdd = () => {
+    dispatch({
+      type: 'add',
+      number: 1
+    });
+  };
+  const onClickMulti = () => {
+    dispatch({
+      type: 'multi',
+      number: 2
+    });
+  };
+  return (
+    <div>
+      <h1>n: {state.n}</h1>
+      <button onClick={onClickAdd}>add</button>
+      <button onClick={onClickMulti}>multi</button>
+    </div>
+  );
+}
+
+```
