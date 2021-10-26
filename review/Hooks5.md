@@ -215,3 +215,44 @@ function User() {
 }
 
 ```
+
+### useContext
+1. 上下文
+  - 全局变量是全局的上下文
+  - 上下文是局部的全局变量
+2. 使用方法
+   - 使用`C = createContext(initial)` 创建上下文
+   - `<C.provider>` 圈定作用域
+   - 在作用域内使用 `useContext(C)` 来使用上下文
+3. 不是响应式的, 是逐级而下通知的
+```js
+// 示例
+// 1. createContext
+const Context = React.createContext(null);
+export default function App() {
+  const [count, setCount] = React.useState(0);
+  return (
+    // set 上下文
+    <Context.Provider value={{ count, setCount }}>
+      <Parent />
+    </Context.Provider>
+  );
+}
+
+const Parent = () => {
+  return (
+    <div>
+      我是爸爸
+      <Child />
+    </div>
+  );
+};
+
+const Child = () => {
+  // 3. 使用 useContext
+  const { count, setCount } = React.useContext(Context);
+  return (
+    <div onClick={() => setCount((i) => i + 1)}>我是儿子, count: {count}</div>
+  );
+};
+```
