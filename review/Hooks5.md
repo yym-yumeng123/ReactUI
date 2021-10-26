@@ -425,9 +425,34 @@ const click = () => {
   setX(Math.random())
 }
 ```
+6. 也可以引用 dom 对象, 也可以引用普通对象
+```js
+const ref = useRef(null)
+
+<button ref={ref}></button>
+```
 ---
 
 ### 对比
 - `useState/useReducer` 每次都渲染
 - `useMemo/useCallback` 依赖变化时才变
 - `useRef` 永远不变
+
+
+### forwardRef
+如果你的函数组件接受别人传过来的 `ref`, 必须把自己用 `forwardRef` 包起来
+
+```js
+function App() {
+  const buttonRef = useRef(null);
+  return (
+    <div className="App">
+      <Button2 ref={buttonRef}>按钮</Button2>
+    </div>
+  );
+}
+// 由于props 里面不包含 ref, 需要 forwardRef 
+const Button2 = React.forwardRef((props, ref) => {
+  return <button className="red" ref={ref} {...props} />;
+});
+```
