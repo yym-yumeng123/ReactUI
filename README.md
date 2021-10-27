@@ -74,3 +74,10 @@ ReactUI
 
 
 // const isTouchDevice: boolean = "ontouchstart" in document.documentElement; 判断是否触摸设备
+
+
+--- 
+
+### 先记录, 后整理
+
+`/lib/@types` 配置 ts 里面的 一些 类型

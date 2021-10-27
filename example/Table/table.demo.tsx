@@ -8,7 +8,6 @@ const TableDemo = () => {
       key: "name",
       render: (text: any, record: object, index: number) => {
         console.log(text, record, index);
-
       }
     },
     {

@@ -43,7 +43,6 @@ const Icon: React.FunctionComponent<IconProps> = ({
 };
 
 Icon.displayName = "Icon";
-Icon.defaultProps = {};
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string,

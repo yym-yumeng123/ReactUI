@@ -91,3 +91,13 @@ export const iconNames: string[] = [
   "ET",
   "1688"
 ];
+
+export const Api_Data = [
+  {
+    props: 'name',
+    explain: '设置 icon 的名称, 显示对应的 icon',
+    type: 'string',
+    defaultValue: '空',
+    require: 'true'
+  }
+]
