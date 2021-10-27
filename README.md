@@ -81,3 +81,15 @@ ReactUI
 ### 先记录, 后整理
 
 `/lib/@types` 配置 ts 里面的 一些 类型
+`/lib/Helpers/classes.tsx`
+```js
+/**
+ * @description 接受多个 class
+ * @param names class 数组
+ */
+function classes(...names: (string | undefined | boolean)[]) {
+  // ... 会把参数转为数组
+  return names.filter(Boolean).join(" ");
+}
+export default classes
+```

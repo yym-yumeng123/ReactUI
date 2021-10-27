@@ -9,8 +9,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 200px;
-      height: 100px;
+      width: 16.66%;
+      padding: 16px 0;
       background: #cce9ff;
       margin-left: 8px;
       margin-bottom: 8px;
@@ -22,7 +22,9 @@
       }
 
       span {
+        display: inline-block;
         margin-top: 8px;
+        overflow: hidden;
       }
     }
   }

@@ -97,7 +97,14 @@ export const Api_Data = [
     props: 'name',
     explain: '设置 icon 的名称, 显示对应的 icon',
     type: 'string',
-    defaultValue: '空',
+    defaultValue: '/',
     require: 'true'
+  },
+  {
+    props: 'onClick/onMouseEnter/onMouseLeave/...',
+    explain: '触发 icon 的事件',
+    type: 'Function',
+    defaultValue: '/',
+    required: 'false'
   }
 ]

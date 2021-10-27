@@ -78,3 +78,16 @@ import b from 'b'
 方便使用 tree-shaking 技术 -> 使用的依赖留下, 未使用的去掉
 ```
 - 使用 importAll 一次性引入, 无法使用 tree-shaking技术
+
+
+### icon 接受所有事件
+```js
+// 让 icon 继承 React.SVGAttributes
+interface IconProps extends React.SVGAttributes<SVGElement> {}
+
+// 剩余的所有 props 
+{...restProps}
+```
+
+
+### 用户传 className
