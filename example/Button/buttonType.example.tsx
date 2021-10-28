@@ -1,10 +1,9 @@
 import React from "react";
 import Button from "lib/Button/button";
 
-const ButtonExample: React.FunctionComponent = () => {
+const ButtonTypeExample: React.FunctionComponent = () => {
   return (
-    <div>
-      <h2>按钮类型</h2>
+    <div className="button_wrap">
       <Button>普通按钮</Button>
       <Button level="primary">提醒按钮</Button>
       <Button level="danger">危险按钮</Button>
@@ -15,4 +14,4 @@ const ButtonExample: React.FunctionComponent = () => {
   );
 };
 
-export default ButtonExample;
+export default ButtonTypeExample;

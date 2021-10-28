@@ -7,8 +7,6 @@ import IconExample_AllIcon from "./icon.example_allIcon";
 const codeAllIcon = require("!!raw-loader!./icon.example_allIcon.tsx");
 const codeDemo = require("!!raw-loader!./icon.example_code.tsx");
 
-import { Api_Data } from "./config";
-
 const IconDemo = () => {
   return (
     <>
@@ -16,12 +14,11 @@ const IconDemo = () => {
       <Demo code={codeDemo.default}>
         <IconExampleCode />
       </Demo>
-      <API data={Api_Data} />
+      <API type="icon" />
       <h1 className="margin_bottom">所有图标</h1>
       <Demo code={codeAllIcon.default} buttonVisible={false}>
         <IconExample_AllIcon />
       </Demo>
-
     </>
   );
 };

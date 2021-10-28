@@ -1,10 +1,9 @@
 import React from "react";
 import Button, { ButtonSize } from "lib/Button/button";
 
-const ButtonExample: React.FunctionComponent = () => {
+const ButtonSizeExample: React.FunctionComponent = () => {
   return (
-    <div>
-      <h2>按钮尺寸</h2>
+    <div className="button_wrap">
       <Button level="primary" size="lg">
         large按钮
       </Button>
@@ -21,4 +20,4 @@ const ButtonExample: React.FunctionComponent = () => {
   );
 };
 
-export default ButtonExample;
+export default ButtonSizeExample;

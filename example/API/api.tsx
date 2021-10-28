@@ -1,49 +1,33 @@
 import React, { ReactElement } from "react";
 import Table from "lib/Table/table";
+import { columns, Api_Data_Icon, Api_Data_Button } from "./config";
 
 interface ApiProps {
-  data: Array<{
+  type: string;
+}
+
+type mapOption = {
+  [key: string]: Array<{
     props: string;
     explain: string;
     type: string | ReactElement;
     defaultValue: string;
-    require: boolean | string
+    require: boolean | string;
   }>;
-}
+};
 
 const API: React.FC<ApiProps> = props => {
-  const { data } = props;
-  const columns = [
-    {
-      title: "属性",
-      key: "props"
-    },
-    {
-      title: "说明",
-      key: "explain"
-    },
-    {
-      title: "类型",
-      key: "type",
-      render: (text: any, record: object, index: number) => {
-        console.log(text, record, index, '丁金凤赛精工的');
-        return <div style={{color: 'red'}}>text</div>;
-      }
-    },
-    {
-      title: "默认值",
-      key: "defaultValue"
-    },
-    {
-      title: '必填',
-      key: 'require'
-    }
-  ];
+  const { type } = props;
+
+  const MAP: mapOption = {
+    icon: Api_Data_Icon,
+    button: Api_Data_Button
+  };
 
   return (
     <div>
       <h1 className="margin_bottom">API</h1>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={MAP[type]} />
     </div>
   );
 };
