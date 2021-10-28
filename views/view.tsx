@@ -5,6 +5,7 @@ import { routeList } from "./config";
 
 import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
 import Scroll from "lib/Scroll/scroll";
+import All from "lib/All/all";
 import "./view.scss";
 // @ts-ignore
 import logo from "./logo.png";
@@ -30,6 +31,8 @@ ReactDOM.render(
         </SideBar>
         <Scroll style={{ height: "calc(100vh - 121px)", width: "100%" }}>
           <Content className="g-main">
+            {/* <Route path="/" component={All} exact/> */}
+            {/* <Redirect path="/" to="/all" /> */}
             {routeList.map((item, index) => {
               return (
                 <Route
