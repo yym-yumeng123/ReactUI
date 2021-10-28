@@ -1,14 +1,13 @@
 import React from "react";
 import Icon from "lib/Icon/icon";
 
-const IconExample: React.FunctionComponent = () => {
+const IconExampleCode: React.FunctionComponent = () => {
   const fn = () => {
     console.log('我被点击了');
 
   }
   return (
     <div>
-      <h1 className="margin_bottom">代码演示</h1>
       <Icon name="refresh" spin />
       <Icon name="refresh" color="red" />
       <Icon name="refresh" size="20" />
@@ -17,4 +16,4 @@ const IconExample: React.FunctionComponent = () => {
   )
 };
 
-export default IconExample;
+export default IconExampleCode;
