@@ -94,17 +94,39 @@ export const iconNames: string[] = [
 
 export const Api_Data = [
   {
-    props: 'name',
-    explain: '设置 icon 的名称, 显示对应的 icon',
-    type: 'string',
-    defaultValue: '/',
-    require: 'true'
+    props: "name",
+    explain: "设置 icon 的名称, 显示对应的 icon",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+
+  {
+    props: "color",
+    explain: "设置 icon 的颜色",
+    type: "string",
+    defaultValue: "#000",
+    require: "false"
   },
   {
-    props: 'onClick/onMouseEnter/onMouseLeave/...',
-    explain: '触发 icon 的事件',
-    type: 'Function',
-    defaultValue: '/',
-    required: 'false'
+    props: "size",
+    explain: "设置 icon 的大小, 单位 px",
+    type: "string",
+    defaultValue: "2em",
+    require: "false"
+  },
+  {
+    props: "spin",
+    explain: "设置 icon 的旋转动画, 是否旋转",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "onClick/onMouseEnter/onMouseLeave/...",
+    explain: "触发 icon 的事件",
+    type: "Function",
+    defaultValue: "/",
+    require: "false"
   }
-]
+];

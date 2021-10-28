@@ -42,7 +42,7 @@ const API: React.FC<ApiProps> = props => {
 
   return (
     <div>
-      <h1 style={{marginTop: '10px'}}>API</h1>
+      <h1 className="margin_bottom">API</h1>
       <Table columns={columns} dataSource={data} />
     </div>
   );
