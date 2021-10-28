@@ -1,7 +1,9 @@
 #https://github.com/revolunet/create-react-app-circleci/blob/master/.circleci/config.yml
+
+# 使用原来的默认
 defaults: &defaults
   docker:
-    - image: circleci/node:8
+    - image: circleci/node:12
 
 version: 2
 jobs:

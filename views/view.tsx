@@ -5,7 +5,6 @@ import { routeList } from "./config";
 
 import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
 import Scroll from "lib/Scroll/scroll";
-import All from "lib/All/all";
 import "./view.scss";
 // @ts-ignore
 import logo from "./logo.png";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Table from "lib/Table/table";
 
 const TableDemo = () => {
-  const [columns, setcColumns] = useState([
+  const [columns] = useState([
     {
       title: "姓名",
       key: "name",
@@ -19,7 +19,7 @@ const TableDemo = () => {
       key: "address"
     }
   ]);
-  const [dataSource, setDataSource] = useState([
+  const [dataSource] = useState([
     {
       key: "1",
       name: "胡彦斌",
