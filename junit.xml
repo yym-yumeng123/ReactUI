@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="5" failures="0" time="5.435">
-  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2021-10-28T09:16:46" time="3.696" tests="5">
+<testsuites name="jest tests" tests="15" failures="1" time="9.774">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-28T13:25:15" time="2.482" tests="1">
+    <testcase classname=" add" name=" add" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2021-10-28T13:25:15" time="2.568" tests="5">
     <testcase classname="classes 接受一个 classname" name="classes 接受一个 classname" time="0.003">
     </testcase>
     <testcase classname="classes 接收两个 classname" name="classes 接收两个 classname" time="0.001">
@@ -10,6 +14,36 @@
     <testcase classname="classes 接收多个奇怪值" name="classes 接收多个奇怪值" time="0.001">
     </testcase>
     <testcase classname="classes 接收空" name="classes 接收空" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="classes" errors="0" failures="1" skipped="0" timestamp="2021-10-28T13:25:15" time="2.583" tests="6">
+    <testcase classname="classes 接收一个 classname" name="classes 接收一个 classname" time="0.004">
+    </testcase>
+    <testcase classname="classes 接收两个 classname" name="classes 接收两个 classname" time="0">
+    </testcase>
+    <testcase classname="classes 接收参数一个 undefined" name="classes 接收参数一个 undefined" time="0.001">
+    </testcase>
+    <testcase classname="classes 接收多个值" name="classes 接收多个值" time="0">
+    </testcase>
+    <testcase classname="classes 接收空" name="classes 接收空" time="0.001">
+    </testcase>
+    <testcase classname="mergeClassOrScoped 接收字符串或对象" name="mergeClassOrScoped 接收字符串或对象" time="0.001">
+      <failure>TypeError: (0 , _classes.mergeClassOrScoped) is not a function
+    at Object.&lt;anonymous&gt; (C:\Users\18026\Desktop\ReactUI\lib\utils\__tests__\classes.unit.jsx:30:25)
+    at Object.asyncJestTest (C:\Users\18026\Desktop\ReactUI\node_modules\jest-jasmine2\build\jasmineAsyncInstall.js:102:37)
+    at C:\Users\18026\Desktop\ReactUI\node_modules\jest-jasmine2\build\queueRunner.js:43:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (C:\Users\18026\Desktop\ReactUI\node_modules\jest-jasmine2\build\queueRunner.js:26:19)
+    at C:\Users\18026\Desktop\ReactUI\node_modules\jest-jasmine2\build\queueRunner.js:73:41
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)</failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="测试Icon" errors="0" failures="0" skipped="0" timestamp="2021-10-28T13:25:15" time="2.665" tests="3">
+    <testcase classname="测试Icon render success" name="测试Icon render success" time="0.015">
+    </testcase>
+    <testcase classname="测试Icon onClick" name="测试Icon onClick" time="0.05">
+    </testcase>
+    <testcase classname="测试Icon onClick jest.fn()" name="测试Icon onClick jest.fn()" time="0.004">
     </testcase>
   </testsuite>
 </testsuites>

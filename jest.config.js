@@ -11,6 +11,7 @@ module.exports = {
   coverageDirectory: "coverage",
   // 用哪些报告
   coverageReporters: ["text", "lcov"],
+  // 分析代码
   reporters: ["default", "jest-junit"],
   globals: {
     "ts-jest": {
