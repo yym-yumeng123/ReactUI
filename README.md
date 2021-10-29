@@ -88,14 +88,25 @@ ReactUI
 `/lib/Helpers/classes.tsx`
 ```js
 /**
- * @description 接受多个 class
+// @description 接受多个 class
  * @param names class 数组
  */
 function classes(...names: (string | undefined | boolean)[]) {
-  // ... 会把参数转为数组
   return names.filter(Boolean).join(" ");
 }
-export default classes
+```
+
+```js
+// lib/Helpers/scopedClassMarker.tsx
+function scopedClassMaker(prefix: string) {
+  return (name?: string) => {
+    return [prefix, name].filter(Boolean).join("-");
+  };
+}
+
+// sc() yui-default
+// sc('') yui-default
+// sc('hi') yui-default-hi
 ```
 
 - `deploy.sh` 修改发布版本并 push

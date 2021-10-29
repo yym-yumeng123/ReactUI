@@ -14,22 +14,20 @@ const scopedClass = scopedClassMaker("yui-layout");
 
 // 对1的优化: 继承 html 属性
 interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
+  // children 是一个 react 元素 或者多个元素
   children: ReactElement | ReactElement[];
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = props => {
-  const { className, ...restProps } = props;
+  const { className, children, ...restProps } = props;
 
   // ts 断言, children 当做数组来用
-  const children = props.children as ReactElement[];
+  const child = children as ReactElement[];
 
   // 得到子元素是否有 SideBar, 有添加类名
   const hasAside =
-    children.length &&
-    children.reduce(
-      (result, node) => result || node.type === Sidebar,
-      false
-    );
+    'length' in child &&
+    child.reduce((result, node) => result || node.type === Sidebar, false);
 
   return hasAside ? (
     <div
@@ -47,8 +45,8 @@ const Layout: React.FunctionComponent<LayoutProps> = props => {
 
 // 都从这里默认导出
 export default Layout;
-export {Layout};
-export {default as Header} from  "./header";
-export {default as Content} from  "./content";
-export {default as Footer} from  "./footer";
-export {default as SideBar} from  "./sidebar";
+export { Layout };
+export { default as Header } from "./header";
+export { default as Content } from "./content";
+export { default as Footer } from "./footer";
+export { default as SideBar } from "./sidebar";
