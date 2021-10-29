@@ -70,6 +70,7 @@ workflows:
       - publish:
           requires:
             - build
+          # 只在 打了标签的地方 publish
           filters:
             tags:
               only: /^v[0-9]+(\.[0-9]+)*/

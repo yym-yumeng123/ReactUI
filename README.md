@@ -93,3 +93,5 @@ function classes(...names: (string | undefined | boolean)[]) {
 }
 export default classes
 ```
+
+- `deploy.sh` 修改发布版本并 push
