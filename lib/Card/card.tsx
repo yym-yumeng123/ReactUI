@@ -1,20 +1,27 @@
-import React from "react";
+import React, { FC, HTMLAttributes, ReactElement } from "react";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
-import './card.scss'
+import "./card.scss";
 
-const mergeClass = addPrefixAndMergeClass('yui-card')
+const mergeClass = addPrefixAndMergeClass("yui-card");
 
-const Card = () => {
-  return (
-    <div className={mergeClass('')}>
-      <header className={mergeClass('header')}>
-        我是头部
-      </header>
-      <main className={mergeClass('content')}>
-        我是身体
-      </main>
-    </div>
-  )
+interface CardProps extends HTMLAttributes<HTMLElement> {
+  title: string;
+  extra?: ReactElement;
+  children: any;
 }
 
-export default Card
+const Card: FC<CardProps> = props => {
+  const { title, extra, children, className } = props;
+
+  return (
+    <div className={mergeClass("", { extra: className })}>
+      <header className={mergeClass("header")}>
+        <div className={mergeClass("header_title")}>{title}</div>
+        {extra && <div className={mergeClass("header_extra")}>{extra}</div>}
+      </header>
+      <main className={mergeClass("content")}>{children}</main>
+    </div>
+  );
+};
+
+export default Card;

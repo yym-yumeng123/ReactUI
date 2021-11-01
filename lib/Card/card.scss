@@ -5,6 +5,9 @@
   border-radius: $radius;
   padding: 0 $padding;
   &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: $padding 0;
     color: $font-color-title;
     border-bottom: 1px solid $B200;
