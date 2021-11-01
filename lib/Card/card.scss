@@ -1,0 +1,19 @@
+@import "lib/styles/variable.scss";
+
+.yui-card {
+  border: 1px solid $card-border-color;
+  border-radius: $radius;
+  padding: 0 $padding;
+  &-header {
+    padding: $padding 0;
+    color: $font-color-title;
+    border-bottom: 1px solid $B200;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  &-content {
+    padding: $padding 0;
+    font-size: $font-size-default;
+    color: $font-color-default;
+  }
+}

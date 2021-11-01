@@ -12,7 +12,7 @@ interface Options {
  */
 const addPrefixAndMergeClass = (prefix: string) => (
   name: string | ClassToggles,
-  options: Options
+  options?: Options
 ) =>
   Object.entries(name instanceof Object ? name : { [name]: name })
     .filter(kv => kv[1] !== false)

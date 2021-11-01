@@ -1,4 +1,14 @@
 @import "./helper";
+@import "./style.scss";
+
+// common
+$radius: 6px;
+$padding: 20px;
+$font-color-title: $B900; // 标题文字颜色
+$font-color-default: $B800; // 默认文字颜色
+
+$font-size-default: 14px;
+$font-size-lg: 16px;
 
 // button
 $btn-font-size: 14px;
@@ -26,4 +36,5 @@ $btn-padding-y-xs: 2px;
   border-radius: $border-radius;
 }
 
-// 也可以 type 结合
+// Card
+$card-border-color: $B200
