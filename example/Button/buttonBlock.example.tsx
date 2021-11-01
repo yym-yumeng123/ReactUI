@@ -10,6 +10,9 @@ const ButtonBlockExample: React.FunctionComponent = () => {
       <Button level="primary" block onClick={fn}>
         block 按钮
       </Button>
+      <br />
+      <br />
+
       <Button level="danger" block onClick={fn}>
         block 按钮
       </Button>

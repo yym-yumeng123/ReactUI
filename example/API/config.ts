@@ -29,7 +29,6 @@ export const Api_Data_Icon = [
     defaultValue: "/",
     require: "true"
   },
-
   {
     props: "color",
     explain: "设置 icon 的颜色",
@@ -99,3 +98,20 @@ export const Api_Data_Button = [
     require: "false"
   }
 ];
+
+export const Api_Data_Card = [
+  {
+    props: "title",
+    explain: "设置卡片的标题",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+  {
+    props: "extra",
+    explain: "可以在标题的右边设置额外的元素",
+    type: "ReactElement",
+    defaultValue: "/",
+    require: "false"
+  },
+]

@@ -1,6 +1,11 @@
 import React, { ReactElement } from "react";
 import Table from "lib/Table/table";
-import { columns, Api_Data_Icon, Api_Data_Button } from "./config";
+import {
+  columns,
+  Api_Data_Icon,
+  Api_Data_Button,
+  Api_Data_Card
+} from "./config";
 
 interface ApiProps {
   type: string;
@@ -21,12 +26,12 @@ const API: React.FC<ApiProps> = props => {
 
   const MAP: mapOption = {
     icon: Api_Data_Icon,
-    button: Api_Data_Button
+    button: Api_Data_Button,
+    card: Api_Data_Card
   };
 
   return (
     <div>
-      <h1 className="margin_bottom">API</h1>
       <Table columns={columns} dataSource={MAP[type]} />
     </div>
   );
