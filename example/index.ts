@@ -17,10 +17,12 @@ import GridExample from "./Grid/grid.example";
 import PopoverExample from "./Popover/popover.example";
 import CollapseExample from "./Collapse/collapse.example";
 import ToastExample from "./Toast/toast.example";
+import CardDemo from "./Card/card.demo";
 
 export {
   IconDemo,
   ButtonDemo,
+  CardDemo,
   PagerDemo,
   RadioDemo,
   CheckboxDemo,

@@ -18,7 +18,8 @@ import {
   GridExample,
   PopoverExample,
   CollapseExample,
-  ToastExample
+  ToastExample,
+  CardDemo
 } from "../example";
 
 export const routeList: Array<{
@@ -40,6 +41,11 @@ export const routeList: Array<{
     path: "/button",
     title: "Button 按钮",
     component: ButtonDemo
+  },
+  {
+    path: "/card",
+    title: "Card 卡片",
+    component: CardDemo
   },
   {
     path: "/pager",

@@ -53,7 +53,7 @@ $padding: 16px;
     }
   }
   .g-aside {
-    min-width: 256px;
+    overflow: auto;
     border-right: 1px solid #f2f2f5;
     h2 {
       padding: $padding;
@@ -91,8 +91,6 @@ $padding: 16px;
     margin-bottom: 8px;
   }
 }
-
-
 
 .margin_bottom {
   margin: 16px 0;
