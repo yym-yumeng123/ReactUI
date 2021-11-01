@@ -9,3 +9,10 @@
 3. travis.ci   CI 集成工具
 
 4. 发布: 入口 `index.tsx` 导出需要的组件, `npm publish`
+
+5. 创建自己的官网
+  - `layout.tsx` 使用 其他子组件 默认导出 `export { default as Header } from "./header";`
+  - 我把 `views/` 下面的文件 当做自己的展示页面
+  - 搜索 `logo marker` 制作免费logo
+  - 展示自己的`源代码`, `raw-loader` `prism-react-renderer 高亮`
+  - [prism-react-renderer](https://openbase.com/js/prism-react-renderer/documentation)

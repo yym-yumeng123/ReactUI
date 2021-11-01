@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/shadesOfPurple";
 import Button from "./Button/button";
 interface Props {
   code: string;
@@ -13,7 +14,7 @@ const Demo: React.FunctionComponent<Props> = props => {
   const { buttonVisible = true } = props;
   const [codeVisible, setCodeVisible] = useState(false);
   const code = (
-    <Highlight {...defaultProps} code={props.code} language="jsx">
+    <Highlight {...defaultProps} code={props.code} theme={theme} language="jsx">
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={style}>
           {tokens.map((line, i) => (
