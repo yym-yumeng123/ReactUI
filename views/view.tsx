@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import { routeList } from "./config";
 
+import All from "lib/All/all";
 import { Layout, Footer, Header, SideBar, Content } from "lib/Layout/layout";
 import { Button } from "lib";
 import Scroll from "lib/Scroll/scroll";
@@ -26,24 +27,21 @@ ReactDOM.render(
         </div>
       </Header>
       <Layout>
-        <Scroll style={{ height: "calc(100vh - 121px)", width: '256px' }}>
-          <SideBar className="g-aside">
-            <h2>组件</h2>
-            <ul>
-              {routeList.map((item, index) => {
-                return (
-                  <li key={String(index)}>
-                    <NavLink to={item.path}>{item.title}</NavLink>
-                  </li>
-                );
-              })}
-            </ul>
-          </SideBar>
-        </Scroll>
+        <SideBar className="g-aside">
+          <h2>组件</h2>
+          <ul>
+            {routeList.map((item, index) => {
+              return (
+                <li key={String(index)}>
+                  <NavLink to={item.path}>{item.title}</NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        </SideBar>
         <Scroll style={{ height: "calc(100vh - 121px)", width: "100%" }}>
           <Content className="g-main">
-            {/* <Route path="/" component={All} exact/> */}
-            {/* <Redirect path="/" to="/all" /> */}
+            <Route path="/" component={All} exact />
             {routeList.map((item, index) => {
               return (
                 <Route

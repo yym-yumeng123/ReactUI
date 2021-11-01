@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./importAllIcons";
-import { classes } from "../utils/classes";
 import "./icon.scss";
+
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-icon");
 
 interface IconProps extends React.SVGAttributes<SVGElement> {
   name: string;
@@ -19,7 +21,6 @@ const Icon: React.FunctionComponent<IconProps> = ({
   spin,
   ...restProps
 }) => {
-  const spinning = spin && 'yui-icon-spin'
   const styles = () => {
     let style: any = {};
     if (color) {
@@ -30,11 +31,10 @@ const Icon: React.FunctionComponent<IconProps> = ({
     }
     return style;
   };
-
   return (
     <svg
       style={styles()}
-      className={classes("yui-icon", className, spinning)}
+      className={mergeClass({ "": true, spin: !!spin }, { extra: className })}
       {...restProps}
     >
       <use xlinkHref={`#${name}`}></use>

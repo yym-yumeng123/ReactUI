@@ -53,6 +53,7 @@ $padding: 16px;
     }
   }
   .g-aside {
+    height: calc(100vh - 121px);
     overflow: auto;
     border-right: 1px solid #f2f2f5;
     h2 {

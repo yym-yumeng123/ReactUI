@@ -1,6 +1,8 @@
 import * as React from "react";
-import classNames from "classnames";
 import "./button.scss";
+
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-button");
 
 export enum ButtonSize {
   Large = "lg",
@@ -36,7 +38,7 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 const Button: React.FC<ButtonProps> = props => {
   const {
     children,
-    level,
+    level = "default",
     size,
     disabled,
     href,
@@ -45,13 +47,16 @@ const Button: React.FC<ButtonProps> = props => {
     ...restProps
   } = props;
 
-  // class 不同属性
-  const classes = classNames("yui-button", className, {
-    [`yui-button-${level}`]: level,
-    [`yui-button-${size}`]: size,
-    ["yui-button-disabled"]: disabled,
-    ["yui-button-block"]: block
-  });
+  const classes = mergeClass(
+    {
+      "": true,
+      [`${level}`]: !!level,
+      [`${size}`]: !!size,
+      disabled: !!disabled,
+      block: !!block
+    },
+    { extra: className }
+  );
   return (
     <>
       {level === "link" ? (

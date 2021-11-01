@@ -29,7 +29,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
-    "@types/classnames": "^2.2.10",
     "@types/jest": "^24.0.23",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
@@ -39,7 +38,6 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-jest": "^24.9.0",
     "babel-preset-react-app": "^9.0.2",
-    "classnames": "^2.2.6",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.0",
     "enzyme": "^3.10.0",
