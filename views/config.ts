@@ -7,7 +7,7 @@ import {
   CheckboxDemo,
   TableDemo,
   LayoutExample,
-  TreeDemo,
+  // TreeDemo,
   ScrollExample,
   InputExample,
   AutoCompleteExample,
@@ -76,11 +76,11 @@ export const routeList: Array<{
     title: "Form 表单",
     component: FormExample
   },
-  {
-    path: "/tree",
-    title: "Tree 树",
-    component: TreeDemo
-  },
+  // {
+  //   path: "/tree",
+  //   title: "Tree 树",
+  //   component: TreeDemo
+  // },
   {
     path: "/scroll",
     title: "Scroll 滚动",

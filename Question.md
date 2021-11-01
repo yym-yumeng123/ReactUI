@@ -16,3 +16,10 @@
   - 搜索 `logo marker` 制作免费logo
   - 展示自己的`源代码`, `raw-loader` `prism-react-renderer 高亮`
   - [prism-react-renderer](https://openbase.com/js/prism-react-renderer/documentation)
+  - 使用 `yarn doc yarn build ts报错最好不要有`
+  - 部署:
+    ```js
+    git push origin gh-pages:gh-pages // 远程创建分支
+
+    sh doc.sh
+    ```

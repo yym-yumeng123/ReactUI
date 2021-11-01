@@ -6,7 +6,7 @@ import PagerDemo from "./pager/pager.demo";
 import RadioDemo from './Radio/radio.demo';
 import CheckboxDemo from './Checkbox/checkbox.demo';
 import TableDemo from "./Table/table.demo";
-import TreeDemo from "./Tree/tree.example";
+// import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
 import InputExample from "./Input/Input.example";
 import SwitchExample from "./Switch/switch.example";
@@ -26,7 +26,7 @@ export {
   CheckboxDemo,
   TableDemo,
   LayoutExample,
-  TreeDemo,
+  // TreeDemo,
   ScrollExample,
   InputExample,
   AutoCompleteExample,
