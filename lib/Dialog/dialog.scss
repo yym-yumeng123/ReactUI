@@ -4,7 +4,7 @@
   position: fixed;
   left: 50%;
   top: 50%;
-  z-index: 1050;
+  z-index: $dialog-zIndex-content;
   transform: translate(-50%, -50%);
   min-width: 400px;
   padding: 20px;
@@ -42,7 +42,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1049;
+    z-index: $dialog-zIndex-mask;
     width: 100%;
     height: 100%;
     background: rgba($B900, 0.3);

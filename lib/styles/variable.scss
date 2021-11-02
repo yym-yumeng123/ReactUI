@@ -30,6 +30,11 @@ $btn-font-size-xs: 12px;
 $btn-padding-x-xs: 8px;
 $btn-padding-y-xs: 2px;
 
+// Dialog
+$dialog-zIndex-content: 1000;
+$dialog-zIndex-mask: 999;
+
+
 // 改变 size, 就是改变这几个属性
 @mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {
   padding: $padding-y $padding-x;
