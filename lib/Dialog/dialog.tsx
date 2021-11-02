@@ -9,8 +9,8 @@ const mergeClass = addPrefixAndMergeClass("yui-dialog");
 interface DialogProps {
   visible: boolean; // 是否可见
   footer?: ReactElement | null;
-  onCancel: React.MouseEventHandler;
-  onOk: React.MouseEventHandler;
+  onCancel?: React.MouseEventHandler;
+  onOk?: React.MouseEventHandler;
   onOkText?: string;
   onCancelText?: string;
   maskClosable?: boolean; // 遮罩点击是否关闭
@@ -32,17 +32,17 @@ const Dialog: FC<DialogProps> = props => {
   } = props;
   // 确定回调
   const handlerOk: React.MouseEventHandler = event => {
-    onOk(event);
+    onOk && onOk(event);
   };
 
   // 关闭回调
   const handlerClose: React.MouseEventHandler = event => {
-    onCancel(event);
+    onCancel && onCancel(event);
   };
 
   const handlerCloseMask: React.MouseEventHandler = event => {
     if (maskClosable) {
-      onCancel(event);
+      onCancel && onCancel(event);
     }
   };
 
@@ -68,6 +68,7 @@ const Dialog: FC<DialogProps> = props => {
                 <Button onClick={handlerClose}>{onCancelText}</Button>
               </>
             )}
+
           </footer>
         )}
       </div>

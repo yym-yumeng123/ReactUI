@@ -50,9 +50,6 @@ export default function() {
           setVisible2(false);
         }}
         maskClosable={false}
-        onOk={() => {
-          setVisible2(false);
-        }}
       >
         <strong>hi</strong>
         <p>这是一段文字</p>
