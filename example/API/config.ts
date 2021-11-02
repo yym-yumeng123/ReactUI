@@ -181,3 +181,13 @@ export const Api_Data_Dialog = [
     require: "false"
   },
 ];
+
+export const Api_Data_Layout = [
+  {
+    props: "className",
+    explain: "容器 className",
+    type: "string",
+    defaultValue: "/",
+    require: "false"
+  },
+]

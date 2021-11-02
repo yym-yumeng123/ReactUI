@@ -7,6 +7,7 @@
 .yym-demo-layout {
   height: 300px;
   color: #fff;
+  margin-bottom: 16px;
 
   .yym-demo-sider {
     @include center;
@@ -34,5 +35,17 @@
 
     height: 64px;
     background-color: #7dbcea;
+  }
+}
+
+
+.layout_demo {
+  ul {
+    li {
+      // color: #fff;
+      font-size: 14px;
+      margin-bottom: 4px;
+      // background-color: #108ee9;
+    }
   }
 }

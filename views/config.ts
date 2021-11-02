@@ -4,11 +4,11 @@ import {
   ButtonDemo,
   CardDemo,
   DialogDemo,
+  LayoutDemo,
   PagerDemo,
   RadioDemo,
   CheckboxDemo,
   TableDemo,
-  LayoutExample,
   TreeDemo,
   ScrollExample,
   InputExample,
@@ -53,6 +53,11 @@ export const routeList: Array<{
     component: DialogDemo
   },
   {
+    path: "/layout",
+    title: "Layout 布局容器",
+    component: LayoutDemo
+  },
+  {
     path: "/pager",
     title: "Pager 分页",
     component: PagerDemo
@@ -72,11 +77,7 @@ export const routeList: Array<{
     title: "Table 表格",
     component: TableDemo
   },
-  {
-    path: "/layout",
-    title: "Layout 布局容器",
-    component: LayoutExample
-  },
+
   {
     path: "/form",
     title: "Form 表单",
