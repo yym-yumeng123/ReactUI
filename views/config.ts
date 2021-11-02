@@ -3,7 +3,7 @@ import {
   IconDemo,
   ButtonDemo,
   CardDemo,
-  DialogExample,
+  DialogDemo,
   PagerDemo,
   RadioDemo,
   CheckboxDemo,
@@ -50,7 +50,7 @@ export const routeList: Array<{
   {
     path: "/dialog",
     title: "Dialog 弹窗",
-    component: DialogExample
+    component: DialogDemo
   },
   {
     path: "/pager",

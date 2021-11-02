@@ -113,5 +113,71 @@ export const Api_Data_Card = [
     type: "ReactElement",
     defaultValue: "/",
     require: "false"
+  }
+];
+
+export const Api_Data_Dialog = [
+  {
+    props: "visible",
+    explain: "设置 Dialog 对话框的显示隐藏",
+    type: "boolean",
+    defaultValue: "false",
+    require: "true"
   },
-]
+  {
+    props: "title",
+    explain: "设置 Dialog 对话框的标题",
+    type: "string",
+    defaultValue: "标题",
+    require: "false"
+  },
+  {
+    props: "closable",
+    explain: "设置 Dialog 右上角的 关闭 icon 是否存在",
+    type: "boolean",
+    defaultValue: "true",
+    require: "false"
+  },
+  {
+    props: "maskClosable",
+    explain: "点击遮罩层是否关闭对话框",
+    type: "boolean",
+    defaultValue: "true",
+    require: "false"
+  },
+  {
+    props: "footer",
+    explain: "设置对话框底部的内容, 使用 <Fragment> 包裹元素",
+    type: "ReactElement | null",
+    defaultValue: "ReactNode",
+    require: "false"
+  },
+  {
+    props: "onOkText",
+    explain: "设置对话框底部确认按钮的文字",
+    type: "string",
+    defaultValue: "确定",
+    require: "false"
+  },
+  {
+    props: "onCancelText",
+    explain: "设置对话框底部取消按钮的文字",
+    type: "string",
+    defaultValue: "取消",
+    require: "false"
+  },
+  {
+    props: "onOk",
+    explain: "确认按钮回调",
+    type: "React.MouseEventHandler",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "onCancel",
+    explain: "取消按钮回调",
+    type: "React.MouseEventHandler",
+    defaultValue: "/",
+    require: "false"
+  },
+];

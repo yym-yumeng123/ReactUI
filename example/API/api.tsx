@@ -4,7 +4,8 @@ import {
   columns,
   Api_Data_Icon,
   Api_Data_Button,
-  Api_Data_Card
+  Api_Data_Card,
+  Api_Data_Dialog
 } from "./config";
 
 interface ApiProps {
@@ -27,7 +28,8 @@ const API: React.FC<ApiProps> = props => {
   const MAP: mapOption = {
     icon: Api_Data_Icon,
     button: Api_Data_Button,
-    card: Api_Data_Card
+    card: Api_Data_Card,
+    dialog: Api_Data_Dialog
   };
 
   return (
