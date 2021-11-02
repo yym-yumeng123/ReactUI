@@ -79,6 +79,7 @@ const Dialog: FC<DialogProps> = props => {
   return ReactDOM.createPortal(DialogPor, document.body);
 };
 
+
 export default Dialog;
 export { default as Alert } from "./alert";
 export { default as Confirm } from "./confirm";

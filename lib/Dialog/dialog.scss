@@ -32,8 +32,8 @@
     button {
       cursor: pointer;
     }
-    > button:first-child {
-      margin-right: 10px;
+    > button:last-child {
+      margin-left: 10px;
     }
   }
   &-mask {

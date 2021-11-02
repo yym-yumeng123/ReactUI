@@ -1,23 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Dialog from "./dialog";
+import Button from "lib/Button/button";
 
 /**
  * 函数的方法使用这个 Alert
  * ReactDOM.render
  */
 const Alert = (content: string) => {
+  const onClose = () => {
+    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
+    ReactDOM.unmountComponentAtNode(div);
+    div.remove();
+  };
   const component = (
     <Dialog
+      title="提示"
       visible={true}
-      onCancel={() => {
-        // visible 变为false
-        ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-        // 卸载 div
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
-      }}
-      footer={null}
+      onCancel={onClose}
+      footer={
+        <>
+          <Button level="primary" onClick={onClose}>
+            确定
+          </Button>
+        </>
+      }
     >
       {content}
     </Dialog>
@@ -29,4 +36,4 @@ const Alert = (content: string) => {
   ReactDOM.render(component, div);
 };
 
-export default Alert
+export default Alert;

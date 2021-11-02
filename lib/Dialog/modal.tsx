@@ -1,9 +1,9 @@
-import React, { ReactFragment, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import Dialog from "./dialog";
 
 const Modal = (
-  content: ReactNode | ReactFragment,
+  content: ReactNode,
 ) => {
   const onOk = () => {
     ReactDOM.render(React.cloneElement(component, { visible: false }), div);
