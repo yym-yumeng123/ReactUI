@@ -68,7 +68,6 @@ const Dialog: FC<DialogProps> = props => {
                 <Button onClick={handlerClose}>{onCancelText}</Button>
               </>
             )}
-
           </footer>
         )}
       </div>
@@ -80,65 +79,7 @@ const Dialog: FC<DialogProps> = props => {
   return ReactDOM.createPortal(DialogPor, document.body);
 };
 
-const Alert = (content: string) => {
-  const component = (
-    <Dialog
-      visible={true}
-      onOk={() => {}}
-      onCancel={() => {
-        ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-        // 卸载
-        ReactDOM.unmountComponentAtNode(div);
-        div.remove();
-      }}
-      footer={null}
-    >
-      {content}
-    </Dialog>
-  );
-  const div = document.createElement("div");
-  document.body.append(div);
-  ReactDOM.render(component, div);
-};
-
-const Confirm = (content: string, yes?: () => void, no?: () => void) => {
-  const onYes = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-    ReactDOM.unmountComponentAtNode(div);
-    div.remove();
-    yes && yes();
-  };
-
-  const onNo = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-    ReactDOM.unmountComponentAtNode(div);
-    div.remove();
-    no && no();
-  };
-
-  const component = (
-    <Dialog
-      visible={true}
-      onCancel={onNo}
-      onOk={() => {}}
-      footer={
-        <>
-          <Button level="primary" onClick={onYes}>
-            ok
-          </Button>
-          <Button onClick={onNo}>cancel</Button>
-        </>
-      }
-    >
-      {content}
-    </Dialog>
-  );
-
-  const div = document.createElement("div");
-  document.body.appendChild(div);
-  ReactDOM.render(component, div);
-};
-
-export { Alert, Confirm };
-
 export default Dialog;
+export { default as Alert } from "./alert";
+export { default as Confirm } from "./confirm";
+export { default as Modal } from "./modal";

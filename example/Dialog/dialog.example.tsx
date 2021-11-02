@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Dialog, { Alert, Confirm } from "lib/Dialog/dialog";
+import Dialog, { Alert, Confirm, Modal } from "lib/Dialog/dialog";
 import Button from "lib/Button/button";
 
 export default function() {
@@ -12,16 +12,38 @@ export default function() {
   };
 
   const handlerConfirm = () => {
-    Confirm("我是Confirm");
+    Confirm("我是Confirm", () => {
+      console.log("woqrdk le ");
+
+    });
+  };
+  const handlerModal = () => {
+    const a = Modal(<h1>你横财<button onClick={() => a.onOk()}>关闭</button></h1>);
+    console.log(a);
+
+
   };
 
   return (
     <>
-      <Button level="primary" onClick={() => setVisible(!visible)}>按钮</Button>
-      <Button level="primary" onClick={() => setVisible2(true)}>按钮2</Button>
-      <Button level="primary" onClick={() => setVisible3(true)}>按钮3</Button>
-      <Button level="primary" onClick={handlerAlert}>alert</Button>
-      <Button level="primary" onClick={handlerConfirm}>confirm</Button>
+      <Button level="primary" onClick={() => setVisible(!visible)}>
+        按钮
+      </Button>
+      <Button level="primary" onClick={() => setVisible2(true)}>
+        按钮2
+      </Button>
+      <Button level="primary" onClick={() => setVisible3(true)}>
+        按钮3
+      </Button>
+      <Button level="primary" onClick={handlerAlert}>
+        alert
+      </Button>
+      <Button level="primary" onClick={handlerConfirm}>
+        confirm
+      </Button>
+      <Button level="primary" onClick={handlerModal}>
+        modal
+      </Button>
       <Dialog
         visible={visible}
         onOk={() => {
@@ -42,7 +64,9 @@ export default function() {
         visible={visible2}
         footer={
           <>
-            <Button level="primary" onClick={() => setVisible2(false)}>ok</Button>
+            <Button level="primary" onClick={() => setVisible2(false)}>
+              ok
+            </Button>
             <Button>cancel</Button>
           </>
         }
