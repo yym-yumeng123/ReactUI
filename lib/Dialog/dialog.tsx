@@ -1,76 +1,82 @@
-import React, { Fragment, ReactElement } from "react";
+import React, { FC, Fragment, ReactElement } from "react";
 import ReactDOM from "react-dom";
-import { Icon, Button } from "../index";
-import { scopedClassMaker } from "../utils/classes";
+import Icon from "lib/Icon/icon";
+import Button from "lib/Button/button";
 import "./dialog.scss";
 
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-dialog");
 interface DialogProps {
-  visible: boolean;
+  visible: boolean; // 是否可见
   footer?: ReactElement | null;
   onCancel: React.MouseEventHandler;
   onOk: React.MouseEventHandler;
   onOkText?: string;
   onCancelText?: string;
-  maskClosable?: boolean;
-  closable?: boolean;
+  maskClosable?: boolean; // 遮罩点击是否关闭
+  closable?: boolean; // 右上角 关闭 是否存在
   title?: string;
 }
 
-// 类名 复用
-const scopedClass = scopedClassMaker("yui-dialog");
-
-const Dialog: React.FunctionComponent<DialogProps> = props => {
+const Dialog: FC<DialogProps> = props => {
+  const {
+    visible = false,
+    closable = true,
+    maskClosable = true,
+    title = "标题",
+    onOkText = "确定",
+    onCancelText = "取消",
+    onOk,
+    onCancel,
+    footer
+  } = props;
+  // 确定回调
   const handlerOk: React.MouseEventHandler = event => {
-    props.onOk(event);
+    onOk(event);
   };
 
+  // 关闭回调
   const handlerClose: React.MouseEventHandler = event => {
-    props.onCancel(event);
+    onCancel(event);
   };
 
   const handlerCloseMask: React.MouseEventHandler = event => {
-    if (props.maskClosable) {
-      props.onCancel(event);
+    if (maskClosable) {
+      onCancel(event);
     }
   };
 
-  const DialogPor = props.visible ? (
+  const DialogPor = visible ? (
     <Fragment>
-      <div className={scopedClass()}>
-        {props.closable ? (
-          // 类名 ==> yui-dialog-close
-          <div className={scopedClass("close")} onClick={handlerClose}>
-            <Icon name="close" />
+      <div className={mergeClass("")}>
+        {closable ? (
+          <div className={mergeClass("close")} onClick={handlerClose}>
+            <Icon name="close" size="12" />
           </div>
         ) : null}
-        <header className={scopedClass("header")}>{props.title}</header>
-        <main className={scopedClass("main")}>{props.children}</main>
-        {props.footer === null ? null : (
-          <footer className={scopedClass("footer")}>
-            {props.footer ? (
-              props.footer
+        <header className={mergeClass("header")}>{title}</header>
+        <main className={mergeClass("main")}>{props.children}</main>
+        {footer === null ? null : (
+          <footer className={mergeClass("footer")}>
+            {footer ? (
+              footer
             ) : (
               <>
-                <Button level="primary" onClick={handlerOk}>{props.onOkText}</Button>
-                <Button onClick={handlerClose}>{props.onCancelText}</Button>
+                <Button level="primary" onClick={handlerOk}>
+                  {onOkText}
+                </Button>
+                <Button onClick={handlerClose}>{onCancelText}</Button>
               </>
             )}
           </footer>
         )}
       </div>
-      <div className={scopedClass("mask")} onClick={handlerCloseMask}></div>
+      <div className={mergeClass("mask")} onClick={handlerCloseMask}></div>
     </Fragment>
   ) : null;
 
+  // 传送门到 body 元素里
   return ReactDOM.createPortal(DialogPor, document.body);
-};
-
-Dialog.defaultProps = {
-  maskClosable: true,
-  closable: true,
-  title: "标题",
-  onOkText: "确定",
-  onCancelText: "取消"
 };
 
 const Alert = (content: string) => {
@@ -116,7 +122,9 @@ const Confirm = (content: string, yes?: () => void, no?: () => void) => {
       onOk={() => {}}
       footer={
         <>
-          <Button level="primary" onClick={onYes}>ok</Button>
+          <Button level="primary" onClick={onYes}>
+            ok
+          </Button>
           <Button onClick={onNo}>cancel</Button>
         </>
       }

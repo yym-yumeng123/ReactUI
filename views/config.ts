@@ -2,6 +2,8 @@ import All from "lib/All/all";
 import {
   IconDemo,
   ButtonDemo,
+  CardDemo,
+  DialogExample,
   PagerDemo,
   RadioDemo,
   CheckboxDemo,
@@ -12,14 +14,12 @@ import {
   InputExample,
   AutoCompleteExample,
   SwitchExample,
-  DialogExample,
   FormExample,
   TabsExample,
   GridExample,
   PopoverExample,
   CollapseExample,
-  ToastExample,
-  CardDemo
+  ToastExample
 } from "../example";
 
 export const routeList: Array<{
@@ -48,6 +48,11 @@ export const routeList: Array<{
     component: CardDemo
   },
   {
+    path: "/dialog",
+    title: "Dialog 弹窗",
+    component: DialogExample
+  },
+  {
     path: "/pager",
     title: "Pager 分页",
     component: PagerDemo
@@ -66,11 +71,6 @@ export const routeList: Array<{
     path: "/table",
     title: "Table 表格",
     component: TableDemo
-  },
-  {
-    path: "/dialog",
-    title: "Dialog 弹窗",
-    component: DialogExample
   },
   {
     path: "/layout",
