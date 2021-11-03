@@ -9,12 +9,18 @@ const mergeClass = addPrefixAndMergeClass("yui-toast");
 interface Options {
   autoClose?: boolean;
   autoCloseDelay?: number;
+  position?: "top" | "middle" | "bottom";
   type?: "success" | "danger" | "info";
   onClose?: () => void;
 }
 
 const toast = (content: string, options: Options) => {
-  const { autoClose = true, autoCloseDelay = 3, onClose } = options;
+  const {
+    autoClose = true,
+    autoCloseDelay = 3,
+    position = "top",
+    onClose
+  } = options;
 
   const closeToast = () => {
     ReactDOM.unmountComponentAtNode(div);
@@ -33,13 +39,13 @@ const toast = (content: string, options: Options) => {
   };
 
   // 有几个弹框
-  const count = document.body.querySelectorAll('.yui-toast-wrapper').length + 1
-
-
-
+  // const count = document.body.querySelectorAll(".yui-toast-wrapper").length + 1;
 
   const component = (
-    <div className={mergeClass("")} style={{top: `${(count)* 40}px`}}>
+    <div
+      className={mergeClass({ "": true, [`posotion-${position}`]: !!position })}
+      // style={{ top: `${count * 40}px` }}
+    >
       <span>{content}</span>
       {!autoClose && (
         <span className={mergeClass("close")}>
@@ -55,11 +61,9 @@ const toast = (content: string, options: Options) => {
   );
 
   const div = document.createElement("div");
-  div.classList.add('yui-toast-wrapper')
+  div.classList.add("yui-toast-wrapper");
   document.body.appendChild(div);
   ReactDOM.render(component, div);
-
-
 };
 
 export default toast;

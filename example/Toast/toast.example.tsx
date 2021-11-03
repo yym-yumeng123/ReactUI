@@ -17,9 +17,17 @@ const ToastExample = () => {
     toast(
       "我是Taost我是Taost我是Taost我是Taost我是Taost我是Taost我是Taost我是",
       {
-        autoClose: false
+        autoClose: false,
+        position: 'bottom'
       }
     );
+  };
+
+  const onclick3 = () => {
+    toast("我是Taost", {
+      position: "middle",
+      autoClose: false
+    });
   };
   return (
     <div>
@@ -32,6 +40,10 @@ const ToastExample = () => {
 
       <Button level="primary" onClick={onclick2}>
         toast大量内容
+      </Button>
+
+      <Button level="primary" onClick={onclick3}>
+        toast位置
       </Button>
     </div>
   );
