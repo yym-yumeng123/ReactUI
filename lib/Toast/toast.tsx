@@ -32,9 +32,15 @@ const toast = (content: string, options: Options) => {
     onClose && onClose();
   };
 
+  // 有几个弹框
+  const count = document.body.querySelectorAll('.yui-toast-wrapper').length + 1
+
+
+
+
   const component = (
-    <div className={mergeClass("")}>
-      {content}
+    <div className={mergeClass("")} style={{top: `${(count)* 40}px`}}>
+      <span>{content}</span>
       {!autoClose && (
         <span className={mergeClass("close")}>
           <Icon
@@ -49,8 +55,11 @@ const toast = (content: string, options: Options) => {
   );
 
   const div = document.createElement("div");
+  div.classList.add('yui-toast-wrapper')
   document.body.appendChild(div);
   ReactDOM.render(component, div);
+
+
 };
 
 export default toast;

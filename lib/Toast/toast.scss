@@ -1,10 +1,13 @@
 @import "lib/styles/variable.scss";
 
 .yui-toast {
+  display: inline-flex;
+  align-items: center;
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translate(-50%);
+  margin-top: 20px;
   padding: $padding / 2 $padding;
   color: $font-color-default;
   font-size: $font-size-default;

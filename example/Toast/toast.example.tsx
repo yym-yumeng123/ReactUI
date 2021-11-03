@@ -4,13 +4,22 @@ import Button from "lib/Button/button";
 
 const ToastExample = () => {
   const onclick = () => {
-    toast("我是Taost", { autoCloseDelay: 1 });
+    toast("我是Taost", {});
   };
 
   const onclick1 = () => {
     toast("我是Taost", {
-      autoClose: false,
+      autoClose: false
     });
+  };
+
+  const onclick2 = () => {
+    toast(
+      "我是Taost我是Taost我是Taost我是Taost我是Taost我是Taost我是Taost我是",
+      {
+        autoClose: false
+      }
+    );
   };
   return (
     <div>
@@ -19,6 +28,10 @@ const ToastExample = () => {
       </Button>
       <Button level="primary" onClick={onclick1}>
         toast不自动关闭
+      </Button>
+
+      <Button level="primary" onClick={onclick2}>
+        toast大量内容
       </Button>
     </div>
   );
