@@ -17,13 +17,16 @@ interface Options {
 let currentToast: any
 const toast = (content: string, options: Options) => {
   if(currentToast) {
-    console.log(currentToast, '东风');
-    currentToast()
+    currentToast.closeToast()
   }
-  currentToast = createToast(content, options);
+  const beforeClose = () => {
+    currentToast.component = null
+  }
+
+  currentToast = createToast(content, options, beforeClose);
 };
 
-const createToast = (content: string, options: Options) => {
+const createToast = (content: string, options: Options, beforeClose: () => void) => {
   const {
     autoClose = true,
     autoCloseDelay = 3,
@@ -32,6 +35,7 @@ const createToast = (content: string, options: Options) => {
   } = options;
 
   const closeToast = () => {
+    beforeClose()
     ReactDOM.unmountComponentAtNode(div);
     div.remove();
   };
@@ -69,7 +73,7 @@ const createToast = (content: string, options: Options) => {
   document.body.appendChild(div);
   ReactDOM.render(component, div);
 
-  return closeToast
+  return {closeToast, component}
 };
 
 export default toast;
