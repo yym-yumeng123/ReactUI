@@ -1,0 +1,10 @@
+@import 'lib/styles/variable.scss';
+
+.yui-toast {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #F0F9FF;
+  border-radius: $radius;
+}

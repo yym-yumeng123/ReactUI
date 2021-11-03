@@ -1,8 +1,18 @@
-import React from 'react';
-import Toast from "lib/Toast/toast";
+import React from "react";
+import toast from "lib/Toast/toast";
+import Button from "lib/Button/button";
 
 const ToastExample = () => {
-  return <Toast />
-}
+  const onclick = () => {
+    toast({ content: "我是Taost" });
+  };
+  return (
+    <div>
+      <Button level="primary" onClick={onclick}>
+        toast
+      </Button>
+    </div>
+  );
+};
 
-export default ToastExample
+export default ToastExample;
