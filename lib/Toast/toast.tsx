@@ -14,19 +14,14 @@ interface Options {
   onClose?: () => void;
 }
 
-let currentToast: any
 const toast = (content: string, options: Options) => {
-  if(currentToast) {
-    currentToast.closeToast()
-  }
-  const beforeClose = () => {
-    currentToast.component = null
-  }
-
-  currentToast = createToast(content, options, beforeClose);
+  const div = document.createElement('div')
+  div.id = 'yui-toast-wrapper'
+  document.body.appendChild(div)
+  createToast(content, options);
 };
 
-const createToast = (content: string, options: Options, beforeClose: () => void) => {
+const createToast = (content: string, options: Options) => {
   const {
     autoClose = true,
     autoCloseDelay = 3,
@@ -35,8 +30,8 @@ const createToast = (content: string, options: Options, beforeClose: () => void)
   } = options;
 
   const closeToast = () => {
-    beforeClose()
     ReactDOM.unmountComponentAtNode(div);
+    ReactDOM.unmountComponentAtNode(wrapper as Element);
     div.remove();
   };
 
@@ -70,8 +65,10 @@ const createToast = (content: string, options: Options, beforeClose: () => void)
   );
 
   const div = document.createElement("div");
-  document.body.appendChild(div);
+  const wrapper = document.querySelector("#yui-toast-wrapper");
+  wrapper?.appendChild(div);
   ReactDOM.render(component, div);
+
 
   return {closeToast, component}
 };

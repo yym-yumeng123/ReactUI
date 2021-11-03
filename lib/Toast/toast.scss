@@ -1,11 +1,18 @@
 @import "lib/styles/variable.scss";
 
+#yui-toast-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+}
 .yui-toast {
   display: inline-flex;
   align-items: center;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: 10px;
   padding: $padding / 2 $padding;
   color: $font-color-default;
   font-size: $font-size-default;
@@ -13,16 +20,16 @@
   border-radius: $radius;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
   animation: fade-in 1s;
-  &.yui-toast-posotion-top {
-    top: 20px;
-  }
-  &.yui-toast-posotion-middle {
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  &.yui-toast-posotion-bottom {
-    bottom: 20px;
-  }
+  // &.yui-toast-posotion-top {
+  //   top: 20px;
+  // }
+  // &.yui-toast-posotion-middle {
+  //   top: 50%;
+  //   transform: translate(-50%, -50%);
+  // }
+  // &.yui-toast-posotion-bottom {
+  //   bottom: 20px;
+  // }
   &-close {
     position: relative;
     top: 3px;
