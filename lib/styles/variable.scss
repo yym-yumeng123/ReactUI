@@ -34,6 +34,9 @@ $btn-padding-y-xs: 2px;
 $dialog-zIndex-content: 1000;
 $dialog-zIndex-mask: 999;
 
+// toast
+$taost-bg-color: #f0f9ff;
+
 
 // 改变 size, 就是改变这几个属性
 @mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {

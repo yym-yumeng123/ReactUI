@@ -1,10 +1,20 @@
-@import 'lib/styles/variable.scss';
+@import "lib/styles/variable.scss";
 
 .yui-toast {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 50%;
   transform: translate(-50%);
-  background-color: #F0F9FF;
+  padding: $padding / 2 $padding;
+  color: $font-color-default;
+  font-size: $font-size-default;
+  background-color: $taost-bg-color;
   border-radius: $radius;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
+  &-close {
+    position: relative;
+    top: 3px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
 }

@@ -75,6 +75,7 @@ export const iconNames: string[] = [
   "close_filled",
   "close",
   "check_filled",
+  "close_no_around",
   "check",
   "caution_filled",
   "caution",
