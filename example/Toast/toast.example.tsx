@@ -24,7 +24,7 @@ const ToastExample = () => {
   };
 
   const onclick3 = () => {
-    toast("我是Taost", {
+    toast(`${Math.random() * 100}我是Taost`, {
       position: "middle",
       autoClose: false
     });

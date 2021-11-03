@@ -14,7 +14,16 @@ interface Options {
   onClose?: () => void;
 }
 
+let currentToast: any
 const toast = (content: string, options: Options) => {
+  if(currentToast) {
+    console.log(currentToast, '东风');
+    currentToast()
+  }
+  currentToast = createToast(content, options);
+};
+
+const createToast = (content: string, options: Options) => {
   const {
     autoClose = true,
     autoCloseDelay = 3,
@@ -38,13 +47,9 @@ const toast = (content: string, options: Options) => {
     onClose && onClose();
   };
 
-  // 有几个弹框
-  // const count = document.body.querySelectorAll(".yui-toast-wrapper").length + 1;
-
   const component = (
     <div
       className={mergeClass({ "": true, [`posotion-${position}`]: !!position })}
-      // style={{ top: `${count * 40}px` }}
     >
       <span>{content}</span>
       {!autoClose && (
@@ -61,9 +66,10 @@ const toast = (content: string, options: Options) => {
   );
 
   const div = document.createElement("div");
-  div.classList.add("yui-toast-wrapper");
   document.body.appendChild(div);
   ReactDOM.render(component, div);
+
+  return closeToast
 };
 
 export default toast;

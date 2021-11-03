@@ -12,6 +12,7 @@
   background-color: $taost-bg-color;
   border-radius: $radius;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
+  animation: fade-in 1s;
   &.yui-toast-posotion-top {
     top: 20px;
   }
@@ -27,5 +28,14 @@
     top: 3px;
     margin-left: 8px;
     cursor: pointer;
+  }
+}
+
+@keyframes fade-in {
+  0%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
