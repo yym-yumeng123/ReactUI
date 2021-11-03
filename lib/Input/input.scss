@@ -75,6 +75,7 @@
     display: flex;
     .yui-input-left {
       display: inline-block;
+      flex-shrink: 0;
       padding: 8px 12px;
       font-size: 14px;
       color: #575757;
@@ -111,6 +112,7 @@
     display: flex;
     .yui-input-right {
       display: inline-block;
+      flex-shrink: 0;
       padding: 8px 12px;
       font-size: 14px;
       color: #575757;
