@@ -8,3 +8,9 @@
 - 用户 -> 弹出 Toast -> 设置几秒关闭
 - 用户 -> 弹出 Toast -> 弹出第2个 (保证只有一个)
 - 用户 -> 弹出 Toast -> 弹出第2个 (允许多个)
+
+### 展示多个 toast 
+1. 在创建 toast 组件时, 先创建一个 id 唯一 的 div(wrapper), 放进body , `document.body.appendChild()`
+2. 给 div 写样式, 放在 toast 出现的地方, `position: fixed`
+3. 在我们创建toast 的时候, `创建一个div`, 然后把这个 div 放进  `wrapper`
+4. 我们把我们要渲染的 taost `放进 div`

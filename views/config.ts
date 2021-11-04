@@ -6,6 +6,7 @@ import {
   DialogDemo,
   LayoutDemo,
   ToastDemo,
+  GridDemo,
   // TODO: ...
   PagerDemo,
   RadioDemo,
@@ -18,7 +19,6 @@ import {
   SwitchExample,
   FormExample,
   TabsExample,
-  GridExample,
   PopoverExample,
   CollapseExample,
 } from "../example";
@@ -62,6 +62,11 @@ export const routeList: Array<{
     path: "/toast",
     title: "Toast 全局提示",
     component: ToastDemo
+  },
+  {
+    path: "/grid",
+    title: "Grid 栅格布局",
+    component: GridDemo
   },
   // TODO: 下面没写文档
   {
@@ -119,11 +124,6 @@ export const routeList: Array<{
     path: "/tabs",
     title: "Tabs 标签",
     component: TabsExample
-  },
-  {
-    path: "/grid",
-    title: "Grid 栅格布局",
-    component: GridExample
   },
   {
     path: "/popover",
