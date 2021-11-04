@@ -5,6 +5,8 @@ import {
   CardDemo,
   DialogDemo,
   LayoutDemo,
+  ToastDemo,
+  // TODO: ...
   PagerDemo,
   RadioDemo,
   CheckboxDemo,
@@ -19,7 +21,6 @@ import {
   GridExample,
   PopoverExample,
   CollapseExample,
-  ToastExample
 } from "../example";
 
 export const routeList: Array<{
@@ -57,6 +58,12 @@ export const routeList: Array<{
     title: "Layout 布局容器",
     component: LayoutDemo
   },
+  {
+    path: "/toast",
+    title: "Toast 全局提示",
+    component: ToastDemo
+  },
+  // TODO: 下面没写文档
   {
     path: "/pager",
     title: "Pager 分页",
@@ -128,9 +135,5 @@ export const routeList: Array<{
     title: "Collapse 折叠面板",
     component: CollapseExample
   },
-  {
-    path: "/toast",
-    title: "Toast 全局提示",
-    component: ToastExample
-  }
+
 ];

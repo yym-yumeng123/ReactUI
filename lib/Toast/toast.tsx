@@ -10,7 +10,6 @@ interface Options {
   content: string;
   autoClose?: boolean;
   autoCloseDelay?: number;
-  type?: "success" | "danger" | "info";
   onClose?: () => void;
 }
 

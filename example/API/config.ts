@@ -191,3 +191,35 @@ export const Api_Data_Layout = [
     require: "false"
   },
 ]
+
+export const Api_Data_Toast = [
+  {
+    props: "content",
+    explain: "toast 提示框的内容",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+  {
+    props: "autoClose",
+    explain: "toast 提示框是否自动关闭",
+    type: "boolean",
+    defaultValue: "true",
+    require: "false"
+  },
+  {
+    props: "autoCloseDelay",
+    explain: "toast 提示框栓设置关闭时间",
+    type: "number",
+    defaultValue: "3",
+    require: "false"
+  },
+  {
+    props: "onClose",
+    explain: "toast 关闭弹框的回调",
+    type: "function",
+    defaultValue: "/",
+    require: "false"
+  },
+
+]

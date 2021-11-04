@@ -6,7 +6,8 @@ import {
   Api_Data_Button,
   Api_Data_Card,
   Api_Data_Dialog,
-  Api_Data_Layout
+  Api_Data_Layout,
+  Api_Data_Toast
 } from "./config";
 
 interface ApiProps {
@@ -31,7 +32,8 @@ const API: React.FC<ApiProps> = props => {
     button: Api_Data_Button,
     card: Api_Data_Card,
     dialog: Api_Data_Dialog,
-    layout: Api_Data_Layout
+    layout: Api_Data_Layout,
+    toast: Api_Data_Toast
   };
 
   return (
