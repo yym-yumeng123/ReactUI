@@ -7,32 +7,37 @@ import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-toast");
 
 interface Options {
+  content: string;
   autoClose?: boolean;
   autoCloseDelay?: number;
-  position?: "top" | "middle" | "bottom";
   type?: "success" | "danger" | "info";
   onClose?: () => void;
 }
 
-const toast = (content: string, options: Options) => {
-  const div = document.createElement('div')
-  div.id = 'yui-toast-wrapper'
-  document.body.appendChild(div)
-  createToast(content, options);
+const toast = (options: Options) => {
+  const div = document.createElement("div");
+  div.id = "yui-toast-wrapper";
+  document.body.appendChild(div);
+
+  createToast(options);
 };
 
-const createToast = (content: string, options: Options) => {
-  const {
-    autoClose = true,
-    autoCloseDelay = 3,
-    position = "top",
-    onClose
-  } = options;
+const createToast = (options: Options) => {
+  const { content, autoClose = true, autoCloseDelay = 3, onClose } = options;
 
   const closeToast = () => {
     ReactDOM.unmountComponentAtNode(div);
-    ReactDOM.unmountComponentAtNode(wrapper as Element);
     div.remove();
+
+    // 把多余的 id 为 wrapper 的div 去掉
+    const element = document.querySelectorAll(".yui-toast");
+    if (element.length === 0) {
+      const wrapper = document.querySelectorAll("#yui-toast-wrapper");
+      wrapper.forEach(item => {
+        ReactDOM.unmountComponentAtNode(item);
+        item.remove();
+      });
+    }
   };
 
   if (autoClose) {
@@ -47,9 +52,7 @@ const createToast = (content: string, options: Options) => {
   };
 
   const component = (
-    <div
-      className={mergeClass({ "": true, [`posotion-${position}`]: !!position })}
-    >
+    <div className={mergeClass({ "": true })}>
       <span>{content}</span>
       {!autoClose && (
         <span className={mergeClass("close")}>
@@ -69,8 +72,6 @@ const createToast = (content: string, options: Options) => {
   wrapper?.appendChild(div);
   ReactDOM.render(component, div);
 
-
-  return {closeToast, component}
 };
 
 export default toast;

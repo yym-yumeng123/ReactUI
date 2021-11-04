@@ -4,31 +4,23 @@ import Button from "lib/Button/button";
 
 const ToastExample = () => {
   const onclick = () => {
-    toast("我是Taost", {});
+    toast({ content: "我是Taost" });
   };
 
   const onclick1 = () => {
-    toast("我是Taost", {
+    toast({
+      content: "我是Taost",
       autoClose: false
     });
   };
 
   const onclick2 = () => {
-    toast(
-      "我是Taost我是Taost我是Taost我是Taost我是Taost我是Taost我是Taost我是",
-      {
-        autoClose: false,
-        position: 'bottom'
-      }
-    );
-  };
-
-  const onclick3 = () => {
-    toast(`${Math.random() * 100}我是Taost`, {
-      position: "middle",
-      autoClose: false
+    toast({
+      content:
+        "我是Taost我是Taost我是Taost我是Taost我是Taost我是Taost我是Taost我是是Taost我是是Taost我是是Taost我是是Taost我是"
     });
   };
+
   return (
     <div>
       <Button level="primary" onClick={onclick}>
@@ -40,10 +32,6 @@ const ToastExample = () => {
 
       <Button level="primary" onClick={onclick2}>
         toast大量内容
-      </Button>
-
-      <Button level="primary" onClick={onclick3}>
-        toast位置
       </Button>
     </div>
   );
