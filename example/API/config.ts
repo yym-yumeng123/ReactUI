@@ -179,7 +179,7 @@ export const Api_Data_Dialog = [
     type: "React.MouseEventHandler",
     defaultValue: "/",
     require: "false"
-  },
+  }
 ];
 
 export const Api_Data_Layout = [
@@ -189,8 +189,8 @@ export const Api_Data_Layout = [
     type: "string",
     defaultValue: "/",
     require: "false"
-  },
-]
+  }
+];
 
 export const Api_Data_Toast = [
   {
@@ -220,6 +220,44 @@ export const Api_Data_Toast = [
     type: "function",
     defaultValue: "/",
     require: "false"
+  }
+];
+
+export const Api_Data_Grid = [
+  {
+    props: "span",
+    explain: "col 组件的属性, 栅格占位格数，范围为 1..24",
+    type: "number",
+    defaultValue: "/",
+    require: "true"
+  },
+  {
+    props: "offset",
+    explain: "col 组件的属性, 栅格左侧的间隔格数,距离左边的距离",
+    type: "number",
+    defaultValue: "0",
+    require: "false"
+  },
+  {
+    props: "/",
+    explain: "/",
+    type: "/",
+    defaultValue: "/",
+    require: "/"
   },
 
+  {
+    props: "gutter",
+    explain: "Row 组件的属性, 每个栅格之间的距离, 空隙",
+    type: "number",
+    defaultValue: "0",
+    require: "false"
+  },
+  {
+    props: "align",
+    explain: "Row 组件的属性, 水平方向的对齐方式: 左中右",
+    type: "left | center | right",
+    defaultValue: "left",
+    require: "false"
+  },
 ]

@@ -7,7 +7,8 @@ import {
   Api_Data_Card,
   Api_Data_Dialog,
   Api_Data_Layout,
-  Api_Data_Toast
+  Api_Data_Toast,
+  Api_Data_Grid
 } from "./config";
 
 interface ApiProps {
@@ -33,7 +34,8 @@ const API: React.FC<ApiProps> = props => {
     card: Api_Data_Card,
     dialog: Api_Data_Dialog,
     layout: Api_Data_Layout,
-    toast: Api_Data_Toast
+    toast: Api_Data_Toast,
+    grid: Api_Data_Grid
   };
 
   return (

@@ -4,7 +4,7 @@ const mergeClass = addPrefixAndMergeClass("yui-col");
 
 import "./col.scss";
 interface ColProps extends HTMLAttributes<HTMLElement> {
-  span: number | string;
+  span: number;
   offset?: number;
   gutter?: number;
 }

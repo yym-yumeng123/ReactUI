@@ -1,5 +1,7 @@
 .grid-example {
-  border: 1px solid red;
+  .yui-row {
+    margin-bottom: 16px;
+  }
   .yui-col {
     span {
       display: flex;
@@ -9,12 +11,12 @@
     }
     &:nth-child(even) {
       span {
-        background-color: #7dbcea;
+        background-color: #59afff;
       }
     }
     &:nth-child(odd) {
       span {
-        background-color: #108ee9;
+        background-color: #3498ff;
       }
     }
   }
