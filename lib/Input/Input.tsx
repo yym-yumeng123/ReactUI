@@ -1,13 +1,18 @@
-import React, { FC, InputHTMLAttributes, ReactElement } from "react";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
+import React, {
+  FC,
+  FocusEventHandler,
+  InputHTMLAttributes,
+  ReactElement
+} from "react";
 import Icon from "lib/Icon/icon";
 
 import "./input.scss";
 
-const prefix = addPrefixAndscopedClassMarker("yui-input");
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-input");
 
 // 定义 size
-type InputSize = "lg" | "md" | "sm" | "xs";
+type InputSize = "lg" | "sm" | "xs";
 
 /**
  * 希望几个 HTML input 所有属性
@@ -22,47 +27,52 @@ export interface InputProps
   size?: InputSize;
   icon?: string;
   // 添加前缀
-  prepand?: string | ReactElement;
+  prepend?: string | ReactElement;
   // 添加后缀
   append?: string | ReactElement;
 }
 
 const Input: FC<InputProps> = props => {
-  const { disabled, size, icon, prepand, append, value, ...restProps } = props;
+  const { disabled, size, icon, prepend, append, value, ...restProps } = props;
   // 根据属性计算不同的 className
 
   const classes = {
     "": true,
     [`${size}`]: !!size,
-    "disabled": !!disabled
+    disabled: !!disabled
   };
 
   const parentClasses = {
     wrapper: true,
-    prepand: !!prepand,
+    prepend: !!prepend,
     append: !!append,
-    disabled: (!!prepand || !!append) && !!disabled
+    disabled: (!!prepend || !!append) && !!disabled
+  };
+
+  // 有焦点时, 设置样式
+  const handleFocus: FocusEventHandler<HTMLInputElement> = e => {
+    e.currentTarget.parentElement!.style.boxShadow =
+      "0 0 0 3px rgba(52,152,255,0.25)";
+    e.currentTarget.parentElement!.style.borderRadius = "6px";
+  };
+  const handleBlur: FocusEventHandler<HTMLInputElement> = e => {
+    e.currentTarget.parentElement!.style.boxShadow = "none";
+    e.currentTarget.parentElement!.style.borderRadius = "none";
   };
 
   return (
-    <div className={prefix(parentClasses)}>
-      {prepand && <span className={prefix("left")}>{prepand}</span>}
+    <div className={mergeClass(parentClasses)}>
+      {prepend && <span className={mergeClass("left")}>{prepend}</span>}
       <input
         value={value}
-        className={prefix(classes)}
-        style={{ padding: `8px ${icon ? "26px" : "8px"} 8px 8px` }}
+        disabled={disabled}
+        className={mergeClass(classes)}
         type="text"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         {...restProps}
       />
-      {icon && (
-        <Icon
-          className={prefix("icon")}
-          size="10"
-          color="#C5C6C7"
-          name={icon}
-        />
-      )}
-      {append && <span className={prefix("right")}>{append}</span>}
+      {append && <span className={mergeClass("right")}>{append}</span>}
     </div>
   );
 };

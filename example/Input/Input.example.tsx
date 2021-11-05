@@ -16,28 +16,33 @@ const InputExample = () => {
       <Input placeholder="请输入名称"/>
       <h1>Size</h1>
       <Input placeholder="lg" size="lg"/>
-      <Input placeholder="md" size="md"/>
       <Input placeholder="sm" size="sm"/>
       <Input placeholder="ls" size="xs"/>
       <h1>Disabled</h1>
-      <Input placeholder="请输入" disabled={true}/>
-      <Input placeholder="请输入" disabled={true} size="lg"/>
-      <h1>Icon</h1>
+      <Input placeholder="请输入" disabled/>
+      <Input placeholder="请输入" disabled size="lg"/>
+      {/* <h1>Icon</h1>
       <Input placeholder="请输入名称" icon="search"/>
       <Input placeholder="请输入名称" icon="view"/>
-      <Input placeholder="请输入名称" icon="user"/>
+      <Input placeholder="请输入名称" icon="user"/> */}
       <h1>Prepand</h1>
       <br/>
-      <Input placeholder="请输入名称" prepand="你好"/>
-      <Input placeholder="请输入名称" prepand={<em style={{color: "red"}}>你好</em>}/>
-      <Input placeholder="请输入名称" prepand={<em style={{color: "red"}}>你好</em>} disabled={true}/>
+      <Input placeholder="请输入名称" prepend="你好"/>
+      <br />
+      <Input placeholder="请输入名称" prepend={<em style={{color: "red"}}>你好</em>}/>
+      <br />
+
+      <Input placeholder="请输入名称" prepend={<em style={{color: "red"}}>你好</em>} disabled={true}/>
       <h1>append</h1>
       <br/>
       <Input placeholder="请输入名称" append="后面"/>
+      <br />
       <Input placeholder="请输入名称" append="后面" disabled={true}/>
       <br/>
-      <Input placeholder="请输入名称" prepand="https://www" append=".com"/>
-      <Input placeholder="请输入名称" prepand="https://" append=".com" disabled={true}/>
+      <h1>append & prepend</h1>
+      <Input placeholder="请输入名称" prepend="https://www" append=".com"/>
+      <br />
+      <Input placeholder="请输入名称" prepend="https://" append=".com" disabled={true}/>
 
       <h1>value</h1>
       <Input defaultValue="我是默认值" onChange={onChange}/>

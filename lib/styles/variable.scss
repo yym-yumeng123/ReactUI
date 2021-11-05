@@ -6,6 +6,9 @@ $radius: 6px;
 $padding: 20px;
 $font-color-title: $B900; // 标题文字颜色
 $font-color-default: $B800; // 默认文字颜色
+$font-low-color: $B600; // 次级文字颜色w
+$main-color: $H500;
+$disabeld-font-color: $B400;
 
 $font-size-default: 14px;
 $font-size-lg: 16px;
@@ -36,6 +39,10 @@ $dialog-zIndex-mask: 999;
 
 // toast
 $taost-bg-color: #f0f9ff;
+
+// input
+$default-border-color: $B200;
+$hover-border-color: $main-color;
 
 
 // 改变 size, 就是改变这几个属性

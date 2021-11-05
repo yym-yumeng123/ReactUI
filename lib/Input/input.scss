@@ -1,3 +1,5 @@
+@import "lib/styles/variable.scss";
+
 .yui-input-wrapper {
   position: relative;
   display: inline-block;
@@ -5,82 +7,60 @@
   .yui-input {
     display: block;
     width: 100%;
-    min-width: 200px;
-    padding: 8px;
-    color: #575757;
-    font-size: 14px;
-    outline: none;
-    border-radius: 6px;
-    border: 1px solid #e5e5ea;
+    padding: 8px 12px;
+    color: $font-color-default;
+    font-size: $font-size-default;
+    border-radius: $radius;
+    border: 1px solid $default-border-color;
     background: #fff;
+    outline: none;
     &::-webkit-input-placeholder {
-      color: #8e8e93;
-      font-size: 14px;
+      color: $font-low-color;
     }
     &:hover {
-      border: 1px solid #3498fe;
+      border: 1px solid $main-color;
     }
     &:focus {
-      font-size: 14px;
-      border: 1px solid #3498fe;
+      border: 1px solid $main-color;
       outline: none;
     }
-    // disabled
-    &-disabled {
-      background: #f7f7fa;
-      border: 1px solid #e5e5ea;
+    // default disabled
+    &.yui-input-disabled {
+      background: $B050;
       cursor: not-allowed;
-      pointer-events: none;
+      &::-webkit-input-placeholder {
+        color: $disabeld-font-color;
+      }
       &:hover {
-        border: 1px solid #e5e5ea;
+        border: 1px solid $default-border-color;
       }
     }
     // size
     &-lg {
-      padding: 11px 8px;
-      font-size: 16px;
-      &::-webkit-input-placeholder {
-        font-size: 16px;
-      }
-      &:focus {
-        font-size: 16px;
-      }
-    }
-    &-md {
-      padding: 7px 8px;
-      font-size: 14px;
+      padding: 10px 12px;
+      font-size: $font-size-lg;
     }
     &-sm {
-      padding: 6px 8px;
-      font-size: 14px;
+      padding: 5px 12px;
+      font-size: $font-size-default;
     }
     &-xs {
-      padding: 3px 8px;
+      padding: 2px 12px;
       font-size: 12px;
-      &::-webkit-input-placeholder {
-        font-size: 12px;
-      }
-      &:focus {
-        font-size: 12px;
-      }
-    }
-    // icon
-    &-icon {
-      position: absolute;
-      right: 6px;
-      top: 6px;
     }
   }
-  &.yui-input-prepand {
+
+  // 在前面添加前缀
+  &.yui-input-prepend {
     display: flex;
     .yui-input-left {
       display: inline-block;
       flex-shrink: 0;
       padding: 8px 12px;
       font-size: 14px;
-      color: #575757;
-      background: #f7f7fa;
-      border: 1px solid #e5e5ea;
+      color: $font-color-default;
+      background: $B050;
+      border: 1px solid $default-border-color;
       border-right: none;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
@@ -89,35 +69,33 @@
       border-left: none;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
-      &:hover {
-        border: 1px solid #3498fe;
-      }
       &:focus {
-        border: 1px solid #e5e5ea;
+        border: 1px solid $default-border-color;
         border-left: none;
       }
     }
     &:hover {
       .yui-input {
-        border: 1px solid #3498fe;
+        border: 1px solid $main-color;
         border-left: none;
       }
       .yui-input-left {
-        border: 1px solid #3498fe;
+        border: 1px solid $main-color;
         border-right: none;
       }
     }
   }
+  // 在后面添加后缀
   &.yui-input-append {
     display: flex;
     .yui-input-right {
       display: inline-block;
       flex-shrink: 0;
       padding: 8px 12px;
-      font-size: 14px;
-      color: #575757;
+      font-size: $font-size-default;
+      color: $font-color-default;
       background: #f7f7fa;
-      border: 1px solid #e5e5ea;
+      border: 1px solid $default-border-color;
       border-left: none;
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px;
@@ -126,60 +104,45 @@
       border-right: none;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
-      &:hover {
-        border: 1px solid #3498fe;
-      }
       &:focus {
-        border: 1px solid #e5e5ea;
+        border: 1px solid $default-border-color;
         border-right: none;
       }
     }
     &:hover {
       .yui-input {
-        border: 1px solid #3498fe;
+        border: 1px solid $main-color;
         border-right: none;
       }
       .yui-input-right {
-        border: 1px solid #3498fe;
+        border: 1px solid $main-color;
         border-left: none;
       }
     }
   }
-  &.yui-input-append.yui-input-prepand {
+
+  // 都有
+  &.yui-input-append.yui-input-prepend {
     .yui-input {
       border-right: none;
       border-left: none;
     }
   }
+
   &.yui-input-disabled {
     cursor: not-allowed;
     .yui-input,
     .yui-input-right,
     .yui-input-left {
-      color: #c5c6c7;
+      color: $disabeld-font-color;
     }
   }
-  &.yui-input-append.yui-input-disabled {
-    &:hover {
-      .yui-input-right,
-      .yui-input {
-        border: 1px solid #e5e5ea;
-        pointer-events: none;
-      }
-      .yui-input-right {
-        border-left: none;
-      }
-      .yui-input {
-        border-right: none;
-      }
-    }
-  }
-  &.yui-input-prepand.yui-input-disabled {
+
+  &.yui-input-prepend.yui-input-disabled {
     &:hover {
       .yui-input-left,
       .yui-input {
-        border: 1px solid #e5e5ea;
-        pointer-events: none;
+        border: 1px solid $default-border-color;
       }
       .yui-input-left {
         border-right: none;
@@ -189,13 +152,27 @@
       }
     }
   }
-  &.yui-input-append.yui-input-prepand.yui-input-disabled {
+  &.yui-input-append.yui-input-disabled {
+    &:hover {
+      .yui-input-right,
+      .yui-input {
+        border: 1px solid $default-border-color;
+      }
+      .yui-input-right {
+        border-left: none;
+      }
+      .yui-input {
+        border-right: none;
+      }
+    }
+  }
+
+  &.yui-input-append.yui-input-prepend.yui-input-disabled {
     &:hover {
       .yui-input-right,
       .yui-input-left,
       .yui-input {
         border: 1px solid #e5e5ea;
-        pointer-events: none;
       }
       .yui-input-right {
         border-left: none;
