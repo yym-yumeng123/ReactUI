@@ -5,6 +5,7 @@ import DialogDemo from "./Dialog/dialog.demo";
 import LayoutDemo from "./Layout/layout.demo";
 import ToastDemo from "./Toast/toast.demo";
 import GridDemo from "./Grid/grid.demo";
+import InputDemo from "./Input/Input.demo";
 
 import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import PagerDemo from "./pager/pager.demo";
@@ -13,7 +14,6 @@ import CheckboxDemo from "./Checkbox/checkbox.demo";
 import TableDemo from "./Table/table.demo";
 import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
-import InputExample from "./Input/Input.example";
 import SwitchExample from "./Switch/switch.example";
 import FormExample from "./Form/form.example";
 import TabsExample from "./Tabs/tabs.example";
@@ -28,6 +28,7 @@ export {
   LayoutDemo,
   ToastDemo,
   GridDemo,
+  InputDemo,
   // TODO: 未完成 api
   PagerDemo,
   RadioDemo,
@@ -35,7 +36,6 @@ export {
   TableDemo,
   TreeDemo,
   ScrollExample,
-  InputExample,
   AutoCompleteExample,
   SwitchExample,
   FormExample,

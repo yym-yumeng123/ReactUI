@@ -7,6 +7,7 @@ import {
   LayoutDemo,
   ToastDemo,
   GridDemo,
+  InputDemo,
   // TODO: ...
   PagerDemo,
   RadioDemo,
@@ -14,7 +15,6 @@ import {
   TableDemo,
   TreeDemo,
   ScrollExample,
-  InputExample,
   AutoCompleteExample,
   SwitchExample,
   FormExample,
@@ -68,6 +68,11 @@ export const routeList: Array<{
     title: "Grid 栅格布局",
     component: GridDemo
   },
+  {
+    path: "/input",
+    title: "Input 输入框",
+    component: InputDemo
+  },
   // TODO: 下面没写文档
   {
     path: "/pager",
@@ -105,11 +110,7 @@ export const routeList: Array<{
     title: "Scroll 滚动",
     component: ScrollExample
   },
-  {
-    path: "/input",
-    title: "Input 输入框",
-    component: InputExample
-  },
+
   {
     path: "/autoComplete",
     title: "AutoComplete 自动完成",
