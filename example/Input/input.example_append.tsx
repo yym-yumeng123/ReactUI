@@ -11,22 +11,32 @@ const InputAppendExample = () => {
 
   return (
     <div>
-      <Input placeholder="请输入名称" append="后面" />
-      <Input placeholder="请输入名称" append="加油" disabled={true} />
-      <Input
-        placeholder="请输入名称"
-        append="@qq.com"
-        value={val}
-        onChange={onChange}
-      />
-      <Input
-        placeholder="请输入名称"
-        append={<em style={{ color: "red" }}>中国</em>}
-      />
-      <Input
-        placeholder="请输入名称"
-        append={<Icon name="search" size="14" />}
-      />
+      <div className="item">
+        <Input placeholder="请输入名称" append="后面" />
+      </div>
+      <div className="item">
+        <Input placeholder="请输入名称" append="加油" disabled={true} />
+      </div>
+      <div className="item">
+        <Input
+          placeholder="请输入名称"
+          append="@qq.com"
+          value={val}
+          onChange={onChange}
+        />
+      </div>
+      <div className="item">
+        <Input
+          placeholder="请输入名称"
+          append={<em style={{ color: "red" }}>中国</em>}
+        />
+      </div>
+      <div className="item">
+        <Input
+          placeholder="请输入名称"
+          append={<Icon name="search" size="14" />}
+        />
+      </div>
     </div>
   );
 };

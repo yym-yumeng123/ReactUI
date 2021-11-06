@@ -9,13 +9,23 @@ const InputBasicExample = () => {
   };
 
   const handleClear = () => {
-    setVal('');
-  }
+    setVal("");
+  };
   return (
-    <div>
-      <Input placeholder="请输入..."  value={val} onChange={onChange} />
-      <Input placeholder="可以清空内容"  value={val} onChange={onChange} closable onClear={handleClear} />
-    </div>
+    <>
+      <div className="item">
+        <Input placeholder="请输入..." value={val} onChange={onChange} />
+      </div>
+      <div className="item">
+        <Input
+          placeholder="可以清空内容"
+          value={val}
+          onChange={onChange}
+          closable
+          onClear={handleClear}
+        />
+      </div>
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ const Row: FC<RowProps> = props => {
 
   const styles = {
     marginLeft: `${-gutter / 2}px`,
-    marginRight: `${-gutter / 2}px`,
+    marginRight: `${-gutter / 2}px`
   };
 
   const childWithProps = React.Children.map(children, child => {
@@ -42,3 +42,4 @@ const Row: FC<RowProps> = props => {
 };
 
 export default Row;
+export { Row, Col };

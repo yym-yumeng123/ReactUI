@@ -10,27 +10,35 @@ const InputPrependExample = () => {
   };
 
   return (
-    <div>
-      <Input
-        placeholder="请输入名称"
-        prepend="https://"
-        value={val}
-        onChange={onChange}
-      />
-      <Input
-        placeholder="请输入名称"
-        prepend={<em style={{ color: "red" }}>中国</em>}
-      />
-      <Input
-        placeholder="请输入名称"
-        prepend={<Icon name="social_github" size="14" />}
-      />
-      <Input
-        disabled
-        placeholder="请输入名称"
-        prepend={<Icon name="social_github" size="14" />}
-      />
-    </div>
+    <>
+      <div className="item">
+        <Input
+          placeholder="请输入名称"
+          prepend="https://"
+          value={val}
+          onChange={onChange}
+        />
+      </div>
+      <div className="item">
+        <Input
+          placeholder="请输入名称"
+          prepend={<em style={{ color: "red" }}>中国</em>}
+        />
+      </div>
+      <div className="item">
+        <Input
+          placeholder="请输入名称"
+          prepend={<Icon name="social_github" size="14" />}
+        />
+      </div>
+      <div className="item">
+        <Input
+          disabled
+          placeholder="请输入名称"
+          prepend={<Icon name="social_github" size="14" />}
+        />
+      </div>
+    </>
   );
 };
 

@@ -6,15 +6,20 @@ const InputSizeExample = () => {
   const onChange: ChangeEventHandler<HTMLInputElement> = e => {
     const { value } = e.currentTarget;
     setVal(value);
-    console.log(value, '3223');
-
+    console.log(value, "3223");
   };
   return (
-    <div>
-      <Input placeholder="我是lg" size="lg" value={val} onChange={onChange} />
-      <Input placeholder="我是sm" size="sm" />
-      <Input placeholder="我是ls" size="xs" />
-    </div>
+    <>
+      <div className="item">
+        <Input placeholder="我是lg" size="lg" value={val} onChange={onChange} />
+      </div>
+      <div className="item">
+        <Input placeholder="我是sm" size="sm" />
+      </div>
+      <div className="item">
+        <Input placeholder="我是ls" size="xs" />
+      </div>
+    </>
   );
 };
 

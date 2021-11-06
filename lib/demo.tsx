@@ -7,6 +7,11 @@ interface Props {
   buttonVisible?: boolean;
 }
 
+const style = {
+  width: '100%',
+  overflow: 'auto'
+}
+
 /**
  * @description 代码高亮 demo
  */
@@ -34,7 +39,7 @@ const Demo: React.FunctionComponent<Props> = props => {
     <div>
       <div className="content-style">{props.children}</div>
       {buttonVisible && (
-        <div className="code-style">
+        <div className="code-style" style={style}>
           <Button level="primary" onClick={() => setCodeVisible(!codeVisible)}>
             查看代码
           </Button>
