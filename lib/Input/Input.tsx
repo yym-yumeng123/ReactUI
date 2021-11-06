@@ -64,14 +64,19 @@ const Input: FC<InputProps> = props => {
   // 有焦点时, 设置样式
   const handleFocus: FocusEventHandler<HTMLInputElement> = e => {
     onFocus && onFocus(e);
-    // e.currentTarget.parentElement!.style.boxShadow =
-    //   "0 0 0 3px rgba(52,152,255,0.25)";
-    // e.currentTarget.parentElement!.style.borderRadius = "6px";
+
+    // console.log(e.currentTarget.parentElement?.parentElement);
+
+    // e.currentTarget.parentElement!.parentElement!.style.boxShadow =
+      // "0 0 0 3px rgba(52,152,255,0.25)";
+    // e.currentTarget.parentElement!.parentElement!.style.border = '1px solid #3498ff'
+    // e.currentTarget.parentElement!.parentElement!.style.borderRadius = "6px";
   };
   const handleBlur: FocusEventHandler<HTMLInputElement> = e => {
     onBlur && onBlur(e);
-    // e.currentTarget.parentElement!.style.boxShadow = "none";
-    // e.currentTarget.parentElement!.style.borderRadius = "none";
+    // e.currentTarget.parentElement!.parentElement!.style.boxShadow = "none";
+    // e.currentTarget.parentElement!.parentElement!.style.border = '1px solid #e5e5ea'
+    // e.currentTarget.parentElement!.parentElement!.style.borderRadius = "none";
   };
   const handleClear = () => {
     onClear && onClear();
@@ -100,7 +105,7 @@ const Input: FC<InputProps> = props => {
         />
         {isShow.current && value!.length > 0 && (
           <span className={mergeClass("icon")}>
-            <Icon name="close" size="8" color="#a6a6a6" onClick={handleClear} />
+            <Icon name="close_no_around" size="8" color="#a6a6a6" onClick={handleClear} />
           </span>
         )}
       </span>
