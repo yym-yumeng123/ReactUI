@@ -6,6 +6,7 @@ import LayoutDemo from "./Layout/layout.demo";
 import ToastDemo from "./Toast/toast.demo";
 import GridDemo from "./Grid/grid.demo";
 import InputDemo from "./Input/Input.demo";
+import TabsDemo from "./Tabs/tabs.demo";
 
 import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import PagerDemo from "./pager/pager.demo";
@@ -16,7 +17,6 @@ import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
 import SwitchExample from "./Switch/switch.example";
 import FormExample from "./Form/form.example";
-import TabsExample from "./Tabs/tabs.example";
 import PopoverExample from "./Popover/popover.example";
 import CollapseExample from "./Collapse/collapse.example";
 
@@ -29,6 +29,7 @@ export {
   ToastDemo,
   GridDemo,
   InputDemo,
+  TabsDemo,
   // TODO: 未完成 api
   PagerDemo,
   RadioDemo,
@@ -39,7 +40,6 @@ export {
   AutoCompleteExample,
   SwitchExample,
   FormExample,
-  TabsExample,
   PopoverExample,
   CollapseExample,
 };

@@ -8,6 +8,7 @@ import {
   ToastDemo,
   GridDemo,
   InputDemo,
+  TabsDemo,
   // TODO: ...
   PagerDemo,
   RadioDemo,
@@ -18,9 +19,8 @@ import {
   AutoCompleteExample,
   SwitchExample,
   FormExample,
-  TabsExample,
   PopoverExample,
-  CollapseExample,
+  CollapseExample
 } from "../example";
 
 export const routeList: Array<{
@@ -73,6 +73,11 @@ export const routeList: Array<{
     title: "Input 输入框",
     component: InputDemo
   },
+  {
+    path: "/tabs",
+    title: "Tabs 标签",
+    component: TabsDemo
+  },
   // TODO: 下面没写文档
   {
     path: "/pager",
@@ -122,11 +127,6 @@ export const routeList: Array<{
     component: SwitchExample
   },
   {
-    path: "/tabs",
-    title: "Tabs 标签",
-    component: TabsExample
-  },
-  {
     path: "/popover",
     title: "Popover 气泡卡片",
     component: PopoverExample
@@ -135,6 +135,5 @@ export const routeList: Array<{
     path: "/collapse",
     title: "Collapse 折叠面板",
     component: CollapseExample
-  },
-
+  }
 ];
