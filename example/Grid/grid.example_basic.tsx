@@ -7,10 +7,10 @@ const GridBasicExample = () => {
   return (
     <div className="grid-example">
       <Row>
-        <Col span="12">
+        <Col span={12}>
           <span>我是12份</span>
         </Col>
-        <Col span="12">
+        <Col span={12}>
           <span>我是12份</span>
         </Col>
       </Row>

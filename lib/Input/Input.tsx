@@ -1,10 +1,10 @@
 import React, {
-  ChangeEventHandler,
   FC,
+  useRef,
+  ChangeEventHandler,
   FocusEventHandler,
   InputHTMLAttributes,
-  ReactElement,
-  useRef,
+  ReactElement
 } from "react";
 import Icon from "lib/Icon/icon";
 
@@ -73,10 +73,7 @@ const Input: FC<InputProps> = props => {
     // e.currentTarget.parentElement!.style.boxShadow = "none";
     // e.currentTarget.parentElement!.style.borderRadius = "none";
   };
-
   const handleClear = () => {
-    console.log("clear");
-
     onClear && onClear();
   };
 

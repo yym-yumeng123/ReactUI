@@ -7,10 +7,10 @@ const GridGutterExample = () => {
   return (
     <div className="grid-example">
       <Row gutter={20}>
-        <Col span="12">
+        <Col span={12}>
           <span>我的 gutter 为 20</span>
         </Col>
-        <Col span="12">
+        <Col span={12}>
           <span>我的 gutter 为 20</span>
         </Col>
       </Row>

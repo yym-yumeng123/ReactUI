@@ -137,11 +137,10 @@
 
   // default disabled
   &.yui-input-disabled {
-    .yui-input-left, .yui-input-right, .yui-input {
+    cursor: not-allowed;
+    .yui-input {
       cursor: not-allowed;
       color: $disabeld-font-color;
-    }
-    .yui-input {
       background: $B050;
       &::-webkit-input-placeholder {
         color: $disabeld-font-color;
@@ -150,21 +149,45 @@
         border: 1px solid $default-border-color;
       }
     }
-
+  }
+  &.yui-input-prepend.yui-input-disabled {
+    .yui-input-left {
+      color: $disabeld-font-color;
+      border: 1px solid $default-border-color;
+      border-right: none;
+    }
+    .yui-input {
+      border-left: none;
+    }
     &:hover {
-      .yui-input-left, .yui-input-right {
-        border: 1px solid $default-border-color;
-      }
-      .yui-input-left {
-        border-right: none;
-      }
-      .yui-input-right {
-        border-left: none;
-      }
       .yui-input {
+        border: 1px solid $default-border-color;
         border-left: none;
+      }
+    }
+  }
+  &.yui-input-append.yui-input-disabled {
+    .yui-input-right {
+      color: $disabeld-font-color;
+      border: 1px solid $default-border-color;
+      border-left: none;
+    }
+    .yui-input {
+      border-right: none;
+    }
+    &:hover {
+      .yui-input {
+        border: 1px solid $default-border-color;
         border-right: none;
       }
+    }
+  }
+  &.yui-input-prepend.yui-input-append.yui-input-disabled {
+    .yui-input-right, .yui-input-left {
+      color: $disabeld-font-color
+    }
+    .yui-input {
+      border-left: none;
     }
   }
 }

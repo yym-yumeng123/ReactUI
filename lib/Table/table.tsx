@@ -19,7 +19,14 @@ interface TableProps {
 }
 
 const Table: FC<TableProps> = props => {
-  const { columns, dataSource, numberVisible = true, bordered = false, compact = false, striped = true } = props;
+  const {
+    columns,
+    dataSource,
+    numberVisible = true,
+    bordered = false,
+    compact = false,
+    striped = true
+  } = props;
   console.log(columns, dataSource);
 
   return (
@@ -29,7 +36,7 @@ const Table: FC<TableProps> = props => {
           <tr>
             {numberVisible && <th>序号</th>}
             {columns.map(item => {
-              return <th>{item.title}</th>;
+              return <th key={item.key}>{item.title}</th>;
             })}
           </tr>
         </thead>
@@ -40,11 +47,9 @@ const Table: FC<TableProps> = props => {
               <tr key={index}>
                 {numberVisible && <td>{index + 1}</td>}
                 {columns.map(column => {
-                  console.log(column, '3232');
-
                   return (
                     <>
-                      <td>{item[column.key]}</td>
+                      <td key={column.key}>{item[column.key]}</td>
                     </>
                   );
                 })}
