@@ -1,5 +1,5 @@
 import React from "react";
-import Demo from "lib/demo";
+import Demo from "lib/Demo/demo";
 import API from "example/API/api";
 import IconExampleCode from "./icon.example_code";
 import IconExample_AllIcon from "./icon.example_allIcon";

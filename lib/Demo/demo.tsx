@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/shadesOfPurple";
-import Button from "./Button/button";
+import Button from "../Button/button";
 interface Props {
   code: string;
   buttonVisible?: boolean;

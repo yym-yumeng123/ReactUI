@@ -1,5 +1,5 @@
 import React from "react";
-import Demo from "lib/demo";
+import Demo from "lib/Demo/demo";
 import API from "example/API/api";
 import Card from "lib/Card/card";
 import "./demo.scss";
