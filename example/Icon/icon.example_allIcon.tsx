@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "lib/Icon/icon";
+import toast from "lib/Toast/toast";
 import "./icon.demo.scss";
 import { iconNames } from "./config";
 
@@ -8,7 +9,9 @@ const IconExample_AllIcon: React.FunctionComponent = () => {
     let val = document.getElementsByClassName(item)[0];
     window.getSelection()?.selectAllChildren(val);
     document.execCommand("Copy");
-    alert(`<Icon name=${item} /> 已复制`)
+    toast({
+      content: `<Icon name=${item} /> 已复制`
+    })
   };
   const viewIcon = iconNames.map(item => {
     return (

@@ -36,42 +36,41 @@ const Input: FC<InputProps> = props => {
   const { disabled, size, icon, prepend, append, value, ...restProps } = props;
   // 根据属性计算不同的 className
 
-  const classes = {
-    "": true,
-    [`${size}`]: !!size,
-    disabled: !!disabled
-  };
+  // 有焦点时, 设置样式
+  // const handleFocus: FocusEventHandler<HTMLInputElement> = e => {
+  //   e.currentTarget.parentElement!.style.boxShadow =
+  //     "0 0 0 3px rgba(52,152,255,0.25)";
+  //   e.currentTarget.parentElement!.style.borderRadius = "6px";
+  // };
+  // const handleBlur: FocusEventHandler<HTMLInputElement> = e => {
+  //   e.currentTarget.parentElement!.style.boxShadow = "none";
+  //   e.currentTarget.parentElement!.style.borderRadius = "none";
+  // };
 
   const parentClasses = {
     wrapper: true,
     prepend: !!prepend,
     append: !!append,
-    disabled: (!!prepend || !!append) && !!disabled
+    [`${size}`]: !!size,
+    disabled: !!disabled
   };
-
-  // 有焦点时, 设置样式
-  const handleFocus: FocusEventHandler<HTMLInputElement> = e => {
-    e.currentTarget.parentElement!.style.boxShadow =
-      "0 0 0 3px rgba(52,152,255,0.25)";
-    e.currentTarget.parentElement!.style.borderRadius = "6px";
-  };
-  const handleBlur: FocusEventHandler<HTMLInputElement> = e => {
-    e.currentTarget.parentElement!.style.boxShadow = "none";
-    e.currentTarget.parentElement!.style.borderRadius = "none";
-  };
-
   return (
     <div className={mergeClass(parentClasses)}>
       {prepend && <span className={mergeClass("left")}>{prepend}</span>}
-      <input
-        value={value}
-        disabled={disabled}
-        className={mergeClass(classes)}
-        type="text"
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        {...restProps}
-      />
+      <span className={mergeClass("content")}>
+        <input
+          value={value}
+          disabled={disabled}
+          className={mergeClass("")}
+          type="text"
+          // onFocus={handleFocus}
+          // onBlur={handleBlur}
+          {...restProps}
+        />
+        <span className={mergeClass("icon")}>
+          <Icon name="close" size="10" />
+        </span>
+      </span>
       {append && <span className={mergeClass("right")}>{append}</span>}
     </div>
   );
