@@ -259,5 +259,15 @@ export const Api_Data_Grid = [
     type: "left | center | right",
     defaultValue: "left",
     require: "false"
-  },
-]
+  }
+];
+
+export const Api_Data_Input = [
+  {
+    props: "value",
+    explain: "输入框内容",
+    type: "string",
+    defaultValue: "/",
+    require: "false"
+  }
+];

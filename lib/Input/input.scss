@@ -40,9 +40,10 @@
   &.yui-input-prepend {
     display: flex;
     .yui-input-left {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       flex-shrink: 0;
-      padding: 8px 12px;
+      padding: 0 12px;
       font-size: 14px;
       color: $font-color-default;
       background: $B050;
@@ -75,9 +76,10 @@
   &.yui-input-append {
     display: flex;
     .yui-input-right {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       flex-shrink: 0;
-      padding: 8px 12px;
+      padding: 0 12px;
       font-size: $font-size-default;
       color: $font-color-default;
       background: #f7f7fa;

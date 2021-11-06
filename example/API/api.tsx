@@ -8,7 +8,8 @@ import {
   Api_Data_Dialog,
   Api_Data_Layout,
   Api_Data_Toast,
-  Api_Data_Grid
+  Api_Data_Grid,
+  Api_Data_Input
 } from "./config";
 
 interface ApiProps {
@@ -35,7 +36,8 @@ const API: React.FC<ApiProps> = props => {
     dialog: Api_Data_Dialog,
     layout: Api_Data_Layout,
     toast: Api_Data_Toast,
-    grid: Api_Data_Grid
+    grid: Api_Data_Grid,
+    input: Api_Data_Input
   };
 
   return (
