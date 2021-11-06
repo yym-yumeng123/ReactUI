@@ -269,5 +269,61 @@ export const Api_Data_Input = [
     type: "string",
     defaultValue: "/",
     require: "false"
-  }
+  },
+  {
+    props: "size",
+    explain: "输入框大小",
+    type: "lg | sm | xs",
+    defaultValue: "默认大小",
+    require: "false"
+  },
+  {
+    props: "disabled",
+    explain: "是否禁用输入框",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "closable",
+    explain: "清空输入孔内容 按钮 是否显示",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "prepend",
+    explain: "在输入框前面添加前缀",
+    type: "string | ReactElement",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "append",
+    explain: "在输入框后面添加后缀",
+    type: "string | ReactElement",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "onClear",
+    explain: "清空输入孔内容回调",
+    type: "function",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "onChange",
+    explain: "change 事件",
+    type: "ChangeEventHandler<HTMLInputElement>",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "onFocus/onBlur/...",
+    explain: "Input 其它事件",
+    type: "FocusEventHandler<HTMLInputElement>",
+    defaultValue: "/",
+    require: "false"
+  },
 ];

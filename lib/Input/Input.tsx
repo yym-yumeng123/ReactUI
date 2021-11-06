@@ -27,7 +27,6 @@ export interface InputProps
   value?: string | "";
   disabled?: boolean;
   size?: InputSize;
-  icon?: string;
   // 清空按钮存在不
   closable?: boolean;
   // 添加前缀
@@ -45,7 +44,6 @@ const Input: FC<InputProps> = props => {
   const {
     disabled,
     size,
-    icon,
     prepend,
     append,
     value,
