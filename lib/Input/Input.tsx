@@ -1,8 +1,10 @@
 import React, {
+  ChangeEventHandler,
   FC,
   FocusEventHandler,
   InputHTMLAttributes,
-  ReactElement
+  ReactElement,
+  useRef,
 } from "react";
 import Icon from "lib/Icon/icon";
 
@@ -26,26 +28,57 @@ export interface InputProps
   disabled?: boolean;
   size?: InputSize;
   icon?: string;
+  // 清空按钮存在不
+  closable?: boolean;
   // 添加前缀
   prepend?: string | ReactElement;
   // 添加后缀
   append?: string | ReactElement;
+
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  onClear?: () => void;
 }
 
 const Input: FC<InputProps> = props => {
-  const { disabled, size, icon, prepend, append, value, ...restProps } = props;
-  // 根据属性计算不同的 className
+  const {
+    disabled,
+    size,
+    icon,
+    prepend,
+    append,
+    value,
+    onChange,
+    onFocus,
+    onBlur,
+    onClear,
+    closable = false,
+    ...restProps
+  } = props;
+  const isShow = useRef(closable);
 
+  const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
+    onChange && onChange(e);
+  };
   // 有焦点时, 设置样式
-  // const handleFocus: FocusEventHandler<HTMLInputElement> = e => {
-  //   e.currentTarget.parentElement!.style.boxShadow =
-  //     "0 0 0 3px rgba(52,152,255,0.25)";
-  //   e.currentTarget.parentElement!.style.borderRadius = "6px";
-  // };
-  // const handleBlur: FocusEventHandler<HTMLInputElement> = e => {
-  //   e.currentTarget.parentElement!.style.boxShadow = "none";
-  //   e.currentTarget.parentElement!.style.borderRadius = "none";
-  // };
+  const handleFocus: FocusEventHandler<HTMLInputElement> = e => {
+    onFocus && onFocus(e);
+    // e.currentTarget.parentElement!.style.boxShadow =
+    //   "0 0 0 3px rgba(52,152,255,0.25)";
+    // e.currentTarget.parentElement!.style.borderRadius = "6px";
+  };
+  const handleBlur: FocusEventHandler<HTMLInputElement> = e => {
+    onBlur && onBlur(e);
+    // e.currentTarget.parentElement!.style.boxShadow = "none";
+    // e.currentTarget.parentElement!.style.borderRadius = "none";
+  };
+
+  const handleClear = () => {
+    console.log("clear");
+
+    onClear && onClear();
+  };
 
   const parentClasses = {
     wrapper: true,
@@ -63,13 +96,16 @@ const Input: FC<InputProps> = props => {
           disabled={disabled}
           className={mergeClass("")}
           type="text"
-          // onFocus={handleFocus}
-          // onBlur={handleBlur}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
           {...restProps}
         />
-        <span className={mergeClass("icon")}>
-          <Icon name="close" size="10" />
-        </span>
+        {isShow.current && value!.length > 0 && (
+          <span className={mergeClass("icon")}>
+            <Icon name="close" size="8" color="#a6a6a6" onClick={handleClear} />
+          </span>
+        )}
       </span>
       {append && <span className={mergeClass("right")}>{append}</span>}
     </div>

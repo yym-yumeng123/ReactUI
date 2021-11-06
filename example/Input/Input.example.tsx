@@ -2,18 +2,23 @@ import React, {ChangeEvent, useState} from "react";
 import Input from "lib/Input/Input";
 
 const InputExample = () => {
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState('');
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const {value} = e.target;
     // @ts-ignore
     setVal(value);
   };
+  const clearValue = () => {
+    console.log('我会掉了...');
+
+    setVal('')
+  }
   return (
     <div>
       <h1>Default</h1>
       <Input/>
       <h1>Placeholder</h1>
-      <Input placeholder="请输入名称"/>
+      <Input placeholder="请输入名称" onChange={onChange} value={val} onClear={clearValue} closable/>
       <h1>Size</h1>
       <Input placeholder="lg" size="lg"/>
       <Input placeholder="sm" size="sm"/>
