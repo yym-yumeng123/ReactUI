@@ -66,7 +66,7 @@ const Input: FC<InputProps> = props => {
     // console.log(e.currentTarget.parentElement?.parentElement);
 
     // e.currentTarget.parentElement!.parentElement!.style.boxShadow =
-      // "0 0 0 3px rgba(52,152,255,0.25)";
+    // "0 0 0 3px rgba(52,152,255,0.25)";
     // e.currentTarget.parentElement!.parentElement!.style.border = '1px solid #3498ff'
     // e.currentTarget.parentElement!.parentElement!.style.borderRadius = "6px";
   };
@@ -87,6 +87,7 @@ const Input: FC<InputProps> = props => {
     [`${size}`]: !!size,
     disabled: !!disabled
   };
+
   return (
     <div className={mergeClass(parentClasses)}>
       {prepend && <span className={mergeClass("left")}>{prepend}</span>}
@@ -99,11 +100,17 @@ const Input: FC<InputProps> = props => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
+          style={{ padding: `8px ${isShow.current ? "26px" : "12px"} 8px 12px` }}
           {...restProps}
         />
         {isShow.current && value!.length > 0 && (
           <span className={mergeClass("icon")}>
-            <Icon name="close_no_around" size="8" color="#a6a6a6" onClick={handleClear} />
+            <Icon
+              name="close_no_around"
+              size="8"
+              color="#a6a6a6"
+              onClick={handleClear}
+            />
           </span>
         )}
       </span>
