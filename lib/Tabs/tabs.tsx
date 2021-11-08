@@ -7,10 +7,10 @@ import React, {
   useEffect
 } from "react";
 import TabPane from "./tabPane";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./tabs.scss";
 
-const prefix = addPrefixAndscopedClassMarker("yui-tabs");
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-tabs");
 
 interface TabsProps {
   active: string;
@@ -21,9 +21,11 @@ interface TabsProps {
 const Tabs: FC<TabsProps> = props => {
   const { children, active, onChange } = props;
   const [current, setCurrent] = useState(active);
+
   const navWrapRef = useRef<HTMLDivElement>(null);
   let currentItemRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
+
   // 判断子元素是否都是 TabPane
   const isChildlrenElement = children.every(item => item.type === TabPane);
   if (!isChildlrenElement) {
@@ -59,7 +61,7 @@ const Tabs: FC<TabsProps> = props => {
   const items = children.map((item, index) => {
     return (
       <span
-        className={prefix({ nav: true, active: item.props.name === current })}
+        className={mergeClass({ nav: true, active: item.props.name === current })}
         data-name={item.props.name}
         key={index}
         ref={item.props.name === current ? currentItemRef : null}
@@ -71,11 +73,11 @@ const Tabs: FC<TabsProps> = props => {
   });
 
   return (
-    <div className={prefix("")}>
-      <div ref={navWrapRef} className={prefix("nav-wrap")}>
+    <div className={mergeClass("")}>
+      <div ref={navWrapRef} className={mergeClass("nav-wrap")}>
         {items}
       </div>
-      <div ref={indicatorRef} className={prefix("indicator")}></div>
+      <div ref={indicatorRef} className={mergeClass("indicator")}></div>
       {
         children.filter(item => {
           return item.props.name === current;
