@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "lib/Button/button";
 import Tabs from "lib/Tabs/tabs";
 import TabPane from "lib/Tabs/tabPane";
 
@@ -19,6 +20,18 @@ const TabsExample = () => {
         <TabPane name="11" title="导航一">内容一</TabPane>
         <TabPane name="22" title="导航二">内容二</TabPane>
         <TabPane name="33" title="导航三">内容三个</TabPane>
+      </Tabs>
+
+      <Tabs active="22">
+        <TabPane name="11" title="导航一" icon="close">内容一</TabPane>
+        <TabPane name="22" title="导航二" icon="user">内容二</TabPane>
+        <TabPane name="33" title="导航三" icon="social_wechat">内容三个</TabPane>
+      </Tabs>
+
+      <Tabs active="22" extra={<Button level="danger">额外</Button>}>
+        <TabPane name="11" title="导航一" icon="close">内容一</TabPane>
+        <TabPane name="22" title="导航二" icon="user">内容二</TabPane>
+        <TabPane name="33" title="导航三" icon="social_wechat">内容三个</TabPane>
       </Tabs>
     </div>
   );

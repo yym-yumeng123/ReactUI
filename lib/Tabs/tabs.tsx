@@ -1,11 +1,13 @@
 import React, {
   FC,
   ReactElement,
-  MouseEvent,
   useState,
   useRef,
-  useEffect
+  useEffect,
+  MouseEventHandler,
+  ReactNode
 } from "react";
+import Icon from "lib/Icon/icon";
 import TabPane from "./tabPane";
 import "./tabs.scss";
 
@@ -14,12 +16,13 @@ const mergeClass = addPrefixAndMergeClass("yui-tabs");
 
 interface TabsProps {
   active: string;
+  extra?: ReactNode
   onChange?: (name: string) => void;
   children: Array<ReactElement>;
 }
 
 const Tabs: FC<TabsProps> = props => {
-  const { children, active, onChange } = props;
+  const { children, active, extra, onChange } = props;
   const [current, setCurrent] = useState(active);
 
   const navWrapRef = useRef<HTMLDivElement>(null);
@@ -39,6 +42,8 @@ const Tabs: FC<TabsProps> = props => {
       width,
       left: leftItem
     } = (currentItemRef.current as HTMLDivElement).getBoundingClientRect();
+
+    // 包裹 头部的 距离左边的距离
     const {
       left
     } = (navWrapRef.current as HTMLDivElement).getBoundingClientRect();
@@ -52,37 +57,58 @@ const Tabs: FC<TabsProps> = props => {
       deltaLeft + "px";
   }, [current]);
 
-  const handleSelect = (name: string, e: MouseEvent<HTMLSpanElement>) => {
-    setCurrent(name);
-    onChange && onChange(name);
+  const handleSelect: MouseEventHandler<HTMLSpanElement> = e => {
+    console.log();
+
+    const name = e.currentTarget.getAttribute("data-name");
+    setCurrent(name!);
+    onChange && onChange(name!);
   };
 
   // 获取子元素的 title
   const items = children.map((item, index) => {
+    const { name, title, icon } = item.props;
     return (
       <span
-        className={mergeClass({ nav: true, active: item.props.name === current })}
-        data-name={item.props.name}
+        className={mergeClass({
+          item: true,
+          active: name === current
+        })}
+        data-name={name}
         key={index}
-        ref={item.props.name === current ? currentItemRef : null}
-        onClick={e => handleSelect(item.props.name, e)}
+        ref={name === current ? currentItemRef : null}
+        onClick={e => handleSelect(e)}
       >
-        {item.props.title}
+        {icon && (
+          <span className={mergeClass("icon")}>
+            <Icon
+              size="10"
+              color={name === current ? "#1675e0" : "#8e8e93"}
+              name={icon}
+            />
+          </span>
+        )}
+        <span className={mergeClass("title")}>{title}</span>
       </span>
     );
   });
 
   return (
     <div className={mergeClass("")}>
-      <div ref={navWrapRef} className={mergeClass("nav-wrap")}>
-        {items}
-      </div>
-      <div ref={indicatorRef} className={mergeClass("indicator")}></div>
-      {
-        children.filter(item => {
-          return item.props.name === current;
-        })[0]
-      }
+      <>
+        <div ref={navWrapRef} className={mergeClass("nav-wrap")}>
+          <div className={mergeClass('item-wrap')}>{items}</div>
+          {extra && <span className={mergeClass('extra')}>{extra}</span>}
+        </div>
+        <div ref={indicatorRef} className={mergeClass("indicator")}></div>
+      </>
+      <>
+        {
+          children.filter(item => {
+            return item.props.name === current;
+          })[0]
+        }
+      </>
     </div>
   );
 };
