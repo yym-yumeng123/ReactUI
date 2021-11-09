@@ -19,7 +19,7 @@ const TabsBasicExample = () => {
           内容二
         </TabPane>
         <TabPane name="3" title="导航三">
-          内容三个
+          内容三
         </TabPane>
       </Tabs>
     </div>
