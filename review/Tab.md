@@ -10,3 +10,8 @@
 - 用户 -> tab 里有 icon
 - 横竖 tab
 - 右侧加按钮
+
+
+### 原理
+- 我有一个默认的 active, 当我切换对应的 tab, 修改 active 对应的 tab
+- 下面显示区域, 和上面active 对应, 非 active 隐藏

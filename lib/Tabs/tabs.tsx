@@ -58,8 +58,6 @@ const Tabs: FC<TabsProps> = props => {
   }, [current]);
 
   const handleSelect: MouseEventHandler<HTMLSpanElement> = e => {
-    console.log();
-
     const name = e.currentTarget.getAttribute("data-name");
     setCurrent(name!);
     onChange && onChange(name!);

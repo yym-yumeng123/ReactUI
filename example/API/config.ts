@@ -325,5 +325,57 @@ export const Api_Data_Input = [
     type: "FocusEventHandler<HTMLInputElement>",
     defaultValue: "/",
     require: "false"
+  }
+];
+
+export const Api_Data_Tabs = [
+  {
+    props: "active",
+    explain: "Tabs 组件的属性, 默认展示哪一个 tab",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+  {
+    props: "extra",
+    explain: "Tabs 组件的属性, 在tab右边添加一个额外的属性",
+    type: "ReactNode",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "onChange",
+    explain: "Tabs 组件的属性, 当点击 tab 时回调",
+    type: "(name) => void",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "------",
+    explain: "------",
+    type: "------",
+    defaultValue: "------",
+    require: "------",
+  },
+  {
+    props: "title",
+    explain: "TabPane 组件的属性, 展示 tab 的 title",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+  {
+    props: "name",
+    explain: "TabPane 组件的属性, 相当于给 TabPane 设置一个默认的 key",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+  {
+    props: "icon",
+    explain: "TabPane 组件的属性, 可以在 title 添加 icon, 值为 icon 的 name ",
+    type: "string",
+    defaultValue: "/",
+    require: "false"
   },
 ];
