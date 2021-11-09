@@ -355,7 +355,7 @@ export const Api_Data_Tabs = [
     explain: "------",
     type: "------",
     defaultValue: "------",
-    require: "------",
+    require: "------"
   },
   {
     props: "title",
@@ -378,4 +378,11 @@ export const Api_Data_Tabs = [
     defaultValue: "/",
     require: "false"
   },
+  {
+    props: "disabled",
+    explain: "TabPane 组件的属性, 可以为组建添加 disabled 属性, 不可选择",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  }
 ];

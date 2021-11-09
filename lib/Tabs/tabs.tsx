@@ -4,7 +4,6 @@ import React, {
   useState,
   useRef,
   useEffect,
-  MouseEventHandler,
   ReactNode
 } from "react";
 import Icon from "lib/Icon/icon";
@@ -16,8 +15,8 @@ const mergeClass = addPrefixAndMergeClass("yui-tabs");
 
 interface TabsProps {
   active: string;
-  extra?: ReactNode
-  onChange?: (name: string) => void;
+  extra?: ReactNode;
+  onChange?: (e: MouseEvent, name: string) => void;
   children: Array<ReactElement>;
 }
 
@@ -57,25 +56,27 @@ const Tabs: FC<TabsProps> = props => {
       deltaLeft + "px";
   }, [current]);
 
-  const handleSelect: MouseEventHandler<HTMLSpanElement> = e => {
-    const name = e.currentTarget.getAttribute("data-name");
+  const handleSelect = (e: any, name: string, disabled: boolean) => {
+    if (disabled) return;
+
     setCurrent(name!);
-    onChange && onChange(name!);
+    onChange && onChange(e, name);
   };
 
   // 获取子元素的 title
   const items = children.map((item, index) => {
-    const { name, title, icon } = item.props;
+    const { name, title, icon, disabled = false } = item.props;
     return (
       <span
         className={mergeClass({
           item: true,
-          active: name === current
+          active: name === current,
+          disabled
         })}
         data-name={name}
         key={index}
         ref={name === current ? currentItemRef : null}
-        onClick={e => handleSelect(e)}
+        onClick={e => handleSelect(e, name, disabled)}
       >
         {icon && (
           <span className={mergeClass("icon")}>
@@ -95,8 +96,8 @@ const Tabs: FC<TabsProps> = props => {
     <div className={mergeClass("")}>
       <>
         <div ref={navWrapRef} className={mergeClass("nav-wrap")}>
-          <div className={mergeClass('item-wrap')}>{items}</div>
-          {extra && <span className={mergeClass('extra')}>{extra}</span>}
+          <div className={mergeClass("item-wrap")}>{items}</div>
+          {extra && <span className={mergeClass("extra")}>{extra}</span>}
         </div>
         <div ref={indicatorRef} className={mergeClass("indicator")}></div>
       </>

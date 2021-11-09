@@ -24,6 +24,14 @@
         &.yui-tabs-active {
           color: $H700;
         }
+
+        &.yui-tabs-disabled {
+          background: #f7f7fa;
+          color: #c5c6c7;
+          border-radius: 6px;
+          user-select: none;
+          cursor: not-allowed;
+        }
       }
     }
     .yui-tabs-extra {

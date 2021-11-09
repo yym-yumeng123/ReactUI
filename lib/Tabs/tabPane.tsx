@@ -8,6 +8,7 @@ export interface TabPaneProps {
   title: string;
   name: string
   icon?: string; // 添加 icon 的名字
+  disabled?: boolean
 }
 
 const TabPane: FC<TabPaneProps> = props => {
