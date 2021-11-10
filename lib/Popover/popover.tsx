@@ -1,25 +1,27 @@
 import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
-import useClickOutside from "lib/hooks/useClickOutside";
-import "./popover.scss";
 import ReactDOM from "react-dom";
+import useClickOutside from "lib/hooks/useClickOutside";
 
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-popover");
+
+import "./popover.scss";
+
+type Placement = "top" | "right" | "bottom" | "left";
 interface PopoverProps {
   title?: string | ReactNode;
   content: string | ReactNode;
-  placement?: "top" | "right" | "bottom" | "left";
+  placement?: Placement; // 方向
   trigger?: "hover" | "click";
 }
 
-const prefix = addPrefixAndscopedClassMarker("yui-popover");
-
 const Popover: FC<PopoverProps> = props => {
   const {
-    children,
     title,
     content,
     placement = "top",
     trigger = "hover",
+    children
   } = props;
 
   const [visible, setVisible] = useState(false);
@@ -91,24 +93,27 @@ const Popover: FC<PopoverProps> = props => {
 
   const contentPortal = visible && (
     <div
-      className={prefix({ wrap: true, [`${placement}`]: !!placement })}
+      className={mergeClass({ wrap: true, [`${placement}`]: !!placement })}
       ref={contentRef}
     >
-      {title && <div className={prefix("header")}>{title}</div>}
-      <div className={prefix("content")}>{content}</div>
+      {title && <div className={mergeClass("header")}>{title}</div>}
+      <div className={mergeClass("content")}>{content}</div>
     </div>
   );
 
   const toBodyContent = ReactDOM.createPortal(contentPortal, document.body);
 
   return (
-    <div className={prefix("")} ref={popRef}>
+    <div className={mergeClass("")} ref={popRef}>
+      {/* 气泡展示的元素 */}
       {toBodyContent}
+
+      {/* 展示给用户看的元素 */}
       <span
         onClick={handlerToggle}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={prefix("triggerWrap")}
+        className={mergeClass("triggerWrap")}
         ref={triggerWrapperRef}
       >
         {children}

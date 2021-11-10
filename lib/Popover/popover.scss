@@ -1,4 +1,4 @@
-@import "lib/styles/_helper.scss";
+@import "lib/styles/variable.scss";
 
 .yui-popover {
   position: relative;
@@ -8,17 +8,19 @@
     padding: 12px;
     color: $B800;
     background: #fff;
-    border-radius: 6px;
+    border-radius: $radius;
     word-break: break-all;
+    border: 1px solid red;
     .yui-popover-header {
       margin-bottom: 8px;
-      font-weight: bold;
-      font-size: 16px;
+      font-weight: $font-weight;
+      font-size: $font-size-lg;
     }
     .yui-popover-content {
-      font-size: 14px;
+      font-size: $font-size-default;
     }
 
+    // 三角形
     &::after {
       content: "";
       position: absolute;
