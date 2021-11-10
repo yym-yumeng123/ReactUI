@@ -30,7 +30,6 @@ const CollapseItem: FC<CollapseItemProps> = props => {
   const contentRef = useRef(null)
 
   useEffect(() => {
-    console.log('121212121');
     if(selected.indexOf(name)> -1 ) {
       setOpen(true)
     }
