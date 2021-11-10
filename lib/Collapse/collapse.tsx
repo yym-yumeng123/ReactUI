@@ -7,11 +7,12 @@ const mergeClass = addPrefixAndMergeClass("yui-collapse");
 interface CollapseProps {
   // 是否默认每次打开只展示一个
   single?: boolean;
+  actives?: string[]
   children: Array<ReactElement>;
 }
 
 const Collapse: FC<CollapseProps> = props => {
-  const { children, single = false } = props;
+  const { children, single = false, actives= [] } = props;
 
   const [bindIndex, setBindIndex] = useState(-1); // 没有选择的 index
   const [collapsed, setCollapsed] = useState(false); // item 展开
@@ -28,6 +29,7 @@ const Collapse: FC<CollapseProps> = props => {
       },
       single,
       index,
+      actives,
       isCollapsed: collapsed ? false : index === bindIndex
     });
   });
