@@ -13,9 +13,7 @@ interface CollapseProps {
 
 const Collapse: FC<CollapseProps> = props => {
   const { children, single = false, selected= [] } = props;
-
   const [bindIndex, setBindIndex] = useState(-1); // 没有选择的 index
-  const [collapsed, setCollapsed] = useState(false); // item 展开
 
   const childWithProps = React.Children.map(children, (child, index) => {
     if (child.type !== CollapseItem) {
@@ -23,14 +21,12 @@ const Collapse: FC<CollapseProps> = props => {
     }
 
     return React.cloneElement(child, {
-      handleClick: (index: number, collapsed: boolean) => {
+      handleClick: () => {
         setBindIndex(index);
-        setCollapsed(collapsed);
       },
       single,
-      index,
       selected,
-      isCollapsed: collapsed ? false : index === bindIndex
+      isCollapsed: index === bindIndex
     });
   });
 

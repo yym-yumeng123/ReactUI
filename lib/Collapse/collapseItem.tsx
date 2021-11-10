@@ -9,53 +9,55 @@ interface CollapseItemProps {
 
   // 父元素传参
   single?: boolean;
-  index?: number;
+  selected?: string[];
   isCollapsed?: boolean;
-  selected?: string[]
-  handleClick?: (index: number, isCollapsed: boolean) => {};
+  handleClick?: () => {};
 }
 
 const CollapseItem: FC<CollapseItemProps> = props => {
   const {
     title,
     name,
-    children,
-    index = 0,
     isCollapsed = false,
     single,
     selected = [],
-    handleClick
+    handleClick,
+    children,
   } = props;
   const [open, setOpen] = useState(false);
-  const contentRef = useRef(null)
+  const contentRef = useRef(null);
 
   useEffect(() => {
-    if(selected.indexOf(name)> -1 ) {
-      setOpen(true)
+    if (selected.indexOf(name) > -1) {
+      setOpen(true);
     }
-  }, [])
+  }, []);
 
   const handleToggle = () => {
     setOpen(!open);
-    handleClick && handleClick(index, isCollapsed);
+    handleClick && handleClick();
   };
 
   return (
     <div className={mergeClass("")}>
       <header className={mergeClass("header")} onClick={handleToggle}>
         <div className={mergeClass("title")}>{title}</div>
-        <div>
-          <Icon
-            className={mergeClass("icon")}
-            name="arrow_right"
-            size="12"
-            color="#575757"
-            style={{ transform: `rotate(${(single ? isCollapsed : open) ? "90deg" : "0"})` }}
-          />
-        </div>
+        <Icon
+          className={mergeClass("icon")}
+          name="arrow_right"
+          size="12"
+          color="#575757"
+          style={{
+            transform: `rotate(${
+              (single ? isCollapsed : open) ? "90deg" : "0"
+            })`
+          }}
+        />
       </header>
       {/* 是否 single, 如果 true, 只看 自己的 state */}
-      {(single ? isCollapsed : open) && <main ref={contentRef}>{children}</main>}
+      {(single ? isCollapsed : open) && (
+        <main ref={contentRef}>{children}</main>
+      )}
     </div>
   );
 };
