@@ -1,30 +1,33 @@
-@import "lib/styles/_helper.scss";
+@import "lib/styles/variable.scss";
 
 $border-radius: 6px;
 .yui-collapse {
-  padding: 0 20px;
-  border-radius: $border-radius;
-  border: 1px solid $B200;
+  padding: 0 $padding;
+  border-radius: $radius;
+  border: 1px solid $default-border-color;
 
   &-item {
-    header {
+    &:not(:first-child) {
+      border-top: 1px solid $default-border-color;
+    }
+    .yui-collapse-item-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
+      padding: $padding 0;
+      cursor: pointer;
       .yui-collapse-item-title {
+        color: $font-color-title;
         font-size: 16px;
-        color: #272c36;
-      }
-
-      .yui-collapse-item-icon {
-        cursor: pointer;
+        font-weight: $font-weight;
       }
     }
     main {
-      font-size: 14px;
-      color: #575757;
-      border-bottom: 1px solid #e5e5e5;
+      font-size: $font-size-default;
+      color: $font-color-default;
+      padding-bottom: 20px;
+      line-height: 20px;
+      animation: all 1s;
     }
 
     &:last-child {

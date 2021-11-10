@@ -7,7 +7,7 @@ const CollapseExample = () => {
     <div style={{width: '500px'}}>
       <Collapse>
         <CollapseItem title="内容1">1111</CollapseItem>
-        <CollapseItem title="内容2">2222</CollapseItem>
+        <CollapseItem title="内容2">产生于 HYPERS 前端团队，同时也是面向企业级后台产品产生于 HYPERS 前端团队，同时也是面向企业级后台产品产生于 HYPERS 前端团队，同时也是面向企业级后台产品</CollapseItem>
         <CollapseItem title="内容3">33333</CollapseItem>
       </Collapse>
 

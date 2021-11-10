@@ -1,9 +1,9 @@
 import React, { FC, ReactElement, useState } from "react";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
-import "./collapse.scss";
 import CollapseItem from "./collapseItem";
+import "./collapse.scss";
 
-const prefix = addPrefixAndscopedClassMarker("yui-collapse");
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-collapse");
 interface CollapseProps {
   single?: boolean;
   children: Array<ReactElement>;
@@ -29,7 +29,7 @@ const Collapse: FC<CollapseProps> = props => {
     });
   });
 
-  return <div className={prefix("")}>{childWithProps}</div>;
+  return <div className={mergeClass("")}>{childWithProps}</div>;
 };
 
 export default Collapse;
