@@ -5,6 +5,8 @@ const mergeClass = addPrefixAndMergeClass("yui-collapse-item");
 
 interface CollapseItemProps {
   title: string | ReactElement;
+
+  // 父元素传参
   single?: boolean;
   index?: number;
   isCollapsed?: boolean;
@@ -18,7 +20,7 @@ const CollapseItem: FC<CollapseItemProps> = props => {
     children,
     index = 0,
     isCollapsed = false,
-    single = false,
+    single,
     handleClick
   } = props;
 
@@ -32,17 +34,10 @@ const CollapseItem: FC<CollapseItemProps> = props => {
       <header className={mergeClass("header")} onClick={handleToggle}>
         <div className={mergeClass("title")}>{title}</div>
         <div className={mergeClass("icon")}>
-          {single ? (
-            !isCollapsed
-          ) : (
-            <Icon
-              name={!open ? "arrow_down" : "arrow_up"}
-              size="12"
-              color="#575757"
-            />
-          )}
+          <Icon name={"arrow_up"} size="12" color="#575757" />
         </div>
       </header>
+      {/* 是否 single, 如果 true, 只看 自己的 state */}
       {(single ? isCollapsed : open) && <main>{children}</main>}
     </div>
   );

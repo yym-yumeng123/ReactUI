@@ -10,3 +10,9 @@
   <CollapseItem title="内容3">33333</CollapseItem>
 </Collapse>
 ```
+
+### api 分析
+1. Item
+  - open state, 是否打开内容
+2. Collapse
+  - single props: 是否每次只打开一个
