@@ -386,3 +386,41 @@ export const Api_Data_Tabs = [
     require: "false"
   }
 ];
+
+export const Api_Data_Collapse = [
+  {
+    props: "single",
+    explain: "Collapse 组件的属性, 是否展开选项时只展示一个",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "selected",
+    explain: "Collapse 组件的属性, 希望开始时展开哪几项, 只在 single = false 时有用",
+    type: "string[]",
+    defaultValue: "[]",
+    require: "false"
+  },
+  {
+    props: "------",
+    explain: "------",
+    type: "------",
+    defaultValue: "------",
+    require: "------"
+  },
+  {
+    props: "title",
+    explain: "CollapseItem 组件的属性, 展示标题",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+  {
+    props: "name",
+    explain: "CollapseItem 组件的属性, 设置一个默认 name 识别, selected 默认值的选择",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+]

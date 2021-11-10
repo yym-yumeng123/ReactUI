@@ -11,7 +11,7 @@ interface CollapseItemProps {
   single?: boolean;
   index?: number;
   isCollapsed?: boolean;
-  actives?: string[]
+  selected?: string[]
   handleClick?: (index: number, isCollapsed: boolean) => {};
 }
 
@@ -23,7 +23,7 @@ const CollapseItem: FC<CollapseItemProps> = props => {
     index = 0,
     isCollapsed = false,
     single,
-    actives = [],
+    selected = [],
     handleClick
   } = props;
   const [open, setOpen] = useState(false);
@@ -31,7 +31,7 @@ const CollapseItem: FC<CollapseItemProps> = props => {
 
   useEffect(() => {
     console.log('121212121');
-    if(actives.indexOf(name)> -1 ) {
+    if(selected.indexOf(name)> -1 ) {
       setOpen(true)
     }
   }, [])

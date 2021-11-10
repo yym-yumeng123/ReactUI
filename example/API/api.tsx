@@ -10,7 +10,8 @@ import {
   Api_Data_Toast,
   Api_Data_Grid,
   Api_Data_Input,
-  Api_Data_Tabs
+  Api_Data_Tabs,
+  Api_Data_Collapse
 } from "./config";
 
 interface ApiProps {
@@ -39,7 +40,8 @@ const API: React.FC<ApiProps> = props => {
     toast: Api_Data_Toast,
     grid: Api_Data_Grid,
     input: Api_Data_Input,
-    tabs: Api_Data_Tabs
+    tabs: Api_Data_Tabs,
+    collapse: Api_Data_Collapse
   };
 
   return (
