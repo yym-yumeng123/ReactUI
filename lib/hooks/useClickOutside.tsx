@@ -12,7 +12,7 @@ const useClickOutside = (ref: RefObject<HTMLElement>, handler: Function) => {
       if (!ref.current || ref.current.contains(event.target as HTMLElement)) {
         return;
       }
-      handler(event);
+      handler();
     };
     document.addEventListener("click", listener);
     return () => {

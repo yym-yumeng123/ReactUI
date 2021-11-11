@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
+import React, { FC, MouseEventHandler, ReactNode, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import useClickOutside from "lib/hooks/useClickOutside";
 
@@ -30,30 +30,6 @@ const Popover: FC<PopoverProps> = props => {
   const contentRef = useRef<HTMLDivElement>(null);
   const triggerWrapperRef = useRef<HTMLDivElement>(null);
 
-  const handlerToggle = () => {
-    if (trigger === "click") {
-      setVisible(!visible);
-    }
-  };
-
-  const handleMouseEnter = () => {
-    if (trigger === "hover") {
-      setVisible(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (trigger === "hover") {
-      setVisible(false);
-    }
-  };
-
-  useClickOutside(popRef, () => {
-    if (visible) {
-      setVisible(false);
-    }
-  });
-
   const positionContent = () => {
     const {
       left,
@@ -65,7 +41,7 @@ const Popover: FC<PopoverProps> = props => {
     const { height: contentHeight } = contentRefCopy.getBoundingClientRect();
     let positions = {
       top: {
-        top: `${top + window.scrollY}`,
+        top: `${top + window.scrollY}`, // top 的高度 + 滚动的高度
         left: `${left + window.scrollX}`
       },
       bottom: {
@@ -90,6 +66,31 @@ const Popover: FC<PopoverProps> = props => {
       positionContent();
     }
   }, [visible]);
+
+  const handlerToggle = () => {
+    if (trigger === "click") {
+      setVisible(!visible);
+    }
+  };
+
+  const handleMouseEnter: MouseEventHandler<HTMLSpanElement> = () => {
+    if (trigger === "hover") {
+      setVisible(true);
+    }
+  };
+
+  const handleMouseLeave: MouseEventHandler<HTMLSpanElement> = () => {
+    if (trigger === "hover") {
+      setVisible(false);
+    }
+  };
+
+  // 自定义 点击 document hook
+  useClickOutside(contentRef, () => {
+    if (visible) {
+      setVisible(false);
+    }
+  });
 
   const contentPortal = visible && (
     <div

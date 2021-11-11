@@ -6,14 +6,41 @@
 
 ### 问题: 
 1. popover 位置问题
+  - 需要使用动态赋值, ref `getBoundingClientRect` 获取值
 2. 放到 body
+  - 解决被 `overflow: hidden` 影响
 3. top 问题: 当出现滚动条时 ==> top + window.scrollY
+  - `window.scrollY` 距离上面的滚动距离
 4. bind(this) => 会返回一个新函数
 5. 事件机制, 冒泡问题待解决
 
 
-## 待解决的问题:
+### 待解决的问题:
 1. 鼠标移入 消失的问题
 2. 关闭 api TODO...
 
 3. 可以吧 三角形放入 border 里面
+
+
+### 点击按钮 & popover 不消失, 其他消失
+```js
+<div>
+  <div class="pop" ref="popRef"></div>
+  <div class="trigger" ref="triggerRef"></div>
+</div>
+
+// 1. 点击 trigger, body 里的 pop 显示
+// 2. 当点击 pop 里的 element return, 其它的隐藏 pop
+// 点击后处理的事情
+const listener = (event: MouseEvent) => {
+  // ref.current 不存在 or ref dom 包括点击的内容 popRef
+  if (!ref.current || ref.current.contains(event.target as HTMLElement)) {
+    return;
+  }
+  handler(event);
+};
+document.addEventListener("click", listener);
+return () => {
+  document.removeEventListener("click", listener);
+};
+```
