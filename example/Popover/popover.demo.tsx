@@ -4,8 +4,12 @@ import API from "example/API/api";
 import Card from "lib/Card/card";
 import { Row, Col } from "lib/Grid/row";
 
-import CollapseSingleExample from "./popover.example";
-const codeBasic = require("!!raw-loader!./popover.example.tsx");
+import './popover.demo.scss'
+
+import PopoverBasicExample from "./popover.example_basic";
+import PopoverPositionExample from "./popover.example_position";
+const codeBasic = require("!!raw-loader!./popover.example_basic.tsx");
+const codePosition = require("!!raw-loader!./popover.example_position.tsx");
 
 const PopoverDemo = () => {
   return (
@@ -14,15 +18,21 @@ const PopoverDemo = () => {
         <Col span={12}>
           <Card title="Popover 基本使用">
             <Demo code={codeBasic.default}>
-              <CollapseSingleExample />
+              <PopoverBasicExample />
             </Demo>
           </Card>
         </Col>
-        <Col span={12}></Col>
+        <Col span={12}>
+          <Card title="Popover 四个方向">
+            <Demo code={codePosition.default}>
+              <PopoverPositionExample />
+            </Demo>
+          </Card>
+        </Col>
       </Row>
 
       <Card title="API">
-        <API type="collapse" />
+        <API type="popover" />
       </Card>
     </div>
   );

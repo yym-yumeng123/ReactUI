@@ -397,7 +397,8 @@ export const Api_Data_Collapse = [
   },
   {
     props: "selected",
-    explain: "Collapse 组件的属性, 希望开始时展开哪几项, 只在 single = false 时有用",
+    explain:
+      "Collapse 组件的属性, 希望开始时展开哪几项, 只在 single = false 时有用",
     type: "string[]",
     defaultValue: "[]",
     require: "false"
@@ -418,9 +419,41 @@ export const Api_Data_Collapse = [
   },
   {
     props: "name",
-    explain: "CollapseItem 组件的属性, 设置一个默认 name 识别, selected 默认值的选择",
+    explain:
+      "CollapseItem 组件的属性, 设置一个默认 name 识别, selected 默认值的选择",
     type: "string",
     defaultValue: "/",
     require: "true"
+  }
+];
+
+export const Api_Data_Popover = [
+  {
+    props: "title",
+    explain: "Popover 气泡的标题",
+    type: "string | ReactNode",
+    defaultValue: "/",
+    require: "false"
   },
-]
+  {
+    props: "content",
+    explain: "Popover 气泡的主要内容",
+    type: "string | ReactNode",
+    defaultValue: "/",
+    require: "true"
+  },
+  {
+    props: "placement",
+    explain: "Popover 气泡出现的方向",
+    type: "top | right | bottom | left",
+    defaultValue: "top",
+    require: "false"
+  },
+  {
+    props: "trigger",
+    explain: "Popover 气泡出现的方法",
+    type: "click | hover",
+    defaultValue: "hover",
+    require: "false"
+  },
+];
