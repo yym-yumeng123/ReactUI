@@ -32,8 +32,8 @@ export {
   TabsDemo,
   CollapseDemo,
   PopoverDemo,
-  // TODO: 未完成 api
   PagerDemo,
+  // TODO: 未完成 api
   RadioDemo,
   CheckboxDemo,
   TableDemo,

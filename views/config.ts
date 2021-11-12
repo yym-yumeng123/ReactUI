@@ -11,8 +11,8 @@ import {
   TabsDemo,
   CollapseDemo,
   PopoverDemo,
-  // TODO: ...
   PagerDemo,
+  // TODO: ...
   RadioDemo,
   CheckboxDemo,
   TableDemo,
@@ -88,12 +88,12 @@ export const routeList: Array<{
     title: "Popover 气泡卡片",
     component: PopoverDemo
   },
-  // TODO: 下面没写文档
   {
     path: "/pager",
     title: "Pager 分页",
     component: PagerDemo
   },
+  // TODO: 下面没写文档
   {
     path: "/radio",
     title: "Radio 单选框",

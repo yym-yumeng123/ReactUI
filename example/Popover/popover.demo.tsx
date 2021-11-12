@@ -2,9 +2,8 @@ import React from "react";
 import Demo from "lib/Demo/demo";
 import API from "example/API/api";
 import Card from "lib/Card/card";
-import { Row, Col } from "lib/Grid/row";
 
-import './popover.demo.scss'
+import "./popover.demo.scss";
 
 import PopoverBasicExample from "./popover.example_basic";
 import PopoverPositionExample from "./popover.example_position";
@@ -14,23 +13,17 @@ const codePosition = require("!!raw-loader!./popover.example_position.tsx");
 const PopoverDemo = () => {
   return (
     <div>
-      <Row gutter={20}>
-        <Col span={12}>
-          <Card title="Popover 基本使用">
-            <Demo code={codeBasic.default}>
-              <PopoverBasicExample />
-            </Demo>
-          </Card>
-        </Col>
-        <Col span={12}>
-          <Card title="Popover 四个方向">
-            <Demo code={codePosition.default}>
-              <PopoverPositionExample />
-            </Demo>
-          </Card>
-        </Col>
-      </Row>
+      <Card title="Popover 基本使用">
+        <Demo code={codeBasic.default}>
+          <PopoverBasicExample />
+        </Demo>
+      </Card>
 
+      <Card title="Popover 四个方向">
+        <Demo code={codePosition.default}>
+          <PopoverPositionExample />
+        </Demo>
+      </Card>
       <Card title="API">
         <API type="popover" />
       </Card>
