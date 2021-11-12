@@ -43,4 +43,6 @@ document.addEventListener("click", listener);
 return () => {
   document.removeEventListener("click", listener);
 };
+
+// hover 进入 content 消失, 思路: 创建定时器 300ms 后再关, 如果鼠标在这个时间里进入了 不管, 反之. 鼠标离开不进入就关了
 ```

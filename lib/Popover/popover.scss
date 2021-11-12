@@ -10,7 +10,7 @@
     color: $B800;
     background: #fff;
     border-radius: $radius;
-    word-break: break-all;
+    word-break: break-all; // 单词换行
     .yui-popover-header {
       margin-bottom: 8px;
       font-weight: $font-weight;
