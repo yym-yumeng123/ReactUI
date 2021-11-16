@@ -14,7 +14,7 @@ interface PagerProps {
 }
 
 const Pager: FC<PagerProps> = props => {
-  const { current = 1, totalPage = 7, onChange, hideIfOneTotal = false } = props;
+  const { current = 1, totalPage = 5, onChange, hideIfOneTotal = false } = props;
 
   // 计算出来的属性
   const pages = useMemo(() => {
