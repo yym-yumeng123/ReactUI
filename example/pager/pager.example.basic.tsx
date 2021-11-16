@@ -9,13 +9,17 @@ const PagerBasicExample = () => {
   }
   return (
     <div>
-      <Pager totalPage={5} current={current} onChange={handleChange} />
+      <Pager current={current} onChange={handleChange} />
       <br/>
       <Pager totalPage={200} current={3} />
-      <Pager totalPage={6} current={3} />
+      <Pager totalPage={6} current={2} />
       <Pager totalPage={80} current={30} />
       <Pager />
       <Pager totalPage={5} />
+      <Pager totalPage={4} />
+      <Pager totalPage={3} />
+      <Pager totalPage={2} />
+      <Pager totalPage={1} />
     </div>
   );
 };
