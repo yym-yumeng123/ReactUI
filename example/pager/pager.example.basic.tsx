@@ -20,6 +20,7 @@ const PagerBasicExample = () => {
       <Pager totalPage={3} />
       <Pager totalPage={2} />
       <Pager totalPage={1} />
+      <Pager totalPage={1} hideIfOneTotal />
     </div>
   );
 };

@@ -27,9 +27,10 @@
       cursor: not-allowed;
       background: $B050;
     }
-  }
-  &-prev {
-    margin-right: 4px;
+
+    &.yui-pager-hide {
+      display: none;
+    }
   }
   &-next {
     margin-left: 4px;
