@@ -12,6 +12,7 @@ import {
   CollapseDemo,
   PopoverDemo,
   PagerDemo,
+  SwitchDemo,
   // TODO: ...
   RadioDemo,
   CheckboxDemo,
@@ -19,7 +20,6 @@ import {
   TreeDemo,
   ScrollExample,
   AutoCompleteExample,
-  SwitchExample,
   FormExample
 } from "../example";
 
@@ -93,6 +93,11 @@ export const routeList: Array<{
     title: "Pager 分页",
     component: PagerDemo
   },
+  {
+    path: "/switch",
+    title: "Switch 开关",
+    component: SwitchDemo
+  },
   // TODO: 下面没写文档
   {
     path: "/radio",
@@ -130,10 +135,5 @@ export const routeList: Array<{
     path: "/autoComplete",
     title: "AutoComplete 自动完成",
     component: AutoCompleteExample
-  },
-  {
-    path: "/switch",
-    title: "Switch 开关",
-    component: SwitchExample
   }
 ];

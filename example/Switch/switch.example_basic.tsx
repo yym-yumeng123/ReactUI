@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Switch from "lib/Switch/switch";
 
-const SwitchExample = () => {
+const SwitchBasicExample = () => {
   const [checked, setChecked] = useState(false);
   const handleChange = (value: boolean) => {
     setChecked(!checked)
@@ -19,4 +19,4 @@ const SwitchExample = () => {
   );
 };
 
-export default SwitchExample;
+export default SwitchBasicExample;

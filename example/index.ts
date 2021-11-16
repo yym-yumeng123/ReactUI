@@ -9,6 +9,7 @@ import InputDemo from "./Input/Input.demo";
 import TabsDemo from "./Tabs/tabs.demo";
 import CollapseDemo from "./Collapse/collapse.demo";
 import PopoverDemo from "./Popover/popover.demo";
+import SwitchDemo from "./Switch/switch.demo";
 
 import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import PagerDemo from "./pager/pager.demo";
@@ -17,7 +18,6 @@ import CheckboxDemo from "./Checkbox/checkbox.demo";
 import TableDemo from "./Table/table.demo";
 import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
-import SwitchExample from "./Switch/switch.example";
 import FormExample from "./Form/form.example";
 
 export {
@@ -33,6 +33,7 @@ export {
   CollapseDemo,
   PopoverDemo,
   PagerDemo,
+  SwitchDemo,
   // TODO: 未完成 api
   RadioDemo,
   CheckboxDemo,
@@ -40,6 +41,5 @@ export {
   TreeDemo,
   ScrollExample,
   AutoCompleteExample,
-  SwitchExample,
   FormExample,
 };
