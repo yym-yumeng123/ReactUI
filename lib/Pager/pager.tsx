@@ -15,6 +15,7 @@ interface PagerProps {
 const Pager: FC<PagerProps> = props => {
   const { current = 1, totalPage = 7, onChange } = props;
 
+  // 计算出来的属性
   const pages = useMemo(() => {
     // unique 去重 -> 过滤 -> 排序
     if (totalPage >= 7) {
@@ -35,37 +36,37 @@ const Pager: FC<PagerProps> = props => {
         prev.push(cur);
         arr[index + 1] !== undefined &&
           arr[index + 1] - arr[index] > 1 &&
-          prev.push("...");
+          prev.push("separator");
         return prev;
       }, []);
     } else {
-      const minPages = []
-      for(let i = 1; i <= totalPage; i ++) {
-        minPages.push(i)
+      const minPages = [];
+      for (let i = 1; i <= totalPage; i++) {
+        minPages.push(i);
       }
-      return minPages
+      return minPages;
     }
   }, [current]);
-  console.log(pages, "pages...");
 
   const handleChangeCurrent = (page: number) => {
     if (page < 1 || page > totalPage) return;
     onChange && onChange(page);
   };
 
-  const pagerElement = pages.map(item => {
-    if (item === current) {
+  // 给每一个 item 页 添加不同的样式
+  const pagerElement = pages.map(page => {
+    if (page === current) {
       return (
         <span
           className={mergeClass({
             item: true,
-            current: current === item
+            current: current === page
           })}
         >
-          {item}
+          {page}
         </span>
       );
-    } else if (item === "...") {
+    } else if (page === "separator") {
       return (
         <span className={mergeClass("separator")}>
           <Icon name="elipsis" size="12" />
@@ -75,9 +76,9 @@ const Pager: FC<PagerProps> = props => {
       return (
         <span
           className={mergeClass("item")}
-          onClick={() => handleChangeCurrent(item)}
+          onClick={() => handleChangeCurrent(page)}
         >
-          {item}
+          {page}
         </span>
       );
     }
@@ -89,14 +90,14 @@ const Pager: FC<PagerProps> = props => {
         className={mergeClass({ prev: true, disabled: current === 1 })}
         onClick={() => handleChangeCurrent(current - 1)}
       >
-        <Icon className="position-icon" name="arrow-left-bold" />
+        <Icon className="position-icon" size="7" name="arrow-left-bold" />
       </span>
       {pagerElement}
       <span
         className={mergeClass({ next: true, disabled: current === totalPage })}
         onClick={() => handleChangeCurrent(current + 1)}
       >
-        <Icon className="position-icon" name="arrow-right-bold" />
+        <Icon className="position-icon" size="7" name="arrow-right-bold" />
       </span>
     </div>
   );

@@ -1,4 +1,5 @@
-@import "../styles/helper";
+@import 'lib/styles/variable.scss';
+
 .yui-pager {
   display: flex;
   align-items: center;
@@ -6,20 +7,32 @@
   &-next,
   &-prev {
     display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
     font-size: 12px;
-    padding: 4px 0;
     cursor: pointer;
+    border: 1px solid $default-border-color;
+    border-radius: $radius;
     .position-icon {
-      transform: scale(0.5);
+      fill: $font-low-color;
+    }
+
+    &:hover {
+      background: $B050;
     }
 
     &.yui-pager-disabled {
-      // pointer-events: none;
       cursor: not-allowed;
+      background: $B050;
     }
   }
   &-prev {
-    margin-right: -4px;
+    margin-right: 4px;
+  }
+  &-next {
+    margin-left: 4px;
   }
   &-item {
     display: inline-flex;
@@ -28,7 +41,7 @@
     font-size: 12px;
     padding: 4px 8px;
     margin-left: 4px;
-    border: 1px solid $B200;
+    border: 1px solid $default-border-color;
     border-radius: 6px;
     cursor: pointer;
     user-select: none;
@@ -38,9 +51,9 @@
       border-radius: 6px;
     }
     &:active {
-      background: $B200;
+      background: $default-border-color;
       border-radius: 6px;
-      color: $B900;
+      color: $font-color-title;
     }
 
     &.yui-pager-current {
@@ -49,8 +62,8 @@
       border-radius: 6px;
       cursor: default;
       &:hover {
-        background: $H500;
-        border-radius: 6px;
+        background: $main-color;
+        border-radius: $radius;
         color: #fff;
       }
       &:active {
@@ -62,6 +75,7 @@
   }
   .yui-pager-separator {
     display: inline-flex;
+    margin-left: 4px;
     background: none;
     cursor: default;
   }
