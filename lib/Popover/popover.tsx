@@ -1,4 +1,11 @@
-import React, { FC, MouseEventHandler, ReactNode, useEffect, useRef, useState } from "react";
+import React, {
+  FC,
+  MouseEventHandler,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 import ReactDOM from "react-dom";
 import useClickOutside from "lib/hooks/useClickOutside";
 
@@ -23,6 +30,7 @@ const Popover: FC<PopoverProps> = props => {
     trigger = "hover",
     children
   } = props;
+  let timerId: any;
 
   const [visible, setVisible] = useState(false);
 
@@ -75,13 +83,25 @@ const Popover: FC<PopoverProps> = props => {
 
   const handleMouseEnter: MouseEventHandler<HTMLSpanElement> = () => {
     if (trigger === "hover") {
-      setVisible(true);
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+
+      timerId = setTimeout(() => {
+        setVisible(true);
+      }, 300);
     }
   };
 
   const handleMouseLeave: MouseEventHandler<HTMLSpanElement> = () => {
     if (trigger === "hover") {
-      setVisible(false);
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+
+      timerId = setTimeout(() => {
+        setVisible(false);
+      }, 300);
     }
   };
 
@@ -96,6 +116,8 @@ const Popover: FC<PopoverProps> = props => {
     <div
       className={mergeClass({ wrap: true, [`${placement}`]: !!placement })}
       ref={contentRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {title && <div className={mergeClass("header")}>{title}</div>}
       <div className={mergeClass("content")}>{content}</div>
