@@ -12,7 +12,8 @@ import {
   Api_Data_Input,
   Api_Data_Tabs,
   Api_Data_Collapse,
-  Api_Data_Popover
+  Api_Data_Popover,
+  Api_Data_Pager
 } from "./config";
 
 interface ApiProps {
@@ -43,7 +44,8 @@ const API: React.FC<ApiProps> = props => {
     input: Api_Data_Input,
     tabs: Api_Data_Tabs,
     collapse: Api_Data_Collapse,
-    popover: Api_Data_Popover
+    popover: Api_Data_Popover,
+    pager: Api_Data_Pager
   };
 
   return (

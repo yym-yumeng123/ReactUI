@@ -457,3 +457,34 @@ export const Api_Data_Popover = [
     require: "false"
   },
 ];
+
+export const Api_Data_Pager = [
+  {
+    props: "current",
+    explain: "pager 的当前页",
+    type: "number",
+    defaultValue: "1",
+    require: "false"
+  },
+  {
+    props: "totalPage",
+    explain: "pager 的总页数",
+    type: "number",
+    defaultValue: "5",
+    require: "false"
+  },
+  {
+    props: "hideIfOneTotal",
+    explain: "pager 只有一页时是否需要上一页下一页",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "onChange",
+    explain: "pager 页数改变回调",
+    type: "(n: number) => void",
+    defaultValue: "/",
+    require: "false"
+  },
+]
