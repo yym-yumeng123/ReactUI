@@ -10,6 +10,7 @@ import TabsDemo from "./Tabs/tabs.demo";
 import CollapseDemo from "./Collapse/collapse.demo";
 import PopoverDemo from "./Popover/popover.demo";
 import SwitchDemo from "./Switch/switch.demo";
+import CarouselDemo from "./Carousel/carousel.demo";
 
 import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import PagerDemo from "./pager/pager.demo";
@@ -34,6 +35,7 @@ export {
   PopoverDemo,
   PagerDemo,
   SwitchDemo,
+  CarouselDemo,
   // TODO: 未完成 api
   RadioDemo,
   CheckboxDemo,

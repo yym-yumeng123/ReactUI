@@ -13,6 +13,7 @@ import {
   PopoverDemo,
   PagerDemo,
   SwitchDemo,
+  CarouselDemo,
   // TODO: ...
   RadioDemo,
   CheckboxDemo,
@@ -97,6 +98,11 @@ export const routeList: Array<{
     path: "/switch",
     title: "Switch 开关",
     component: SwitchDemo
+  },
+  {
+    path: "/carousel",
+    title: "Carousel 轮播",
+    component: CarouselDemo
   },
   // TODO: 下面没写文档
   {
