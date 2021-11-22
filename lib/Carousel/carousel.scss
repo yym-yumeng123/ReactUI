@@ -1,4 +1,7 @@
+@import "lib/styles/variable.scss";
+
 .yui-carousel {
+  position: relative;
   border: 1px solid #000;
   &-viewport {
     overflow: hidden;
@@ -7,19 +10,32 @@
     }
   }
   &-item {
+    width: 100%;
     animation: action 1s;
   }
 
   &-dots {
-    border: 1px solid red;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     .yui-carousel-dot {
       display: inline-flex;
       width: 10px;
       height: 10px;
-      background: #000;
+      margin: 0 6px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.4;
+
+      &:hover {
+        background: #fff;
+        opacity: 1;
+      }
 
       &.yui-carousel-active {
-        background: red;
+        background: $main-color;
+        opacity: 1;
       }
     }
   }

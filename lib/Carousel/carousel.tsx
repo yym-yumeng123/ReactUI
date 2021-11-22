@@ -69,13 +69,16 @@ const Carousel: FC<CarouselProps> = props => {
 
       <div className={mergeClass("dots")}>
         {React.Children.map(children, (child, index) => {
+          const {
+            props: { name }
+          } = child;
           return (
             <span
-              data-name={child.props.name}
+              data-name={name}
               onClick={handleSelect}
               className={mergeClass({
                 dot: true,
-                active: select === child.props.name
+                active: select === name
               })}
             ></span>
           );
