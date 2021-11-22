@@ -1,4 +1,10 @@
-import React, { FC, ReactElement, useEffect, useState } from "react";
+import React, {
+  FC,
+  MouseEventHandler,
+  ReactElement,
+  useEffect,
+  useState
+} from "react";
 import CarouselItem from "./carouselItem";
 import "./carousel.scss";
 
@@ -34,10 +40,15 @@ const Carousel: FC<CarouselProps> = props => {
       setSelect(children[index].props.name);
 
       index++;
-      setTimeout(run, 3000);
+      setTimeout(run, 5000);
     };
 
-    setTimeout(run, 3000);
+    setTimeout(run, 5000);
+  };
+
+  // 设置选中的
+  const handleSelect: MouseEventHandler<HTMLSpanElement> = e => {
+    setSelect(e.currentTarget.getAttribute("data-name"));
   };
 
   const renderItem = React.Children.map(children, (child, index) => {
@@ -52,7 +63,24 @@ const Carousel: FC<CarouselProps> = props => {
 
   return (
     <div className={mergeClass("")}>
-      <div className={mergeClass("viewport")}>{renderItem}</div>
+      <div className={mergeClass("viewport")}>
+        <div className={mergeClass("wrapper")}>{renderItem}</div>
+      </div>
+
+      <div className={mergeClass("dots")}>
+        {React.Children.map(children, (child, index) => {
+          return (
+            <span
+              data-name={child.props.name}
+              onClick={handleSelect}
+              className={mergeClass({
+                dot: true,
+                active: select === child.props.name
+              })}
+            ></span>
+          );
+        })}
+      </div>
     </div>
   );
 };

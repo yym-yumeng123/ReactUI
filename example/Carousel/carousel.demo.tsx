@@ -8,7 +8,7 @@ const CarouselDemo = () => {
   return (
     <>
       <Carousel selected="3">
-        <CarouselItem name="1">
+        <CarouselItem name="sf">
           <div className="box">1sjkskjg </div>
         </CarouselItem>
         <CarouselItem name="2">

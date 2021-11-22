@@ -1,22 +1,39 @@
 .yui-carousel {
-  display: inline-flex;
-  border: 1px solid red;
+  border: 1px solid #000;
   &-viewport {
-    border: 1px solid blue;
+    overflow: hidden;
+    .yui-carousel-wrapper {
+      position: relative;
+    }
   }
   &-item {
-    animation: opacity 1s;
+    animation: action 1s;
+  }
+
+  &-dots {
+    border: 1px solid red;
+    .yui-carousel-dot {
+      display: inline-flex;
+      width: 10px;
+      height: 10px;
+      background: #000;
+
+      &.yui-carousel-active {
+        background: red;
+      }
+    }
   }
 }
 
-@keyframes opacity {
-  0%{
+@keyframes action {
+  0% {
     opacity: 0;
     margin-left: 100%;
+    // transform: scale(.5);
   }
-
   100% {
     opacity: 1;
     margin-left: 0;
+    // transform: scale(1);
   }
 }
