@@ -4,4 +4,19 @@
   &-viewport {
     border: 1px solid blue;
   }
+  &-item {
+    animation: opacity 1s;
+  }
+}
+
+@keyframes opacity {
+  0%{
+    opacity: 0;
+    margin-left: 100%;
+  }
+
+  100% {
+    opacity: 1;
+    margin-left: 0;
+  }
 }

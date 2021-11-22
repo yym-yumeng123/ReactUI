@@ -9,27 +9,27 @@ const CarouselDemo = () => {
     <>
       <Carousel selected="3">
         <CarouselItem name="1">
-          <div className="box">1</div>
+          <div className="box">1sjkskjg </div>
         </CarouselItem>
         <CarouselItem name="2">
-          <div className="box">2</div>
+          <div className="box">dgsgsggsgsgsgsdgsg2</div>
         </CarouselItem>
         <CarouselItem name="3">
-          <div className="box">3</div>
+          <div className="box">3ss疯狂开始看</div>
         </CarouselItem>
       </Carousel>
 
-      <Carousel>
-        <CarouselItem name="1">
+      {/* <Carousel>
+        <CarouselItem name="11">
           <div className="box">1</div>
         </CarouselItem>
-        <CarouselItem name="2">
+        <CarouselItem name="22">
           <div className="box">2</div>
         </CarouselItem>
-        <CarouselItem name="3">
+        <CarouselItem name="33">
           <div className="box">3</div>
         </CarouselItem>
-      </Carousel>
+      </Carousel> */}
     </>
   );
 };
