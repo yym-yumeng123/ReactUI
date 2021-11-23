@@ -16,10 +16,20 @@ interface CarouselProps {
   children: Array<ReactElement>;
   selected?: string;
   autoPlay?: boolean; // 是否自动切换
+  width?: number;
+  height?: number;
+  className?: string;
 }
 
 const Carousel: FC<CarouselProps> = props => {
-  const { children, selected, autoPlay = true } = props;
+  const {
+    children,
+    selected,
+    autoPlay = true,
+    width,
+    height,
+    className
+  } = props;
   let [timerId, setTimerId] = useState<any>(undefined);
   const [select, setSelect] = useState(selected || children[0].props.name);
   const names = React.Children.map(children, child => child.props.name);
@@ -40,7 +50,7 @@ const Carousel: FC<CarouselProps> = props => {
       }
 
       setSelect(names[index]);
-      index++
+      index++;
       setTimerId(setTimeout(run, 3000));
     };
 
@@ -49,7 +59,7 @@ const Carousel: FC<CarouselProps> = props => {
 
   const pauseAutomatically = () => {
     window.clearTimeout(timerId);
-    setTimerId(undefined)
+    setTimerId(undefined);
   };
 
   const handleMouseEnter = () => {
@@ -88,12 +98,13 @@ const Carousel: FC<CarouselProps> = props => {
 
   return (
     <div
-      className={mergeClass("")}
+      className={mergeClass("", { extra: className })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      style={{ width: `${width}px`, height: `${height}px` }}
     >
       <div className={mergeClass("viewport")}>
         <div className={mergeClass("wrapper")}>{renderItem}</div>
