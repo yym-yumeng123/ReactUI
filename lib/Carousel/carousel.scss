@@ -11,7 +11,7 @@
   }
   &-item {
     width: 100%;
-    animation: action 1s;
+    // animation: action 1s;
   }
 
   &-dots {
@@ -44,12 +44,12 @@
 @keyframes action {
   0% {
     opacity: 0;
-    margin-left: 100%;
+    // margin-left: 100%;
     // transform: scale(.5);
   }
   100% {
     opacity: 1;
-    margin-left: 0;
+    // margin-left: 0;
     // transform: scale(1);
   }
 }

@@ -2,6 +2,7 @@ import React, {
   FC,
   MouseEventHandler,
   ReactElement,
+  TouchEventHandler,
   useEffect,
   useState
 } from "react";
@@ -61,8 +62,24 @@ const Carousel: FC<CarouselProps> = props => {
     });
   });
 
+  const handleTouchStart: TouchEventHandler<HTMLDivElement> = e => {
+    console.log("开始触摸");
+    console.log(e.touches);
+  };
+  const handleTouchMove: TouchEventHandler<HTMLDivElement> = e => {
+    console.log("触摸中");
+  };
+  const handleTouchEnd: TouchEventHandler<HTMLDivElement> = e => {
+    console.log("触摸结束", e.changedTouches);
+  };
+
   return (
-    <div className={mergeClass("")}>
+    <div
+      className={mergeClass("")}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className={mergeClass("viewport")}>
         <div className={mergeClass("wrapper")}>{renderItem}</div>
       </div>
