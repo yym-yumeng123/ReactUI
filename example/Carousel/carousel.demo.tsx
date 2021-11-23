@@ -7,7 +7,7 @@ import "./carousel.demo.scss";
 const CarouselDemo = () => {
   return (
     <>
-      <Carousel selected="3" autoPlay={false}>
+      <Carousel selected="3" autoPlay={true}>
         <CarouselItem name="sf">
           <div className="box">1sjkskjg </div>
         </CarouselItem>

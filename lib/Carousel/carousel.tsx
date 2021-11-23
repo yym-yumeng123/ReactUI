@@ -20,7 +20,9 @@ interface CarouselProps {
 
 const Carousel: FC<CarouselProps> = props => {
   const { children, selected, autoPlay = true } = props;
+  let [timerId, setTimerId] = useState<any>(undefined);
   const [select, setSelect] = useState(selected || children[0].props.name);
+  const names = React.Children.map(children, child => child.props.name);
 
   useEffect(() => {
     if (autoPlay) {
@@ -29,22 +31,33 @@ const Carousel: FC<CarouselProps> = props => {
   }, []);
 
   const playAutomatically = () => {
-    const names = React.Children.map(children, child => child.props.name);
-    let index = names.indexOf(select);
-
     // 用 setTimeout 模拟 setInterval
+    if (timerId) return;
+    let index = names.indexOf(select);
     let run = () => {
-      if (index === names.length - 1) {
+      if (index === names.length) {
         index = 0;
       }
 
-      setSelect(children[index].props.name);
-
-      index++;
-      setTimeout(run, 5000);
+      setSelect(names[index]);
+      index++
+      setTimerId(setTimeout(run, 3000));
     };
 
-    setTimeout(run, 5000);
+    setTimerId(setTimeout(run, 3000));
+  };
+
+  const pauseAutomatically = () => {
+    window.clearTimeout(timerId);
+    setTimerId(undefined)
+  };
+
+  const handleMouseEnter = () => {
+    pauseAutomatically();
+  };
+
+  const handleMouseLeave = () => {
+    playAutomatically();
   };
 
   // 设置选中的
@@ -76,6 +89,8 @@ const Carousel: FC<CarouselProps> = props => {
   return (
     <div
       className={mergeClass("")}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
