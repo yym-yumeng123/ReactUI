@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import "./carousel.scss";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
@@ -11,7 +12,16 @@ interface CarouselItemProps {
 
 const CarouselItem: FC<CarouselItemProps> = props => {
   const { children, visible = false } = props;
-  return <>{visible && <div className={mergeClass("")}>{children}</div>}</>;
+
+  return (
+    <ReactCSSTransitionGroup
+      transitionName={mergeClass("wrapper")}
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={500}
+    >
+      {visible && <div className={mergeClass("")}>{children}</div>}
+    </ReactCSSTransitionGroup>
+  );
 };
 
 export default CarouselItem;
