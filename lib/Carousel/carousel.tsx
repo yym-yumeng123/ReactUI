@@ -16,6 +16,7 @@ interface CarouselProps {
   children: Array<ReactElement>;
   selected?: string;
   autoPlay?: boolean; // 是否自动切换
+  autoTime?: number;
   width?: number;
   height?: number;
   className?: string;
@@ -26,6 +27,7 @@ const Carousel: FC<CarouselProps> = props => {
     children,
     selected,
     autoPlay = true,
+    autoTime = 3,
     width,
     height,
     className
@@ -51,10 +53,10 @@ const Carousel: FC<CarouselProps> = props => {
 
       setSelect(names[index]);
       index++;
-      setTimerId(setTimeout(run, 3000));
+      setTimerId(setTimeout(run, autoTime * 1000));
     };
 
-    setTimerId(setTimeout(run, 3000));
+    setTimerId(setTimeout(run, autoTime * 1000));
   };
 
   const pauseAutomatically = () => {
@@ -132,3 +134,4 @@ const Carousel: FC<CarouselProps> = props => {
 };
 
 export default Carousel;
+export { CarouselItem };

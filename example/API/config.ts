@@ -455,7 +455,7 @@ export const Api_Data_Popover = [
     type: "click | hover",
     defaultValue: "hover",
     require: "false"
-  },
+  }
 ];
 
 export const Api_Data_Pager = [
@@ -486,5 +486,71 @@ export const Api_Data_Pager = [
     type: "(n: number) => void",
     defaultValue: "/",
     require: "false"
+  }
+];
+
+export const Api_Data_Carousel = [
+  {
+    props: "children",
+    explain: "Carousel 组件的子元素必须是 CarouselItem",
+    type: "Array<ReactElement>",
+    defaultValue: "/",
+    require: "true"
   },
-]
+  {
+    props: "autoPlay",
+    explain: "Carousel 组件是否自动轮播",
+    type: "boolean",
+    defaultValue: "true",
+    require: "false"
+  },
+  {
+    props: "autoTime",
+    explain: "Carousel 组件轮播时间",
+    type: "number",
+    defaultValue: "3s",
+    require: "false"
+  },
+  {
+    props: "selected",
+    explain: "Carousel 组件默认展示哪一个, 和 CarouselItem 的 name props 对应",
+    type: "string",
+    defaultValue: "children[0]",
+    require: "false"
+  },
+  {
+    props: "width",
+    explain: "Carousel 组件宽度",
+    type: "number",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "height",
+    explain: "Carousel 组件高度",
+    type: "number",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "className",
+    explain: "Carousel 组件类名",
+    type: "string",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "------",
+    explain: "------",
+    type: "------",
+    defaultValue: "------",
+    require: "------"
+  },
+  {
+    props: "name",
+    explain: "CarouselItem 组件的 props, 类似于 key, 唯一",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
+  },
+];
