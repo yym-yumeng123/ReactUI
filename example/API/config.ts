@@ -552,5 +552,36 @@ export const Api_Data_Carousel = [
     type: "string",
     defaultValue: "/",
     require: "true"
+  }
+];
+
+export const Api_Data_Switch = [
+  {
+    props: "checked",
+    explain: "Switch 组件是否处于激活状态",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "disabled",
+    explain: "Switch 组件是否可点击",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "size",
+    explain: "Switch 组件大小",
+    type: "sm | lg",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "onChange",
+    explain: "Switch 组件 change 事件",
+    type: "(checked: boolean) => void",
+    defaultValue: "/",
+    require: "false"
   },
 ];

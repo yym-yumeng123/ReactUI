@@ -1,21 +1,22 @@
 import React, { FC, useState } from "react";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
+
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClasss = addPrefixAndMergeClass("yui-switch");
+
 import "./switch.scss";
-
-const prefix = addPrefixAndscopedClassMarker("yui-switch");
-
 interface SwitchProps {
-  checked: boolean;
+  checked?: boolean;
   disabled?: boolean;
-  size?: 'sm' | 'lg'
+  size?: "sm" | "lg";
   onChange?: (value: boolean) => void;
 }
 
 const Switch: FC<SwitchProps> = props => {
-  const { checked, disabled, size, onChange } = props;
+  const { checked = false, disabled = false, size, onChange } = props;
   const [toggle, setToggle] = useState(checked);
 
   const handleToggle = () => {
+    if (disabled) return;
     onChange && onChange(!checked);
     setToggle(!toggle);
   };
@@ -23,12 +24,12 @@ const Switch: FC<SwitchProps> = props => {
   const wrapClasses = {
     wrap: true,
     checked: onChange ? checked : toggle,
-    disabled: !!disabled,
+    disabled: disabled,
     [`${size}`]: !!size
   };
   return (
-    <button className={prefix(wrapClasses)} onClick={handleToggle}>
-      <span className={prefix("square")}></span>
+    <button className={mergeClasss(wrapClasses)} onClick={handleToggle}>
+      <span className={mergeClasss("square")}></span>
     </button>
   );
 };

@@ -46,12 +46,10 @@
   &.yui-switch-disabled {
     background: $B050;
     cursor: not-allowed;
-    pointer-events: none;
   }
 
   &.yui-switch-checked.yui-switch-disabled {
     background: $H100;
-    pointer-events: none;
     cursor: not-allowed;
   }
 

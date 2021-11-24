@@ -4,17 +4,18 @@ import Switch from "lib/Switch/switch";
 const SwitchBasicExample = () => {
   const [checked, setChecked] = useState(false);
   const handleChange = (value: boolean) => {
-    setChecked(!checked)
-  }
+    console.log("我1s后再变化", value);
+    setTimeout(() => {
+      setChecked(!checked);
+    }, 1000);
+  };
   return (
-    <div>
-      <Switch checked={checked} onChange={handleChange}  />
+    <div className="yui-switch-example">
+      <Switch checked={checked} onChange={handleChange} />
       <Switch checked />
       <Switch checked={false} />
       <Switch checked disabled />
       <Switch checked={false} disabled />
-      <Switch checked size="lg" />
-      <Switch checked size="sm" />
     </div>
   );
 };
