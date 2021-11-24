@@ -1,10 +1,12 @@
-@import "lib/styles/_helper.scss";
+@import 'lib/styles/variable.scss';
 
 .yui-radio-wrapper {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  border: 1px solid red;
 
+  // 圆圈
   .yui-radio {
     position: relative;
     padding: 10px;
@@ -12,20 +14,21 @@
     &-inner {
       position: relative;
       display: block;
-      width: 16px;
-      height: 16px;
-      border: 1px solid $B300;
+      width: $radio-size;
+      height: $radio-size;
+      border: 1px solid $radio-borderColor;
       border-radius: 100%;
       background: #fff;
 
       &:hover {
-        border: 1px solid $H500;
+        border: 1px solid $main-color;
       }
 
       &.yui-radio-checked {
-        background: $H500;
+        background: $main-color;
         border: none;
 
+        // 里面的小空白
         &::after {
           content: "";
           position: absolute;
@@ -39,6 +42,7 @@
       }
     }
 
+    // 默认 radio 消失
     &-input {
       position: absolute;
       top: 0;

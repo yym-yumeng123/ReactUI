@@ -1,45 +1,47 @@
-import React, { FC, useState } from "react";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
+import React, { ChangeEventHandler, FC, useState } from "react";
+
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-radio");
+
 import "./radio.scss";
-
-const prefix = addPrefixAndscopedClassMarker("yui-radio");
-
 interface RadioProps {
   // radio value
   value?: string | number;
-  // 一组选中的value
-  selectedValue?: string | number;
-  // 是否是组
-  name?: string;
   children?: string | number;
   checked?: boolean;
   disabled?: boolean;
+
+  // 是否是组 radio-group -> group
+  name?: string;
+  // 一组选中的value, 当处于 radio-group
+  selectedValue?: string | number;
+
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Radio: FC<RadioProps> = props => {
   const {
     value,
-    selectedValue,
-    name,
-    children = "单选框",
-    onChange,
+    children,
     checked = false,
-    disabled = false
+    disabled = false,
+    name,
+    selectedValue,
+    onChange
   } = props;
   const [defaultChecked, setDefaultChecked] = useState(checked);
 
-  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRadioChange: ChangeEventHandler<HTMLInputElement> = e => {
     setDefaultChecked(true);
     onChange && onChange(e);
   };
 
   return (
-    <label className={prefix({ wrapper: true, disabled })}>
-      <span className={prefix("")}>
+    <label className={mergeClass({ wrapper: true, disabled })}>
+      <span className={mergeClass("")}>
         {/* 模拟单选框 */}
         <span
-          className={prefix({
+          className={mergeClass({
             inner: true,
             checked:
               name === "group"
@@ -51,12 +53,12 @@ const Radio: FC<RadioProps> = props => {
         <input
           type="radio"
           onChange={handleRadioChange}
-          className={prefix("input")}
+          className={mergeClass("input")}
           value={value || children}
           name={name}
         />
       </span>
-      <span className={prefix("label")}>{value || children}</span>
+      <span className={mergeClass("label")}>{children || value}</span>
     </label>
   );
 };

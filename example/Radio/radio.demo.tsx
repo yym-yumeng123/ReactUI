@@ -14,9 +14,8 @@ const RadioDemo = () => {
 
   return (
     <div>
-      <Radio onChange={handleChange} />
+      <Radio onChange={handleChange}>我是children</Radio>
       <Radio onChange={handleChange} value="我是value..." />
-      <Radio onChange={handleChange}>单选</Radio>
       <Radio onChange={handleChange} value="真好">
         11111
       </Radio>
