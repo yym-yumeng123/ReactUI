@@ -33,11 +33,12 @@ const RadioDemo = () => {
 
       <br />
 
-      <RadioGroup value={""} onChange={onChange}>
+      <RadioGroup activeValue="单选1" onChange={onChange}>
         <Radio>单选1</Radio>
         <Radio>单选2</Radio>
-        <Radio>单选3</Radio>
+        <Radio value="你好">单选3</Radio>
       </RadioGroup>
+      1212121
     </div>
   );
 };

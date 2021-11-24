@@ -1,4 +1,4 @@
-@import 'lib/styles/variable.scss';
+@import "lib/styles/variable.scss";
 
 .yui-radio-wrapper {
   display: inline-flex;
@@ -74,4 +74,7 @@
       color: $B400;
     }
   }
+}
+
+.yui-radio-group {
 }

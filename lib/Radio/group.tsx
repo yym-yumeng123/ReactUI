@@ -1,41 +1,44 @@
-import React, {
-  ChangeEvent,
-  FC,
-  ReactElement,
-  useState
-} from "react";
+import React, { ChangeEvent, FC, ReactElement, useState } from "react";
 import Radio from "./radio";
+
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-radio-group");
 
 interface IRadioGroupProps {
   children: Array<ReactElement>;
+  // 默认选中的是哪个
+  activeValue?: any;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  value?: any;
 }
 
 const RadioGroup: FC<IRadioGroupProps> = props => {
-  const { children, onChange, value = "" } = props;
-  const [selectedValue, setSelectedValue] = useState<string | number>(value);
+  const { children, activeValue = "", onChange } = props;
+  const [selectedValue, setSelectedValue] = useState<string | number>(
+    activeValue
+  );
 
   const handleGroupChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(e);
-    setSelectedValue(e.target.value)
+    setSelectedValue(e.target.value);
   };
 
   const renderGroup = () => {
-    return React.Children.map(children, (child, index) => {
+    return React.Children.map(children, child => {
       if (child.type !== Radio) {
         throw new Error("单选组的子元素必须是 Radio");
       }
+
       return React.cloneElement(child, {
         ...child.props,
-        name: 'group',
+        name: "group",
         selectedValue,
-        onChange: handleGroupChange
+        onChange: handleGroupChange // 回调事件
       });
     });
   };
 
-  return <div>{renderGroup()}</div>;
+  return <div className={mergeClass("")}>{renderGroup()}</div>;
 };
 
 export default RadioGroup;
+export { Radio };
