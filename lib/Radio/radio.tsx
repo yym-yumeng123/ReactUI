@@ -32,6 +32,7 @@ const Radio: FC<RadioProps> = props => {
   const [defaultChecked, setDefaultChecked] = useState(checked);
 
   const handleRadioChange: ChangeEventHandler<HTMLInputElement> = e => {
+    if (disabled) return;
     setDefaultChecked(true);
     onChange && onChange(e);
   };

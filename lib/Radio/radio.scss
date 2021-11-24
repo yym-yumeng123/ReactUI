@@ -4,8 +4,6 @@
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-  border: 1px solid red;
-
   // 圆圈
   .yui-radio {
     position: relative;
@@ -61,7 +59,6 @@
   }
 
   &.yui-radio-disabled {
-    pointer-events: none;
     cursor: not-allowed;
     .yui-radio-inner {
       background: $B100;

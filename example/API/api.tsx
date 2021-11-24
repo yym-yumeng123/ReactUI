@@ -15,7 +15,8 @@ import {
   Api_Data_Popover,
   Api_Data_Pager,
   Api_Data_Switch,
-  Api_Data_Carousel
+  Api_Data_Carousel,
+  Api_Data_Radio
 } from "./config";
 
 interface ApiProps {
@@ -49,7 +50,8 @@ const API: React.FC<ApiProps> = props => {
     popover: Api_Data_Popover,
     pager: Api_Data_Pager,
     switch: Api_Data_Switch,
-    carousel: Api_Data_Carousel
+    carousel: Api_Data_Carousel,
+    radio: Api_Data_Radio
   };
 
   return (

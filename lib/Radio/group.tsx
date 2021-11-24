@@ -7,7 +7,7 @@ const mergeClass = addPrefixAndMergeClass("yui-radio-group");
 interface IRadioGroupProps {
   children: Array<ReactElement>;
   // 默认选中的是哪个
-  activeValue?: any;
+  activeValue?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 

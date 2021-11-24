@@ -583,5 +583,50 @@ export const Api_Data_Switch = [
     type: "(checked: boolean) => void",
     defaultValue: "/",
     require: "false"
+  }
+];
+
+export const Api_Data_Radio = [
+  {
+    props: "value",
+    explain: "Radio组件的显示内容",
+    type: "string",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "checked",
+    explain: "Radio组件当前是否选中",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "disabled",
+    explain: "Radio组件当前是否可以点击",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "------",
+    explain: "------",
+    type: "------",
+    defaultValue: "------",
+    require: "------"
+  },
+  {
+    props: "activeValue",
+    explain: "RadioGroup组件 默认选中哪一个, 与 Radio 组件 value 匹配",
+    type: "string",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "onChange",
+    explain: "RadioGroup组件 当选择Radio时事件",
+    type: "(e: React.ChangeEvent<HTMLInputElement>) => void",
+    defaultValue: "/",
+    require: "false"
   },
 ];

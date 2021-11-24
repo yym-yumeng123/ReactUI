@@ -1,46 +1,34 @@
 import React from "react";
-import Radio from "lib/Radio";
-import RadioGroup from "lib/Radio/group";
+import Demo from "lib/Demo/demo";
+import API from "example/API/api";
+import Card from "lib/Card/card";
 
-const RadioDemo = () => {
-  const onChange = (val: any) => {
-    console.log(val.target.value, "我是group最外面的 值");
-  };
+import RadioExampleBasic from "./radio.example_basic";
+import RadioGroupExample from "./radio.example_group";
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e, "wwew");
-    console.log(e.target.value, "wwew");
-  };
+// tslint:disable-next-line: no-var-requires
+const codeRadio = require("!!raw-loader!./radio.example_basic.tsx");
+const codeRadioGroup = require("!!raw-loader!./radio.example_group.tsx");
 
+const CarouselDemo = () => {
   return (
-    <div>
-      <Radio onChange={handleChange}>我是children</Radio>
-      <Radio onChange={handleChange} value="我是value..." />
-      <Radio onChange={handleChange} value="真好">
-        11111
-      </Radio>
+    <div className="content">
+      <Card title="Radio 组件基本使用">
+        <Demo code={codeRadio.default}>
+          <RadioExampleBasic />
+        </Demo>
+      </Card>
+      <Card title="RadioGroup 组件使用">
+        <Demo code={codeRadioGroup.default}>
+          <RadioGroupExample />
+        </Demo>
+      </Card>
 
-      <br />
-
-      <Radio checked>checked 为 true</Radio>
-
-      <br />
-
-      <Radio disabled>disabled 为 true</Radio>
-      <Radio disabled checked>
-        disabled 为 true
-      </Radio>
-
-      <br />
-
-      <RadioGroup activeValue="单选1" onChange={onChange}>
-        <Radio>单选1</Radio>
-        <Radio>单选2</Radio>
-        <Radio value="你好">单选3</Radio>
-      </RadioGroup>
-      1212121
+      <Card title="API">
+        <API type="radio" />
+      </Card>
     </div>
   );
 };
 
-export default RadioDemo;
+export default CarouselDemo;
