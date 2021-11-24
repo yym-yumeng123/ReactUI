@@ -1,68 +1,51 @@
-import React, { FC } from "react";
+import React, {
+  ChangeEvent,
+  FC,
+  ReactElement,
+  useEffect,
+  useState
+} from "react";
 import Checkbox from "./checkbox";
 
-/**
- * API 的设计
- * 1. 使用 Children 每个 child 便利
- * 2. 使用 options. 便利数组
- */
-
-// value 的 类型
-export type CheckboxValueType = string | number;
-
-export interface CheckboxOptionType {
-  label: CheckboxValueType;
-  value: CheckboxValueType;
-  style?: React.CSSProperties;
-  disabled?: boolean;
-  // onChange?: (e: CheckboxChangeEvent) => void;
+interface IGroupProps {
+  // name?: string;
+  selected?: string[];
+  children: Array<ReactElement>;
+  onChange?: (selected: string[]) => void
 }
 
-/**
- * abstract 抽象,提炼
- */
-export interface AbstractCheckboxGroupProps {
-  // prefixCls?: string;
-  // className?: string;
-  dataSource?: Array<CheckboxOptionType | string>;
-  disabled?: boolean;
-  style?: React.CSSProperties;
-}
+const CheckboxGroup: FC<IGroupProps> = props => {
+  const { children, selected = [], onChange } = props;
 
-interface IGroupProps extends AbstractCheckboxGroupProps {
-  name?: string;
-  defaultValue?: Array<CheckboxValueType>;
-  value?: Array<CheckboxValueType>;
-  onChange?: (checkedValue: Array<CheckboxValueType>) => void;
-  children?: React.ReactNode;
-}
+  const [selectedValue, setSelectedValue] = useState(selected);
 
-const Group: FC<IGroupProps> = ({ children, dataSource = [] }) => {
-  console.log(children, dataSource);
+  const handleGroupChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.currentTarget;
+    if (checked) {
+      setSelectedValue([...selectedValue, value]);
+    } else {
+      console.log(selectedValue.indexOf(value));
+      setSelectedValue(arr => arr.filter(i => i !== value));
+    }
+  };
 
-  // 获取传入的数组, 并转换 => 借鉴antd
-  const getDataSource = () =>
-    dataSource.map(item => {
-      if (typeof item === "string") {
-        return {
-          label: item,
-          value: item
-        };
-      }
-      return item;
+  useEffect(() => {
+    onChange && onChange(selectedValue)
+  }, [selectedValue]);
+
+  const childWithProps = React.Children.map(children, (child, index) => {
+    if (child.type !== Checkbox) {
+      throw new Error("复选框组的子元素必须是 Checkbox");
+    }
+
+    return React.cloneElement(child, {
+      name: "group",
+      selected,
+      onChange: handleGroupChange // 回调事件
     });
+  });
 
-  console.log(getDataSource(), "get,,,,,");
-
-  if (dataSource && dataSource.length > 0) {
-    children = getDataSource().map(item => (
-      <Checkbox value={item.value} key={item.value.toString()}>
-        {item.label}
-      </Checkbox>
-    ));
-  }
-
-  return <div>{children}</div>;
+  return <div>{childWithProps}</div>;
 };
 
-export default Group;
+export default CheckboxGroup;
