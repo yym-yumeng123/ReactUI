@@ -1,6 +1,5 @@
 import React, { ChangeEvent } from "react";
-import Radio from "lib/Radio";
-import RadioGroup from "lib/Radio/group";
+import Radio, { RadioGroup } from "lib/Radio";
 
 const RadioGroupExample = () => {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,16 +1,15 @@
 import React, { ChangeEvent, FC, useState } from "react";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import "./checkbox.scss";
 
-const prefix = addPrefixAndscopedClassMarker("yui-checkbox");
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-checkbox");
 
 interface ICheckBoxProps {
   value?: string | number;
   children?: string | number;
-  defaultChecked?: boolean;
   checked?: boolean;
   disabled?: boolean;
-  indeterminate?: boolean;
+  indeterminate?: boolean; // 不完全选择
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -18,17 +17,14 @@ const Checkbox: FC<ICheckBoxProps> = props => {
   const {
     value,
     children,
-    defaultChecked = false,
     checked = false,
     disabled = false,
-    // 当checked 为true, 并且 indeterminate 为true 才会样式显示
     indeterminate = false,
     onChange
   } = props;
-  // 当前是否选中 ==> 只要 default & checked 有一个为 true 就是true
-  const [currentChecked, setCurrentChecked] = useState<boolean>(
-    checked || defaultChecked
-  );
+
+  // 当前是否选中
+  const [currentChecked, setCurrentChecked] = useState<boolean>(checked);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
@@ -37,25 +33,25 @@ const Checkbox: FC<ICheckBoxProps> = props => {
   };
 
   return (
-    <label className={prefix({ wrapper: true, disabled })}>
-      <span className={prefix("")}>
+    <label className={mergeClass({ wrapper: true, disabled })}>
+      <span className={mergeClass("")}>
+        <span
+          className={mergeClass({
+            inner: true,
+            checked: currentChecked,
+            indeterminate: indeterminate
+          })}
+        ></span>
         <input
-          className={prefix("input")}
+          className={mergeClass("input")}
           type="checkbox"
           value={value || children}
           checked={currentChecked}
           onChange={handleChange}
         />
-        <span
-          className={prefix({
-            inner: true,
-            checked: currentChecked,
-            indeterminate: currentChecked && indeterminate
-          })}
-        ></span>
       </span>
-      {/* 有 value props 就显示value, 无则显示children */}
-      <span className={prefix("label")}>{value || children}</span>
+      {/* 有 children 就显示 children, 无则显示 value */}
+      <span className={mergeClass("label")}>{children || value}</span>
     </label>
   );
 };

@@ -14,11 +14,10 @@ const CheckboxDemo = () => {
   return (
     <>
       <br />
-      <Checkbox onChange={handleTestChange} value={"我是,,,"}></Checkbox>
+      <Checkbox onChange={handleTestChange} indeterminate checked value={"我是,,,"}></Checkbox>
       <Checkbox onChange={handleTestChange}>苹果</Checkbox>
-      <Checkbox />
       <br />
-      <Checkbox defaultChecked checked={false}>
+      <Checkbox checked={false}>
         梨子
       </Checkbox>
       <br />
@@ -26,7 +25,7 @@ const CheckboxDemo = () => {
       <br />
       <Checkbox disabled>栗子</Checkbox>
       <br />
-      <Checkbox defaultChecked disabled></Checkbox>
+      <Checkbox checked disabled>我是说不准</Checkbox>
       <br />
       <Checkbox onChange={handleTestChange}>多选框111</Checkbox>
       <br />

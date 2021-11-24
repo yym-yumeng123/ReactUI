@@ -11,10 +11,3 @@
 5. group 设置默认选中 value, 可以激活单个子元素
 6. onChange 回调事件
 7. group 子元素必须是 radio, 传递 props 给 子元素
-### props
-
-1. checked
-
-- 单个 radio 默认 checked = false
-- children 可以是任何 html 元素,
-- value 只能是字符串 ==> 有 value change 返回 value, 无 value 返回 children
