@@ -8,10 +8,9 @@ import React, {
 import Checkbox from "./checkbox";
 
 interface IGroupProps {
-  // name?: string;
   selected?: string[];
   children: Array<ReactElement>;
-  onChange?: (selected: string[]) => void
+  onChange?: (selected: string[]) => void;
 }
 
 const CheckboxGroup: FC<IGroupProps> = props => {
@@ -30,7 +29,7 @@ const CheckboxGroup: FC<IGroupProps> = props => {
   };
 
   useEffect(() => {
-    onChange && onChange(selectedValue)
+    onChange && onChange(selectedValue);
   }, [selectedValue]);
 
   const childWithProps = React.Children.map(children, (child, index) => {
@@ -39,7 +38,8 @@ const CheckboxGroup: FC<IGroupProps> = props => {
     }
 
     return React.cloneElement(child, {
-      name: "group",
+      ...child.props,
+      key: index,
       selected,
       onChange: handleGroupChange // 回调事件
     });

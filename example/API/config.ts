@@ -628,5 +628,64 @@ export const Api_Data_Radio = [
     type: "(e: React.ChangeEvent<HTMLInputElement>) => void",
     defaultValue: "/",
     require: "false"
+  }
+];
+
+export const Api_Data_Checkbox = [
+  {
+    props: "value",
+    explain: "Checkbox组件的显示内容",
+    type: "string",
+    defaultValue: "/",
+    require: "true"
   },
+  {
+    props: "checked",
+    explain: "Checkbox组件当前是否选中",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "disabled",
+    explain: "Checkbox组件当前是否可以点击",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "indeterminate",
+    explain: "Checkbox组件不完全选择",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "onChange",
+    explain: "Checkbox组件 checked 改变时触发",
+    type: "(e: React.ChangeEvent<HTMLInputElement>) => void",
+    defaultValue: "/",
+    require: "false"
+  },
+  {
+    props: "------",
+    explain: "------",
+    type: "------",
+    defaultValue: "------",
+    require: "------"
+  },
+  {
+    props: "selected",
+    explain: "CheckboxGroup组件 默认选中哪一个, 与 Checkbox 组件 value 匹配",
+    type: "string[]",
+    defaultValue: "[]",
+    require: "false"
+  },
+  {
+    props: "onChange",
+    explain: "CheckboxGroup组件 当选择Checkbox时事件",
+    type: "(selected: string[]) => void",
+    defaultValue: "/",
+    require: "false"
+  }
 ];

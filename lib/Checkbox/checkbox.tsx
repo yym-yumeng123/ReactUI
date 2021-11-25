@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  FC,
+  useEffect,
+  useState
+} from "react";
 import "./checkbox.scss";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
@@ -7,8 +13,6 @@ const mergeClass = addPrefixAndMergeClass("yui-checkbox");
 interface ICheckBoxProps {
   // group
   selected?: string[];
-  name?: "group" | undefined;
-
   // 单个
   value: string;
   children?: string | number;
@@ -38,7 +42,7 @@ const Checkbox: FC<ICheckBoxProps> = props => {
     }
   }, []);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
     if (disabled) return;
     setCurrentChecked(!currentChecked);
     onChange && onChange(e);

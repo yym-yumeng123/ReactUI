@@ -1,53 +1,34 @@
 import React from "react";
-import { Checkbox, CheckboxGroup } from "lib/Checkbox";
+import Demo from "lib/Demo/demo";
+import API from "example/API/api";
+import Card from "lib/Card/card";
 
-const CheckboxDemo = () => {
-  const handleTestChange = (e: any) => {
-    console.log(e.target.checked, e.target.value, e.target);
-  };
-  const handleChangeBox = (selected: string[]) => {
-    console.log(selected, '选中的值');
+import CheckboxExampleBasic from "./checkbox.example_basic";
+import CheckboxExampleGroup from "./checkbox.example_group";
 
-  }
+// tslint:disable-next-line: no-var-requires
+const codeCheck = require("!!raw-loader!./checkbox.example_basic.tsx");
+const codeGroup = require("!!raw-loader!./checkbox.example_group.tsx");
+
+const CarouselDemo = () => {
   return (
-    <>
-      <br />
-      <Checkbox
-        onChange={handleTestChange}
-        indeterminate
-        checked
-        value={"我是,,,"}
-      ></Checkbox>
-      <Checkbox value="苹果"></Checkbox>
-      <br />
-      <Checkbox value="111" checked={false}>
-        梨子
-      </Checkbox>
-      <br />
-      <Checkbox value="222">香蕉</Checkbox>
-      <br />
-      <Checkbox value="1212" disabled>
-        栗子
-      </Checkbox>
-      <br />
-      <Checkbox value="32" checked disabled></Checkbox>
-      <br />
-      <Checkbox value="doxrkl ">多选框111</Checkbox>
-      <br />
+    <div className="content">
+      <Card title="Checkbox 组件基本使用">
+        <Demo code={codeCheck.default}>
+          <CheckboxExampleBasic />
+        </Demo>
+      </Card>
+      <Card title="RadioGroup 组件使用">
+        <Demo code={codeGroup.default}>
+          <CheckboxExampleGroup />
+        </Demo>
+      </Card>
 
-      <CheckboxGroup selected={["11", "33"]} onChange={handleChangeBox}>
-        <Checkbox value="11"></Checkbox>
-        <Checkbox value="22">跳绳</Checkbox>
-        <Checkbox value="33">游泳</Checkbox>
-      </CheckboxGroup>
-
-      <CheckboxGroup>
-        <Checkbox value="11"></Checkbox>
-        <Checkbox value="22">跳绳</Checkbox>
-        <Checkbox value="33">游泳</Checkbox>
-      </CheckboxGroup>
-    </>
+      <Card title="API">
+        <API type="checkbox" />
+      </Card>
+    </div>
   );
 };
 
-export default CheckboxDemo;
+export default CarouselDemo;
