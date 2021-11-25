@@ -1,13 +1,15 @@
 import React, { FC } from "react";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
+
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-table");
+
 import "./table.scss";
 
-const prefix = addPrefixAndscopedClassMarker("yui-table");
-
-interface Columns {
+type Columns = {
   title: string;
   key: string;
-}
+  width?: number | string;
+};
 
 interface TableProps {
   columns: Columns[];
@@ -27,12 +29,11 @@ const Table: FC<TableProps> = props => {
     compact = false,
     striped = true
   } = props;
-  console.log(columns, dataSource);
 
   return (
-    <div className={prefix("wrap")}>
-      <table className={prefix({ "": true, bordered, compact, striped })}>
-        <thead className={prefix("head")}>
+    <div className={mergeClass("wrap")}>
+      <table className={mergeClass({ "": true, bordered, compact, striped })}>
+        <thead className={mergeClass("head")}>
           <tr>
             {numberVisible && <th>序号</th>}
             {columns.map(item => {
@@ -41,17 +42,13 @@ const Table: FC<TableProps> = props => {
           </tr>
         </thead>
 
-        <tbody className={prefix("body")}>
+        <tbody className={mergeClass("body")}>
           {dataSource.map((item, index) => {
             return (
               <tr key={index}>
                 {numberVisible && <td>{index + 1}</td>}
                 {columns.map(column => {
-                  return (
-                    <>
-                      <td key={column.key}>{item[column.key]}</td>
-                    </>
-                  );
+                  return <td key={column.key}>{item[column.key]}</td>;
                 })}
               </tr>
             );
