@@ -12,7 +12,7 @@ import Checkbox from "./checkbox";
  */
 
 // value 的 类型
-export type CheckboxValueType = string | number;
+export type CheckboxValueType = string;
 
 export interface CheckboxOptionType {
   label: CheckboxValueType;
