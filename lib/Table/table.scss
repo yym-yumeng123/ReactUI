@@ -1,13 +1,48 @@
-@import "../styles/helper";
+@import "lib/styles/variable.scss";
 
 .yui-table-wrap {
+  padding: 20px 0;
+  background: $white;
+  border-radius: $radius;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
   .yui-table {
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
-    border-radius: 6px;
+
+    &-head {
+      line-height: 20px;
+      color: $font-low-color;
+      tr {
+        th {
+          padding: 10px;
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+    }
+    &-body {
+      line-height: 20px;
+      tr {
+        td {
+          padding: 13px 10px;
+          font-size: 14px;
+          color: $font-color-default;
+        }
+      }
+    }
+
+    tr {
+      text-align: center;
+      border-bottom: 1px solid $tabel-border-color;
+      &:hover {
+        background: $Hover-color;
+      }
+    }
+
     &.yui-table-bordered {
       border: 1px solid $B100;
+      border-radius: 6px;
       th,
       td {
         border: 1px solid $B100;
@@ -31,29 +66,11 @@
         }
       }
     }
-    tr {
-      text-align: left;
-      border-bottom: 1px solid $B100;
-      &:hover {
-        background: $H050;
-      }
-    }
-    &-head {
-      line-height: 20px;
-      color: $B600;
-      th {
-        padding: 10px;
-        font-size: 12px;
-        font-weight: normal;
-      }
-    }
-    &-body {
-      line-height: 20px;
-      td {
-        padding: 13px 10px;
-        font-size: 14px;
-        color: $B800;
-      }
+
+    &-pager {
+      display: flex;
+      justify-content: flex-end;
+      margin: 20px 20px 0;
     }
   }
 }

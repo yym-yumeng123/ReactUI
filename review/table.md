@@ -1,6 +1,19 @@
-## Table 表格
+# Table 表格
 
+1. 原生 table 的样式优化
 
-```
-numberVisible: 是否显示序号
+```html
+<table>
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 ```

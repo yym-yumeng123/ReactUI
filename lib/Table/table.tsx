@@ -1,23 +1,26 @@
 import React, { FC } from "react";
+import Pager, { PagerProps } from "lib/Pager/pager";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-table");
 
 import "./table.scss";
 
-type Columns = {
+type columns = {
   title: string;
   key: string;
   width?: number | string;
 };
 
 interface TableProps {
-  columns: Columns[];
-  dataSource: any[];
+  columns: columns[];
+  dataSource: Array<any>;
   numberVisible?: boolean;
   bordered?: boolean;
   compact?: boolean; // 紧凑减小 padding
   striped?: boolean; // 条纹间隔
+
+  pager?: PagerProps;
 }
 
 const Table: FC<TableProps> = props => {
@@ -27,7 +30,9 @@ const Table: FC<TableProps> = props => {
     numberVisible = true,
     bordered = false,
     compact = false,
-    striped = true
+    striped = true,
+
+    pager
   } = props;
 
   return (
@@ -56,6 +61,11 @@ const Table: FC<TableProps> = props => {
           <tr></tr>
         </tbody>
       </table>
+      {pager && (
+        <div className={mergeClass("pager")}>
+          <Pager {...pager} />
+        </div>
+      )}
     </div>
   );
 };

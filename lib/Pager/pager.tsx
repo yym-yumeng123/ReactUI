@@ -6,15 +6,20 @@ import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-pager");
 
 import "./pager.scss";
-interface PagerProps {
+export interface PagerProps {
   totalPage?: number;
   current?: number;
-  hideIfOneTotal?: boolean
+  hideIfOneTotal?: boolean;
   onChange?: (n: number) => void;
 }
 
 const Pager: FC<PagerProps> = props => {
-  const { current = 1, totalPage = 5, onChange, hideIfOneTotal = false } = props;
+  const {
+    current = 1,
+    totalPage = 5,
+    onChange,
+    hideIfOneTotal = false
+  } = props;
 
   // 计算出来的属性
   const pages = useMemo(() => {
@@ -88,14 +93,22 @@ const Pager: FC<PagerProps> = props => {
   return (
     <div className={mergeClass("")}>
       <span
-        className={mergeClass({ prev: true, disabled: current === 1, hide: totalPage === 1 && hideIfOneTotal })}
+        className={mergeClass({
+          prev: true,
+          disabled: current === 1,
+          hide: totalPage === 1 && hideIfOneTotal
+        })}
         onClick={() => handleChangeCurrent(current - 1)}
       >
         <Icon className="position-icon" size="7" name="arrow-left-bold" />
       </span>
       {pagerElement}
       <span
-        className={mergeClass({ next: true, disabled: current === totalPage, hide: totalPage === 1 && hideIfOneTotal })}
+        className={mergeClass({
+          next: true,
+          disabled: current === totalPage,
+          hide: totalPage === 1 && hideIfOneTotal
+        })}
         onClick={() => handleChangeCurrent(current + 1)}
       >
         <Icon className="position-icon" size="7" name="arrow-right-bold" />

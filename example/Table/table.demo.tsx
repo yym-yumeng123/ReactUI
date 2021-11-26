@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Table from "lib/Table/table";
 
 const TableDemo = () => {
+  const [current, setCurrent] = useState(1);
+
   const [columns] = useState([
     {
       title: "姓名",
@@ -46,18 +48,31 @@ const TableDemo = () => {
     }
   ]);
 
+  const handleChange = (n: number) => {
+    setCurrent(n);
+  };
+
   return (
     <div>
       <Table columns={columns} dataSource={dataSource} />
       <br />
-      <Table columns={columns} dataSource={dataSource} bordered />
-
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        bordered
+        pager={{ current, totalPage: 100, onChange: handleChange }}
+      />
       <br />
       <Table columns={columns} dataSource={dataSource} bordered compact />
 
-      <br/>
-      <Table columns={columns} dataSource={dataSource} bordered compact striped={false} />
-
+      <br />
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        bordered
+        compact
+        striped={false}
+      />
     </div>
   );
 };
