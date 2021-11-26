@@ -1,7 +1,6 @@
 @import "lib/styles/variable.scss";
 
 .yui-table-wrap {
-  padding: 20px 0;
   background: $white;
   border-radius: $radius;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
@@ -33,7 +32,7 @@
     }
 
     tr {
-      text-align: center;
+      text-align: left;
       border-bottom: 1px solid $tabel-border-color;
       &:hover {
         background: $Hover-color;
@@ -70,7 +69,7 @@
     &-pager {
       display: flex;
       justify-content: flex-end;
-      margin: 20px 20px 0;
+      padding: 20px;
     }
   }
 }

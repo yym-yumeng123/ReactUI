@@ -64,6 +64,7 @@ const Pager: FC<PagerProps> = props => {
     if (page === current) {
       return (
         <span
+          key={page}
           className={mergeClass({
             item: true,
             current: current === page
@@ -74,13 +75,14 @@ const Pager: FC<PagerProps> = props => {
       );
     } else if (page === "separator") {
       return (
-        <span className={mergeClass("separator")}>
+        <span className={mergeClass("separator")} key={page}>
           <Icon name="elipsis" size="12" />
         </span>
       );
     } else {
       return (
         <span
+          key={page}
           className={mergeClass("item")}
           onClick={() => handleChangeCurrent(page)}
         >

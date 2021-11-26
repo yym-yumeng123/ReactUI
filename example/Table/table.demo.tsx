@@ -21,7 +21,7 @@ const TableDemo = () => {
       key: "address"
     }
   ]);
-  const [dataSource] = useState([
+  const [dataSource, setDate] = useState([
     {
       key: "1",
       name: "胡彦斌",
@@ -48,14 +48,26 @@ const TableDemo = () => {
     }
   ]);
 
+  const [selectedRows, setSelectedRows] = useState([])
+
   const handleChange = (n: number) => {
     setCurrent(n);
   };
 
+  const onSelecteItems = (val: any) => {
+    console.log(val, "2323");
+    setSelectedRows(val)
+  };
+
   return (
     <div>
-      <Table columns={columns} dataSource={dataSource} />
-      <br />
+      <Table
+        changeSeletedItems={onSelecteItems}
+        selectedRows={selectedRows}
+        columns={columns}
+        dataSource={dataSource}
+      />
+      {/* <br />
       <Table
         columns={columns}
         dataSource={dataSource}
@@ -63,7 +75,7 @@ const TableDemo = () => {
         pager={{ current, totalPage: 100, onChange: handleChange }}
       />
       <br />
-      <Table columns={columns} dataSource={dataSource} bordered compact />
+      <Table columns={columns} dataSource={[]} bordered compact />
 
       <br />
       <Table
@@ -72,7 +84,7 @@ const TableDemo = () => {
         bordered
         compact
         striped={false}
-      />
+      /> */}
     </div>
   );
 };

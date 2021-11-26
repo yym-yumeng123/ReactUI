@@ -1,5 +1,7 @@
-import React, { FC } from "react";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import Pager, { PagerProps } from "lib/Pager/pager";
+import { Checkbox } from "lib/Checkbox";
+// import Radio from "lib/Radio";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-table");
@@ -16,6 +18,10 @@ interface TableProps {
   columns: columns[];
   dataSource: Array<any>;
   numberVisible?: boolean;
+
+  selectedRows?: any[];
+  changeSeletedItems?: (val: any) => void;
+
   bordered?: boolean;
   compact?: boolean; // 紧凑减小 padding
   striped?: boolean; // 条纹间隔
@@ -28,6 +34,10 @@ const Table: FC<TableProps> = props => {
     columns,
     dataSource,
     numberVisible = true,
+
+    selectedRows = [],
+    changeSeletedItems,
+
     bordered = false,
     compact = false,
     striped = true,
@@ -35,30 +45,77 @@ const Table: FC<TableProps> = props => {
     pager
   } = props;
 
+  useEffect(() => {
+    console.log(selectedRows, dataSource, '434');
+  }, [selectedRows])
+
+  // 选择单个
+  const handleSelectItem = (
+    e: ChangeEvent<HTMLInputElement>,
+    item: any,
+    index: number
+  ) => {
+    const { checked } = e.target;
+
+    let selectedItem = JSON.parse(JSON.stringify(selectedRows));
+
+    if (checked) {
+      selectedItem.push(item);
+    } else {
+      selectedItem.filter((i: any) => i.key !== item.key);
+    }
+
+    changeSeletedItems && changeSeletedItems(selectedItem);
+  };
+
+  // 选择全部或全取消
+  const handleSelectAllItem = (e: ChangeEvent<HTMLInputElement>) => {
+    const { checked } = e.target;
+    changeSeletedItems && changeSeletedItems(checked ? dataSource : []);
+  };
+
   return (
     <div className={mergeClass("wrap")}>
       <table className={mergeClass({ "": true, bordered, compact, striped })}>
         <thead className={mergeClass("head")}>
           <tr>
+            <th>
+              <Checkbox value="" checked={selectedRows.length === dataSource.length} onChange={e => handleSelectAllItem(e)} />
+            </th>
             {numberVisible && <th>序号</th>}
-            {columns.map(item => {
-              return <th key={item.key}>{item.title}</th>;
+            {columns.map(column => {
+              return <th key={column.key}>{column.title}</th>;
             })}
           </tr>
         </thead>
 
         <tbody className={mergeClass("body")}>
-          {dataSource.map((item, index) => {
-            return (
-              <tr key={index}>
-                {numberVisible && <td>{index + 1}</td>}
-                {columns.map(column => {
-                  return <td key={column.key}>{item[column.key]}</td>;
-                })}
-              </tr>
-            );
-          })}
-          <tr></tr>
+          {dataSource.length > 0 &&
+            dataSource.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>
+                    <Checkbox
+                      value=""
+                      checked={
+                        selectedRows.filter(i => i.key === item.key).length > 0
+                      }
+                      onChange={e => handleSelectItem(e, item, index)}
+                    />
+                    {item.key}
+                  </td>
+                  {numberVisible && <td>{index + 1}</td>}
+                  {columns.map(column => {
+                    return <td key={column.key}>{item[column.key]}</td>;
+                  })}
+                </tr>
+              );
+            })}
+          {dataSource.length === 0 && (
+            <tr>
+              <td>"暂无数据"</td>
+            </tr>
+          )}
         </tbody>
       </table>
       {pager && (
