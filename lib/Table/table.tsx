@@ -8,21 +8,24 @@ import React, {
 } from "react";
 import Pager, { PagerProps } from "lib/Pager/pager";
 import { Checkbox } from "lib/Checkbox";
+import Icon from "lib/Icon/icon";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-table");
 
 import "./table.scss";
 
-type columns = {
+type column = {
   title: string;
   key: string;
-  width?: number | string;
+  // width?: number | string;
+  order?: "asc" | "desc" | "unsc";
 };
 
 interface TableProps {
-  columns: columns[];
+  columns: column[];
   dataSource: Array<any>;
+  onChange?: (column: column) => void;
 
   selectedRows?: any[];
   changeSeletedItems?: (val: any) => void;
@@ -40,6 +43,7 @@ const Table: FC<TableProps> = props => {
   const {
     columns,
     dataSource,
+    onChange,
 
     selectedRows = [],
     changeSeletedItems,
@@ -98,6 +102,14 @@ const Table: FC<TableProps> = props => {
       selected
     ]);
 
+  const handleOrderBy = (column: column) => {
+    if (!column.hasOwnProperty("order")) {
+      return;
+    }
+
+    onChange && onChange(column);
+  };
+
   return (
     <div className={mergeClass("wrap")}>
       <table className={mergeClass({ "": true, bordered, compact, striped })}>
@@ -113,7 +125,32 @@ const Table: FC<TableProps> = props => {
             </th>
             {numberVisible && <th>序号</th>}
             {columns.map(column => {
-              return <th key={column.key}>{column.title}</th>;
+              return (
+                <th key={column.key}>
+                  <span
+                    className={mergeClass("order-wrap")}
+                    onClick={() => handleOrderBy(column)}
+                  >
+                    {column.title}
+                    {column.order && (
+                      <span className={mergeClass("order")}>
+                        <Icon
+                          color={column.order === "asc" ? "#3498ff" : "#8e8e93"}
+                          name="arrow_up"
+                          className={mergeClass("icon")}
+                        />
+                        <Icon
+                          color={
+                            column.order === "desc" ? "#3498ff" : "#8e8e93"
+                          }
+                          name="arrow_down"
+                          className={mergeClass("icon")}
+                        />
+                      </span>
+                    )}
+                  </span>
+                </th>
+              );
             })}
           </tr>
         </thead>
@@ -140,7 +177,11 @@ const Table: FC<TableProps> = props => {
           {dataSource.length === 0 && (
             <tr>
               <td className={mergeClass("empty")} colSpan={columns.length + 2}>
-                {empty ? <span>{empty}</span> : <span className="default">暂无数据</span>}
+                {empty ? (
+                  <span>{empty}</span>
+                ) : (
+                  <span className="default">暂无数据</span>
+                )}
               </td>
             </tr>
           )}

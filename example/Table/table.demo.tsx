@@ -8,14 +8,15 @@ const TableDemo = () => {
   const [columns] = useState([
     {
       title: "姓名",
-      key: "name",
-      render: (text: any, record: object, index: number) => {
-        console.log(text, record, index);
-      }
+      key: "name"
+      // render: (text: any, record: object, index: number) => {
+      //   console.log(text, record, index);
+      // }
     },
     {
       title: "年龄",
-      key: "age"
+      key: "age",
+      order: "asc"
     },
     {
       title: "住址",
@@ -51,9 +52,9 @@ const TableDemo = () => {
 
   const [selectedRows, setSelectedRows] = useState([]);
 
-  // const handleChange = (n: number) => {
-  //   setCurrent(n);
-  // };
+  const handleChange = (column: any) => {
+    console.log(column, "洞口");
+  };
 
   const onSelecteItems = (val: any) => {
     console.log(val, "2323");
@@ -74,6 +75,7 @@ const TableDemo = () => {
         selectedRows={selectedRows}
         columns={columns}
         dataSource={dataSource}
+        onChange={handleChange}
       />
       {/* <br />
       <Table

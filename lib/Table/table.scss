@@ -39,6 +39,30 @@
       }
     }
 
+    &-order-wrap {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .yui-table-order {
+        display: flex;
+        flex-direction: column;
+        margin-left: 4px;
+        .yui-table-icon {
+          width: 10px;
+          height: 10px;
+          &:first-child {
+            position: relative;
+            bottom: -2px;
+          }
+          &:last-child {
+            position: relative;
+            top: 0;
+          }
+        }
+      }
+    }
+
     &-empty {
       text-align: center;
       .default {
