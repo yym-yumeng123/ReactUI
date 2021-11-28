@@ -1,7 +1,6 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useEffect } from "react";
 import Pager, { PagerProps } from "lib/Pager/pager";
 import { Checkbox } from "lib/Checkbox";
-// import Radio from "lib/Radio";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-table");
@@ -45,9 +44,9 @@ const Table: FC<TableProps> = props => {
     pager
   } = props;
 
+  // TODO: selectedRow 变化时...
   useEffect(() => {
-    console.log(selectedRows, dataSource, '434');
-  }, [selectedRows])
+  }, [selectedRows]);
 
   // 选择单个
   const handleSelectItem = (
@@ -62,7 +61,7 @@ const Table: FC<TableProps> = props => {
     if (checked) {
       selectedItem.push(item);
     } else {
-      selectedItem.filter((i: any) => i.key !== item.key);
+      selectedItem = selectedItem.filter((i: any) => i.key !== item.key);
     }
 
     changeSeletedItems && changeSeletedItems(selectedItem);
@@ -80,7 +79,11 @@ const Table: FC<TableProps> = props => {
         <thead className={mergeClass("head")}>
           <tr>
             <th>
-              <Checkbox value="" checked={selectedRows.length === dataSource.length} onChange={e => handleSelectAllItem(e)} />
+              <Checkbox
+                value=""
+                checked={selectedRows.length === dataSource.length}
+                onChange={e => handleSelectAllItem(e)}
+              />
             </th>
             {numberVisible && <th>序号</th>}
             {columns.map(column => {
