@@ -34,3 +34,24 @@
 
 ### for 循环 搭配 key
 - 给每一项唯一的 id | key, 可以对比新元素 和旧元素
+
+
+### 判断两个数组元素一样
+```js
+const a = [{id: 1}, {id: 12}]
+const b = [{id: 1}, {id: 2}]
+
+// map 不会改变原数组, sort() 会改变原数组
+const a1 = a.map(i => i.id).sort() // 字典序
+const b1 = a.map(i => i.id).sort() // 字典序
+
+let equal = true
+if(a.length === b.length) {
+  for(let i = 0; i<a.length; i++) {
+    if(a[i] !== b[i]){
+      equal = false
+      break
+    }
+  }
+}
+```

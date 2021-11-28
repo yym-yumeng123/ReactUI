@@ -110,3 +110,7 @@ function scopedClassMaker(prefix: string) {
 ```
 
 - `deploy.sh` 修改发布版本并 push
+
+
+### Vue & React 区别
+1. Vue APi 多, `methods, computed, watch ...`, 用啥作者都提供了, 舒服; React 比较少, 使用 `JSX`, 函数, 自由

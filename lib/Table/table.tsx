@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect } from "react";
+import React, { ChangeEvent, FC, useEffect, useMemo, useState } from "react";
 import Pager, { PagerProps } from "lib/Pager/pager";
 import { Checkbox } from "lib/Checkbox";
 
@@ -16,11 +16,11 @@ type columns = {
 interface TableProps {
   columns: columns[];
   dataSource: Array<any>;
-  numberVisible?: boolean;
 
   selectedRows?: any[];
   changeSeletedItems?: (val: any) => void;
 
+  numberVisible?: boolean;
   bordered?: boolean;
   compact?: boolean; // 紧凑减小 padding
   striped?: boolean; // 条纹间隔
@@ -32,11 +32,11 @@ const Table: FC<TableProps> = props => {
   const {
     columns,
     dataSource,
-    numberVisible = true,
 
     selectedRows = [],
     changeSeletedItems,
 
+    numberVisible = true,
     bordered = false,
     compact = false,
     striped = true,
@@ -44,9 +44,13 @@ const Table: FC<TableProps> = props => {
     pager
   } = props;
 
+  // 选中的行 state
+  const [selected, setSelected] = useState(selectedRows);
+
   // TODO: selectedRow 变化时...
   useEffect(() => {
-  }, [selectedRows]);
+    console.log(selected, "selected...");
+  }, [selected]);
 
   // 选择单个
   const handleSelectItem = (
@@ -55,23 +59,35 @@ const Table: FC<TableProps> = props => {
     index: number
   ) => {
     const { checked } = e.target;
-
-    let selectedItem = JSON.parse(JSON.stringify(selectedRows));
+    console.log(checked, "checked...");
 
     if (checked) {
-      selectedItem.push(item);
+      setSelected([...selected, item]);
     } else {
-      selectedItem = selectedItem.filter((i: any) => i.key !== item.key);
+      setSelected(selected.filter((i: any) => i.key !== item.key));
     }
 
-    changeSeletedItems && changeSeletedItems(selectedItem);
+    changeSeletedItems && changeSeletedItems(selected);
   };
 
   // 选择全部或全取消
   const handleSelectAllItem = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
+    setSelected(checked ? dataSource : []);
     changeSeletedItems && changeSeletedItems(checked ? dataSource : []);
   };
+
+  // 是否所有 item 被选中
+  const areAllItemsSelected: boolean = useMemo(
+    () => dataSource.length === selected.length,
+    [selected]
+  );
+
+  // 单个行是否被选中
+  const areItemSelected = (item: any) =>
+    useMemo(() => selected.filter(i => i.key === item.key).length > 0, [
+      selected
+    ]);
 
   return (
     <div className={mergeClass("wrap")}>
@@ -81,9 +97,11 @@ const Table: FC<TableProps> = props => {
             <th>
               <Checkbox
                 value=""
-                checked={selectedRows.length === dataSource.length}
+                checked={areAllItemsSelected}
                 onChange={e => handleSelectAllItem(e)}
-              />
+              >
+                {String(areAllItemsSelected)}
+              </Checkbox>
             </th>
             {numberVisible && <th>序号</th>}
             {columns.map(column => {
@@ -100,12 +118,10 @@ const Table: FC<TableProps> = props => {
                   <td>
                     <Checkbox
                       value=""
-                      checked={
-                        selectedRows.filter(i => i.key === item.key).length > 0
-                      }
+                      checked={areItemSelected(item)}
                       onChange={e => handleSelectItem(e, item, index)}
                     />
-                    {item.key}
+                    {String(areItemSelected(item))}
                   </td>
                   {numberVisible && <td>{index + 1}</td>}
                   {columns.map(column => {
