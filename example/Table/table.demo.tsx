@@ -18,6 +18,8 @@ const TableDemo = () => {
       key: "age",
       order: "asc",
       sorter: (column: any) => {
+        console.log(column, '3443');
+
         setData(dataSource.sort((a, b) => a.age - b.age));
       }
     },

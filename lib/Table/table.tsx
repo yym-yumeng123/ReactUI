@@ -154,12 +154,12 @@ const Table: FC<TableProps> = props => {
                       <span className={mergeClass("order")}>
                         <Icon
                           color={row.order === "asc" ? "#3498ff" : "#8e8e93"}
-                          name="arrow_up"
+                          name="show_less"
                           className={mergeClass("icon")}
                         />
                         <Icon
                           color={row.order === "desc" ? "#3498ff" : "#8e8e93"}
-                          name="arrow_down"
+                          name="show_more"
                           className={mergeClass("icon")}
                         />
                       </span>
