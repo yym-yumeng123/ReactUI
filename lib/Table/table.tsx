@@ -18,8 +18,8 @@ import "./table.scss";
 type column = {
   title: string;
   key: string;
-  // width?: number | string;
   order?: "asc" | "desc" | "unsc" | string;
+  sorter?: (column: any) => void;
 };
 
 interface TableProps {
@@ -122,6 +122,10 @@ const Table: FC<TableProps> = props => {
     setRows(
       rows.map(item => (item.key === copyColumn.key ? copyColumn : item))
     );
+
+    if (column.hasOwnProperty("sorter")) {
+      column.sorter && column.sorter(column);
+    }
   };
 
   return (

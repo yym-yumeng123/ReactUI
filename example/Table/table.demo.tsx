@@ -16,14 +16,17 @@ const TableDemo = () => {
     {
       title: "年龄",
       key: "age",
-      order: "asc"
+      order: "asc",
+      sorter: (column: any) => {
+        setData(dataSource.sort((a, b) => a.age - b.age));
+      }
     },
     {
       title: "住址",
       key: "address"
     }
   ]);
-  const [dataSource] = useState([
+  const [dataSource, setData] = useState([
     {
       key: "1",
       name: "胡彦斌",
