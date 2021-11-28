@@ -14,7 +14,7 @@ interface ICheckBoxProps {
   // group
   selected?: string[];
   // 单个
-  value: string;
+  value?: string;
   children?: string | number;
   checked?: boolean;
   disabled?: boolean;
@@ -25,8 +25,8 @@ interface ICheckBoxProps {
 const Checkbox: FC<ICheckBoxProps> = props => {
   const {
     selected = [],
-    value,
-    children,
+    value = '',
+    children = '',
     checked = false,
     disabled = false,
     indeterminate = false,

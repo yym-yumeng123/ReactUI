@@ -1,4 +1,11 @@
-import React, { ChangeEvent, FC, useEffect, useMemo, useState } from "react";
+import React, {
+  ChangeEvent,
+  FC,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useState
+} from "react";
 import Pager, { PagerProps } from "lib/Pager/pager";
 import { Checkbox } from "lib/Checkbox";
 
@@ -24,6 +31,7 @@ interface TableProps {
   bordered?: boolean;
   compact?: boolean; // 紧凑减小 padding
   striped?: boolean; // 条纹间隔
+  empty?: ReactNode;
 
   pager?: PagerProps;
 }
@@ -40,6 +48,7 @@ const Table: FC<TableProps> = props => {
     bordered = false,
     compact = false,
     striped = true,
+    empty,
 
     pager
   } = props;
@@ -96,7 +105,6 @@ const Table: FC<TableProps> = props => {
           <tr>
             <th>
               <Checkbox
-                value=""
                 checked={areAllItemsSelected}
                 onChange={e => handleSelectAllItem(e)}
               >
@@ -117,7 +125,6 @@ const Table: FC<TableProps> = props => {
                 <tr key={index}>
                   <td>
                     <Checkbox
-                      value=""
                       checked={areItemSelected(item)}
                       onChange={e => handleSelectItem(e, item, index)}
                     />
@@ -132,7 +139,9 @@ const Table: FC<TableProps> = props => {
             })}
           {dataSource.length === 0 && (
             <tr>
-              <td>"暂无数据"</td>
+              <td className={mergeClass("empty")} colSpan={columns.length + 2}>
+                {empty ? <span>{empty}</span> : <span className="default">暂无数据</span>}
+              </td>
             </tr>
           )}
         </tbody>

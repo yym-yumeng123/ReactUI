@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Table from "lib/Table/table";
+import { Icon } from "lib";
 
 const TableDemo = () => {
-  const [current, setCurrent] = useState(1);
+  // const [current, setCurrent] = useState(1);
 
   const [columns] = useState([
     {
@@ -21,7 +22,7 @@ const TableDemo = () => {
       key: "address"
     }
   ]);
-  const [dataSource, setDate] = useState([
+  const [dataSource] = useState([
     {
       key: "1",
       name: "胡彦斌",
@@ -48,16 +49,23 @@ const TableDemo = () => {
     }
   ]);
 
-  const [selectedRows, setSelectedRows] = useState([])
+  const [selectedRows, setSelectedRows] = useState([]);
 
-  const handleChange = (n: number) => {
-    setCurrent(n);
-  };
+  // const handleChange = (n: number) => {
+  //   setCurrent(n);
+  // };
 
   const onSelecteItems = (val: any) => {
     console.log(val, "2323");
-    setSelectedRows(val)
+    setSelectedRows(val);
   };
+
+  const empty = (
+    <>
+      <Icon name="like" />
+      <h2>我爱你</h2>
+    </>
+  );
 
   return (
     <div>
@@ -74,9 +82,11 @@ const TableDemo = () => {
         bordered
         pager={{ current, totalPage: 100, onChange: handleChange }}
       />
+       */}
       <br />
+      <Table columns={columns} dataSource={[]} empty={empty} bordered compact />
       <Table columns={columns} dataSource={[]} bordered compact />
-
+      {/*
       <br />
       <Table
         columns={columns}

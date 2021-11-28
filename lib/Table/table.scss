@@ -39,6 +39,15 @@
       }
     }
 
+    &-empty {
+      text-align: center;
+      .default {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+      }
+    }
+
     &.yui-table-bordered {
       border: 1px solid $B100;
       border-radius: 6px;
