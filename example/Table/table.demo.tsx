@@ -52,10 +52,6 @@ const TableDemo = () => {
 
   const [selectedRows, setSelectedRows] = useState([]);
 
-  const handleChange = (column: any) => {
-    console.log(column, "洞口");
-  };
-
   const onSelecteItems = (val: any) => {
     console.log(val, "2323");
     setSelectedRows(val);
@@ -75,7 +71,6 @@ const TableDemo = () => {
         selectedRows={selectedRows}
         columns={columns}
         dataSource={dataSource}
-        onChange={handleChange}
       />
       {/* <br />
       <Table

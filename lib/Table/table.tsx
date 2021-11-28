@@ -19,7 +19,7 @@ type column = {
   title: string;
   key: string;
   // width?: number | string;
-  order?: "asc" | "desc" | "unsc";
+  order?: "asc" | "desc" | "unsc" | string;
 };
 
 interface TableProps {
@@ -43,7 +43,6 @@ const Table: FC<TableProps> = props => {
   const {
     columns,
     dataSource,
-    onChange,
 
     selectedRows = [],
     changeSeletedItems,
@@ -59,6 +58,8 @@ const Table: FC<TableProps> = props => {
 
   // 选中的行 state
   const [selected, setSelected] = useState(selectedRows);
+  // columns state
+  const [rows, setRows] = useState(columns);
 
   // TODO: selectedRow 变化时...
   useEffect(() => {
@@ -102,12 +103,25 @@ const Table: FC<TableProps> = props => {
       selected
     ]);
 
+  // 排序操作
   const handleOrderBy = (column: column) => {
     if (!column.hasOwnProperty("order")) {
       return;
     }
 
-    onChange && onChange(column);
+    let copyColumn = JSON.parse(JSON.stringify(column));
+
+    if (copyColumn.order === "asc") {
+      copyColumn = Object.assign(copyColumn, { order: "desc" });
+    } else if (copyColumn.order === "desc") {
+      copyColumn = Object.assign(copyColumn, { order: "unsc" });
+    } else if (copyColumn.order === "unsc") {
+      copyColumn = Object.assign(copyColumn, { order: "asc" });
+    }
+
+    setRows(
+      rows.map(item => (item.key === copyColumn.key ? copyColumn : item))
+    );
   };
 
   return (
@@ -124,25 +138,23 @@ const Table: FC<TableProps> = props => {
               </Checkbox>
             </th>
             {numberVisible && <th>序号</th>}
-            {columns.map(column => {
+            {rows.map(row => {
               return (
-                <th key={column.key}>
+                <th key={row.key}>
                   <span
                     className={mergeClass("order-wrap")}
-                    onClick={() => handleOrderBy(column)}
+                    onClick={() => handleOrderBy(row)}
                   >
-                    {column.title}
-                    {column.order && (
+                    {row.title}
+                    {row.order && (
                       <span className={mergeClass("order")}>
                         <Icon
-                          color={column.order === "asc" ? "#3498ff" : "#8e8e93"}
+                          color={row.order === "asc" ? "#3498ff" : "#8e8e93"}
                           name="arrow_up"
                           className={mergeClass("icon")}
                         />
                         <Icon
-                          color={
-                            column.order === "desc" ? "#3498ff" : "#8e8e93"
-                          }
+                          color={row.order === "desc" ? "#3498ff" : "#8e8e93"}
                           name="arrow_down"
                           className={mergeClass("icon")}
                         />
@@ -168,15 +180,15 @@ const Table: FC<TableProps> = props => {
                     {String(areItemSelected(item))}
                   </td>
                   {numberVisible && <td>{index + 1}</td>}
-                  {columns.map(column => {
-                    return <td key={column.key}>{item[column.key]}</td>;
+                  {rows.map(row => {
+                    return <td key={row.key}>{item[row.key]}</td>;
                   })}
                 </tr>
               );
             })}
           {dataSource.length === 0 && (
             <tr>
-              <td className={mergeClass("empty")} colSpan={columns.length + 2}>
+              <td className={mergeClass("empty")} colSpan={rows.length + 2}>
                 {empty ? (
                   <span>{empty}</span>
                 ) : (
