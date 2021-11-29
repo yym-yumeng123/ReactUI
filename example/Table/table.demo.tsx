@@ -35,6 +35,7 @@ const TableDemo = () => {
     {
       title: "住址",
       key: "address",
+
       render: (text: string) => {
         return <Popover content={text}>{text}</Popover>;
       }
