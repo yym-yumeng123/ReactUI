@@ -32,6 +32,8 @@ interface TableProps {
   selectedRows?: any[];
   changeSeletedItems?: (val: any) => void;
 
+  expandable?: boolean; // 可展开
+  checkable?: boolean;
   numberVisible?: boolean;
   bordered?: boolean;
   compact?: boolean; // 紧凑减小 padding
@@ -51,6 +53,8 @@ const Table: FC<TableProps> = props => {
     selectedRows = [],
     changeSeletedItems,
 
+    expandable = false,
+    checkable = false,
     numberVisible = true,
     bordered = false,
     compact = false,
@@ -66,6 +70,8 @@ const Table: FC<TableProps> = props => {
   const [selected, setSelected] = useState(selectedRows);
   // columns state
   const [rows, setRows] = useState(columns);
+
+  const [expandItems, setExpandItems] = useState<string[]>([]);
 
   const tableRef = useRef<any>(null);
   const wrapRef = useRef<any>(null);
@@ -91,7 +97,7 @@ const Table: FC<TableProps> = props => {
 
     // 移除
     return () => {
-      tableCarbon.remove();
+      height && tableCarbon.remove();
     };
   }, []);
 
@@ -132,6 +138,17 @@ const Table: FC<TableProps> = props => {
       selected
     ]);
 
+  // 展开操作
+  const changeExpandItems = (item: any) => {
+    if (hasInExapndItems(item)) {
+      setExpandItems(expandItems.filter(i => i !== item.key));
+    } else {
+      setExpandItems([...expandItems, item.key]);
+    }
+  };
+
+  const hasInExapndItems = (item: any) => expandItems.indexOf(item.key) > -1;
+
   // 排序操作
   const handleOrderBy = (column: column) => {
     if (!column.hasOwnProperty("order")) {
@@ -164,13 +181,17 @@ const Table: FC<TableProps> = props => {
         >
           <thead className={mergeClass("head")}>
             <tr>
-              <th style={{ width: "50px" }}>
-                <Checkbox
-                  checked={areAllItemsSelected}
-                  onChange={e => handleSelectAllItem(e)}
-                />
-              </th>
+              {checkable && (
+                <th style={{ width: "50px" }}>
+                  <Checkbox
+                    checked={areAllItemsSelected}
+                    onChange={e => handleSelectAllItem(e)}
+                  />
+                </th>
+              )}
               {numberVisible && <th style={{ width: "50px" }}>序号</th>}
+              {expandable && <th style={{ width: "50px" }}></th>}
+
               {rows.map(row => {
                 return (
                   <th key={row.key} style={{ width: `${row.width}px` }}>
@@ -204,25 +225,47 @@ const Table: FC<TableProps> = props => {
             {dataSource.length > 0 &&
               dataSource.map((item, index) => {
                 return (
-                  <tr key={index}>
-                    <td style={{ width: "50px" }}>
-                      <Checkbox
-                        checked={areItemSelected(item)}
-                        onChange={e => handleSelectItem(e, item, index)}
-                      />
-                      {/* {String(areItemSelected(item))} */}
-                    </td>
-                    {numberVisible && (
-                      <td style={{ width: "50px" }}>{index + 1}</td>
-                    )}
-                    {rows.map(row => {
-                      return (
-                        <td key={row.key} style={{ width: `${row.width}px` }}>
-                          {item[row.key]}
+                  <>
+                    <tr key={index}>
+                      {checkable && (
+                        <td style={{ width: "50px" }}>
+                          <Checkbox
+                            checked={areItemSelected(item)}
+                            onChange={e => handleSelectItem(e, item, index)}
+                          />
                         </td>
-                      );
-                    })}
-                  </tr>
+                      )}
+                      {numberVisible && (
+                        <td style={{ width: "50px" }}>{index + 1}</td>
+                      )}
+                      {expandable && (
+                        <td style={{ width: "50px" }}>
+                          <Icon
+                            name={
+                              hasInExapndItems(item)
+                                ? "arrow_down"
+                                : "arrow_right"
+                            }
+                            size="12"
+                            onClick={() => changeExpandItems(item)}
+                          />
+                        </td>
+                      )}
+
+                      {rows.map(row => {
+                        return (
+                          <td key={row.key} style={{ width: `${row.width}px` }}>
+                            {item[row.key]}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                    <tr key={`${index}-expand`}>
+                      {hasInExapndItems(item) && (
+                        <td colSpan={10}>{item.description || "/"}</td>
+                      )}
+                    </tr>
+                  </>
                 );
               })}
             {dataSource.length === 0 && (

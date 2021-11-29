@@ -61,6 +61,7 @@ const TableDemo = () => {
         loading={loading}
         bordered
         height={400}
+        expandable
       />
       <br />
       <Table
