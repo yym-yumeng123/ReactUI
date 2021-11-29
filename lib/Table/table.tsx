@@ -23,6 +23,7 @@ type column = {
   // 排序
   order?: "asc" | "desc" | "unsc" | string;
   sorter?: (column: any) => void;
+  render?: (text: string, record: any, index: number) => void;
 };
 
 interface TableProps {
@@ -271,7 +272,9 @@ const Table: FC<TableProps> = props => {
                       {rows.map(row => {
                         return (
                           <td key={row.key} style={{ width: `${row.width}px` }}>
-                            {item[row.key]}
+                            {row.render
+                              ? row.render(item[row.key], item, index)
+                              : item[row.key]}
                           </td>
                         );
                       })}

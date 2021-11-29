@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Table from "lib/Table/table";
-import { Icon } from "lib";
+import { Button, Icon } from "lib";
 
 import { data } from "./config";
+import Popover from "lib/Popover/popover";
+import toast from "lib/Toast/toast";
 
 const TableDemo = () => {
   // const [current, setCurrent] = useState(1);
@@ -32,7 +34,22 @@ const TableDemo = () => {
     },
     {
       title: "住址",
-      key: "address"
+      key: "address",
+      render: (text: string) => {
+        return <Popover content={text}>{text}</Popover>;
+      }
+    },
+    {
+      title: "操作",
+      key: "action",
+      width: 200,
+      render: (_: string, record: any) => {
+        return (
+          <Button level="danger" onClick={() => handleDelete(record)}>
+            删除
+          </Button>
+        );
+      }
     }
   ]);
   const [dataSource, setData] = useState(data);
@@ -42,6 +59,12 @@ const TableDemo = () => {
   const onSelecteItems = (val: any) => {
     console.log(val, "2323");
     setSelectedRows(val);
+  };
+
+  const handleDelete = (record: any) => {
+    toast({
+      content: `${record.name} 删除成功`
+    });
   };
 
   const empty = (
