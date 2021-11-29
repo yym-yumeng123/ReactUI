@@ -5,6 +5,7 @@
   background: $white;
   border-radius: $radius;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
+
   .yui-table {
     width: 100%;
     border-spacing: 0;
@@ -122,5 +123,13 @@
       margin-left: 8px;
       color: $font-color-default;
     }
+  }
+
+  .yui-table-carbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: aliceblue;
   }
 }

@@ -4,11 +4,13 @@ import React, {
   ReactNode,
   useEffect,
   useMemo,
+  useRef,
   useState
 } from "react";
 import Pager, { PagerProps } from "lib/Pager/pager";
 import { Checkbox } from "lib/Checkbox";
 import Icon from "lib/Icon/icon";
+import Scroll from "lib/Scroll/scroll";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-table");
@@ -36,6 +38,7 @@ interface TableProps {
   striped?: boolean; // 条纹间隔
   empty?: ReactNode;
   loading?: boolean;
+  height?: number;
 
   pager?: PagerProps;
 }
@@ -54,6 +57,7 @@ const Table: FC<TableProps> = props => {
     striped = true,
     empty,
     loading = false,
+    height,
 
     pager
   } = props;
@@ -63,10 +67,56 @@ const Table: FC<TableProps> = props => {
   // columns state
   const [rows, setRows] = useState(columns);
 
+  const tableRef = useRef<any>(null);
+  const wrapRef = useRef<any>(null);
+
   // TODO: selectedRow 变化时...
   useEffect(() => {
     console.log(selected, "selected...");
   }, [selected]);
+
+  useEffect(() => {
+    const tableCarbon = tableRef.current.cloneNode(true);
+    tableCarbon.classList.add("yui-table-carbon");
+    wrapRef.current.appendChild(tableCarbon);
+    updateHeaderWidth(tableCarbon);
+
+    let onWindowResize = () => updateHeaderWidth(tableCarbon);
+    window.addEventListener("resize", onWindowResize);
+
+    // 移除
+    return () => {
+      window.removeEventListener("resize", onWindowResize);
+      tableCarbon.remove();
+    };
+  }, []);
+
+  const updateHeaderWidth = (tableCarbon: any) => {
+    // 获取原 table 的 thead
+    const tableHeader: any = Array.from(tableRef.current.children).filter(
+      (i: any) => i.tagName.toLowerCase() === "thead"
+    )[0];
+
+    // table header 副本
+    let tableHeaderCarbon: any;
+
+    // table 副本
+    Array.from(tableCarbon.children).map((node: any) => {
+      if (node.tagName.toLowerCase() !== "thead") {
+        node.remove();
+      } else {
+        tableHeaderCarbon = node;
+      }
+    });
+
+    // 获取 header 副本 的 width
+    Array.from(tableHeader.children[0].children).map((th: any, index) => {
+      const { width } = th.getBoundingClientRect();
+      // 滚动条的宽度 + th 宽度
+      tableHeaderCarbon.children[0].children[index].style.width = `${width +
+        8}px`;
+    });
+  };
 
   // 选择单个
   const handleSelectItem = (
@@ -129,9 +179,12 @@ const Table: FC<TableProps> = props => {
   };
 
   return (
-    <div className={mergeClass("wrap")}>
-      <>
-        <table className={mergeClass({ "": true, bordered, compact, striped })}>
+    <div ref={wrapRef} className={mergeClass("wrap")}>
+      <Scroll style={{ height: `${height}px` }}>
+        <table
+          ref={tableRef}
+          className={mergeClass({ "": true, bordered, compact, striped })}
+        >
           <thead className={mergeClass("head")}>
             <tr>
               <th>
@@ -209,7 +262,7 @@ const Table: FC<TableProps> = props => {
             <Pager {...pager} />
           </div>
         )}
-      </>
+      </Scroll>
       {loading && (
         <div className={mergeClass("loading")}>
           <Icon name="refresh" color="#a6a6a6" size="14" spin />

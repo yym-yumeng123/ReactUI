@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Table from "lib/Table/table";
 import { Icon } from "lib";
 
+import { data } from "./config";
+
 const TableDemo = () => {
   // const [current, setCurrent] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -31,32 +33,7 @@ const TableDemo = () => {
       key: "address"
     }
   ]);
-  const [dataSource, setData] = useState([
-    {
-      key: "1",
-      name: "胡彦斌",
-      age: 32,
-      address: "西湖区湖底公园1号"
-    },
-    {
-      key: "2",
-      name: "胡彦祖",
-      age: 42,
-      address: "西湖区湖底公园1号"
-    },
-    {
-      key: "3",
-      name: "胡一同",
-      age: 33,
-      address: "西湖区湖底公园2号"
-    },
-    {
-      key: "4",
-      name: "胡东西",
-      age: 32,
-      address: "西湖区湖底公2323号"
-    }
-  ]);
+  const [dataSource, setData] = useState(data);
 
   const [selectedRows, setSelectedRows] = useState([]);
 
@@ -80,18 +57,20 @@ const TableDemo = () => {
         columns={columns}
         dataSource={dataSource}
         loading={loading}
+        bordered
+        height={400}
       />
-      {/* <br />
+      <br />
       <Table
         columns={columns}
         dataSource={dataSource}
         bordered
-        pager={{ current, totalPage: 100, onChange: handleChange }}
+        // pager={{ current, totalPage: 100, onChange: handleChange }}
       />
-       */}
+
       <br />
-      <Table columns={columns} dataSource={[]} empty={empty} bordered compact />
-      <Table columns={columns} dataSource={[]} bordered compact />
+      {/* <Table columns={columns} dataSource={[]} empty={empty} bordered compact />
+      <Table columns={columns} dataSource={[]} bordered compact /> */}
       {/*
       <br />
       <Table
