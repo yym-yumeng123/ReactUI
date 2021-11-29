@@ -75,25 +75,25 @@ const Table: FC<TableProps> = props => {
     console.log(selected, "selected...");
   }, [selected]);
 
+  // 固定表头计算
   useEffect(() => {
-    const tableCarbon = tableRef.current.cloneNode(false);
-    tableCarbon.classList.add("yui-table-carbon");
+    let tableCarbon: any;
+    if (height) {
+      tableCarbon = tableRef.current.cloneNode(false);
+      tableCarbon.classList.add("yui-table-carbon");
 
-    const tHead = tableRef.current.children[0];
-    const { height } = tHead.getBoundingClientRect();
-    tableRef.current.style.marginTop = `${height}px`;
-
-    tableCarbon.appendChild(tHead);
-
-    wrapRef.current.appendChild(tableCarbon);
+      const tHead = tableRef.current.children[0];
+      const { height } = tHead.getBoundingClientRect();
+      tableRef.current.style.marginTop = `${height}px`;
+      tableCarbon.appendChild(tHead);
+      wrapRef.current.appendChild(tableCarbon);
+    }
 
     // 移除
     return () => {
       tableCarbon.remove();
     };
   }, []);
-
-
 
   // 选择单个
   const handleSelectItem = (
