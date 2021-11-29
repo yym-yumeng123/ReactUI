@@ -11,7 +11,8 @@ const TableDemo = () => {
   const [columns] = useState([
     {
       title: "姓名",
-      key: "name"
+      key: "name",
+      width: 100
       // render: (text: any, record: object, index: number) => {
       //   console.log(text, record, index);
       // }
@@ -26,7 +27,8 @@ const TableDemo = () => {
           setLoading(false);
           setData(dataSource.sort((a, b) => a.age - b.age));
         }, 2000);
-      }
+      },
+      width: 200
     },
     {
       title: "住址",

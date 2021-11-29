@@ -98,3 +98,13 @@ const updateHeaderWidth = (tableCarbon: 副本) => {
   });
 };
 ```
+
+### 遇到最难的技术问题
+
+1. 固定表头
+
+- 深度复制 table, 把 thead 放到 默认 table 的最上面, 问题: 宽度对不齐?
+- 在获取之前 table 每个 th 的宽度, 给 复制的 table th 赋值, 问题: 事件点击我没弄好?
+- `cloneNode(false)` 我现在只复制 table, 不复制里面的元素, table 副本里面添加 table 的 thead, 可以出发点击事件了, 问题: 我把原有的 第一个元素覆盖了?
+- 我计算 `const { height } = tHead.getBoundingClientRect()` thead 的高度, 然后把 `table marginTop`, 第一个元素弄出来, 可以了, 问题: 宽度又对不齐了?
+- 思路: 把`thead th 的宽度` = `第一行 tr 下 td 的宽度`, 宽度对不起, 和滚动条宽度每一个 th 的宽度比前一个 宽度大一点缝隙 

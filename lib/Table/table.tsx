@@ -10,7 +10,6 @@ import React, {
 import Pager, { PagerProps } from "lib/Pager/pager";
 import { Checkbox } from "lib/Checkbox";
 import Icon from "lib/Icon/icon";
-import Scroll from "lib/Scroll/scroll";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-table");
@@ -20,6 +19,7 @@ import "./table.scss";
 type column = {
   title: string;
   key: string;
+  width?: number;
   // 排序
   order?: "asc" | "desc" | "unsc" | string;
   sorter?: (column: any) => void;
@@ -76,47 +76,24 @@ const Table: FC<TableProps> = props => {
   }, [selected]);
 
   useEffect(() => {
-    const tableCarbon = tableRef.current.cloneNode(true);
+    const tableCarbon = tableRef.current.cloneNode(false);
     tableCarbon.classList.add("yui-table-carbon");
-    wrapRef.current.appendChild(tableCarbon);
-    updateHeaderWidth(tableCarbon);
 
-    let onWindowResize = () => updateHeaderWidth(tableCarbon);
-    window.addEventListener("resize", onWindowResize);
+    const tHead = tableRef.current.children[0];
+    const { height } = tHead.getBoundingClientRect();
+    tableRef.current.style.marginTop = `${height}px`;
+
+    tableCarbon.appendChild(tHead);
+
+    wrapRef.current.appendChild(tableCarbon);
 
     // 移除
     return () => {
-      window.removeEventListener("resize", onWindowResize);
       tableCarbon.remove();
     };
   }, []);
 
-  const updateHeaderWidth = (tableCarbon: any) => {
-    // 获取原 table 的 thead
-    const tableHeader: any = Array.from(tableRef.current.children).filter(
-      (i: any) => i.tagName.toLowerCase() === "thead"
-    )[0];
 
-    // table header 副本
-    let tableHeaderCarbon: any;
-
-    // table 副本
-    Array.from(tableCarbon.children).map((node: any) => {
-      if (node.tagName.toLowerCase() !== "thead") {
-        node.remove();
-      } else {
-        tableHeaderCarbon = node;
-      }
-    });
-
-    // 获取 header 副本 的 width
-    Array.from(tableHeader.children[0].children).map((th: any, index) => {
-      const { width } = th.getBoundingClientRect();
-      // 滚动条的宽度 + th 宽度
-      tableHeaderCarbon.children[0].children[index].style.width = `${width +
-        8}px`;
-    });
-  };
 
   // 选择单个
   const handleSelectItem = (
@@ -180,25 +157,23 @@ const Table: FC<TableProps> = props => {
 
   return (
     <div ref={wrapRef} className={mergeClass("wrap")}>
-      <Scroll style={{ height: `${height}px` }}>
+      <div style={{ height: `${height}px`, overflow: "auto" }}>
         <table
           ref={tableRef}
           className={mergeClass({ "": true, bordered, compact, striped })}
         >
           <thead className={mergeClass("head")}>
             <tr>
-              <th>
+              <th style={{ width: "50px" }}>
                 <Checkbox
                   checked={areAllItemsSelected}
                   onChange={e => handleSelectAllItem(e)}
-                >
-                  {String(areAllItemsSelected)}
-                </Checkbox>
+                />
               </th>
-              {numberVisible && <th>序号</th>}
+              {numberVisible && <th style={{ width: "50px" }}>序号</th>}
               {rows.map(row => {
                 return (
-                  <th key={row.key}>
+                  <th key={row.key} style={{ width: `${row.width}px` }}>
                     <span
                       className={mergeClass("order-wrap")}
                       onClick={() => handleOrderBy(row)}
@@ -230,16 +205,22 @@ const Table: FC<TableProps> = props => {
               dataSource.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td>
+                    <td style={{ width: "50px" }}>
                       <Checkbox
                         checked={areItemSelected(item)}
                         onChange={e => handleSelectItem(e, item, index)}
                       />
-                      {String(areItemSelected(item))}
+                      {/* {String(areItemSelected(item))} */}
                     </td>
-                    {numberVisible && <td>{index + 1}</td>}
+                    {numberVisible && (
+                      <td style={{ width: "50px" }}>{index + 1}</td>
+                    )}
                     {rows.map(row => {
-                      return <td key={row.key}>{item[row.key]}</td>;
+                      return (
+                        <td key={row.key} style={{ width: `${row.width}px` }}>
+                          {item[row.key]}
+                        </td>
+                      );
                     })}
                   </tr>
                 );
@@ -262,7 +243,7 @@ const Table: FC<TableProps> = props => {
             <Pager {...pager} />
           </div>
         )}
-      </Scroll>
+      </div>
       {loading && (
         <div className={mergeClass("loading")}>
           <Icon name="refresh" color="#a6a6a6" size="14" spin />
