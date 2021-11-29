@@ -172,6 +172,22 @@ const Table: FC<TableProps> = props => {
     column.sorter && column.sorter(column);
   };
 
+  // 计算 colspan 的 值
+  const colSpan = (): number => {
+    let length = 0;
+    if (numberVisible) {
+      length += 1;
+    }
+    if (expandable) {
+      length += 1;
+    }
+    if (checkable) {
+      length += 1;
+    }
+
+    return length;
+  };
+
   return (
     <div ref={wrapRef} className={mergeClass("wrap")}>
       <div style={{ height: `${height}px`, overflow: "auto" }}>
@@ -262,7 +278,12 @@ const Table: FC<TableProps> = props => {
                     </tr>
                     <tr key={`${index}-expand`}>
                       {hasInExapndItems(item) && (
-                        <td colSpan={10}>{item.description || "/"}</td>
+                        <>
+                          <td colSpan={colSpan()}></td>
+                          <td colSpan={rows.length}>
+                            {item.description || "/"}
+                          </td>
+                        </>
                       )}
                     </tr>
                   </>
@@ -270,7 +291,10 @@ const Table: FC<TableProps> = props => {
               })}
             {dataSource.length === 0 && (
               <tr>
-                <td className={mergeClass("empty")} colSpan={rows.length + 2}>
+                <td
+                  className={mergeClass("empty")}
+                  colSpan={rows.length + colSpan()}
+                >
                   {empty ? (
                     <span>{empty}</span>
                   ) : (

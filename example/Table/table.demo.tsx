@@ -61,6 +61,7 @@ const TableDemo = () => {
         loading={loading}
         bordered
         height={400}
+        // checkable
         expandable
       />
       <br />
@@ -72,8 +73,8 @@ const TableDemo = () => {
       />
 
       <br />
-      {/* <Table columns={columns} dataSource={[]} empty={empty} bordered compact />
-      <Table columns={columns} dataSource={[]} bordered compact /> */}
+      {/* <Table columns={columns} dataSource={[]} empty={empty} bordered compact /> */}
+      <Table columns={columns} dataSource={[]} bordered compact />
       {/*
       <br />
       <Table
