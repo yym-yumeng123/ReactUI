@@ -1,6 +1,7 @@
 @import "lib/styles/variable.scss";
 
 .yui-table-wrap {
+  position: relative;
   background: $white;
   border-radius: $radius;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
@@ -103,6 +104,23 @@
       display: flex;
       justify-content: flex-end;
       padding: 20px;
+    }
+  }
+
+  .yui-table-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    background: #fff;
+    span {
+      margin-left: 8px;
+      color: $font-color-default;
     }
   }
 }

@@ -4,6 +4,7 @@ import { Icon } from "lib";
 
 const TableDemo = () => {
   // const [current, setCurrent] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const [columns] = useState([
     {
@@ -17,10 +18,12 @@ const TableDemo = () => {
       title: "年龄",
       key: "age",
       order: "asc",
-      sorter: (column: any) => {
-        console.log(column, '3443');
-
-        setData(dataSource.sort((a, b) => a.age - b.age));
+      sorter: () => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          setData(dataSource.sort((a, b) => a.age - b.age));
+        }, 2000);
       }
     },
     {
@@ -76,6 +79,7 @@ const TableDemo = () => {
         selectedRows={selectedRows}
         columns={columns}
         dataSource={dataSource}
+        loading={loading}
       />
       {/* <br />
       <Table

@@ -18,6 +18,7 @@ import "./table.scss";
 type column = {
   title: string;
   key: string;
+  // 排序
   order?: "asc" | "desc" | "unsc" | string;
   sorter?: (column: any) => void;
 };
@@ -25,7 +26,6 @@ type column = {
 interface TableProps {
   columns: column[];
   dataSource: Array<any>;
-  onChange?: (column: column) => void;
 
   selectedRows?: any[];
   changeSeletedItems?: (val: any) => void;
@@ -35,6 +35,7 @@ interface TableProps {
   compact?: boolean; // 紧凑减小 padding
   striped?: boolean; // 条纹间隔
   empty?: ReactNode;
+  loading?: boolean;
 
   pager?: PagerProps;
 }
@@ -52,6 +53,7 @@ const Table: FC<TableProps> = props => {
     compact = false,
     striped = true,
     empty,
+    loading = false,
 
     pager
   } = props;
@@ -123,89 +125,95 @@ const Table: FC<TableProps> = props => {
       rows.map(item => (item.key === copyColumn.key ? copyColumn : item))
     );
 
-    if (column.hasOwnProperty("sorter")) {
-      column.sorter && column.sorter(column);
-    }
+    column.sorter && column.sorter(column);
   };
 
   return (
     <div className={mergeClass("wrap")}>
-      <table className={mergeClass({ "": true, bordered, compact, striped })}>
-        <thead className={mergeClass("head")}>
-          <tr>
-            <th>
-              <Checkbox
-                checked={areAllItemsSelected}
-                onChange={e => handleSelectAllItem(e)}
-              >
-                {String(areAllItemsSelected)}
-              </Checkbox>
-            </th>
-            {numberVisible && <th>序号</th>}
-            {rows.map(row => {
-              return (
-                <th key={row.key}>
-                  <span
-                    className={mergeClass("order-wrap")}
-                    onClick={() => handleOrderBy(row)}
-                  >
-                    {row.title}
-                    {row.order && (
-                      <span className={mergeClass("order")}>
-                        <Icon
-                          color={row.order === "asc" ? "#3498ff" : "#8e8e93"}
-                          name="show_less"
-                          className={mergeClass("icon")}
-                        />
-                        <Icon
-                          color={row.order === "desc" ? "#3498ff" : "#8e8e93"}
-                          name="show_more"
-                          className={mergeClass("icon")}
-                        />
-                      </span>
-                    )}
-                  </span>
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
-
-        <tbody className={mergeClass("body")}>
-          {dataSource.length > 0 &&
-            dataSource.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td>
-                    <Checkbox
-                      checked={areItemSelected(item)}
-                      onChange={e => handleSelectItem(e, item, index)}
-                    />
-                    {String(areItemSelected(item))}
-                  </td>
-                  {numberVisible && <td>{index + 1}</td>}
-                  {rows.map(row => {
-                    return <td key={row.key}>{item[row.key]}</td>;
-                  })}
-                </tr>
-              );
-            })}
-          {dataSource.length === 0 && (
+      <>
+        <table className={mergeClass({ "": true, bordered, compact, striped })}>
+          <thead className={mergeClass("head")}>
             <tr>
-              <td className={mergeClass("empty")} colSpan={rows.length + 2}>
-                {empty ? (
-                  <span>{empty}</span>
-                ) : (
-                  <span className="default">暂无数据</span>
-                )}
-              </td>
+              <th>
+                <Checkbox
+                  checked={areAllItemsSelected}
+                  onChange={e => handleSelectAllItem(e)}
+                >
+                  {String(areAllItemsSelected)}
+                </Checkbox>
+              </th>
+              {numberVisible && <th>序号</th>}
+              {rows.map(row => {
+                return (
+                  <th key={row.key}>
+                    <span
+                      className={mergeClass("order-wrap")}
+                      onClick={() => handleOrderBy(row)}
+                    >
+                      {row.title}
+                      {row.order && (
+                        <span className={mergeClass("order")}>
+                          <Icon
+                            color={row.order === "asc" ? "#3498ff" : "#8e8e93"}
+                            name="show_less"
+                            className={mergeClass("icon")}
+                          />
+                          <Icon
+                            color={row.order === "desc" ? "#3498ff" : "#8e8e93"}
+                            name="show_more"
+                            className={mergeClass("icon")}
+                          />
+                        </span>
+                      )}
+                    </span>
+                  </th>
+                );
+              })}
             </tr>
-          )}
-        </tbody>
-      </table>
-      {pager && (
-        <div className={mergeClass("pager")}>
-          <Pager {...pager} />
+          </thead>
+
+          <tbody className={mergeClass("body")}>
+            {dataSource.length > 0 &&
+              dataSource.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>
+                      <Checkbox
+                        checked={areItemSelected(item)}
+                        onChange={e => handleSelectItem(e, item, index)}
+                      />
+                      {String(areItemSelected(item))}
+                    </td>
+                    {numberVisible && <td>{index + 1}</td>}
+                    {rows.map(row => {
+                      return <td key={row.key}>{item[row.key]}</td>;
+                    })}
+                  </tr>
+                );
+              })}
+            {dataSource.length === 0 && (
+              <tr>
+                <td className={mergeClass("empty")} colSpan={rows.length + 2}>
+                  {empty ? (
+                    <span>{empty}</span>
+                  ) : (
+                    <span className="default">暂无数据</span>
+                  )}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+        {pager && (
+          <div className={mergeClass("pager")}>
+            <Pager {...pager} />
+          </div>
+        )}
+      </>
+      {loading && (
+        <div className={mergeClass("loading")}>
+          <Icon name="refresh" color="#a6a6a6" size="14" spin />
+          <span>加载中...</span>
         </div>
       )}
     </div>
