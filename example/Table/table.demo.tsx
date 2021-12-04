@@ -85,7 +85,7 @@ const TableDemo = () => {
         loading={loading}
         bordered
         height={400}
-        // checkable
+        checkable
         expandable
       />
       <br />

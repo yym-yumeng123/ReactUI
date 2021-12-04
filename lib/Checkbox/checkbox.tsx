@@ -13,6 +13,7 @@ const mergeClass = addPrefixAndMergeClass("yui-checkbox");
 interface ICheckBoxProps {
   // group
   selected?: string[];
+  name?: string;
   // 单个
   value?: string;
   children?: string | number;
@@ -25,8 +26,9 @@ interface ICheckBoxProps {
 const Checkbox: FC<ICheckBoxProps> = props => {
   const {
     selected = [],
-    value = '',
-    children = '',
+    name = "",
+    value = "",
+    children = "",
     checked = false,
     disabled = false,
     indeterminate = false,
@@ -37,10 +39,22 @@ const Checkbox: FC<ICheckBoxProps> = props => {
   const [currentChecked, setCurrentChecked] = useState<boolean>(checked);
 
   useEffect(() => {
-    if (selected.length > 0 && selected.indexOf(value) > -1) {
+    // 当 group 选中时
+    if (
+      name === "group" &&
+      selected.length > 0 &&
+      selected.indexOf(value) > -1
+    ) {
       setCurrentChecked(true);
     }
   }, []);
+
+  useEffect(() => {
+    // 当被其他 checkbox 设置时
+    if (name === "") {
+      setCurrentChecked(checked);
+    }
+  }, [checked]);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
     if (disabled) return;

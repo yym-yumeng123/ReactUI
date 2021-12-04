@@ -23,7 +23,6 @@ const CheckboxGroup: FC<IGroupProps> = props => {
     if (checked) {
       setSelectedValue([...selectedValue, value]);
     } else {
-      console.log(selectedValue.indexOf(value));
       setSelectedValue(arr => arr.filter(i => i !== value));
     }
   };
@@ -41,6 +40,7 @@ const CheckboxGroup: FC<IGroupProps> = props => {
       ...child.props,
       key: index,
       selected,
+      name: "group",
       onChange: handleGroupChange // 回调事件
     });
   });
