@@ -68,12 +68,12 @@ const TableDemo = () => {
     });
   };
 
-  // const empty = (
-  //   <>
-  //     <Icon name="like" />
-  //     <h2>我爱你</h2>
-  //   </>
-  // );
+  const empty = (
+    <>
+      <Icon name="like" />
+      <h2>我爱你</h2>
+    </>
+  );
 
   return (
     <div>
@@ -97,7 +97,7 @@ const TableDemo = () => {
       />
 
       <br />
-      {/* <Table columns={columns} dataSource={[]} empty={empty} bordered compact /> */}
+      <Table columns={columns} dataSource={[]} empty={empty} bordered compact />
       <Table columns={columns} dataSource={[]} bordered compact />
       {/*
       <br />
