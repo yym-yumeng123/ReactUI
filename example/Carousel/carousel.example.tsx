@@ -1,11 +1,11 @@
 import React from "react";
 import Carousel, { CarouselItem } from "lib/Carousel/carousel";
 // @ts-ignore
-import sz from "./image/sz.png";
+import sz from "../../assets/image/sz.png";
 // @ts-ignore
-import xd from "./image/xd.jpg";
+import xd from "../../assets/image/xd.jpg";
 // @ts-ignore
-import yy from "./image/yy.png";
+import yy from "../../assets/image/yy.png";
 
 import "./carousel.demo.scss";
 
