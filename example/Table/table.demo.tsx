@@ -68,12 +68,12 @@ const TableDemo = () => {
     });
   };
 
-  const empty = (
-    <>
-      <Icon name="like" />
-      <h2>我爱你</h2>
-    </>
-  );
+  // const empty = (
+  //   <>
+  //     <Icon name="like" />
+  //     <h2>我爱你</h2>
+  //   </>
+  // );
 
   return (
     <div>
