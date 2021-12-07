@@ -1,14 +1,16 @@
 import React, { ChangeEventHandler, useRef } from "react";
 import Icon from "lib/Icon/icon";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import { flatten, intersect } from "../utils/utils";
 import useUpdateCollapse from "lib/hooks/useUpdateCollapse";
 import useToggle from "lib/hooks/useToggle";
-const sc = addPrefixAndscopedClassMarker("yui-tree");
+
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-tree");
 
 interface TreeItemProps {
+  key: string;
   item: SourceDataItem;
-  level: number;
+  level: number; // 第几级
   treeProps: TreeProps;
   onItemChange: (value: string[]) => void;
 }
@@ -33,6 +35,7 @@ const collectChildrenValues = (item: SourceDataItem): string[] => {
  */
 const TreeItem: React.FC<TreeItemProps> = props => {
   const {
+    key,
     item,
     level = 0,
     onItemChange,
@@ -44,19 +47,13 @@ const TreeItem: React.FC<TreeItemProps> = props => {
   const divRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const classes = {
-    [`level-${level}`]: true,
-    item: true
-  };
 
   const checked = multiple
     ? selected.indexOf(item.title) >= 0
     : selected === item.title;
 
   const { expanded, expand, collapse } = useToggle(true);
-  console.log(expand, 'expand....');
-
-
+  console.log(expand, "expand....");
 
   useUpdateCollapse(expanded, () => {
     if (!divRef.current) return;
@@ -134,9 +131,15 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     }
   };
 
+  // 每一个层级有一个不同的 class level
+  const classes = {
+    [`level-${level}`]: true,
+    item: true
+  };
+
   return (
-    <div key={item.key} className={sc(classes)}>
-      <div className={sc("title")}>
+    <div key={key} className={mergeClass(classes)}>
+      <div className={mergeClass("title")}>
         {expanded ? (
           <Icon size="12" name="show_more" onClick={collapse} />
         ) : (
@@ -154,10 +157,11 @@ const TreeItem: React.FC<TreeItemProps> = props => {
       </div>
       <div
         ref={divRef}
-        className={sc({ children: true, collapsed: !expanded })}
+        className={mergeClass({ children: true, collapsed: !expanded })}
       >
         {item.children?.map(subItem => (
           <TreeItem
+            key={subItem.key}
             item={subItem}
             level={level + 1}
             onItemChange={onItemChange1}

@@ -28,4 +28,4 @@ function intersect<T>(array1: T[], array2: T[]): T[] {
   return result;
 }
 
-
+export { flatten, intersect };

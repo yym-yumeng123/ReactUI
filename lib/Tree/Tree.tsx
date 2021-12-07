@@ -1,9 +1,10 @@
 import React from "react";
 import TreeItem from "./tree-item";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
-import "./tree.scss";
 
-const sc = addPrefixAndscopedClassMarker("yui-tree");
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-tree");
+
+import "./tree.scss";
 
 const Tree: React.FC<TreeProps> = props => {
   const { sourceData, onChange } = props;
@@ -14,7 +15,7 @@ const Tree: React.FC<TreeProps> = props => {
   };
 
   return (
-    <div className={sc("")}>
+    <div className={mergeClass("")}>
       {sourceData?.map(item => (
         <TreeItem
           onItemChange={onItemChange}
