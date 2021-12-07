@@ -1,9 +1,9 @@
 import React, { ChangeEventHandler, useRef } from "react";
 import Icon from "lib/Icon/icon";
-// import { flatten, intersect } from "../utils/utils";
 import useUpdateCollapse from "lib/hooks/useUpdateCollapse";
 import useToggle from "lib/hooks/useToggle";
 
+import flatten from "lib/Helpers/flatten";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-tree");
 
@@ -16,17 +16,17 @@ interface TreeItemProps {
 }
 
 /**
- * @description 收集所有子元素
+ * @description 收集所有子元素 得到一个 多为数组, 需要 拍平
  * @param item 每一项元素
  */
-// const collectChildrenValues = (item: SourceDataItem): string[] => {
-//   return flatten(
-//     item.children?.map(subItem => [
-//       subItem.title,
-//       collectChildrenValues(subItem)
-//     ])
-//   );
-// };
+const collectChildrenValues = (item: SourceDataItem): any => {
+  return flatten(
+    item.children?.map(subItem => [
+      subItem.title,
+      collectChildrenValues(subItem)
+    ])
+  );
+};
 
 /**
  * 递归渲染树的每一项
@@ -93,15 +93,21 @@ const TreeItem: React.FC<TreeItemProps> = props => {
   });
 
   const onSelectChange: ChangeEventHandler<HTMLInputElement> = e => {
-    // chidren 的值
-    // const childrenValues = collectChildrenValues(item);
+    // 当我选择时, 收集所有 children 的  value
+    const childrenValues = collectChildrenValues(item);
+    console.log(childrenValues, "3343434434343");
 
     if (multiple) {
       if (e.target.checked) {
-        onChange([...selected, item.title]);
-        // onChange([...selected, item.title, ...childrenValues]);
+        // 当选中时, 添加所有的子元素
+        onChange([...selected, item.title, ...childrenValues]);
       } else {
-        onChange(selected.filter(value => value !== item.title));
+        onChange(
+          selected.filter(
+            value =>
+              value !== item.title && childrenValues.indexOf(value) === -1
+          )
+        );
       }
     } else {
       if (e.target.checked) {
