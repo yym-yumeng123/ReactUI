@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, useRef } from "react";
 import Icon from "lib/Icon/icon";
-import { flatten, intersect } from "../utils/utils";
+// import { flatten, intersect } from "../utils/utils";
 import useUpdateCollapse from "lib/hooks/useUpdateCollapse";
 import useToggle from "lib/hooks/useToggle";
 
@@ -12,21 +12,21 @@ interface TreeItemProps {
   item: SourceDataItem;
   level: number; // 第几级
   treeProps: TreeProps;
-  onItemChange: (value: string[]) => void;
+  // onItemChange: (value: string[]) => void;
 }
 
 /**
  * @description 收集所有子元素
  * @param item 每一项元素
  */
-const collectChildrenValues = (item: SourceDataItem): string[] => {
-  return flatten(
-    item.children?.map(subItem => [
-      subItem.title,
-      collectChildrenValues(subItem)
-    ])
-  );
-};
+// const collectChildrenValues = (item: SourceDataItem): string[] => {
+//   return flatten(
+//     item.children?.map(subItem => [
+//       subItem.title,
+//       collectChildrenValues(subItem)
+//     ])
+//   );
+// };
 
 /**
  * 递归渲染树的每一项
@@ -38,25 +38,24 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     key,
     item,
     level = 0,
-    onItemChange,
+    // onItemChange,
     treeProps,
     treeProps: { multiple, selected, onChange }
   } = props;
-  // 展开
 
+  // 打开关闭的子元素
   const divRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-
-  const checked = multiple
-    ? selected.indexOf(item.title) >= 0
-    : selected === item.title;
-
+  // collapse 折叠 expand 展开 expanded 是否展开
   const { expanded, expand, collapse } = useToggle(true);
   console.log(expand, "expand....");
 
+  // 自定义钩子: 展开/折叠动画
   useUpdateCollapse(expanded, () => {
     if (!divRef.current) return;
+
+    // 打开 关闭, 改变 高度
     if (expanded) {
       divRef.current.style.height = "auto";
       const { height } = divRef.current.getBoundingClientRect();
@@ -73,12 +72,15 @@ const TreeItem: React.FC<TreeItemProps> = props => {
 
       divRef.current.addEventListener("transitionend", afterExpand);
     } else {
+      // 先获取元素的高度
       const { height } = divRef.current.getBoundingClientRect();
-      console.log(height);
+      // 设置 元素的 高度
       divRef.current.style.height = height + "px";
+      // 让浏览器计算一下高度 分割 height -> 0 的步骤
       divRef.current.getBoundingClientRect();
       divRef.current.style.height = "0px";
 
+      // 动画结束 height = ''  清除 事件
       const afterCollapse = () => {
         if (!divRef.current) return;
         divRef.current.style.height = "";
@@ -92,50 +94,50 @@ const TreeItem: React.FC<TreeItemProps> = props => {
 
   const onSelectChange: ChangeEventHandler<HTMLInputElement> = e => {
     // chidren 的值
-    const childrenValues = collectChildrenValues(item);
+    // const childrenValues = collectChildrenValues(item);
 
     if (multiple) {
       if (e.target.checked) {
-        onItemChange([...selected, item.title, ...childrenValues]);
+        onChange([...selected, item.title]);
+        // onChange([...selected, item.title, ...childrenValues]);
       } else {
-        onItemChange(
-          selected.filter(
-            value =>
-              value !== item.title && childrenValues.indexOf(value) === -1
-          )
-        );
+        onChange(selected.filter(value => value !== item.title));
       }
     } else {
       if (e.target.checked) {
-        onChange(item.title);
+        onChange([item.title]);
       } else {
-        onChange("");
+        onChange([""]);
       }
     }
   };
 
-  // 子元素变化
-  const onItemChange1 = (values: any) => {
-    // 子代被全部选中
-    const childrenValues = collectChildrenValues(item);
-    console.log(childrenValues, "dslk");
+  // // 子元素变化
+  // const onItemChange1 = (values: any) => {
+  //   // 子代被全部选中
+  //   const childrenValues = collectChildrenValues(item);
+  //   console.log(childrenValues, "dslk");
 
-    const common = intersect(values, childrenValues);
-    console.log(common, "带领僧松开");
-    if (common.length !== 0) {
-      onItemChange(Array.from(new Set(values.concat(item.title))));
-      inputRef.current!.indeterminate = common.length !== childrenValues.length;
-    } else {
-      onItemChange(values.filter((v: string) => v !== item.title));
-      inputRef.current!.indeterminate = false;
-    }
-  };
+  //   const common = intersect(values, childrenValues);
+  //   console.log(common, "带领僧松开");
+  //   if (common.length !== 0) {
+  //     onItemChange(Array.from(new Set(values.concat(item.title))));
+  //     inputRef.current!.indeterminate = common.length !== childrenValues.length;
+  //   } else {
+  //     onItemChange(values.filter((v: string) => v !== item.title));
+  //     inputRef.current!.indeterminate = false;
+  //   }
+  // };
 
   // 每一个层级有一个不同的 class level
   const classes = {
     [`level-${level}`]: true,
     item: true
   };
+
+  const checked = multiple
+    ? selected.indexOf(item.title) >= 0
+    : selected[0] === item.title;
 
   return (
     <div key={key} className={mergeClass(classes)}>
@@ -148,8 +150,6 @@ const TreeItem: React.FC<TreeItemProps> = props => {
         <input
           ref={inputRef}
           type="checkbox"
-          name=""
-          id=""
           checked={checked}
           onChange={onSelectChange}
         />
@@ -164,7 +164,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
             key={subItem.key}
             item={subItem}
             level={level + 1}
-            onItemChange={onItemChange1}
+            // onItemChange={onItemChange}
             treeProps={treeProps}
           />
         ))}

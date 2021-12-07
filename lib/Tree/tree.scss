@@ -17,26 +17,17 @@
       background: $H050;
     }
   }
-  &-level-0 {
-    .yui-tree-title {
-      padding-left: 0;
+
+  // level 循环
+  $class-prefix: yui-tree-level;
+  @for $n from 0 to 100 {
+    .#{$class-prefix}-#{$n} {
+      .yui-tree-title {
+        padding-left: ($n * 16) + px;
+      }
     }
   }
-  &-level-1 {
-    .yui-tree-title {
-      padding-left: 1em;
-    }
-  }
-  &-level-2 {
-    .yui-tree-title {
-      padding-left: 2em;
-    }
-  }
-  &-level-3 {
-    .yui-tree-title {
-      padding-left: 3em;
-    }
-  }
+
   &-children {
     transition: height 0.3s;
     overflow: hidden;
