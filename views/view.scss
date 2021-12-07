@@ -53,6 +53,7 @@ $padding: 16px;
     }
   }
   .g-aside {
+    width: 256px;
     height: calc(100vh - 121px);
     overflow: auto;
     border-right: 1px solid #f2f2f5;
@@ -67,6 +68,7 @@ $padding: 16px;
           display: block;
           padding: 8px $padding;
           color: #272c36;
+          font-size: 14px;
           &:hover {
             color: #3498ff;
           }

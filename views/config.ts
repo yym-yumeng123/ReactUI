@@ -14,14 +14,14 @@ import {
   PagerDemo,
   SwitchDemo,
   CarouselDemo,
-  // TODO: ...
   RadioDemo,
   CheckboxDemo,
   TableDemo,
   TreeDemo,
+  // TODO: ...
   ScrollExample,
-  AutoCompleteExample,
-  FormExample
+  AutoCompleteExample
+  // FormExample
 } from "../example";
 
 export const routeList: Array<{
@@ -121,11 +121,11 @@ export const routeList: Array<{
     component: TableDemo
   },
 
-  {
-    path: "/form",
-    title: "Form 表单",
-    component: FormExample
-  },
+  // {
+  //   path: "/form",
+  //   title: "Form 表单",
+  //   component: FormExample
+  // },
   {
     path: "/tree",
     title: "Tree 树",
