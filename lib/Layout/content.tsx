@@ -1,14 +1,13 @@
 import React from "react";
-import { scopedClassMaker, classes } from "../utils/classes";
-
-const scopedClass = scopedClassMaker("yui-layout");
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-layout");
 
 interface ContentProps extends React.HTMLAttributes<HTMLElement> {}
 
 const Content: React.FC<ContentProps> = props => {
   const { className, ...restProps } = props;
   return (
-    <div className={classes(scopedClass("content"), className)} {...restProps}>
+    <div className={mergeClass("content", { extra: className })} {...restProps}>
       {props.children}
     </div>
   );

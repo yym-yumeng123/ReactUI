@@ -1,17 +1,13 @@
 import React from "react";
-import { scopedClassMaker, classes } from "../utils/classes";
-
-// 初始化class
-const scopedClass = scopedClassMaker("yui-layout");
-// 使用 - 连接 class
-// scopedClass('header')
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-layout");
 
 interface HeaderProps extends React.HTMLAttributes<HTMLElement> {}
 
 const Header: React.FC<HeaderProps> = (props) => {
   const { className, ...restProps } = props;
   return (
-    <div className={classes(scopedClass("header"), className)} {...restProps}>
+    <div className={mergeClass("header", { extra: className })} {...restProps}>
       {props.children}
     </div>
   );

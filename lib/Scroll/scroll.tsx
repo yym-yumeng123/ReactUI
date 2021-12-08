@@ -8,19 +8,20 @@ import {
   useRef,
   useState
 } from "react";
-import {addPrefixAndscopedClassMarker} from "../utils/classes";
+
 import "./scroll.scss";
 import scrollbarWidth from "./scrollbar-width";
 import Icon from "../Icon/icon";
 
-const prefix = addPrefixAndscopedClassMarker("yui-scroll");
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-scroll");
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
   onPull?: () => void;
 }
 
 const Scroll: React.FC<ScrollProps> = props => {
-  const {children, onPull, ...restProps} = props;
+  const { children, onPull, ...restProps } = props;
   const [barHeight, setBarHeight] = useState(0);
   const [barTopHeight, _setBarTopHeight] = useState(0);
   const [barVisible, setBarVisible] = useState<Boolean>(false);
@@ -29,7 +30,7 @@ const Scroll: React.FC<ScrollProps> = props => {
   const timerIdRef = useRef<number | null>(null);
 
   const setBarTopHeight = (number: number) => {
-    const {current} = containerRef;
+    const { current } = containerRef;
     const scrollHeight = current!.scrollHeight;
     const viewHeight = current!.getBoundingClientRect().height;
     const maxBarTop = ((scrollHeight - viewHeight) * viewHeight) / scrollHeight;
@@ -64,7 +65,7 @@ const Scroll: React.FC<ScrollProps> = props => {
    * @description 第一次进来计算 bar 的高度
    */
   useEffect(() => {
-    const {current} = containerRef;
+    const { current } = containerRef;
     // 视图包含 超出的高度
     const scrollHeight = current!.scrollHeight;
     // 可视高度
@@ -83,7 +84,7 @@ const Scroll: React.FC<ScrollProps> = props => {
     startBarTopRef.current = barTopHeight;
   };
   const onMouseMoveBar = (e: MouseEvent) => {
-    const {current} = containerRef;
+    const { current } = containerRef;
     if (draggingRef.current) {
       const delta = e.clientY - startYRef.current;
       const newBarTop = delta + startBarTopRef.current;
@@ -170,9 +171,9 @@ const Scroll: React.FC<ScrollProps> = props => {
   };
 
   return (
-    <div className={prefix("")} {...restProps}>
+    <div className={mergeClass("")} {...restProps}>
       <div
-        className={prefix("inner")}
+        className={mergeClass("inner")}
         style={{
           right: -scrollbarWidth(),
           transform: `translateY(${translateY}px)`
@@ -187,10 +188,10 @@ const Scroll: React.FC<ScrollProps> = props => {
       </div>
       {/* 滚动条 */}
       {barVisible && (
-        <div className={prefix("track")}>
+        <div className={mergeClass("track")}>
           <div
             onMouseDown={onMouseDownBar}
-            className={prefix("bar")}
+            className={mergeClass("bar")}
             style={{
               height: barHeight,
               transform: `translateY(${barTopHeight}px)`
@@ -200,8 +201,8 @@ const Scroll: React.FC<ScrollProps> = props => {
       )}
 
       {/*下拉箭头*/}
-      <div className={prefix("pulling")} style={{height: translateY}}>
-        {translateY === 100 ? "开始刷新" : < Icon name="down_to_bottom"/>}
+      <div className={mergeClass("pulling")} style={{ height: translateY }}>
+        {translateY === 100 ? "开始刷新" : <Icon name="down_to_bottom" />}
       </div>
     </div>
   );

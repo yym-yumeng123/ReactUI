@@ -49,7 +49,6 @@ const TreeItem: React.FC<TreeItemProps> = props => {
 
   // collapse 折叠 expand 展开 expanded 是否展开
   const { expanded, expand, collapse } = useToggle(true);
-  console.log(expand, "expand....");
 
   // 自定义钩子: 展开/折叠动画
   useUpdateCollapse(expanded, () => {
@@ -95,7 +94,6 @@ const TreeItem: React.FC<TreeItemProps> = props => {
   const onSelectChange: ChangeEventHandler<HTMLInputElement> = e => {
     // 当我选择时, 收集所有 children 的  value
     const childrenValues = collectChildrenValues(item);
-    console.log(childrenValues, "3343434434343");
 
     if (multiple) {
       if (e.target.checked) {
@@ -124,7 +122,6 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     const childrenValues = collectChildrenValues(item);
     // 取 values 和 childrenValues 的交集
     const common = intersect(values, childrenValues);
-    console.log(values, childrenValues, common, "values....");
     if (common.length !== 0) {
       props.onItemChange(Array.from(new Set(values.concat(item.title))));
       inputRef.current!.indeterminate = common.length !== childrenValues.length;

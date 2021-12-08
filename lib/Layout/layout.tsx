@@ -1,10 +1,9 @@
 import React, { ReactElement } from "react";
 import Sidebar from "./sidebar";
-import { scopedClassMaker, classes } from "../utils/classes";
 import "./layout.scss";
 
-// 前缀
-const scopedClass = scopedClassMaker("yui-layout");
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-layout");
 
 // 1. 可能还有 id 等等 html属性
 // interface LayoutProps {
@@ -26,18 +25,18 @@ const Layout: React.FunctionComponent<LayoutProps> = props => {
 
   // 得到子元素是否有 SideBar, 有添加类名
   const hasAside =
-    'length' in child &&
+    "length" in child &&
     child.reduce((result, node) => result || node.type === Sidebar, false);
 
   return hasAside ? (
     <div
-      className={classes(scopedClass(), className, "yui-layout-hasAside")}
+      className={mergeClass({ "": true, hasAside: true }, { extra: className })}
       {...restProps}
     >
       {props.children}
     </div>
   ) : (
-    <div className={classes(scopedClass(), className)} {...restProps}>
+    <div className={mergeClass("", { extra: className })} {...restProps}>
       {props.children}
     </div>
   );

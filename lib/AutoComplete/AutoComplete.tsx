@@ -9,11 +9,12 @@ import {
 } from "react";
 import Input, { InputProps } from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
-import { addPrefixAndscopedClassMarker } from "../utils/classes";
 import useDebounce from "lib/hooks/useDebounce";
 import useClickOutside from "lib/hooks/useClickOutside";
 import "./autoComplete.scss";
-const prefix = addPrefixAndscopedClassMarker("yui-auto");
+
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+const mergeClass = addPrefixAndMergeClass("yui-auto");
 
 // 复杂的数据结构
 interface DataSourceObject {
@@ -136,7 +137,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
           };
           return (
             <li
-              className={prefix(classes)}
+              className={mergeClass(classes)}
               key={index}
               onClick={() => handleSelect(item)}
             >
@@ -148,14 +149,14 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
     );
   };
   return (
-    <div className={prefix("")} ref={componentRef}>
+    <div className={mergeClass("")} ref={componentRef}>
       <Input
         value={inputValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         {...restProps}
       />
-      <section className={prefix("content")}>
+      <section className={mergeClass("content")}>
         {loading && <Icon spin name="refresh" />}
         {suggestions.length > 0 && generateDropDown()}
       </section>
