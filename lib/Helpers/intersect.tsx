@@ -1,4 +1,3 @@
-
 /**
  * @param 交集
  */
@@ -12,4 +11,4 @@ function intersect<T>(array1: T[], array2: T[]): T[] {
   return result;
 }
 
-export { intersect };
+export default intersect;

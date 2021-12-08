@@ -4,6 +4,7 @@ import useUpdateCollapse from "lib/hooks/useUpdateCollapse";
 import useToggle from "lib/hooks/useToggle";
 
 import flatten from "lib/Helpers/flatten";
+import intersect from "lib/Helpers/intersect";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-tree");
 
@@ -12,7 +13,7 @@ interface TreeItemProps {
   item: SourceDataItem;
   level: number; // 第几级
   treeProps: TreeProps;
-  // onItemChange: (value: string[]) => void;
+  onItemChange: (value: string[]) => void;
 }
 
 /**
@@ -38,7 +39,6 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     key,
     item,
     level = 0,
-    // onItemChange,
     treeProps,
     treeProps: { multiple, selected, onChange }
   } = props;
@@ -100,9 +100,9 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     if (multiple) {
       if (e.target.checked) {
         // 当选中时, 添加所有的子元素
-        onChange([...selected, item.title, ...childrenValues]);
+        props.onItemChange([...selected, item.title, ...childrenValues]);
       } else {
-        onChange(
+        props.onItemChange(
           selected.filter(
             value =>
               value !== item.title && childrenValues.indexOf(value) === -1
@@ -118,22 +118,21 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     }
   };
 
-  // // 子元素变化
-  // const onItemChange1 = (values: any) => {
-  //   // 子代被全部选中
-  //   const childrenValues = collectChildrenValues(item);
-  //   console.log(childrenValues, "dslk");
-
-  //   const common = intersect(values, childrenValues);
-  //   console.log(common, "带领僧松开");
-  //   if (common.length !== 0) {
-  //     onItemChange(Array.from(new Set(values.concat(item.title))));
-  //     inputRef.current!.indeterminate = common.length !== childrenValues.length;
-  //   } else {
-  //     onItemChange(values.filter((v: string) => v !== item.title));
-  //     inputRef.current!.indeterminate = false;
-  //   }
-  // };
+  // 元素内部的 change
+  const onItemChange = (values: string[]) => {
+    // 子代被选中全部, 返回的 父
+    const childrenValues = collectChildrenValues(item);
+    // 取 values 和 childrenValues 的交集
+    const common = intersect(values, childrenValues);
+    console.log(values, childrenValues, common, "values....");
+    if (common.length !== 0) {
+      props.onItemChange(Array.from(new Set(values.concat(item.title))));
+      inputRef.current!.indeterminate = common.length !== childrenValues.length;
+    } else {
+      props.onItemChange(values.filter((v: string) => v !== item.title));
+      inputRef.current!.indeterminate = false;
+    }
+  };
 
   // 每一个层级有一个不同的 class level
   const classes = {
@@ -170,7 +169,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
             key={subItem.key}
             item={subItem}
             level={level + 1}
-            // onItemChange={onItemChange}
+            onItemChange={onItemChange}
             treeProps={treeProps}
           />
         ))}
