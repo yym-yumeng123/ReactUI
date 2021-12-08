@@ -8,27 +8,27 @@ import {
   useRef,
   useState
 } from "react";
-
-import "./scroll.scss";
-import scrollbarWidth from "./scrollbar-width";
 import Icon from "../Icon/icon";
+import scrollbarWidth from "./scrollbar-width";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-scroll");
 
+import "./scroll.scss";
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
   onPull?: () => void;
 }
 
 const Scroll: React.FC<ScrollProps> = props => {
   const { children, onPull, ...restProps } = props;
-  const [barHeight, setBarHeight] = useState(0);
-  const [barTopHeight, _setBarTopHeight] = useState(0);
-  const [barVisible, setBarVisible] = useState<Boolean>(false);
+  const [barHeight, setBarHeight] = useState(0); // 块的高度
+  const [barTopHeight, _setBarTopHeight] = useState(0); // 块距离上面的高度
+  const [barVisible, setBarVisible] = useState<Boolean>(false); // 块的显示和隐藏
 
   const containerRef = useRef<HTMLDivElement>(null);
   const timerIdRef = useRef<number | null>(null);
 
+  // drag 滚动时 的 设置
   const setBarTopHeight = (number: number) => {
     const { current } = containerRef;
     const scrollHeight = current!.scrollHeight;
@@ -40,11 +40,14 @@ const Scroll: React.FC<ScrollProps> = props => {
     _setBarTopHeight(number);
   };
 
+  // 滚动 set 滑块的高度 和 距离上面的高度
   const onScroll: UIEventHandler = e => {
     setBarVisible(true);
+    // 滚动全高
     const scrollHeight = e.currentTarget.scrollHeight;
     // 可见视图向上滚动的距离
     const scrollTop = e.currentTarget.scrollTop;
+    // 视图高度
     const viewHeight = e.currentTarget.getBoundingClientRect().height;
     const barHeight = (viewHeight * viewHeight) / scrollHeight;
     // 滑块距离顶部的距离
@@ -56,7 +59,6 @@ const Scroll: React.FC<ScrollProps> = props => {
       window.clearTimeout(timerIdRef.current);
     }
     timerIdRef.current = window.setTimeout(() => {
-      console.log("323");
       setBarVisible(false);
     }, 1000);
   };
@@ -78,6 +80,7 @@ const Scroll: React.FC<ScrollProps> = props => {
   const draggingRef = useRef(false);
   const startYRef = useRef(0);
   const startBarTopRef = useRef(0);
+
   const onMouseDownBar: MouseEventHandler = e => {
     draggingRef.current = true;
     startYRef.current = e.clientY;
@@ -104,6 +107,7 @@ const Scroll: React.FC<ScrollProps> = props => {
     }
   };
 
+  // 进来之后监听 drag 的行为事件
   useEffect(() => {
     document.addEventListener("mousemove", onMouseMoveBar);
     document.addEventListener("mouseup", onMouseUpBar);
@@ -171,7 +175,9 @@ const Scroll: React.FC<ScrollProps> = props => {
   };
 
   return (
+    // 外面的 div 没有滚动条, 起的作用隐藏 原有滚动条
     <div className={mergeClass("")} {...restProps}>
+      {/* inner 有滚动条, overflow: auto */}
       <div
         className={mergeClass("inner")}
         style={{
@@ -188,7 +194,9 @@ const Scroll: React.FC<ScrollProps> = props => {
       </div>
       {/* 滚动条 */}
       {barVisible && (
+        // 轨道
         <div className={mergeClass("track")}>
+          {/* 自建滚动 */}
           <div
             onMouseDown={onMouseDownBar}
             className={mergeClass("bar")}
