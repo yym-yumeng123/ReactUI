@@ -11,6 +11,9 @@ import "./view.scss";
 // @ts-ignore
 import logo from "./logo.png";
 
+const isTouchDevice = "ontouchstart" in document.documentElement;
+console.log(isTouchDevice, "isTouchDevice");
+
 ReactDOM.render(
   <Router>
     <Layout className="pageWrapper">

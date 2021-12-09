@@ -46,3 +46,18 @@ useEffect(() => {
   };
 }, []);
 ```
+
+### 滚动条滚动, 内容也跟着滚动
+1. move 的过程中, 计算 内容区的 `scrollTop`
+
+
+### 手机下拉更新
+1. 因为下拉已经到头了 , 所以无法把视图往下拉了, 所以我们给滚动区域加一个 `transform: transLateY`
+
+2. 监听滚动区域的 `touchstart touchmove touchend` 事件
+
+3. 何时出发下拉更新?
+  - `scrollTop === 0` 也就是内容在最上面,在往上滑动
+  - 第一次滚只看上面
+    - 创建一个 `moveCount = 0`, 每次 `touchStart  moveCount = 0`
+    - 一个标记 `pulling = true/false`

@@ -92,6 +92,8 @@ const Scroll: React.FC<ScrollProps> = props => {
       const delta = e.clientY - startYRef.current;
       const newBarTop = delta + startBarTopRef.current;
       setBarTopHeight(newBarTop);
+
+      // 当 move 滚动条, 自动计算 内容区的 scrollTop
       const scrollHeight = current!.scrollHeight;
       const viewHeight = current!.getBoundingClientRect().height;
       current!.scrollTop = (newBarTop * scrollHeight) / viewHeight;
@@ -102,6 +104,7 @@ const Scroll: React.FC<ScrollProps> = props => {
   };
 
   const onSelect = (e: Event) => {
+    // 在拖动中 禁止 默认事件
     if (draggingRef.current) {
       e.preventDefault();
     }
@@ -115,6 +118,7 @@ const Scroll: React.FC<ScrollProps> = props => {
     return () => {
       document.removeEventListener("mousemove", onMouseMoveBar);
       document.removeEventListener("mouseup", onMouseUpBar);
+      // 滚动时 取消 选择事件
       document.removeEventListener("selectstart", onSelect);
     };
   }, []);
@@ -129,6 +133,8 @@ const Scroll: React.FC<ScrollProps> = props => {
     }
     _setTranslateY(y);
   };
+
+  // 上一次 的 Y 坐标
   const lastYRef = useRef(0);
 
   // 记录第几次在运动
@@ -151,15 +157,16 @@ const Scroll: React.FC<ScrollProps> = props => {
     // 每次 move moveCount++
     moveCount.current++;
     const deltaY = e.touches[0].clientY - lastYRef.current;
+    // 第一次滚 & 是往上, 看下面的内容
     if (moveCount.current === 1 && deltaY < 0) {
       // 手指不是下拉, 是往上
       pulling.current = false;
     }
+
+    // 第二次看 状态
     if (!pulling.current) {
       return;
     }
-
-    console.log(deltaY, "2323");
 
     setTranslateY(translateY + deltaY);
 
@@ -210,7 +217,7 @@ const Scroll: React.FC<ScrollProps> = props => {
 
       {/*下拉箭头*/}
       <div className={mergeClass("pulling")} style={{ height: translateY }}>
-        {translateY === 100 ? "开始刷新" : <Icon name="down_to_bottom" />}
+        {translateY === 100 ? "开始刷新" : <Icon name="refresh" spin />}
       </div>
     </div>
   );
