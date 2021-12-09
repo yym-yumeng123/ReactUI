@@ -6,21 +6,22 @@ import { iconNames } from "./config";
 
 const IconExample_AllIcon: React.FunctionComponent = () => {
   const copyText = (item: string) => {
-    let val = document.getElementsByClassName(item)[0];
-    window.getSelection()?.selectAllChildren(val);
-    document.execCommand("Copy");
-    toast({
-      content: `<Icon name=${item} /> 已复制`
-    })
+    navigator.clipboard.writeText(`<Icon name="${item}" />`).then(() => {
+      toast({
+        content: `<Icon name="${item}" /> 已复制`
+      });
+    });
   };
   const viewIcon = iconNames.map(item => {
     return (
       <li key={item} onClick={() => copyText(item)} className={item}>
         <Icon name={item} />
         <span>
-          <span style={{ opacity: 0, position: 'absolute' }}>{"<Icon name='"}</span>
+          <span style={{ opacity: 0, position: "absolute" }}>
+            {"<Icon name='"}
+          </span>
           {item}
-          <span style={{ opacity: 0, position: 'absolute' }}>{"' />"}</span>
+          <span style={{ opacity: 0, position: "absolute" }}>{"' />"}</span>
         </span>
       </li>
     );
