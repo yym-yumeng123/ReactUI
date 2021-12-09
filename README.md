@@ -6,111 +6,53 @@
 
 [![npm version](https://badge.fury.io/js/yym-react-ui.svg)](https://badge.fury.io/js/yym-react-ui)
 
-```
-运行生成文档脚本  sh doc.sh
-```
+## 介绍
 
+这是我使用`React + Hooks + TypeScript` 手写的一个 UI 框架, [UI 原型地址](https://rsuitejs.com/design/default/index.html#artboard5), 高度还原 UI
 
-git 技巧
-```
-// 将代码上传到多个仓库
-git remote add xxx git@github.com:yym/yyy.git
+### 安装
 
-git push -u xxx master
-```
+#### npm 安装
 
-### 目录结构
+推荐使用 `npm` 的方式安装，它能更好地和 `webpack` 打包工具配合使用。
+
 ```
-ReactUI
-├── assets
-│   └── icons
-├── doc
-├── lib
-│   ├── @types  // ts 需要的文件配置
-│   ├── button
-│   ├── Dialog
-│   ├── Form
-│   ├── helpers
-│   ├── Icon  // icon组件
-│   ├── Layout
-│   ├── styles
-│   ├── utils
-│   ├── index.d.ts
-│   └── index.tsx
-├── test  // 测试配置
-│   ├── __mocks__
-│   ├── __tests__
-│   └── setupTests.js
-├── .gitignore  // 忽略某些文件不需要提交
-├── .travis.yml  // https://travis-ci.org/  自动测试集成
-├── demo.tsx
-├── doc.sh
-├── example.html
-├── example.scss
-├── example.tsx
-├── jest.config.js  // jest 测试配置
-├── junit.xml  // 测试生成的 xml 文件
-├── LICENSE  // 协议
-├── logo.png
-├── package.json
-├── README.md
-├── tsconfig.json
-├── tsconfig.test.json
-├── tslint.json
-├── webpack.config.dev.js  // dev 环境配置
-├── webpack.config.doc.js
-├── webpack.config.js  // local 配置
-├── webpack.config.prod.js  // prd
-└── yarn.lock
+npm i yym-react-ui
 ```
 
-- views 入口文件
+### 开始使用
 
-- example 例子文件夹
-- lib 源代码文件夹
-- assert 图标以及图片资源
+> 现版本我只放开了 4 个 UI 组件分别是 `Icon Button Card Layout`, 后面我会开放更多的 UI 组件
 
-// raw-loader 用于显示组件代码
-一个可以用于加载文件作为字符串使用的加载器
-
-// prism-react-renderer
-语法高亮
-
-
-// const isTouchDevice: boolean = "ontouchstart" in document.documentElement; 判断是否触摸设备
-
-
---- 
-
-### 先记录, 后整理
-
-`/lib/@types` 配置 ts 里面的 一些 类型
-`/lib/Helpers/classes.tsx`
-```js
-/**
-// @description 接受多个 class
- * @param names class 数组
- */
-function classes(...names: (string | undefined | boolean)[]) {
-  return names.filter(Boolean).join(" ");
-}
-```
+1. 引入 UI 组件库
 
 ```js
-// lib/Helpers/scopedClassMarker.tsx
-function scopedClassMaker(prefix: string) {
-  return (name?: string) => {
-    return [prefix, name].filter(Boolean).join("-");
-  };
-}
-
-// sc() yui-default
-// sc('') yui-default
-// sc('hi') yui-default-hi
+import { Card, Button, Icon } from "yym-react-ui";
 ```
 
-- `deploy.sh` 修改发布版本并 push
+2. 使用
 
+```js
+// 更多内容参考文档
+<Card
+  title="我是带额外的元素的标题"
+  extra={<Button level="primary">更多...</Button>}
+>
+  我是内容
+  <Icon name="social_sina" />
+</Card>
+```
 
-### Vue & React 区别
-1. Vue APi 多, `methods, computed, watch ...`, 用啥作者都提供了, 舒服; React 比较少, 使用 `JSX`, 函数, 自由
+## 文档
+
+`
+
+> 因为 `github.io` 的原因, 暂时无法预览, 不过你可以把仓库 `clone` 到本地代码, 运行 `yarn start` 启动项目, 就可以看到文档
+
+## 提问
+
+## 变更记录
+
+## 联系方式
+
+## 贡献代码
