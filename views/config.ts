@@ -18,6 +18,7 @@ import {
   CheckboxDemo,
   TableDemo,
   TreeDemo,
+  SliderDemo,
   // TODO: ...
   ScrollExample,
   AutoCompleteExample
@@ -104,7 +105,6 @@ export const routeList: Array<{
     title: "Carousel 轮播",
     component: CarouselDemo
   },
-  // TODO: 下面没写文档
   {
     path: "/radio",
     title: "Radio 单选框",
@@ -135,6 +135,11 @@ export const routeList: Array<{
     path: "/scroll",
     title: "Scroll 滚动",
     component: ScrollExample
+  },
+  {
+    path: "/slider",
+    title: "Slider 滑块",
+    component: SliderDemo
   },
 
   {

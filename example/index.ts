@@ -11,15 +11,15 @@ import CollapseDemo from "./Collapse/collapse.demo";
 import PopoverDemo from "./Popover/popover.demo";
 import SwitchDemo from "./Switch/switch.demo";
 import CarouselDemo from "./Carousel/carousel.demo";
-
-import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import PagerDemo from "./pager/pager.demo";
 import RadioDemo from "./Radio/radio.demo";
 import CheckboxDemo from "./Checkbox/checkbox.demo";
 import TableDemo from "./Table/table.demo";
+import SliderDemo from "./Slider/Slider.demo"
 import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
 import FormExample from "./Form/form.example";
+import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 
 export {
   IconDemo,
@@ -36,10 +36,10 @@ export {
   PagerDemo,
   SwitchDemo,
   CarouselDemo,
-  // TODO: 未完成 api
   RadioDemo,
   CheckboxDemo,
   TableDemo,
+  SliderDemo,
   TreeDemo,
   ScrollExample,
   AutoCompleteExample,
