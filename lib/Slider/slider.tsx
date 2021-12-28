@@ -46,7 +46,7 @@ const Slider: FC<SliderProps> = ({ onChange, initialValue = 0 }) => {
   const setLeftBarPosition = (number: number) => {
     const { width } = railRef.current!.getBoundingClientRect();
     if (number < -12 || number >= width) return;
-    const value = Math.floor((number / width) * 100);
+    const value = Math.floor((number / width) * 100) + 1;
     onChange && onChange(value);
     setBarLeftInstance(number);
   };
