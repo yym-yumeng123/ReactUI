@@ -11,10 +11,11 @@ interface RowProps extends HTMLAttributes<HTMLElement> {
   // align 可以让字元素在左中右的哪边
   align?: "left" | "right" | "center";
   children: Array<ReactElement>;
+  className?: string;
 }
 
 const Row: FC<RowProps> = props => {
-  const { children, gutter = 0, align = "left" } = props;
+  const { children, gutter = 0, align = "left", className } = props;
 
   // 判断子元素是否都是 Col 组件
   const isCol = children.every(item => item.type === Col);
@@ -33,7 +34,10 @@ const Row: FC<RowProps> = props => {
 
   return (
     <div
-      className={mergeClass({ "": true, [`${align}`]: !!align })}
+      className={mergeClass(
+        { "": true, [`${align}`]: !!align },
+        { extra: className }
+      )}
       style={styles}
     >
       {childWithProps}
