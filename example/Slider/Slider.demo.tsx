@@ -10,7 +10,7 @@ const SliderDemo = () => {
       <Slider initialValue={30} onChange={handleChange} />
       <br />
       <br />
-      <Slider />
+      {/* <Slider /> */}
     </div>
   );
 };

@@ -75,8 +75,13 @@ const Slider: FC<SliderProps> = ({ onChange, initialValue = 0 }) => {
     dragging.current = false;
   };
 
+  const handleSetTrackWidth: MouseEventHandler<HTMLDivElement> = e => {
+    const { left } = railRef.current!.getBoundingClientRect();
+    setLeftBarPosition(e.clientX - left);
+  };
+
   return (
-    <div className={mergeClass("wrapper")}>
+    <div className={mergeClass("wrapper")} onClick={handleSetTrackWidth}>
       <div ref={railRef} className={mergeClass("rail")}></div>
       <div
         className={mergeClass("track")}
