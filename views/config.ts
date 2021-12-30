@@ -8,6 +8,7 @@ import {
   ToastDemo,
   GridDemo,
   InputDemo,
+  DatePickerDemo,
   TabsDemo,
   CollapseDemo,
   PopoverDemo,
@@ -19,9 +20,9 @@ import {
   TableDemo,
   TreeDemo,
   SliderDemo,
-  // TODO: ...
   ScrollExample,
   AutoCompleteExample
+
   // FormExample
 } from "../example";
 
@@ -74,6 +75,11 @@ export const routeList: Array<{
     path: "/input",
     title: "Input 输入框",
     component: InputDemo
+  },
+  {
+    path: "/date",
+    title: "DatePicker 日期",
+    component: DatePickerDemo
   },
   {
     path: "/tabs",

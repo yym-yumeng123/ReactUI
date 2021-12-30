@@ -6,6 +6,7 @@ import LayoutDemo from "./Layout/layout.demo";
 import ToastDemo from "./Toast/toast.demo";
 import GridDemo from "./Grid/grid.demo";
 import InputDemo from "./Input/Input.demo";
+import DatePickerDemo from "./DatePicker/DatePicker.demo";
 import TabsDemo from "./Tabs/tabs.demo";
 import CollapseDemo from "./Collapse/collapse.demo";
 import PopoverDemo from "./Popover/popover.demo";
@@ -15,7 +16,7 @@ import PagerDemo from "./pager/pager.demo";
 import RadioDemo from "./Radio/radio.demo";
 import CheckboxDemo from "./Checkbox/checkbox.demo";
 import TableDemo from "./Table/table.demo";
-import SliderDemo from "./Slider/Slider.demo"
+import SliderDemo from "./Slider/Slider.demo";
 import TreeDemo from "./Tree/tree.example";
 import ScrollExample from "./Scroll/scroll.example";
 import FormExample from "./Form/form.example";
@@ -30,6 +31,7 @@ export {
   ToastDemo,
   GridDemo,
   InputDemo,
+  DatePickerDemo,
   TabsDemo,
   CollapseDemo,
   PopoverDemo,
@@ -43,5 +45,5 @@ export {
   TreeDemo,
   ScrollExample,
   AutoCompleteExample,
-  FormExample,
+  FormExample
 };
