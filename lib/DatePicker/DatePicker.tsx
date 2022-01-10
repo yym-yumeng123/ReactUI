@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Input from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
 
-import HelperDate from './helper'
+import HelperDate from "./helper";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-date-picker");
 
@@ -13,27 +13,34 @@ const DatePicker = () => {
   const [visibleDays, setVisibleDays] = useState<number[]>([]); // 可见的天数
 
   useEffect(() => {
-    const frontDays = []
-    const currentDays = []
-    const laterDays = []
+    const frontDays = [];
+    const currentDays = [];
+    const laterDays = [];
 
     const date = new Date();
     const first = HelperDate.firstDayOfMonth(date);
-    const last = HelperDate.lastDayOfMonth(date)
-    const [year, month, day] = HelperDate.getYearMonthDate(date)
+    const last = HelperDate.lastDayOfMonth(date);
+    const [year, month, day] = HelperDate.getYearMonthDate(date);
     for (let i = first.getDate(); i <= last.getDate(); i++) {
-      currentDays.push(new Date(year, month, i))
+      currentDays.push(new Date(year, month, i));
     }
 
     // 前面有几天
-    const n = first.getDay() === 0 ? 6 : first.getDay() - 1
+    const n = first.getDay() === 0 ? 6 : first.getDay() - 1;
 
-    for (let i = 0; i < n; i++) {
-      frontDays.push(new Date(year, month, -i))
+    for (let i = 0; i <= n; i++) {
+      frontDays.unshift(new Date(year, month, -i));
     }
 
-    console.log(currentDays,frontDays,'array...');
-    
+    // 后面剩几天
+    const m = 42 - currentDays.length - frontDays.length;
+    for (let i = 1; i <= m; i++) {
+      laterDays.push(new Date(year, month + 1, i));
+    }
+
+    const finallyDays = [...frontDays, ...currentDays, ...laterDays]
+
+    console.log(currentDays, frontDays,laterDays,finallyDays, "array...");
   }, []);
 
   const renderContent = () => {
