@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Input from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
 
+import HelperDate from './helper'
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-date-picker");
 
@@ -12,10 +13,27 @@ const DatePicker = () => {
   const [visibleDays, setVisibleDays] = useState<number[]>([]); // 可见的天数
 
   useEffect(() => {
-    const date = new Date(2018, 2, 28);
-    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1)
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
-    console.log(firstDay, lastDay, "23232");
+    const frontDays = []
+    const currentDays = []
+    const laterDays = []
+
+    const date = new Date();
+    const first = HelperDate.firstDayOfMonth(date);
+    const last = HelperDate.lastDayOfMonth(date)
+    const [year, month, day] = HelperDate.getYearMonthDate(date)
+    for (let i = first.getDate(); i <= last.getDate(); i++) {
+      currentDays.push(new Date(year, month, i))
+    }
+
+    // 前面有几天
+    const n = first.getDay() === 0 ? 6 : first.getDay() - 1
+
+    for (let i = 0; i < n; i++) {
+      frontDays.push(new Date(year, month, -i))
+    }
+
+    console.log(currentDays,frontDays,'array...');
+    
   }, []);
 
   const renderContent = () => {
