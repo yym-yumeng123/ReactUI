@@ -5,6 +5,11 @@
     border: 1px solid red;
   }
   .yui-date-picker-panels {
+    width: 200px;
     border: 1px solid black;
+    word-wrap: break-word;
+    // .yui-date-picker-content {
+    //   width: 200px;
+    // }
   }
 }
