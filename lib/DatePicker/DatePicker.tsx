@@ -60,9 +60,11 @@ const DatePicker = () => {
         <div className={mergeClass("content")}>
           {HelperDate.range(1, 42 / 7).map(i => {
             return (
-              <div>
+              <div className={mergeClass("daye-line")}>
                 {HelperDate.range(1, 7).map(day => (
-                  <span>{allDates[(i - 1) * 7 + day - 1].getDate()}</span>
+                  <span className={mergeClass("date-cell")}>
+                    {allDates[(i - 1) * 7 + day - 1].getDate()}
+                  </span>
                 ))}
               </div>
             );
