@@ -1,6 +1,6 @@
 import React, {
   ChangeEvent,
-  FC,
+  ReactElement,
   ReactNode,
   useEffect,
   useMemo,
@@ -16,25 +16,26 @@ const mergeClass = addPrefixAndMergeClass("yui-table");
 
 import "./table.scss";
 
-type column = {
+type orderType = "asc" | "desc" | "unsc";
+
+type column<T> = {
   title: string;
-  key: string;
+  key: keyof T;
   width?: number;
+  render?: (text: string, record: T, index: number) => ReactElement;
   // 排序
-  order?: "asc" | "desc" | "unsc" | string;
-  sorter?: (column: any) => void;
-  render?: (text: string, record: any, index: number) => void;
+  sorter?: (val: orderType) => void;
 };
 
-interface TableProps {
-  columns: column[];
-  dataSource: Array<any>;
+interface TableProps<T> {
+  columns: column<T>[];
+  dataSource: T[];
 
-  selectedRows?: any[];
-  changeSeletedItems?: (val: any) => void;
+  checkable?: boolean;
+  changeSeletedItems?: (val: T[]) => void;
 
   expandable?: boolean; // 可展开
-  checkable?: boolean;
+
   numberVisible?: boolean;
   bordered?: boolean;
   compact?: boolean; // 紧凑减小 padding
@@ -46,16 +47,15 @@ interface TableProps {
   pager?: PagerProps;
 }
 
-const Table: FC<TableProps> = props => {
+const Table: <T>(props: TableProps<T>) => ReactElement = props => {
   const {
     columns,
     dataSource,
 
-    selectedRows = [],
+    checkable = false,
     changeSeletedItems,
 
     expandable = false,
-    checkable = false,
     numberVisible = true,
     bordered = false,
     compact = false,
@@ -67,19 +67,20 @@ const Table: FC<TableProps> = props => {
     pager
   } = props;
 
+  const [_, setUpdate] = useState(0); // 更新页面
+
   // 选中的行 state
-  const [selected, setSelected] = useState(selectedRows);
+  const [selected, setSelected] = useState<any[]>([]);
   // columns state
-  const [rows, setRows] = useState(columns);
+  const order = useRef<"asc" | "desc" | "unsc">("unsc");
 
   const [expandItems, setExpandItems] = useState<string[]>([]);
 
   const tableRef = useRef<any>(null);
   const wrapRef = useRef<any>(null);
 
-  // TODO: selectedRow 变化时...
   useEffect(() => {
-    console.log(selected, "selected...");
+    changeSeletedItems && changeSeletedItems(selected);
   }, [selected]);
 
   // 固定表头计算
@@ -103,28 +104,19 @@ const Table: FC<TableProps> = props => {
   }, []);
 
   // 选择单个
-  const handleSelectItem = (
-    e: ChangeEvent<HTMLInputElement>,
-    item: any,
-    index: number
-  ) => {
+  const handleSelectItem = (e: ChangeEvent<HTMLInputElement>, item: any) => {
     const { checked } = e.target;
-    console.log(checked, "checked...");
-
     if (checked) {
       setSelected([...selected, item]);
     } else {
       setSelected(selected.filter((i: any) => i.key !== item.key));
     }
-
-    changeSeletedItems && changeSeletedItems(selected);
   };
 
   // 选择全部或全取消
   const handleSelectAllItem = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
     setSelected(checked ? dataSource : []);
-    changeSeletedItems && changeSeletedItems(checked ? dataSource : []);
   };
 
   // 是否所有 item 被选中
@@ -151,26 +143,18 @@ const Table: FC<TableProps> = props => {
   const hasInExapndItems = (item: any) => expandItems.indexOf(item.key) > -1;
 
   // 排序操作
-  const handleOrderBy = (column: column) => {
-    if (!column.hasOwnProperty("order")) {
-      return;
+  const handleOrderBy = (col: column<any>) => {
+    if (order.current === "unsc") {
+      order.current = "asc";
+    } else if (order.current === "asc") {
+      order.current = "desc";
+    } else if (order.current === "desc") {
+      order.current = "unsc";
     }
 
-    let copyColumn = JSON.parse(JSON.stringify(column));
+    setUpdate(Math.random());
 
-    if (copyColumn.order === "asc") {
-      copyColumn = Object.assign(copyColumn, { order: "desc" });
-    } else if (copyColumn.order === "desc") {
-      copyColumn = Object.assign(copyColumn, { order: "unsc" });
-    } else if (copyColumn.order === "unsc") {
-      copyColumn = Object.assign(copyColumn, { order: "asc" });
-    }
-
-    setRows(
-      rows.map(item => (item.key === copyColumn.key ? copyColumn : item))
-    );
-
-    column.sorter && column.sorter(column);
+    col.sorter && col.sorter(order.current);
   };
 
   // 计算 colspan 的 值
@@ -209,23 +193,30 @@ const Table: FC<TableProps> = props => {
               {numberVisible && <th style={{ width: "50px" }}>序号</th>}
               {expandable && <th style={{ width: "50px" }}></th>}
 
-              {rows.map(row => {
+              {columns.map(row => {
                 return (
-                  <th key={row.key} style={{ width: `${row.width}px` }}>
+                  <th
+                    key={row.key as string}
+                    style={{ width: `${row.width}px` }}
+                  >
                     <span
                       className={mergeClass("order-wrap")}
                       onClick={() => handleOrderBy(row)}
                     >
                       {row.title}
-                      {row.order && (
+                      {row.sorter && (
                         <span className={mergeClass("order")}>
                           <Icon
-                            color={row.order === "asc" ? "#3498ff" : "#8e8e93"}
+                            color={
+                              order.current === "asc" ? "#3498ff" : "#8e8e93"
+                            }
                             name="show_less"
                             className={mergeClass("icon")}
                           />
                           <Icon
-                            color={row.order === "desc" ? "#3498ff" : "#8e8e93"}
+                            color={
+                              order.current === "desc" ? "#3498ff" : "#8e8e93"
+                            }
                             name="show_more"
                             className={mergeClass("icon")}
                           />
@@ -248,7 +239,7 @@ const Table: FC<TableProps> = props => {
                         <td style={{ width: "50px" }}>
                           <Checkbox
                             checked={areItemSelected(item)}
-                            onChange={e => handleSelectItem(e, item, index)}
+                            onChange={e => handleSelectItem(e, item)}
                           />
                         </td>
                       )}
@@ -269,12 +260,19 @@ const Table: FC<TableProps> = props => {
                         </td>
                       )}
 
-                      {rows.map(row => {
+                      {columns.map(row => {
                         return (
-                          <td key={row.key} style={{ width: `${row.width}px` }}>
+                          <td
+                            key={row.key as string}
+                            style={{ width: `${row.width}px` }}
+                          >
                             {row.render
-                              ? row.render(item[row.key], item, index)
-                              : item[row.key]}
+                              ? row.render(
+                                  (item[row.key] as unknown) as string,
+                                  item,
+                                  index
+                                )
+                              : ((item[row.key] as unknown) as string)}
                           </td>
                         );
                       })}
@@ -283,7 +281,7 @@ const Table: FC<TableProps> = props => {
                       {hasInExapndItems(item) && (
                         <>
                           <td colSpan={colSpan()}></td>
-                          <td colSpan={rows.length}>
+                          <td colSpan={columns.length}>
                             {item.description || "/"}
                           </td>
                         </>
@@ -296,7 +294,7 @@ const Table: FC<TableProps> = props => {
               <tr>
                 <td
                   className={mergeClass("empty")}
-                  colSpan={rows.length + colSpan()}
+                  colSpan={columns.length + colSpan()}
                 >
                   {empty ? (
                     <span>{empty}</span>

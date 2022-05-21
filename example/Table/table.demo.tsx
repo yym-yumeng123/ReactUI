@@ -23,12 +23,12 @@ const TableDemo = () => {
       title: "年龄",
       key: "age",
       order: "asc",
-      sorter: () => {
-        setLoading(true);
-        setTimeout(() => {
-          setLoading(false);
+      sorter: val => {
+        if (val === "asc") {
           setData(dataSource.sort((a, b) => a.age - b.age));
-        }, 2000);
+        } else if (val === "desc") {
+          setData(dataSource.sort((a, b) => b.age - a.age));
+        }
       },
       width: 200
     },
@@ -55,11 +55,8 @@ const TableDemo = () => {
   ]);
   const [dataSource, setData] = useState(data);
 
-  const [selectedRows, setSelectedRows] = useState([]);
-
   const onSelecteItems = (val: any) => {
     console.log(val, "2323");
-    setSelectedRows(val);
   };
 
   const handleDelete = (record: any) => {
@@ -79,7 +76,6 @@ const TableDemo = () => {
     <div>
       <Table
         changeSeletedItems={onSelecteItems}
-        selectedRows={selectedRows}
         columns={columns}
         dataSource={dataSource}
         loading={loading}
