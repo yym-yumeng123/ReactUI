@@ -47,7 +47,7 @@ interface TableProps<T> {
   pager?: PagerProps;
 }
 
-const Table: <T>(props: TableProps<T>) => ReactElement = props => {
+function Table<T>(props: TableProps<T>) {
   const {
     columns,
     dataSource,
@@ -282,7 +282,7 @@ const Table: <T>(props: TableProps<T>) => ReactElement = props => {
                         <>
                           <td colSpan={colSpan()}></td>
                           <td colSpan={columns.length}>
-                            {item.description || "/"}
+                            {item?.description || "/"}
                           </td>
                         </>
                       )}
@@ -320,6 +320,6 @@ const Table: <T>(props: TableProps<T>) => ReactElement = props => {
       )}
     </div>
   );
-};
+}
 
 export default Table;
