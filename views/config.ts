@@ -3,6 +3,7 @@ import {
   IconDemo,
   ButtonDemo,
   CardDemo,
+  NavDemo,
   DialogDemo,
   LayoutDemo,
   ToastDemo,
@@ -50,6 +51,11 @@ export const routeList: Array<{
     path: "/card",
     title: "Card 卡片",
     component: CardDemo
+  },
+  {
+    path: "/nav",
+    title: "Nav 导航",
+    component: NavDemo
   },
   {
     path: "/dialog",

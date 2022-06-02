@@ -1,6 +1,7 @@
 import IconDemo from "./Icon/icon.demo";
 import ButtonDemo from "./Button/button.demo";
 import CardDemo from "./Card/card.demo";
+import NavDemo from "./Nav/nav.demo";
 import DialogDemo from "./Dialog/dialog.demo";
 import LayoutDemo from "./Layout/layout.demo";
 import ToastDemo from "./Toast/toast.demo";
@@ -26,6 +27,7 @@ export {
   IconDemo,
   ButtonDemo,
   CardDemo,
+  NavDemo,
   DialogDemo,
   LayoutDemo,
   ToastDemo,
