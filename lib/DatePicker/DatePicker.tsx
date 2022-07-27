@@ -89,12 +89,21 @@ const DatePicker = () => {
       <Input />
       <div className={mergeClass("pop")}>
         <div className={mergeClass("nav")}>
-          <Icon size="14" name="page_first" />
-          <Icon size="14" name="arrow-left-bold" />
-          <span onClick={onClickYear}>2020年</span>
-          <span onClick={onClickMonth}>8月</span>
-          <Icon size="14" name="arrow-right-bold" />
-          <Icon size="14" name="page_last" />
+          <div className="left-action">
+            <Icon size="12" name="page_first" />
+            <Icon
+              name="arrow_right"
+              style={{ transform: "rotate(180deg)", fontSize: "12px" }}
+            />
+          </div>
+          <div className="date-wrap">
+            <span onClick={onClickYear}>2020年</span>
+            <span onClick={onClickMonth}>8月</span>
+          </div>
+          <div className="right-action">
+            <Icon size="12" name="arrow_right" />
+            <Icon size="12" name="page_last" />
+          </div>
         </div>
         <div className={mergeClass("panels")}>{renderContent()}</div>
         <div className={mergeClass("actions")}></div>
