@@ -10,6 +10,8 @@ import "./datePicker.scss";
 
 const DatePicker = () => {
   const [mode, setMode] = useState<"days" | "months" | "years">("days");
+  const [year, setYear] = useState<number>(1970);
+  const [month, setMonth] = useState<number>(1);
   // const [visibleDays, setVisibleDays] = useState<number[]>([]); // 可见的天数
 
   useEffect(() => {
@@ -26,6 +28,8 @@ const DatePicker = () => {
     const first = HelperDate.firstDayOfMonth(date); // 一个月的第一天
     const last = HelperDate.lastDayOfMonth(date); // 一个月的最后一天
     const [year, month] = HelperDate.getYearMonthDate(date); // 当天的年月日
+    setYear(year);
+    setMonth(month);
 
     // 获取当月所有天数的数组
     for (let i = first.getDate(); i <= last.getDate(); i++) {
@@ -68,6 +72,7 @@ const DatePicker = () => {
     const days = () => {
       return (
         <div className={mergeClass("content")}>
+          {/* 周 */}
           <div className={mergeClass("week")}>
             {HelperDate.range(1, 7).map((i: keyof typeof mapWeek) => {
               return (
@@ -76,6 +81,7 @@ const DatePicker = () => {
             })}
           </div>
 
+          {/* 日期 */}
           {HelperDate.range(1, 42 / 7).map(i => {
             return (
               <div className={mergeClass("date-line")}>
@@ -101,6 +107,7 @@ const DatePicker = () => {
 
   const onClickYear = () => setMode("years");
   const onClickMonth = () => setMode("months");
+  const onClickDay = () => setMode("days");
 
   return (
     <>
@@ -119,8 +126,8 @@ const DatePicker = () => {
             />
           </div>
           <div className="date-wrap">
-            <span onClick={onClickYear}>2020年</span>
-            <span onClick={onClickMonth}>8月</span>
+            <span onClick={onClickYear}>{year} 年</span>
+            <span onClick={onClickMonth}>{month} 月</span>
           </div>
           <div className="right-action">
             <Icon size="12" name="arrow_right" color="#8e8e93" />
@@ -128,7 +135,9 @@ const DatePicker = () => {
           </div>
         </div>
         <div className={mergeClass("panels")}>{renderContent()}</div>
-        <div className={mergeClass("actions")}></div>
+        <div className={mergeClass("actions")}>
+          <span onClick={onClickDay}>今天</span>
+        </div>
       </div>
     </>
   );

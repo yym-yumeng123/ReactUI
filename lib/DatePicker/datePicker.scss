@@ -3,14 +3,14 @@
   min-width: 246px;
   padding: 12px;
   background-color: #fff;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.06), 0 4px 4px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
   border-radius: 6px;
   .yui-date-picker-nav {
     display: inline-flex;
     justify-content: space-between;
     width: 100%;
     .date-wrap {
-      background: #F7F7FA;
+      background: #f7f7fa;
       border-radius: 6px;
       padding: 2px 8px;
       span {
@@ -22,7 +22,9 @@
         }
       }
     }
-    .left-action, .right-action, .date-wrap {
+    .left-action,
+    .right-action,
+    .date-wrap {
       display: inline-flex;
       align-items: center;
       cursor: pointer;
@@ -42,7 +44,7 @@
           justify-content: center;
           align-items: center;
           font-size: 12px;
-          color: #8E8E93;
+          color: #8e8e93;
           width: 30px;
           height: 30px;
         }
@@ -58,20 +60,30 @@
           width: 30px;
           height: 30px;
           &:hover {
-            background: #CCE9FF;
+            background: #cce9ff;
             border-radius: 4px;
-            color: #1675E0;
+            color: #1675e0;
             cursor: pointer;
           }
 
           &:active {
-            background: #3498FF;
+            background: #3498ff;
             border-radius: 4px;
             color: #fff;
           }
         }
       }
+    }
+  }
 
+  .yui-date-picker-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+    span {
+      font-size: 14px;
+      color: #1675e0;
+      cursor: pointer;
     }
   }
 }
