@@ -55,12 +55,30 @@ const DatePicker = () => {
   }, []);
 
   const renderContent = () => {
+    const mapWeek = {
+      1: "一",
+      2: "二",
+      3: "三",
+      4: "四",
+      5: "五",
+      6: "六",
+      7: "日"
+    };
+
     const days = () => {
       return (
         <div className={mergeClass("content")}>
+          <div className={mergeClass("week")}>
+            {HelperDate.range(1, 7).map((i: keyof typeof mapWeek) => {
+              return (
+                <span className={mergeClass("week-days")}>{mapWeek[i]}</span>
+              );
+            })}
+          </div>
+
           {HelperDate.range(1, 42 / 7).map(i => {
             return (
-              <div className={mergeClass("daye-line")}>
+              <div className={mergeClass("date-line")}>
                 {HelperDate.range(1, 7).map(day => (
                   <span className={mergeClass("date-cell")}>
                     {allDates[(i - 1) * 7 + day - 1].getDate()}
@@ -90,10 +108,14 @@ const DatePicker = () => {
       <div className={mergeClass("pop")}>
         <div className={mergeClass("nav")}>
           <div className="left-action">
-            <Icon size="12" name="page_first" />
+            <Icon size="12" name="page_first" color="#8e8e93" />
             <Icon
               name="arrow_right"
-              style={{ transform: "rotate(180deg)", fontSize: "12px" }}
+              style={{
+                transform: "rotate(180deg)",
+                fontSize: "12px",
+                fill: "#8e8e93"
+              }}
             />
           </div>
           <div className="date-wrap">
@@ -101,8 +123,8 @@ const DatePicker = () => {
             <span onClick={onClickMonth}>8月</span>
           </div>
           <div className="right-action">
-            <Icon size="12" name="arrow_right" />
-            <Icon size="12" name="page_last" />
+            <Icon size="12" name="arrow_right" color="#8e8e93" />
+            <Icon size="12" name="page_last" color="#8e8e93" />
           </div>
         </div>
         <div className={mergeClass("panels")}>{renderContent()}</div>
