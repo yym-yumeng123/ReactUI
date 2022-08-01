@@ -1,14 +1,15 @@
 .yui-date-picker-pop {
-  width: 246px;
-  min-width: 246px;
-  padding: 12px;
+  margin-top: 10px;
+  display: inline-block;
   background-color: #fff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.06), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
   border-radius: 6px;
+  // 操作信息
   .yui-date-picker-nav {
     display: inline-flex;
     justify-content: space-between;
     width: 100%;
+    padding: 12px 12px 0;
     .date-wrap {
       background: #f7f7fa;
       border-radius: 6px;
@@ -30,12 +31,14 @@
       cursor: pointer;
     }
   }
+
+  // 面板
   .yui-date-picker-panels {
     display: flex;
     justify-content: space-between;
     word-wrap: break-word;
     .yui-date-picker-content {
-      width: 100%;
+      padding: 0 12px;
       .yui-date-picker-week {
         display: flex;
         justify-content: space-between;
@@ -79,7 +82,9 @@
   .yui-date-picker-actions {
     display: flex;
     justify-content: center;
-    padding-top: 12px;
+    margin-top: 8px;
+    padding: 8px 0;
+    border-top: 1px solid #E5E5EA;
     span {
       font-size: 14px;
       color: #1675e0;
