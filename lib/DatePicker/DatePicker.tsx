@@ -20,42 +20,28 @@ const DatePicker = () => {
 
   // 获取总共 42 天的数组
   const allDates = useMemo(() => {
-    const frontDays = [];
-    const currentDays = [];
-    const laterDays = [];
+    const days = [];
 
     const date = new Date();
     const first = HelperDate.firstDayOfMonth(date); // 一个月的第一天
-    const last = HelperDate.lastDayOfMonth(date); // 一个月的最后一天
     const [year, month] = HelperDate.getYearMonthDate(date); // 当天的年月日
     setYear(year);
-    setMonth(month);
-
-    // 获取当月所有天数的数组
-    for (let i = first.getDate(); i <= last.getDate(); i++) {
-      currentDays.push(new Date(year, month, i));
-    }
+    setMonth(month + 1);
 
     /**
      * @description getDay() 方法根据本地时间，返回一个具体日期中一周的第几天，0 表示星期天
      * @return 前面有几天日期
      */
-    const n = first.getDay() === 0 ? 6 : first.getDay() - 1;
+    const n = first.getDay()
+    const x = first - (n === 0 ? 6 : n -1) * 24 * 3600 * 1000;
 
     // 得到当月的前一个月的剩余天数
-    for (let i = 0; i <= n; i++) {
-      frontDays.unshift(new Date(year, month, -i));
+    for (let i = 0; i <= 42; i++) {
+      days.push(new Date(x + i * 24 * 3600 * 1000));
     }
 
-    /**
-     * @description 一月跨度最多七周 42天, 后面剩余几天
-     */
-    const m = 42 - currentDays.length - frontDays.length;
-    for (let i = 1; i <= m; i++) {
-      laterDays.push(new Date(year, month + 1, i));
-    }
 
-    return [...frontDays, ...currentDays, ...laterDays];
+    return days;
   }, []);
 
   const renderContent = () => {
