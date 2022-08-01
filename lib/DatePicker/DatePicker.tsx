@@ -32,14 +32,22 @@ const DatePicker = () => {
      * @description getDay() 方法根据本地时间，返回一个具体日期中一周的第几天，0 表示星期天
      * @return 前面有几天日期
      */
-    const n = first.getDay()
-    const x = first - (n === 0 ? 6 : n -1) * 24 * 3600 * 1000;
+    const n = first.getDay();
+    /**
+     * 如果是第一天是星期天，则前面的天数为 0
+     * 如果是第一天是星期一，则前面的天数为 6
+     * 如果是第一天是星期二，则前面的天数为 5
+     * 如果是第一天是星期三，则前面的天数为 4
+     * 如果是第一天是星期四，则前面的天数为 3
+     * 如果是第一天是星期五，则前面的天数为 2
+     * 如果是第一天是星期六，则前面的天数为 1
+     */
+    const x = first - (n === 0 ? 6 : n - 1) * 24 * 3600 * 1000;
 
-    // 得到当月的前一个月的剩余天数
+    // 从第一天往后得到42天
     for (let i = 0; i <= 42; i++) {
       days.push(new Date(x + i * 24 * 3600 * 1000));
     }
-
 
     return days;
   }, []);
@@ -62,7 +70,9 @@ const DatePicker = () => {
           <div className={mergeClass("week")}>
             {HelperDate.range(1, 7).map((i: keyof typeof mapWeek) => {
               return (
-                <span className={mergeClass("week-days")}>{mapWeek[i]}</span>
+                <span key={i} className={mergeClass("week-days")}>
+                  {mapWeek[i]}
+                </span>
               );
             })}
           </div>
@@ -70,9 +80,9 @@ const DatePicker = () => {
           {/* 日期 */}
           {HelperDate.range(1, 42 / 7).map(i => {
             return (
-              <div className={mergeClass("date-line")}>
+              <div className={mergeClass("date-line")} key={i}>
                 {HelperDate.range(1, 7).map(day => (
-                  <span className={mergeClass("date-cell")}>
+                  <span className={mergeClass("date-cell")} key={day}>
                     {allDates[(i - 1) * 7 + day - 1].getDate()}
                   </span>
                 ))}
