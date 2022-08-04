@@ -100,7 +100,9 @@ const Input: FC<InputProps> = props => {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
-          style={{ padding: `8px ${isShow.current ? "26px" : "12px"} 8px 12px` }}
+          style={{
+            padding: `8px ${isShow.current ? "26px" : "12px"} 8px 12px`
+          }}
           {...restProps}
         />
         {isShow.current && value!.length > 0 && (

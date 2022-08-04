@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import Input from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
 
@@ -8,8 +8,14 @@ const mergeClass = addPrefixAndMergeClass("yui-date-picker");
 
 import "./datePicker.scss";
 
-const DatePicker = () => {
-  const [value, setValue] = useState<string>("");
+interface DateProps {
+  value?: Date;
+  onChange?: (val: Date) => void;
+}
+
+const DatePicker: FC<DateProps> = props => {
+  const { value, onChange } = props;
+
   const [mode, setMode] = useState<"days" | "months" | "years">("days");
   const [year, setYear] = useState<number>(1970);
   const [month, setMonth] = useState<number>(1);
@@ -22,8 +28,7 @@ const DatePicker = () => {
   // 获取总共 42 天的数组
   const allDates = useMemo(() => {
     const days = [];
-
-    const date = new Date(value || Date.now());
+    const date = value || new Date();
     const first = HelperDate.firstDayOfMonth(date); // 一个月的第一天
     const [year, month] = HelperDate.getYearMonthDate(date); // 当天的年月日
     setYear(year);
@@ -63,23 +68,26 @@ const DatePicker = () => {
     // .toLocaleDateString() 2022/8/20
     // .toLocaleString()     2022/8/20 00:00:00
     // .toLocaleTimeString() 00:00:00
-    const [year, month, day] = HelperDate.getYearMonthDate(getVisibleDay(i, j));
-    setValue(`${year}-${month + 1}-${day}`);
+    onChange && onChange(getVisibleDay(i, j));
+  };
+
+  const formattedValue = (val: Date): string => {
+    const [year, month, day] = HelperDate.getYearMonthDate(val);
+    return `${year}-${month + 1}-${day}`;
   };
 
   // 得到可见天数
   const getVisibleDay = (col: number, row: number) =>
     allDates[(col - 1) * 7 + row - 1];
 
-  // TODO: ...后续优化 是否是当前年月
-  const isCurrentMonth = useCallback(
-    date => {
-      const [year1, month1] = HelperDate.getYearMonthDate(date);
-      console.log("1212");
-      return year1 === year && month1 + 1 !== month;
-    },
-    [month, year]
-  );
+  /**
+   * @returns 只要年或者月有一个不相等, 就返回true, 不是当前
+   */
+  const isCurrentMonth = (date: Date) => {
+    const [year1, month1] = HelperDate.getYearMonthDate(date);
+    const [year2, month2] = HelperDate.getYearMonthDate(value || new Date());
+    return year1 !== year2 || month1 !== month2;
+  };
 
   const renderContent = () => {
     const mapWeek = {
@@ -114,7 +122,6 @@ const DatePicker = () => {
                   <span
                     className={mergeClass({
                       "date-cell": true,
-                      // TODO:... 计算是否属于当前月, 并且同一年
                       "current-month": isCurrentMonth(getVisibleDay(i, day))
                     })}
                     key={day}
@@ -144,7 +151,7 @@ const DatePicker = () => {
 
   return (
     <>
-      <Input value={value} />
+      <Input value={value ? formattedValue(value) : ""} />
       <div className={mergeClass("pop")}>
         <div className={mergeClass("nav")}>
           <div className="left-action">
