@@ -74,6 +74,11 @@
             border-radius: 4px;
             color: #fff;
           }
+
+          &.yui-date-picker-current-month {
+            color: #c5c6c7;
+            // background: #f7f7fa;
+          }
         }
       }
     }
@@ -84,7 +89,7 @@
     justify-content: center;
     margin-top: 8px;
     padding: 8px 0;
-    border-top: 1px solid #E5E5EA;
+    border-top: 1px solid #e5e5ea;
     span {
       font-size: 14px;
       color: #1675e0;

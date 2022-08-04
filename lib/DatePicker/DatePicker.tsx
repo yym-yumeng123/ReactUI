@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Input from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
 
@@ -71,6 +71,16 @@ const DatePicker = () => {
   const getVisibleDay = (col: number, row: number) =>
     allDates[(col - 1) * 7 + row - 1];
 
+  // TODO: ...后续优化 是否是当前年月
+  const isCurrentMonth = useCallback(
+    date => {
+      const [year1, month1] = HelperDate.getYearMonthDate(date);
+      console.log("1212");
+      return year1 === year && month1 + 1 !== month;
+    },
+    [month, year]
+  );
+
   const renderContent = () => {
     const mapWeek = {
       1: "一",
@@ -102,7 +112,11 @@ const DatePicker = () => {
               <div className={mergeClass("date-line")} key={i}>
                 {HelperDate.range(1, 7).map(day => (
                   <span
-                    className={mergeClass("date-cell")}
+                    className={mergeClass({
+                      "date-cell": true,
+                      // TODO:... 计算是否属于当前月, 并且同一年
+                      "current-month": isCurrentMonth(getVisibleDay(i, day))
+                    })}
                     key={day}
                     onClick={() => handleClickDay(day, i)}
                   >
