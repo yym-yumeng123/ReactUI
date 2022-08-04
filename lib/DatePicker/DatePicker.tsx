@@ -9,6 +9,7 @@ const mergeClass = addPrefixAndMergeClass("yui-date-picker");
 import "./datePicker.scss";
 
 const DatePicker = () => {
+  const [value, setValue] = useState<string>("");
   const [mode, setMode] = useState<"days" | "months" | "years">("days");
   const [year, setYear] = useState<number>(1970);
   const [month, setMonth] = useState<number>(1);
@@ -22,7 +23,7 @@ const DatePicker = () => {
   const allDates = useMemo(() => {
     const days = [];
 
-    const date = new Date();
+    const date = new Date(value || Date.now());
     const first = HelperDate.firstDayOfMonth(date); // 一个月的第一天
     const [year, month] = HelperDate.getYearMonthDate(date); // 当天的年月日
     setYear(year);
@@ -52,7 +53,23 @@ const DatePicker = () => {
     }
 
     return days;
-  }, []);
+  }, [value]);
+
+  const handleClickDay = (j: number, i: number) => {
+    // .toUTCString()        Fri, 19 Aug 2022 16:00:00 GMT
+    // .toTimeString()       00:00:00 GMT+0800 (中国标准时间)
+    // .toDateString()       Sat Aug 20 2022
+    // .toISOString()        2022-08-19T16:00:00.000Z
+    // .toLocaleDateString() 2022/8/20
+    // .toLocaleString()     2022/8/20 00:00:00
+    // .toLocaleTimeString() 00:00:00
+    const [year, month, day] = HelperDate.getYearMonthDate(getVisibleDay(i, j));
+    setValue(`${year}-${month + 1}-${day}`);
+  };
+
+  // 得到可见天数
+  const getVisibleDay = (col: number, row: number) =>
+    allDates[(col - 1) * 7 + row - 1];
 
   const renderContent = () => {
     const mapWeek = {
@@ -84,8 +101,12 @@ const DatePicker = () => {
             return (
               <div className={mergeClass("date-line")} key={i}>
                 {HelperDate.range(1, 7).map(day => (
-                  <span className={mergeClass("date-cell")} key={day}>
-                    {allDates[(i - 1) * 7 + day - 1].getDate()}
+                  <span
+                    className={mergeClass("date-cell")}
+                    key={day}
+                    onClick={() => handleClickDay(day, i)}
+                  >
+                    {getVisibleDay(i, day).getDate()}
                   </span>
                 ))}
               </div>
@@ -109,7 +130,7 @@ const DatePicker = () => {
 
   return (
     <>
-      <Input />
+      <Input value={value} />
       <div className={mergeClass("pop")}>
         <div className={mergeClass("nav")}>
           <div className="left-action">
