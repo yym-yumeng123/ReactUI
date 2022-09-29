@@ -7,6 +7,7 @@ const ButtonTypeExample: React.FunctionComponent = () => {
       <Button>普通按钮</Button>
       <Button level="primary">提醒按钮</Button>
       <Button level="danger">危险按钮</Button>
+      <Button level="dashed">虚线按钮</Button>
       <Button level="link" href="baidu.com">
         链接按钮
       </Button>

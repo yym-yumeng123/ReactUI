@@ -4,6 +4,8 @@
 .yui-button {
   font-weight: $btn-font-weight;
   border: none;
+  box-sizing: border-box;
+  user-select: none;
 
   @include button-size(
     $btn-padding-x,
@@ -69,6 +71,27 @@
     }
   }
 
+  // 虚线
+  &.yui-button-dashed {
+    color: #575757;
+    background: #fff;
+    border: 1px dashed #575757;
+    &:hover {
+      color: #3498ff;
+      border: 1px dashed #3498ff;
+    }
+    &:active {
+      color: #1675e0;
+      border: 1px dashed #1675e0;
+    }
+    &.yui-button-disabled {
+      background: #f7f7fa;
+      color: #c5c6c7;
+      cursor: not-allowed;
+      border: 1px dashed #c5c6c7;
+    }
+  }
+
   // link
   &.yui-button-link {
     color: #1675e0;
@@ -84,7 +107,8 @@
     &.yui-button-disabled {
       color: #1675e0;
       opacity: 0.3;
-      pointer-events: none;
+      cursor: not-allowed;
+      text-decoration: none;
     }
   }
 
