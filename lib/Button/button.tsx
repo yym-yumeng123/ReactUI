@@ -4,6 +4,7 @@ import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-button");
 
 import "./button.scss";
+import Icon from "lib/Icon/icon";
 
 export enum ButtonType {
   Default = "default",
@@ -18,9 +19,10 @@ interface BaseButtonProps {
   level?: "default" | "primary" | "danger" | "link" | "dashed" | ButtonType;
   size?: "lg" | "sm" | "xs";
   disabled?: boolean;
+  block?: boolean;
+  loading?: boolean;
   className?: string;
   href?: string;
-  block?: boolean;
   style?: React.CSSProperties;
   onClick?: () => void;
 }
@@ -42,6 +44,7 @@ const Button: React.FC<ButtonProps> = props => {
     level = "default",
     disabled = false,
     block = false,
+    loading = false,
     size,
     href,
     className,
@@ -56,18 +59,19 @@ const Button: React.FC<ButtonProps> = props => {
       [`${level}`]: !!level,
       [`${size}`]: !!size,
       disabled: !!disabled,
-      block: !!block
+      block: !!block,
+      loading
     },
     { extra: className }
   );
 
   const onClickButton = () => {
-    if (disabled) return;
+    if (disabled || loading) return;
     onClick && onClick();
   };
 
   const onClickAnchor = () => {
-    if (disabled) return;
+    if (disabled || loading) return;
     onClick && onClick();
   };
 
@@ -92,7 +96,10 @@ const Button: React.FC<ButtonProps> = props => {
           style={style}
           {...restProps}
         >
-          {children}
+          <>
+            {loading && <Icon size="12" spin name="refresh" color="#fff" />}
+            {children}
+          </>
         </button>
       )}
     </>
