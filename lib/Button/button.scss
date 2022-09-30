@@ -122,16 +122,14 @@
   }
 
   &.yui-button-loading {
-    position: relative;
-    &::after {
-      position: absolute;
-      content: "";
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: #c5c6c7;
-      opacity: 0.1;
+    .yui-button-loading-context {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      i {
+        display: block;
+        color: #000;
+      }
     }
   }
 }

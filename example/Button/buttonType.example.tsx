@@ -16,7 +16,6 @@ const ButtonTypeExample: React.FunctionComponent = () => {
       <Button level="link" href="baidu.com">
         链接按钮
       </Button>
-      <Button level="primary"></Button>
       <Button loading>普通按钮</Button>
       <Button level="primary" loading onClick={onClickButton}>
         提醒按钮

@@ -97,8 +97,14 @@ const Button: React.FC<ButtonProps> = props => {
           {...restProps}
         >
           <>
-            {loading && <Icon size="12" spin name="refresh" color="#fff" />}
-            {children}
+            {loading ? (
+              <span className={mergeClass("loading-context")}>
+                <Icon size="12" spin name="refresh" color="#000" />
+                <i>加载中...</i>
+              </span>
+            ) : (
+              children
+            )}
           </>
         </button>
       )}
