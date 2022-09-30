@@ -6,6 +6,13 @@ const mergeClass = addPrefixAndMergeClass("yui-button");
 import "./button.scss";
 import Icon from "lib/Icon/icon";
 
+type ColorLeverMap = {
+  default: string;
+  primary: string;
+  danger: string;
+  dashed: string;
+};
+
 export enum ButtonType {
   Default = "default",
   Primary = "primary",
@@ -21,6 +28,7 @@ interface BaseButtonProps {
   disabled?: boolean;
   block?: boolean;
   loading?: boolean;
+  loadingText?: string;
   className?: string;
   href?: string;
   style?: React.CSSProperties;
@@ -45,6 +53,7 @@ const Button: React.FC<ButtonProps> = props => {
     disabled = false,
     block = false,
     loading = false,
+    loadingText = "加载中...",
     size,
     href,
     className,
@@ -64,6 +73,13 @@ const Button: React.FC<ButtonProps> = props => {
     },
     { extra: className }
   );
+
+  const mapTypeColor: ColorLeverMap = {
+    default: "#c5c6c7",
+    primary: "#fff",
+    danger: "#fff",
+    dashed: "#c5c6c7"
+  };
 
   const onClickButton = () => {
     if (disabled || loading) return;
@@ -99,8 +115,13 @@ const Button: React.FC<ButtonProps> = props => {
           <>
             {loading ? (
               <span className={mergeClass("loading-context")}>
-                <Icon size="12" spin name="refresh" color="#000" />
-                <i>加载中...</i>
+                <Icon
+                  size="12"
+                  spin
+                  name="refresh"
+                  color={mapTypeColor[level]}
+                />
+                <i>{loadingText}.</i>
               </span>
             ) : (
               children

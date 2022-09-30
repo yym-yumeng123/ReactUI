@@ -96,6 +96,20 @@ export const Api_Data_Button = [
     type: "string",
     defaultValue: "空",
     require: "false"
+  },
+  {
+    props: "loading",
+    explain: "设置按钮loading状态",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false"
+  },
+  {
+    props: "loadingText",
+    explain: "设置按钮loading文字的值",
+    type: "string",
+    defaultValue: "加载中...",
+    require: "false"
   }
 ];
 

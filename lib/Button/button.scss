@@ -121,14 +121,44 @@
     border-radius: 0;
   }
 
+  // loading
   &.yui-button-loading {
+    cursor: wait;
     .yui-button-loading-context {
       display: flex;
       justify-content: center;
       align-items: center;
       i {
         display: block;
-        color: #000;
+      }
+    }
+
+    &.yui-button-default {
+      background: #f7f7fa;
+      i {
+        color: #c5c6c7;
+      }
+    }
+
+    &.yui-button-primary {
+      background: #cce9ff;
+      i {
+        color: #fff;
+      }
+    }
+
+    &.yui-button-danger {
+      background: #eeb4b3;
+      i {
+        color: #fff;
+      }
+    }
+
+    &.yui-button-dashed {
+      background: #f7f7fa;
+      border: 1px dashed #c5c6c7;
+      i {
+        color: #c5c6c7;
       }
     }
   }
