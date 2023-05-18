@@ -14,8 +14,10 @@ import * as ReactDOM from "react-dom";
 // const isTouchDevice = "ontouchstart" in document.documentElement;
 // console.log(isTouchDevice, "isTouchDevice");
 
+
+
 ReactDOM.render(
-  <div>121</div>,
+  <button>按钮</button>,
   // <Router>
   //   <Layout className="pageWrapper">
   //     <Header className="g-header">
@@ -62,5 +64,5 @@ ReactDOM.render(
   //     <Footer className="g-footer">&copy; 杨雨蒙</Footer>
   //   </Layout>
   // </Router>,
-  document.querySelector("#root")
+  document.body
 );

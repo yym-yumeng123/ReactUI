@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    index: "./views/view.tsx",
+    index: "./lib/index.tsx",
   },
   output: {
     // filename: "[name].[contenthash].js",
@@ -33,17 +33,13 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
       },
-      {
-        test: /\.(csv|tsv)$/i,
-        use: ["csv-loader"],
-      },
-      {
-        test: /\.xml$/i,
-        use: ["xml-loader"],
-      },
     ],
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      lib: path.resolve(__dirname, "lib/"),
+      example: path.resolve(__dirname, "example/"),
+    },
   },
 };
