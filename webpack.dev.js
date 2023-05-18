@@ -10,7 +10,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "YUI",
+      title: "YUI组件库",
       template: './views/view.html'
     }),
   ],

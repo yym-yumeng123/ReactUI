@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/yym-yumeng123/ReactUI#readme",
   "devDependencies": {
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "css-loader": "^6.7.3",
     "csv-loader": "^3.0.5",
     "html-webpack-plugin": "^5.5.1",
@@ -35,5 +37,9 @@
     "webpack-dev-server": "^4.15.0",
     "webpack-merge": "^5.8.0",
     "xml-loader": "^1.2.1"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
