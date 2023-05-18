@@ -10,7 +10,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,8 @@
     "csv-loader": "^3.0.5",
     "html-webpack-plugin": "^5.5.1",
     "style-loader": "^3.3.2",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4",
     "webpack": "^5.82.1",
     "webpack-cli": "^5.1.1",
     "webpack-dev-server": "^4.15.0",

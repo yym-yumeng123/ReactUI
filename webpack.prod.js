@@ -3,19 +3,6 @@ const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   mode: "production",
-  optimization: {
-    // runtimeChunk: "single",
-    moduleIds: "deterministic", // hash 是否发生变化
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
-        },
-      },
-    },
-  },
   // 不属于内部的库, 外部的
   externals: {
     react: {

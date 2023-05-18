@@ -13,18 +13,13 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "importHelpers": true,
     "strictNullChecks": true,
-    // "suppressImplicitAnyIndexErrors": true,
-    // https://github.com/Microsoft/TypeScript/issues/28762#issuecomment-443406607
     "esModuleInterop": true,
-    // 默认false,是否检测定义了但是没使用的变量
     "noUnusedLocals": true
   },
-  "include": [
-    "lib/**/*", "example/**/*", "views/**/*"
-  ],
+  "include": ["lib/**/*", "example/**/*", "views/**/*"],
   "exclude": [
     "node_modules",
     "build",

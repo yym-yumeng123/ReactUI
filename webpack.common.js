@@ -1,9 +1,8 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    index: "./src/index.js",
+    index: "./views/view.tsx",
   },
   output: {
     // filename: "[name].[contenthash].js",
@@ -15,13 +14,13 @@ module.exports = {
     },
     clean: true,
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "YUI",
-    }),
-  ],
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
@@ -43,5 +42,8 @@ module.exports = {
         use: ["xml-loader"],
       },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
 };
