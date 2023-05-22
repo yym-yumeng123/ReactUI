@@ -1,28 +1,22 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./importAllIcons";
+import React, { FC, CSSProperties, SVGAttributes } from "react";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+import "./importAllIcons.js";
 import "./icon.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-icon");
 
-interface IconProps extends React.SVGAttributes<SVGElement> {
+interface IconProps extends SVGAttributes<SVGElement> {
   name: string;
   color?: string;
-  size?: string;
+  size?: string | number;
   spin?: boolean;
 }
 
-const Icon: React.FunctionComponent<IconProps> = ({
-  className,
-  name,
-  color,
-  size,
-  spin,
-  ...restProps
-}) => {
+const Icon: FC<IconProps> = (props) => {
+  const { className, name, color, size, spin = false , ...restProps } = props;
+
   const styles = () => {
-    let style: any = {};
+    let style: CSSProperties = {};
     if (color) {
       style.fill = color;
     }
@@ -31,22 +25,17 @@ const Icon: React.FunctionComponent<IconProps> = ({
     }
     return style;
   };
+
   return (
     <svg
       style={styles()}
-      className={mergeClass({ "": true, spin: !!spin }, { extra: className })}
+      className={mergeClass({ "": true, spin: spin }, { extra: className })}
+      // 接受所有事件
       {...restProps}
     >
       <use xlinkHref={`#${name}`}></use>
     </svg>
   );
-};
-
-Icon.displayName = "Icon";
-Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  size: PropTypes.string
 };
 
 export default Icon;

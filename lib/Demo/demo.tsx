@@ -5,6 +5,7 @@ import Button from "../Button/button";
 interface Props {
   code: string;
   buttonVisible?: boolean;
+  children: any
 }
 
 const style = {
@@ -15,7 +16,7 @@ const style = {
 /**
  * @description 代码高亮 demo
  */
-const Demo: React.FunctionComponent<Props> = props => {
+const Demo: React.FunctionComponent<Props> = (props: any) => {
   const { buttonVisible = true } = props;
   const [codeVisible, setCodeVisible] = useState(false);
   const code = (

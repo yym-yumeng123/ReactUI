@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom/client";
 // import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 // import { routeList } from "./config";
 
@@ -14,10 +14,20 @@ import * as ReactDOM from "react-dom";
 // const isTouchDevice = "ontouchstart" in document.documentElement;
 // console.log(isTouchDevice, "isTouchDevice");
 
+import Icon from "lib/Icon/icon";
 
+const fn = () => {
+  console.log("1", 1);
+};
 
-ReactDOM.render(
-  <button>按钮</button>,
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <div>
+    你好 <Icon name="refresh" color="red" />
+    <Icon name="refresh" spin />
+    <Icon name="refresh" color="red" />
+    <Icon name="refresh" size="20" />
+    <Icon name="alipay" size="20" onClick={fn} />
+  </div>
   // <Router>
   //   <Layout className="pageWrapper">
   //     <Header className="g-header">
@@ -64,5 +74,4 @@ ReactDOM.render(
   //     <Footer className="g-footer">&copy; 杨雨蒙</Footer>
   //   </Layout>
   // </Router>,
-  document.body
 );
