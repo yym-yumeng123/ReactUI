@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-// import { HashRouter as Router, Route, NavLink } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 // import { routeList } from "./config";
 
 // import All from "lib/All/all";
@@ -14,65 +14,34 @@ import * as ReactDOM from "react-dom/client";
 // const isTouchDevice = "ontouchstart" in document.documentElement;
 // console.log(isTouchDevice, "isTouchDevice");
 
-import Icon from "lib/Icon/icon";
+import './src/style/var.scss'
+import "lib/assets/stylesheets/reset.scss";
 
-const fn = () => {
-  console.log("1", 1);
-};
+import Home from "./src/pages/Home/home";
+import Root from "./src/routes/root";
+import ErrorPage from "./src/error-page";
+import Contact from "./src/contact";
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/components",
+    element: <Root />,
+    children: [
+      {
+        path: "contacts/:contactId",
+        element: <Contact />,
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <div>
-    你好 <Icon name="refresh" color="red" />
-    <Icon name="refresh" spin />
-    <Icon name="refresh" color="red" />
-    <Icon name="refresh" />
-    <Icon name="help_filled" />
-    <Icon name="alipay" onClick={fn} />
-  </div>
-  // <Router>
-  //   <Layout className="pageWrapper">
-  //     <Header className="g-header">
-  //       <img src={logo} alt="logo" />
-  //       <div className="g-header-right">
-  //         <Button
-  //           className="link"
-  //           level="link"
-  //           href="https://github.com/yym-yumeng123/ReactUI"
-  //         >
-  //           GitHub
-  //         </Button>
-  //       </div>
-  //     </Header>
-  //     <Layout>
-  //       <SideBar className="g-aside">
-  //         <h2>组件</h2>
-  //         <ul>
-  //           {routeList.map((item, index) => {
-  //             return (
-  //               <li key={String(index)}>
-  //                 <NavLink to={item.path}>{item.title}</NavLink>
-  //               </li>
-  //             );
-  //           })}
-  //         </ul>
-  //       </SideBar>
-  //       <Scroll style={{ height: "calc(100vh - 121px)", width: "100%" }}>
-  //         <Content className="g-main">
-  //           <Route path="/" component={All} exact />
-  //           {routeList.map((item, index) => {
-  //             return (
-  //               <Route
-  //                 key={index}
-  //                 path={item.path}
-  //                 component={item.component}
-  //                 exact
-  //               ></Route>
-  //             );
-  //           })}
-  //         </Content>
-  //       </Scroll>
-  //     </Layout>
-  //     <Footer className="g-footer">&copy; 杨雨蒙</Footer>
-  //   </Layout>
-  // </Router>,
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );
