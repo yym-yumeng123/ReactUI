@@ -1,9 +1,5 @@
 # ReactUI
 
-[![Build Status](https://travis-ci.org/yym-yumeng123/ReactUI.svg?branch=master)](https://travis-ci.org/yym-yumeng123/ReactUI)
-
-[![CircleCI](https://circleci.com/gh/yym-yumeng123/ReactUI/tree/master.svg?style=svg)](https://circleci.com/gh/yym-yumeng123/ReactUI/tree/master)
-
 [![npm version](https://badge.fury.io/js/yym-react-ui.svg)](https://badge.fury.io/js/yym-react-ui)
 
 ## 介绍
