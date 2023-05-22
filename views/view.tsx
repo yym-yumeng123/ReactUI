@@ -25,8 +25,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     你好 <Icon name="refresh" color="red" />
     <Icon name="refresh" spin />
     <Icon name="refresh" color="red" />
-    <Icon name="refresh" size="20" />
-    <Icon name="alipay" size="20" onClick={fn} />
+    <Icon name="refresh" />
+    <Icon name="help_filled" />
+    <Icon name="alipay" onClick={fn} />
   </div>
   // <Router>
   //   <Layout className="pageWrapper">
