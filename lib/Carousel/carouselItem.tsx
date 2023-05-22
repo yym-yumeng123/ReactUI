@@ -8,6 +8,7 @@ const mergeClass = addPrefixAndMergeClass("yui-carousel-item");
 interface CarouselItemProps {
   visible?: boolean;
   name: string; // 每个 item 默认的名字
+  children?: React.ReactElement
 }
 
 const CarouselItem: FC<CarouselItemProps> = props => {

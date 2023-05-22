@@ -12,6 +12,7 @@ interface CollapseItemProps {
   selected?: string[];
   isCollapsed?: boolean;
   handleClick?: () => {};
+  children?: ReactElement
 }
 
 const CollapseItem: FC<CollapseItemProps> = props => {

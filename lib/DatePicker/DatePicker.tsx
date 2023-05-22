@@ -27,7 +27,7 @@ const DatePicker: FC<DateProps> = props => {
 
   // 获取总共 42 天的数组
   const allDates = useMemo(() => {
-    const days = [];
+    const days: any[] = [];
     const date = value || new Date();
     const first = HelperDate.firstDayOfMonth(date); // 一个月的第一天
     const [year, month] = HelperDate.getYearMonthDate(date); // 当天的年月日

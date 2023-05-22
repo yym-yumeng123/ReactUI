@@ -9,7 +9,7 @@
 
 3. travis.ci CI 集成工具
 
-4. 发布: 入口 `index.tsx` 导出需要的组件, `npm publish`
+4. 发布: 入口 `index.tsx` 导出需要的组件, `npm adduser / npm publish`
 
 5. 创建自己的官网
 

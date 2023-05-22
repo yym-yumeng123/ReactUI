@@ -21,7 +21,7 @@ export default {
    * @return [begin, ..., end]
    */
   range(begin: number, end: number): number[] {
-    const array = [];
+    const array: number[] = [];
     for (let i = begin; i <= end; i++) {
       array.push(i);
     }
