@@ -1,6 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+
+import router from "./src/routes/routes";
+
 // import { routeList } from "./config";
 
 // import All from "lib/All/all";
@@ -14,31 +17,9 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 // const isTouchDevice = "ontouchstart" in document.documentElement;
 // console.log(isTouchDevice, "isTouchDevice");
 
-import './src/style/var.scss'
-import "lib/assets/stylesheets/reset.scss";
+import "./src/style/var.scss";
+import "./src/style/reset.scss";
 
-import Home from "./src/pages/Home/home";
-import Root from "./src/routes/root";
-import ErrorPage from "./src/error-page";
-import Contact from "./src/contact";
-
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <Home />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/components",
-    element: <Root />,
-    children: [
-      {
-        path: "contacts/:contactId",
-        element: <Contact />,
-      },
-    ],
-  },
-]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

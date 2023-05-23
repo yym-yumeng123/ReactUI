@@ -11,7 +11,7 @@ export default function Home() {
         <p>基于 React + TypeScript, 面向开发者的组件库</p>
       </div>
       <div className="v-home-link">
-        <Link to={`/components`}>
+        <Link to={`/overview`}>
           <Button level="primary">组件</Button>
         </Link>
       </div>
