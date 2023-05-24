@@ -1,4 +1,4 @@
-@import "../styles/variable.scss";
+@import "lib/assets/stylesheets/variable.scss";
 
 // 基本样式
 .yui-button {
@@ -97,6 +97,7 @@
 
   // link
   &.yui-button-link {
+    display: inline-block;
     color: #1675e0;
     background: none;
     text-decoration: none;

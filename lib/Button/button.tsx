@@ -1,52 +1,58 @@
-import * as React from "react";
-
+import React, {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  CSSProperties,
+  FC,
+  ReactNode,
+} from "react";
+import Icon from "lib/Icon/icon";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
-const mergeClass = addPrefixAndMergeClass("yui-button");
 
 import "./button.scss";
-import Icon from "lib/Icon/icon";
 
-type ColorLeverMap = {
-  default: string;
-  primary: string;
-  danger: string;
-  dashed: string;
-};
+const mergeClass = addPrefixAndMergeClass("yui-button");
+
+type LevelString = "default" | "primary" | "danger" | "link" | "dashed";
+
+type SizeString = "lg" | "sm" | "xs";
+
+type ColorLeverMap = Record<
+  "default" | "primary" | "danger" | "dashed",
+  string
+>;
 
 export enum ButtonType {
   Default = "default",
   Primary = "primary",
   Danger = "danger",
   Link = "link",
-  Dashed = "dashed"
+  Dashed = "dashed",
 }
 
 interface BaseButtonProps {
-  children: React.ReactNode;
-  level?: "default" | "primary" | "danger" | "link" | "dashed" | ButtonType;
-  size?: "lg" | "sm" | "xs";
+  children: ReactNode;
+  level?: LevelString | ButtonType;
+  size?: SizeString;
   disabled?: boolean;
   block?: boolean;
   loading?: boolean;
   loadingText?: string;
   className?: string;
   href?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   onClick?: () => void;
 }
 
 // 联合类型 button
-type NativeButtonProps = BaseButtonProps &
-  React.ButtonHTMLAttributes<HTMLElement>;
+type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
 
 // a链接 联合类型
-type AnchorButtonProps = BaseButtonProps &
-  React.AnchorHTMLAttributes<HTMLElement>;
+type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 
 // a 链接 和 button 属性有的不同   Partial 都是可选的属性
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
-const Button: React.FC<ButtonProps> = props => {
+const Button: FC<ButtonProps> = (props) => {
   const {
     children,
     level = "default",
@@ -67,9 +73,9 @@ const Button: React.FC<ButtonProps> = props => {
       "": true,
       [`${level}`]: !!level,
       [`${size}`]: !!size,
-      disabled: !!disabled,
-      block: !!block,
-      loading
+      disabled,
+      block,
+      loading,
     },
     { extra: className }
   );
@@ -78,7 +84,7 @@ const Button: React.FC<ButtonProps> = props => {
     default: "#c5c6c7",
     primary: "#fff",
     danger: "#fff",
-    dashed: "#c5c6c7"
+    dashed: "#c5c6c7",
   };
 
   const onClickButton = () => {

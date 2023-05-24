@@ -1,0 +1,66 @@
+@import "./helper";
+@import "./style.scss";
+
+// common
+$radius: 6px;
+$padding: 20px;
+$font-color-title: $B900; // 标题文字颜色
+$font-color-default: $B800; // 默认文字颜色
+$font-low-color: $B600; // 次级文字颜色w
+$main-color: $H500;
+$disabeld-font-color: $B400;
+$default-border-color: $B200;
+
+$white: $B000;
+$Hover-color: $H050;
+
+$font-size-default: 14px;
+$font-size-lg: 16px;
+$font-weight: 600;
+$line-height: 20px;
+
+// button
+$btn-font-size: 14px;
+$btn-padding-x: 12px;
+$btn-padding-y: 8px;
+$btn-font-weight: 400;
+$btn-radius: 6px;
+
+$btn-font-size-lg: 16px;
+$btn-padding-x-lg: 16px;
+$btn-padding-y-lg: 10px;
+
+$btn-font-size-sm: 14px;
+$btn-padding-x-sm: 10px;
+$btn-padding-y-sm: 5px;
+
+$btn-font-size-xs: 12px;
+$btn-padding-x-xs: 8px;
+$btn-padding-y-xs: 2px;
+
+// Dialog
+$dialog-zIndex-content: 1000;
+$dialog-zIndex-mask: 999;
+
+// toast
+$taost-bg-color: #f0f9ff;
+
+// input
+$hover-border-color: $main-color;
+
+// radio
+$radio-size: 16px;
+$radio-borderColor: $B300;
+
+// table
+$tabel-border-color: $B100;
+
+// 改变 size, 就是改变这几个属性
+@mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
+
+// Card
+$card-border-color: $B200;
