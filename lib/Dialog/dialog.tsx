@@ -1,24 +1,26 @@
-import React, { FC, Fragment, ReactElement } from "react";
+import React, { FC, ReactElement, ReactNode } from "react";
 import ReactDOM from "react-dom";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 import Icon from "lib/Icon/icon";
 import Button from "lib/Button/button";
 import "./dialog.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-dialog");
+
 interface DialogProps {
+  children: ReactNode;
   visible: boolean; // 是否可见
+  title?: string;
   footer?: ReactElement | null;
-  onCancel?: React.MouseEventHandler;
-  onOk?: React.MouseEventHandler;
+  onCancel?: () => void;
+  onOk?: () => void;
   onOkText?: string;
   onCancelText?: string;
-  maskClosable?: boolean; // 遮罩点击是否关闭
+  maskClosable?: boolean; // 遮罩点击是否关闭, 默认点击关闭
   closable?: boolean; // 右上角 关闭 是否存在
-  title?: string;
 }
 
-const Dialog: FC<DialogProps> = props => {
+const Dialog: FC<DialogProps> = (props) => {
   const {
     visible = false,
     closable = true,
@@ -28,26 +30,21 @@ const Dialog: FC<DialogProps> = props => {
     onCancelText = "取消",
     onOk,
     onCancel,
-    footer
+    footer,
+    children,
   } = props;
+
   // 确定回调
-  const handlerOk: React.MouseEventHandler = event => {
-    onOk && onOk(event);
-  };
+  const handlerOk = () => onOk && onOk();
 
   // 关闭回调
-  const handlerClose: React.MouseEventHandler = event => {
-    onCancel && onCancel(event);
-  };
+  const handlerClose = () => onCancel && onCancel();
 
-  const handlerCloseMask: React.MouseEventHandler = event => {
-    if (maskClosable) {
-      onCancel && onCancel(event);
-    }
-  };
+  const handlerCloseMask = () => maskClosable && handlerClose();
 
   const DialogPor = visible ? (
-    <Fragment>
+    <>
+      {/* 弹框 */}
       <div className={mergeClass("")}>
         {closable ? (
           <div className={mergeClass("close")} onClick={handlerClose}>
@@ -55,7 +52,8 @@ const Dialog: FC<DialogProps> = props => {
           </div>
         ) : null}
         <header className={mergeClass("header")}>{title}</header>
-        <main className={mergeClass("main")}>{props.children}</main>
+        <main className={mergeClass("main")}>{children}</main>
+        {/* footer 可设置 null, 或者自己来画 */}
         {footer === null ? null : (
           <footer className={mergeClass("footer")}>
             {footer ? (
@@ -71,14 +69,14 @@ const Dialog: FC<DialogProps> = props => {
           </footer>
         )}
       </div>
+      {/* 遮罩 */}
       <div className={mergeClass("mask")} onClick={handlerCloseMask}></div>
-    </Fragment>
+    </>
   ) : null;
 
   // 传送门到 body 元素里
   return ReactDOM.createPortal(DialogPor, document.body);
 };
-
 
 export default Dialog;
 export { default as Alert } from "./alert";
