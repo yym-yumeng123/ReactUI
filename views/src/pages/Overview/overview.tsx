@@ -1,114 +1,50 @@
-import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
-
-import Icon from "lib/Icon/icon";
+import React from "react";
+import { Outlet, NavLink } from "react-router-dom";
 import Button from "lib/Button/button";
-import Dialog, { Modal, alert, confirm } from "lib/Dialog/dialog";
-import Layout, { Header, Footer, Content, SideBar } from "lib/Layout/layout";
+import { Layout, Header, Footer, Content, SideBar } from "lib/Layout/layout";
 
-export default function Overview() {
-  const onClickButton = () => {
-    console.log("点击");
-  };
+import "./overview.scss";
+import logo from "../../assets/image/logo.png";
 
-  const [visible, setVisible] = useState(false);
-
-  const handleCancel = () => {
-    console.log("我是取消");
-    setVisible(false);
-  };
-
-  const handleOk = () => {
-    console.log("我是确定");
-    setVisible(false);
-  };
-  const hanleClick = () => {
-    // Alert('我是弹框')
-    // Confirm(
-    //   "我还在吗",
-    //   () => console.log("yes"),
-    //   () => console.log("no")
-    // );
-    alert("我是提示框");
-    confirm("你好啊");
-  };
-  const hanleClick1 = () => {
-    // Alert('我是弹框')
-    const { onOk } = Modal(
-      <h1>
-        我是Modal<Button onClick={() => onOk()}>按钮</Button>
-      </h1>
-    );
-  };
+const Overview = () => {
   return (
-    <>
-      <div id="detail">
-        <Outlet />
-      </div>
-      <div id="sidebar">
-        <Icon name="alipay"></Icon>
-        <Icon name="alipay" spin></Icon>
-
-        <hr />
-
-        <Button>普通按钮</Button>
-        <Button level="primary">提醒按钮</Button>
-
-        <Button level="danger">危险按钮</Button>
-        <Button level="dashed">虚线按钮</Button>
-        <Button level="link" href="baidu.com">
-          链接按钮
-        </Button>
-        <Button loading>普通按钮</Button>
-        <Button
-          level="primary"
-          loading
-          loadingText="Loading"
-          onClick={onClickButton}
-        >
-          提醒按钮
-        </Button>
-        <Button level="danger" loading>
-          危险按钮
-        </Button>
-        <Button level="dashed" loading>
-          虚线按钮
-        </Button>
-
-        <hr />
-
-        <Button level="primary" onClick={() => setVisible(!visible)}>
-          基本 Dialog
-        </Button>
-        <Button level="primary" onClick={hanleClick}>
-          Alert
-        </Button>
-        <Button level="primary" onClick={hanleClick1}>
-          Modal
-        </Button>
-
-        <Dialog
-          maskClosable={false}
-          visible={visible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <p>这是一段文字</p>
-          <p>这是一段文字</p>
-          <p>这是一段文字</p>
-        </Dialog>
-
-        <hr />
-
-        <Layout style={{ height: 300 }}>
-          <SideBar>我是侧边</SideBar>
-          <Layout>
-            <Header>header</Header>
-            <Content>content</Content>
-            <Footer>footer</Footer>
-          </Layout>
-        </Layout>
-      </div>
-    </>
+    <Layout className="pageWrapper">
+      <Header className="g-header">
+        <img src={logo} alt="logo" />
+        <div className="g-header-right">
+          <Button
+            className="link"
+            level="link"
+            href="https://github.com/yym-yumeng123/ReactUI"
+          >
+            GitHub
+          </Button>
+        </div>
+      </Header>
+      <Layout>
+        <SideBar className="g-aside">
+          <h2>组件</h2>
+          <ul>
+            {/* {routeList.map((item, index) => {
+              return (
+                <li key={String(index)}>
+                  <Link to={item.path}>{item.title}</Link>
+                </li>
+              );
+            })} */}
+            <li>
+              <NavLink to={"/overview/icon"}>Icon组件</NavLink>
+              <NavLink to={"/overview/layout"}>Layout组件</NavLink>
+            </li>
+          </ul>
+        </SideBar>
+        <Content className="g-main">
+          <Outlet />
+        </Content>
+      </Layout>
+      <Footer className="g-footer">&copy; 杨雨蒙</Footer>
+    </Layout>
   );
-}
+};
+
+export default Overview;

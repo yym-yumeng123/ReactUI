@@ -2,7 +2,9 @@ import React from "react";
 import { createHashRouter } from "react-router-dom";
 
 import Home from "../pages/Home/home";
-import Overview from "../pages/Overview/overview";
+import Overview from "views/src/pages/Overview/overview";
+import IconDemo from "views/src/example/Icon/Icon.demo";
+
 
 const router = createHashRouter([
   {
@@ -13,6 +15,17 @@ const router = createHashRouter([
   {
     path: "/overview",
     element: <Overview />,
+    children: [
+      {
+        path: 'icon',
+        element: <IconDemo />,
+        index: true
+      },
+      {
+        path: 'layout',
+        element: <IconDemo />,
+      },
+    ]
   },
 ]);
 

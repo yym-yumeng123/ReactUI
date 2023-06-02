@@ -1,5 +1,3 @@
-@import 'assets/stylesheets/reset.scss';
-
 $padding: 16px;
 
 .pageWrapper {
@@ -24,7 +22,7 @@ $padding: 16px;
     }
   }
   .g-aside {
-    width: 256px;
+    min-width: 256px;
     height: calc(100vh - 121px);
     overflow: auto;
     border-right: 1px solid #f2f2f5;

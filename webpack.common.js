@@ -63,6 +63,7 @@ module.exports = {
       lib: path.resolve(__dirname, "lib/"),
       example: path.resolve(__dirname, "example/"),
       assets: path.resolve(__dirname, "assets/"),
+      views: path.resolve(__dirname, "views/"),
     },
   },
 };

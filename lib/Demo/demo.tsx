@@ -1,34 +1,32 @@
-import React, { useState } from "react";
-import Highlight, { defaultProps } from "prism-react-renderer";
-import theme from "prism-react-renderer/themes/shadesOfPurple";
+import React, { FC, useState } from "react";
+import { Highlight, themes } from "prism-react-renderer";
 import Button from "../Button/button";
+
 interface Props {
   code: string;
   buttonVisible?: boolean;
-  children: any
+  children: any;
 }
 
 const style = {
-  width: '100%',
-  overflow: 'auto'
-}
+  width: "100%",
+  overflow: "auto",
+};
 
 /**
  * @description 代码高亮 demo
  */
-const Demo: React.FunctionComponent<Props> = (props: any) => {
+const Demo: FC<Props> = (props: any) => {
   const { buttonVisible = true } = props;
   const [codeVisible, setCodeVisible] = useState(false);
   const code = (
-    <Highlight {...defaultProps} code={props.code} theme={theme} language="jsx">
+    <Highlight code={props.code} theme={themes.vsDark} language="tsx">
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={style}>
           {tokens.map((line, i) => (
-            // tslint:disable-next-line: jsx-key
             <div {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
-                // tslint:disable-next-line: jsx-key
-                <span {...getTokenProps({ token, key })} />
+                <span key={key} {...getTokenProps({ token })} />
               ))}
             </div>
           ))}

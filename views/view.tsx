@@ -17,8 +17,8 @@ import router from "./src/routes/routes";
 // const isTouchDevice = "ontouchstart" in document.documentElement;
 // console.log(isTouchDevice, "isTouchDevice");
 
-import "./src/style/var.scss";
-import "./src/style/reset.scss";
+import "./src/assets/style/var.scss";
+import "./src/assets/style/reset.scss";
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

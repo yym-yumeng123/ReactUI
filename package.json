@@ -29,6 +29,8 @@
     "babel-preset-react-app": "^10.0.1",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.1",
+    "prism-react-renderer": "^2.0.4",
+    "raw-loader": "^4.0.2",
     "react-router-dom": "^6.11.2",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
