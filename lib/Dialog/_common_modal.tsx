@@ -33,12 +33,11 @@ const modal = (content: ReactNode, footer: ReactElement | null) => {
 // Alert  => ./alert.tsx
 const alert = (content: string) => {
   const footer = (
-    <>
-      <Button level="primary" onClick={() => onClose()}>
-        确定
-      </Button>
-    </>
+    <Button level="primary" onClick={() => onClose()}>
+      确定
+    </Button>
   );
+
   const onClose = modal(content, footer);
 };
 

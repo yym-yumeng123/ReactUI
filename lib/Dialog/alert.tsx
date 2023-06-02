@@ -19,11 +19,9 @@ const Alert = (content: string) => {
       visible={true}
       onCancel={onClose}
       footer={
-        <>
-          <Button level="primary" onClick={onClose}>
-            确定
-          </Button>
-        </>
+        <Button level="primary" onClick={onClose}>
+          确定
+        </Button>
       }
     >
       {content}

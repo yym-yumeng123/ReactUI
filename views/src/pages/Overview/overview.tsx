@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import Icon from "lib/Icon/icon";
 import Button from "lib/Button/button";
-import Dialog from "lib/Dialog/dialog";
+import Dialog, { Alert, Confirm, Modal, alert, confirm, modal } from "lib/Dialog/dialog";
 
 export default function Overview() {
   const onClickButton = () => {
@@ -20,6 +20,20 @@ export default function Overview() {
   const handleOk = () => {
     console.log("我是确定");
     setVisible(false);
+  };
+  const hanleClick = () => {
+    // Alert('我是弹框')
+    // Confirm(
+    //   "我还在吗",
+    //   () => console.log("yes"),
+    //   () => console.log("no")
+    // );
+    alert('我是提示框')
+    confirm('你好啊')
+  };
+  const hanleClick1 = () => {
+    // Alert('我是弹框')
+    const { onNo, onOk } = Modal(<h1>我是Modal<Button onClick={() => onOk()}>按钮</Button></h1>);
   };
   return (
     <>
@@ -61,8 +75,19 @@ export default function Overview() {
         <Button level="primary" onClick={() => setVisible(!visible)}>
           基本 Dialog
         </Button>
+        <Button level="primary" onClick={hanleClick}>
+          Alert
+        </Button>
+        <Button level="primary" onClick={hanleClick1}>
+          Modal
+        </Button>
 
-        <Dialog maskClosable={false} visible={visible} onOk={handleOk} onCancel={handleCancel}>
+        <Dialog
+          maskClosable={false}
+          visible={visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
           <p>这是一段文字</p>
           <p>这是一段文字</p>
           <p>这是一段文字</p>

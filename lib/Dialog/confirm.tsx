@@ -20,7 +20,7 @@ const Confirm = (content: string, ok?: () => void, no?: () => void) => {
   // 用户调用 dialog, 创建一个组件
   const component = (
     // dialog 默认看得见
-    <Dialog visible={true} onOk={onOk} onCancel={onNo}>
+    <Dialog title="确认" visible={true} onOk={onOk} onCancel={onNo}>
       {content}
     </Dialog>
   );

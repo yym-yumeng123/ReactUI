@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 import Icon from "lib/Icon/icon";
 import Button from "lib/Button/button";
+import { alert, confirm, modal } from "./_common_modal";
 import "./dialog.scss";
 
 const mergeClass = addPrefixAndMergeClass("yui-dialog");
@@ -82,3 +83,4 @@ export default Dialog;
 export { default as Alert } from "./alert";
 export { default as Confirm } from "./confirm";
 export { default as Modal } from "./modal";
+export { alert, confirm, modal };

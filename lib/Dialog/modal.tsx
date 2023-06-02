@@ -18,7 +18,7 @@ const Modal = (
   };
 
   const component = (
-    <Dialog visible={true} onOk={onOk} onCancel={onNo}>
+    <Dialog title="模态框" visible={true} onOk={onOk} onCancel={onNo} footer={null}>
       {content}
     </Dialog>
   );
@@ -27,6 +27,7 @@ const Modal = (
   document.body.appendChild(div);
   ReactDOM.render(component, div);
 
+  // 暴露出去, 可以给外面的元素用
   return {
     onOk,
     onNo
