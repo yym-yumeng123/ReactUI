@@ -1,17 +1,15 @@
-// class 切换 是否存在
-interface ClassToggles {
-  [key: string]: Boolean;
-}
-
 interface Options {
   extra: string | undefined;
 }
 
 /**
+ * @param prefix 添加前缀
+ * @param name 字符串 或者 对象
  * @param options {extra: 'xxx'}
+ *
  */
 const addPrefixAndMergeClass = (prefix: string) => (
-  name: string | ClassToggles,
+  name: string | Record<string, boolean>,
   options?: Options
 ) =>
   Object.entries(name instanceof Object ? name : { [name]: name })
@@ -22,3 +20,11 @@ const addPrefixAndMergeClass = (prefix: string) => (
     .join(" ");
 
 export default addPrefixAndMergeClass;
+
+/**
+ * const prefix = addPrefixAndMergeClass('zh')
+ * prefix('a') -> zh-a
+ * prefix('b') -> zh-b
+ * prefix({"icon": true, "button": true}) -> zh-icon zh-button
+ * prefix({"icon": true, "button": true}, {extra: 'yyy'}) -> 'zh-icon zh-button yyy'
+ */

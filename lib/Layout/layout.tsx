@@ -1,26 +1,18 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, FC, HTMLAttributes } from "react";
 import Sidebar from "./sidebar";
 import "./layout.scss";
 
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-layout");
 
-// 1. 可能还有 id 等等 html属性
-// interface LayoutProps {
-//   style: CSSProperties;
-//   className: string;
-// }
-
-// 对1的优化: 继承 html 属性
-interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
+interface LayoutProps extends HTMLAttributes<HTMLElement> {
   // children 是一个 react 元素 或者多个元素
   children: ReactElement | ReactElement[];
 }
 
-const Layout: React.FunctionComponent<LayoutProps> = props => {
+const Layout: FC<LayoutProps> = (props) => {
   const { className, children, ...restProps } = props;
 
-  // ts 断言, children 当做数组来用
   const child = children as ReactElement[];
 
   // 得到子元素是否有 SideBar, 有添加类名

@@ -3,7 +3,8 @@ import { Outlet } from "react-router-dom";
 
 import Icon from "lib/Icon/icon";
 import Button from "lib/Button/button";
-import Dialog, { Alert, Confirm, Modal, alert, confirm, modal } from "lib/Dialog/dialog";
+import Dialog, { Modal, alert, confirm } from "lib/Dialog/dialog";
+import Layout, { Header, Footer, Content, SideBar } from "lib/Layout/layout";
 
 export default function Overview() {
   const onClickButton = () => {
@@ -28,12 +29,16 @@ export default function Overview() {
     //   () => console.log("yes"),
     //   () => console.log("no")
     // );
-    alert('我是提示框')
-    confirm('你好啊')
+    alert("我是提示框");
+    confirm("你好啊");
   };
   const hanleClick1 = () => {
     // Alert('我是弹框')
-    const { onNo, onOk } = Modal(<h1>我是Modal<Button onClick={() => onOk()}>按钮</Button></h1>);
+    const { onOk } = Modal(
+      <h1>
+        我是Modal<Button onClick={() => onOk()}>按钮</Button>
+      </h1>
+    );
   };
   return (
     <>
@@ -92,6 +97,17 @@ export default function Overview() {
           <p>这是一段文字</p>
           <p>这是一段文字</p>
         </Dialog>
+
+        <hr />
+
+        <Layout style={{ height: 300 }}>
+          <SideBar>我是侧边</SideBar>
+          <Layout>
+            <Header>header</Header>
+            <Content>content</Content>
+            <Footer>footer</Footer>
+          </Layout>
+        </Layout>
       </div>
     </>
   );
