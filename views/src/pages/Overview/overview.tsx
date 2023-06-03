@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import Button from "lib/Button/button";
 import { Layout, Header, Footer, Content, SideBar } from "lib/Layout/layout";
+import { routeList } from "views/src/routes/config";
 
 import "./overview.scss";
 import logo from "../../assets/image/logo.png";
@@ -25,17 +26,14 @@ const Overview = () => {
         <SideBar className="g-aside">
           <h2>组件</h2>
           <ul>
-            {/* {routeList.map((item, index) => {
+            {routeList.map((item, index) => {
               return (
                 <li key={String(index)}>
-                  <Link to={item.path}>{item.title}</Link>
+                  <NavLink to={`/overview${item.path}`}>{item.title}</NavLink>
                 </li>
               );
-            })} */}
-            <li>
-              <NavLink to={"/overview/icon"}>Icon组件</NavLink>
-              <NavLink to={"/overview/layout"}>Layout组件</NavLink>
-            </li>
+            })}
+            <li></li>
           </ul>
         </SideBar>
         <Content className="g-main">

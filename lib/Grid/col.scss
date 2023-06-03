@@ -2,14 +2,14 @@
   $class-prefix: yui-col;
   @for $n from 1 to 24 {
     &.#{$class-prefix}-#{$n} {
-      width: ($n / 24) * 100%;
+      width: calc($n / 24) * 100%;
     }
   }
 
   $class-prefix: yui-col-offset;
   @for $n from 1 to 24 {
     &.#{$class-prefix}-#{$n} {
-      margin-left: ($n / 24) * 100%;
+      margin-left: calc($n / 24) * 100%;
     }
   }
 }

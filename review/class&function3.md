@@ -73,7 +73,7 @@ interface Props {
   message?: string;
 }
 
-const App: React.FunctionComponent<Props> = (props) => {
+const App: FC<Props> = (props) => {
   /**
    * 如何使用 state, React version > 16.8
    * useState 返回一个数组, 解构

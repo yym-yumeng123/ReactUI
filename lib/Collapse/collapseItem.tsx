@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useEffect, useRef, useState } from "react";
+import React, { FC, ReactElement, ReactNode, useEffect, useRef, useState } from "react";
 import Icon from "lib/Icon/icon";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-collapse-item");
@@ -12,7 +12,7 @@ interface CollapseItemProps {
   selected?: string[];
   isCollapsed?: boolean;
   handleClick?: () => {};
-  children?: ReactElement
+  children?: ReactNode
 }
 
 const CollapseItem: FC<CollapseItemProps> = props => {

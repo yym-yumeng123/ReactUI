@@ -4,7 +4,7 @@ import React, {
   ReactNode,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 import ReactDOM from "react-dom";
 import useClickOutside from "lib/hooks/useClickOutside";
@@ -16,19 +16,20 @@ import "./popover.scss";
 
 type Placement = "top" | "right" | "bottom" | "left";
 interface PopoverProps {
+  children: ReactNode;
   title?: string | ReactNode;
   content: string | ReactNode;
   placement?: Placement; // 方向
   trigger?: "hover" | "click";
 }
 
-const Popover: FC<PopoverProps> = props => {
+const Popover: FC<PopoverProps> = (props) => {
   const {
     title,
     content,
     placement = "top",
     trigger = "hover",
-    children
+    children,
   } = props;
   let timerId: any;
 
@@ -39,31 +40,28 @@ const Popover: FC<PopoverProps> = props => {
   const triggerWrapperRef = useRef<HTMLDivElement>(null);
 
   const positionContent = () => {
-    const {
-      left,
-      top,
-      height,
-      width
-    } = (triggerWrapperRef.current as HTMLDivElement).getBoundingClientRect();
+    const { left, top, height, width } = (
+      triggerWrapperRef.current as HTMLDivElement
+    ).getBoundingClientRect();
     const contentRefCopy = contentRef.current as HTMLDivElement;
     const { height: contentHeight } = contentRefCopy.getBoundingClientRect();
     let positions = {
       top: {
         top: `${top + window.scrollY}`, // top 的高度 + 滚动的高度
-        left: `${left + window.scrollX}`
+        left: `${left + window.scrollX}`,
       },
       bottom: {
         top: `${top + height + window.scrollY}`,
-        left: `${left + window.scrollX}`
+        left: `${left + window.scrollX}`,
       },
       left: {
         top: `${top + window.scrollY - (contentHeight - height) / 2}`,
-        left: `${left + window.scrollX}`
+        left: `${left + window.scrollX}`,
       },
       right: {
         top: `${top + window.scrollY - (contentHeight - height) / 2}`,
-        left: `${width + left + window.scrollX}`
-      }
+        left: `${width + left + window.scrollX}`,
+      },
     };
     contentRefCopy.style.left = positions[placement].left + "px";
     contentRefCopy.style.top = positions[placement].top + "px";
@@ -143,10 +141,6 @@ const Popover: FC<PopoverProps> = props => {
       </span>
     </div>
   );
-};
-
-Popover.defaultProps = {
-  placement: "top"
 };
 
 export default Popover;

@@ -15,7 +15,7 @@ interface IconProps {
  * <> 代表这个类型接受一个参数, 不传 {} 代表无限制
  * Icon : 是一个函数组件, 属性类型时 IconProps
  */
-const Icon: React.FunctionComponent<IconProps> = (props) => {}
+const Icon: FC<IconProps> = (props) => {}
 ```
 
 ### 使用 iconfont 的 图标

@@ -1,18 +1,18 @@
 import React from "react";
 import Icon from "lib/Icon/icon";
 import toast from "lib/Toast/toast";
-import "./icon.demo.scss";
 import { iconNames } from "./config";
+import "./icon.demo.scss";
 
-const IconExample_AllIcon: React.FunctionComponent = () => {
+const IconExample_AllIcon = () => {
   const copyText = (item: string) => {
     navigator.clipboard.writeText(`<Icon name="${item}" />`).then(() => {
       toast({
-        content: `<Icon name="${item}" /> 已复制`
+        content: `<Icon name="${item}" /> 已复制`,
       });
     });
   };
-  const viewIcon = iconNames.map(item => {
+  const viewIcon = iconNames.map((item) => {
     return (
       <li key={item} onClick={() => copyText(item)} className={item}>
         <Icon name={item} />

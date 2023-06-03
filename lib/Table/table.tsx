@@ -25,6 +25,7 @@ type column<T> = {
   render?: (text: string, record: T, index: number) => ReactElement;
   // 排序
   sorter?: (val: orderType) => void;
+
 };
 
 interface TableProps<T> {

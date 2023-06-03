@@ -1,4 +1,4 @@
-import React, { ReactFragment } from "react";
+import React, { FC, ReactFragment } from "react";
 
 export interface FormValue {
   [K: string]: any;
@@ -13,7 +13,7 @@ interface FormProps {
   errors: { [K: string]: string[] };
 }
 
-const Form: React.FunctionComponent<FormProps> = props => {
+const Form: FC<FormProps> = props => {
   const formData = props.value;
   const onSubmit: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
