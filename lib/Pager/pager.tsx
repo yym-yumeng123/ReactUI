@@ -46,7 +46,7 @@ const Pager: FC<PagerProps> = props => {
         return prev;
       }, []);
     } else {
-      const minPages = [];
+      const minPages: number[] = [];
       for (let i = 1; i <= totalPage; i++) {
         minPages.push(i);
       }

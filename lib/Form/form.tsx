@@ -1,4 +1,4 @@
-import React, { FC, ReactFragment } from "react";
+import React, { FC, ReactElement } from "react";
 
 export interface FormValue {
   [K: string]: any;
@@ -7,7 +7,7 @@ export interface FormValue {
 interface FormProps {
   value: FormValue;
   fields: Array<{ name: string; label: string | ""; input: { type: string } }>;
-  buttons: ReactFragment;
+  buttons: ReactElement;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: (value: FormValue) => void;
   errors: { [K: string]: string[] };

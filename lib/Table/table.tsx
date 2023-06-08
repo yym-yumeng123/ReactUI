@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
 } from "react";
 import Pager, { PagerProps } from "lib/Pager/pager";
 import { Checkbox } from "lib/Checkbox";
@@ -25,7 +25,6 @@ type column<T> = {
   render?: (text: string, record: T, index: number) => ReactElement;
   // 排序
   sorter?: (val: orderType) => void;
-
 };
 
 interface TableProps<T> {
@@ -65,7 +64,7 @@ function Table<T>(props: TableProps<T>) {
     loading = false,
     height,
 
-    pager
+    pager,
   } = props;
 
   const [_, setUpdate] = useState(0); // 更新页面
@@ -128,14 +127,15 @@ function Table<T>(props: TableProps<T>) {
 
   // 单个行是否被选中
   const areItemSelected = (item: any) =>
-    useMemo(() => selected.filter(i => i.key === item.key).length > 0, [
-      selected
-    ]);
+    useMemo(
+      () => selected.filter((i) => i.key === item.key).length > 0,
+      [selected]
+    );
 
   // 展开操作
   const changeExpandItems = (item: any) => {
     if (hasInExapndItems(item)) {
-      setExpandItems(expandItems.filter(i => i !== item.key));
+      setExpandItems(expandItems.filter((i) => i !== item.key));
     } else {
       setExpandItems([...expandItems, item.key]);
     }
@@ -187,14 +187,14 @@ function Table<T>(props: TableProps<T>) {
                 <th style={{ width: "50px" }}>
                   <Checkbox
                     checked={areAllItemsSelected}
-                    onChange={e => handleSelectAllItem(e)}
+                    onChange={(e) => handleSelectAllItem(e)}
                   />
                 </th>
               )}
               {numberVisible && <th style={{ width: "50px" }}>序号</th>}
               {expandable && <th style={{ width: "50px" }}></th>}
 
-              {columns.map(row => {
+              {columns.map((row) => {
                 return (
                   <th
                     key={row.key as string}
@@ -240,7 +240,7 @@ function Table<T>(props: TableProps<T>) {
                         <td style={{ width: "50px" }}>
                           <Checkbox
                             checked={areItemSelected(item)}
-                            onChange={e => handleSelectItem(e, item)}
+                            onChange={(e) => handleSelectItem(e, item)}
                           />
                         </td>
                       )}
@@ -261,7 +261,7 @@ function Table<T>(props: TableProps<T>) {
                         </td>
                       )}
 
-                      {columns.map(row => {
+                      {columns.map((row) => {
                         return (
                           <td
                             key={row.key as string}
@@ -269,11 +269,11 @@ function Table<T>(props: TableProps<T>) {
                           >
                             {row.render
                               ? row.render(
-                                  (item[row.key] as unknown) as string,
+                                  item[row.key] as unknown as string,
                                   item,
                                   index
                                 )
-                              : ((item[row.key] as unknown) as string)}
+                              : (item[row.key] as unknown as string)}
                           </td>
                         );
                       })}
@@ -282,9 +282,7 @@ function Table<T>(props: TableProps<T>) {
                       {hasInExapndItems(item) && (
                         <>
                           <td colSpan={colSpan()}></td>
-                          <td colSpan={columns.length}>
-                            {item?.description || "/"}
-                          </td>
+                          <td colSpan={columns.length}>/</td>
                         </>
                       )}
                     </tr>
