@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import Dialog from "./dialog";
 import Button from "lib/Button/button";
 
@@ -8,9 +8,13 @@ import Button from "lib/Button/button";
  * ReactDOM.render
  */
 const Alert = (content: string) => {
+  // 创建一个 div
+  const div = document.createElement("div");
+  const rootDiv = ReactDOM.createRoot(div);
+
   const onClose = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-    ReactDOM.unmountComponentAtNode(div);
+    rootDiv.render(React.cloneElement(component, { visible: false }));
+    rootDiv.unmount()
     div.remove();
   };
   const component = (
@@ -27,11 +31,10 @@ const Alert = (content: string) => {
       {content}
     </Dialog>
   );
-  // 创建一个 div
-  const div = document.createElement("div");
+
   // 放入 body
-  document.body.append(div);
-  ReactDOM.render(component, div);
+  // document.body.append(div);
+  rootDiv.render(component);
 };
 
 export default Alert;

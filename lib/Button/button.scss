@@ -1,4 +1,11 @@
-@import "lib/assets/stylesheets/variable.scss";
+@import "../assets/stylesheets/variable.scss";
+
+// 改变 size, 就是改变这几个属性
+@mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+  border-radius: $border-radius;
+}
 
 // 基本样式
 .yui-button {
@@ -7,7 +14,6 @@
   align-items: center;
   font-weight: $btn-font-weight;
   border: none;
-  box-sizing: border-box;
   user-select: none;
 
   @include button-size(
@@ -163,28 +169,32 @@
       }
     }
   }
+
+  &.yui-button-lg {
+    @include button-size(
+      $btn-padding-x-lg,
+      $btn-padding-y-lg,
+      $btn-font-size-lg,
+      $btn-radius
+    );
+  }
+  &.yui-button-sm {
+    @include button-size(
+      $btn-padding-x-sm,
+      $btn-padding-y-sm,
+      $btn-font-size-sm,
+      $btn-radius
+    );
+  }
+  &.yui-button-xs {
+    @include button-size(
+      $btn-padding-x-xs,
+      $btn-padding-y-xs,
+      $btn-font-size-xs,
+      $btn-radius
+    );
+  }
+
 }
-.yui-button-lg {
-  @include button-size(
-    $btn-padding-x-lg,
-    $btn-padding-y-lg,
-    $btn-font-size-lg,
-    $btn-radius
-  );
-}
-.yui-button-sm {
-  @include button-size(
-    $btn-padding-x-sm,
-    $btn-padding-y-sm,
-    $btn-font-size-sm,
-    $btn-radius
-  );
-}
-.yui-button-xs {
-  @include button-size(
-    $btn-padding-x-xs,
-    $btn-padding-y-xs,
-    $btn-font-size-xs,
-    $btn-radius
-  );
-}
+
+

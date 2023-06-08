@@ -1,36 +1,42 @@
 import React, { ReactNode } from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import Dialog from "./dialog";
 
-const Modal = (
-  content: ReactNode,
-) => {
+const Modal = (content: ReactNode) => {
+  // 创建一个 div
+  const div = document.createElement("div");
+  const rootDiv = ReactDOM.createRoot(div);
+
   const onOk = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-    ReactDOM.unmountComponentAtNode(div);
+    rootDiv.render(React.cloneElement(component, { visible: false }));
+    rootDiv.unmount();
     div.remove();
   };
 
   const onNo = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-    ReactDOM.unmountComponentAtNode(div);
+    rootDiv.render(React.cloneElement(component, { visible: false }));
+    rootDiv.unmount();
     div.remove();
   };
 
   const component = (
-    <Dialog title="模态框" visible={true} onOk={onOk} onCancel={onNo} footer={null}>
+    <Dialog
+      title="模态框"
+      visible={true}
+      onOk={onOk}
+      onCancel={onNo}
+      footer={null}
+    >
       {content}
     </Dialog>
   );
 
-  const div = document.createElement("div");
-  document.body.appendChild(div);
-  ReactDOM.render(component, div);
+  rootDiv.render(component);
 
   // 暴露出去, 可以给外面的元素用
   return {
     onOk,
-    onNo
+    onNo,
   };
 };
 

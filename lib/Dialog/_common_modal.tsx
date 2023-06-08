@@ -4,15 +4,19 @@
  */
 
 import React, { ReactElement, ReactNode } from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import Dialog from "./dialog";
 import Button from "lib/Button/button";
 
 const modal = (content: ReactNode, footer: ReactElement | null) => {
+  // 创建一个 div
+  const div = document.createElement("div");
+  const rootDiv = ReactDOM.createRoot(div);
+
   // alert confrirm modal 都有 close, 提取出来
   const onClose = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-    ReactDOM.unmountComponentAtNode(div);
+    rootDiv.render(React.cloneElement(component, { visible: false }));
+    rootDiv.unmount();
     div.remove();
   };
   // 三个简化的 函数 都有 component 这个, 只是 footer 不一样
@@ -22,10 +26,7 @@ const modal = (content: ReactNode, footer: ReactElement | null) => {
     </Dialog>
   );
 
-  // 把这个组件放入 div, 并把 onClose return 出去
-  const div = document.createElement("div");
-  document.body.append(div);
-  ReactDOM.render(component, div);
+  rootDiv.render(component);
 
   return onClose;
 };

@@ -4,6 +4,7 @@ $padding: 16px;
   min-height: 100vh;
   .g-main {
     padding: $padding $padding * 2 $padding $padding;
+    height: calc(100vh - 121px);
     overflow: auto;
   }
   .g-header {

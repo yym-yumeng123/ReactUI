@@ -55,12 +55,7 @@ $radio-borderColor: $B300;
 // table
 $tabel-border-color: $B100;
 
-// 改变 size, 就是改变这几个属性
-@mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {
-  padding: $padding-y $padding-x;
-  font-size: $font-size;
-  border-radius: $border-radius;
-}
+
 
 // Card
 $card-border-color: $B200;

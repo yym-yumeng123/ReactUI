@@ -1,18 +1,22 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import Dialog from "./dialog";
 
 const Confirm = (content: string, ok?: () => void, no?: () => void) => {
+  // 创建一个 div
+  const div = document.createElement("div");
+  const rootDiv = ReactDOM.createRoot(div);
+
   const onOk = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-    ReactDOM.unmountComponentAtNode(div);
+    rootDiv.render(React.cloneElement(component, { visible: false }));
+    rootDiv.unmount();
     div.remove();
     ok && ok();
   };
 
   const onNo = () => {
-    ReactDOM.render(React.cloneElement(component, { visible: false }), div);
-    ReactDOM.unmountComponentAtNode(div);
+    rootDiv.render(React.cloneElement(component, { visible: false }));
+    rootDiv.unmount();
     div.remove();
     no && no();
   };
@@ -25,9 +29,7 @@ const Confirm = (content: string, ok?: () => void, no?: () => void) => {
     </Dialog>
   );
 
-  const div = document.createElement("div");
-  document.body.appendChild(div);
-  ReactDOM.render(component, div);
+  rootDiv.render(component);
 };
 
 export default Confirm;
