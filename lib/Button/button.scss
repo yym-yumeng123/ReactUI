@@ -1,4 +1,4 @@
-@import "../assets/stylesheets/variable.scss";
+@import "lib/assets/stylesheets/variable.scss";
 
 // 改变 size, 就是改变这几个属性
 @mixin button-size($padding-x, $padding-y, $font-size, $border-radius) {

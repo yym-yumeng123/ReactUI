@@ -1,8 +1,9 @@
 import React, { ReactElement, FC, HTMLAttributes } from "react";
 import Sidebar from "./sidebar";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+
 import "./layout.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-layout");
 
 interface LayoutProps extends HTMLAttributes<HTMLElement> {

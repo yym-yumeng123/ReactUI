@@ -10,7 +10,6 @@ import router from "./src/routes/routes";
 import "./src/assets/style/var.scss";
 import "./src/assets/style/reset.scss";
 
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />

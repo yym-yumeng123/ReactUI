@@ -1,4 +1,4 @@
-@import "lib/styles/variable.scss";
+@import "lib/assets/stylesheets/variable.scss";
 
 #yui-toast-wrapper {
   display: flex;
@@ -32,7 +32,7 @@
   // }
   &-close {
     position: relative;
-    top: 3px;
+    top: 1px;
     margin-left: 8px;
     cursor: pointer;
   }
