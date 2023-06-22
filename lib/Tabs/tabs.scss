@@ -1,4 +1,4 @@
-@import "lib/styles/variable.scss";
+@import "lib/assets/stylesheets/variable.scss";
 
 .yui-tabs {
   width: 100%;
@@ -17,7 +17,7 @@
         cursor: pointer;
         .yui-tabs-icon {
           position: relative;
-          top: 4px;
+          top: 3px;
           margin-right: 4px;
         }
 

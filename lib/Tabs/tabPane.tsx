@@ -1,19 +1,18 @@
 import React, { FC, ReactNode } from "react";
-
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+
 const mergeClass = addPrefixAndMergeClass("yui-tabpane");
 
-export interface TabPaneProps {
+interface TabPaneProps {
   children: ReactNode;
   title: string;
   name: string;
-  icon?: string; // 添加 icon 的名字
   disabled?: boolean;
+  icon?: string; // 添加 icon 的名字
 }
 
-const TabPane: FC<TabPaneProps> = (props) => {
-  const { children } = props;
-  return <div className={mergeClass("")}>{children}</div>;
-};
+const TabPane: FC<TabPaneProps> = ({ children }) => (
+  <div className={mergeClass("")}>{children}</div>
+);
 
 export default TabPane;

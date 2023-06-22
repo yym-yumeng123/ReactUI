@@ -4,13 +4,14 @@ import React, {
   useState,
   useRef,
   useEffect,
-  ReactNode
+  ReactNode,
 } from "react";
 import Icon from "lib/Icon/icon";
 import TabPane from "./tabPane";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+
 import "./tabs.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-tabs");
 
 interface TabsProps {
@@ -20,63 +21,55 @@ interface TabsProps {
   children: Array<ReactElement>;
 }
 
-const Tabs: FC<TabsProps> = props => {
+const Tabs: FC<TabsProps> = (props) => {
   const { children, active, extra, onChange } = props;
   const [current, setCurrent] = useState(active);
 
   const navWrapRef = useRef<HTMLDivElement>(null);
-  let currentItemRef = useRef<HTMLDivElement>(null);
+  const currentItemRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
-
-  // 判断子元素是否都是 TabPane
-  const isChildlrenElement = children.every(item => item.type === TabPane);
-  if (!isChildlrenElement) {
-    throw new Error("Tabs 子标签必须是 TabPane");
-  }
 
   // 设置高亮线的动画
   useEffect(() => {
     // 计算 active and 父元素 宽高
-    const {
-      width,
-      left: leftItem
-    } = (currentItemRef.current as HTMLDivElement).getBoundingClientRect();
+    const { width, left: leftItem } =
+      currentItemRef.current!.getBoundingClientRect();
 
     // 包裹 头部的 距离左边的距离
-    const {
-      left
-    } = (navWrapRef.current as HTMLDivElement).getBoundingClientRect();
+    const { left } = navWrapRef.current!.getBoundingClientRect();
 
     // 计算 left 差值
     const deltaLeft = leftItem - left;
 
     // 设置 高亮线的 marginLeft 和 宽度
-    (indicatorRef.current as HTMLDivElement).style.width = width + "px";
-    (indicatorRef.current as HTMLDivElement).style.marginLeft =
-      deltaLeft + "px";
+    indicatorRef.current!.style.width = `${width}px`;
+    indicatorRef.current!.style.marginLeft = `${deltaLeft}px`;
   }, [current]);
 
   const handleSelect = (e: any, name: string, disabled: boolean) => {
     if (disabled) return;
-
-    setCurrent(name!);
+    setCurrent(name);
     onChange && onChange(e, name);
   };
 
-  // 获取子元素的 title
-  const items = children.map((item, index) => {
-    const { name, title, icon, disabled = false } = item.props;
+  const items = React.Children.map(children, ({ props, type }, index) => {
+    const { name, title, icon, disabled = false } = props;
+
+    if (type !== TabPane) {
+      throw new Error("Tabs 子标签必须是 TabPane");
+    }
+
     return (
       <span
         className={mergeClass({
           item: true,
           active: name === current,
-          disabled
+          disabled,
         })}
         data-name={name}
-        key={index}
+        key={index + Math.random().toString(36).substring(2, 15) + Date.now()}
         ref={name === current ? currentItemRef : null}
-        onClick={e => handleSelect(e, name, disabled)}
+        onClick={(e) => handleSelect(e, name, disabled)}
       >
         {icon && (
           <span className={mergeClass("icon")}>
@@ -94,23 +87,15 @@ const Tabs: FC<TabsProps> = props => {
 
   return (
     <div className={mergeClass("")}>
-      <>
-        <div ref={navWrapRef} className={mergeClass("nav-wrap")}>
-          <div className={mergeClass("item-wrap")}>{items}</div>
-          {extra && <span className={mergeClass("extra")}>{extra}</span>}
-        </div>
-        <div ref={indicatorRef} className={mergeClass("indicator")}></div>
-      </>
-      <>
-        {
-          children.filter(item => {
-            return item.props.name === current;
-          })[0]
-        }
-      </>
+      <div ref={navWrapRef} className={mergeClass("nav-wrap")}>
+        <div className={mergeClass("item-wrap")}>{items}</div>
+        {extra && <span className={mergeClass("extra")}>{extra}</span>}
+      </div>
+      <div ref={indicatorRef} className={mergeClass("indicator")}></div>
+      {/* 显示选中的那一个组件 */}
+      {children.filter(({ props }) => props.name === current)[0]}
     </div>
   );
 };
 
-// Tabs.TabPane = TabPane
 export default Tabs;
