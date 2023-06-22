@@ -4,13 +4,13 @@ import React, {
   ChangeEventHandler,
   FocusEventHandler,
   InputHTMLAttributes,
-  ReactElement
+  ReactElement,
 } from "react";
 import Icon from "lib/Icon/icon";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 
 import "./input.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-input");
 
 // 定义 size
@@ -40,52 +40,41 @@ export interface InputProps
   onClear?: () => void;
 }
 
-const Input: FC<InputProps> = props => {
-  const {
-    disabled,
-    size,
-    prepend,
-    append,
-    value,
-    onChange,
-    onFocus,
-    onBlur,
-    onClear,
-    closable = false,
-    ...restProps
-  } = props;
+const Input: FC<InputProps> = ({
+  disabled,
+  size,
+  prepend,
+  append,
+  value,
+  onChange,
+  onFocus,
+  onBlur,
+  onClear,
+  closable = false,
+  ...restProps
+}) => {
   const isShow = useRef(closable);
 
-  const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     onChange && onChange(e);
   };
-  // 有焦点时, 设置样式
-  const handleFocus: FocusEventHandler<HTMLInputElement> = e => {
+
+  const handleFocus: FocusEventHandler<HTMLInputElement> = (e) => {
     onFocus && onFocus(e);
-
-    // console.log(e.currentTarget.parentElement?.parentElement);
-
-    // e.currentTarget.parentElement!.parentElement!.style.boxShadow =
-    // "0 0 0 3px rgba(52,152,255,0.25)";
-    // e.currentTarget.parentElement!.parentElement!.style.border = '1px solid #3498ff'
-    // e.currentTarget.parentElement!.parentElement!.style.borderRadius = "6px";
   };
-  const handleBlur: FocusEventHandler<HTMLInputElement> = e => {
+
+  const handleBlur: FocusEventHandler<HTMLInputElement> = (e) => {
     onBlur && onBlur(e);
-    // e.currentTarget.parentElement!.parentElement!.style.boxShadow = "none";
-    // e.currentTarget.parentElement!.parentElement!.style.border = '1px solid #e5e5ea'
-    // e.currentTarget.parentElement!.parentElement!.style.borderRadius = "none";
   };
-  const handleClear = () => {
-    onClear && onClear();
-  };
+
+  const handleClear = () => onClear && onClear();
 
   const parentClasses = {
     wrapper: true,
     prepend: !!prepend,
     append: !!append,
     [`${size}`]: !!size,
-    disabled: !!disabled
+    disabled: !!disabled,
   };
 
   return (
@@ -101,7 +90,7 @@ const Input: FC<InputProps> = props => {
           onBlur={handleBlur}
           onChange={handleChange}
           style={{
-            padding: `8px ${isShow.current ? "26px" : "12px"} 8px 12px`
+            padding: `8px ${isShow.current ? "26px" : "12px"} 8px 12px`,
           }}
           {...restProps}
         />

@@ -1,4 +1,4 @@
-@import "lib/styles/variable.scss";
+@import "lib/assets/stylesheets/variable.scss";
 
 .yui-input-wrapper {
   display: inline-block;
@@ -117,26 +117,6 @@
     }
   }
 
-  // size
-  &.yui-input-lg {
-    .yui-input {
-      padding: 10px 12px;
-      font-size: $font-size-lg;
-    }
-  }
-  &.yui-input-sm {
-    .yui-input {
-      padding: 5px 12px;
-      font-size: $font-size-default;
-    }
-  }
-  &.yui-input-xs {
-    .yui-input {
-      padding: 2px 12px;
-      font-size: 12px;
-    }
-  }
-
   // default disabled
   &.yui-input-disabled {
     cursor: not-allowed;
@@ -185,11 +165,32 @@
     }
   }
   &.yui-input-prepend.yui-input-append.yui-input-disabled {
-    .yui-input-right, .yui-input-left {
-      color: $disabeld-font-color
+    .yui-input-right,
+    .yui-input-left {
+      color: $disabeld-font-color;
     }
     .yui-input {
       border-left: none;
+    }
+  }
+
+  // size
+  &.yui-input-lg {
+    .yui-input {
+      padding: 10px 12px !important;
+      font-size: $font-size-lg;
+    }
+  }
+  &.yui-input-sm {
+    .yui-input {
+      padding: 5px 12px !important;
+      font-size: $font-size-default;
+    }
+  }
+  &.yui-input-xs {
+    .yui-input {
+      padding: 2px 12px !important;
+      font-size: 12px;
     }
   }
 }
