@@ -1,0 +1,8 @@
+:root {
+  /* title */
+  --font-size-default: 14px;
+
+  /* tab */
+  --active-tab-color: #1675e0;
+  --default-tab-color: #8e8e93;
+}

@@ -19,7 +19,7 @@
     "esModuleInterop": true,
     "noUnusedLocals": true
   },
-  "include": ["lib/**/*", "example/**/*", "views/**/*"],
+  "include": ["lib/**/*", "views/**/*"],
   "exclude": [
     "node_modules",
     "build",
@@ -27,8 +27,6 @@
     "scripts",
     "acceptance-tests",
     "webpack",
-    "jest",
-    "src/setupTests.ts",
     "*.js"
   ]
 }

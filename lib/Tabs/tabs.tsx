@@ -9,6 +9,7 @@ import React, {
 import Icon from "lib/Icon/icon";
 import TabPane from "./tabPane";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+import { getKey } from "lib/Helpers/key";
 
 import "./tabs.scss";
 
@@ -67,7 +68,7 @@ const Tabs: FC<TabsProps> = (props) => {
           disabled,
         })}
         data-name={name}
-        key={index + Math.random().toString(36).substring(2, 15) + Date.now()}
+        key={getKey(index)}
         ref={name === current ? currentItemRef : null}
         onClick={(e) => handleSelect(e, name, disabled)}
       >
