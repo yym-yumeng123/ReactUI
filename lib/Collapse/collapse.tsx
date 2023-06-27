@@ -1,9 +1,10 @@
-import React, { FC, ReactElement, useState } from "react";
+import React, { FC, ReactElement, cloneElement, useState } from "react";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 import CollapseItem from "./collapseItem";
 import "./collapse.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-collapse");
+
 interface CollapseProps {
   // 是否默认每次打开只展示一个
   single?: boolean;
@@ -20,7 +21,7 @@ const Collapse: FC<CollapseProps> = props => {
       throw new Error("折叠面板的子元素必须是 CollapseItem");
     }
 
-    return React.cloneElement(child, {
+    return cloneElement(child, {
       handleClick: () => {
         setBindIndex(index);
       },

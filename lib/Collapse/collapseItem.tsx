@@ -1,6 +1,7 @@
-import React, { FC, ReactElement, ReactNode, useEffect, useRef, useState } from "react";
+import React, { FC, ReactElement, ReactNode, useEffect, useState } from "react";
 import Icon from "lib/Icon/icon";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+
 const mergeClass = addPrefixAndMergeClass("yui-collapse-item");
 
 interface CollapseItemProps {
@@ -8,28 +9,28 @@ interface CollapseItemProps {
   name: string;
 
   // 父元素传参
-  single?: boolean;
+  single?: boolean; // 如果传递父元素, 使用, 为传参, 是有自有 state open
   selected?: string[];
   isCollapsed?: boolean;
-  handleClick?: () => {};
-  children?: ReactNode
+  handleClick?: () => void;
+  children: ReactNode
 }
 
 const CollapseItem: FC<CollapseItemProps> = props => {
   const {
     title,
     name,
-    isCollapsed = false,
-    single,
-    selected = [],
     handleClick,
     children,
+    single,
+    selected,
+    isCollapsed,
   } = props;
+
   const [open, setOpen] = useState(false);
-  const contentRef = useRef(null);
 
   useEffect(() => {
-    if (selected.indexOf(name) > -1) {
+    if (selected!.indexOf(name) > -1) {
       setOpen(true);
     }
   }, []);
@@ -57,7 +58,7 @@ const CollapseItem: FC<CollapseItemProps> = props => {
       </header>
       {/* 是否 single, 如果 true, 只看 自己的 state */}
       {(single ? isCollapsed : open) && (
-        <main ref={contentRef}>{children}</main>
+        <main>{children}</main>
       )}
     </div>
   );
