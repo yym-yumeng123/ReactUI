@@ -13,19 +13,12 @@ interface CollapseItemProps {
   selected?: string[];
   isCollapsed?: boolean;
   handleClick?: () => void;
-  children: ReactNode
+  children: ReactNode;
 }
 
-const CollapseItem: FC<CollapseItemProps> = props => {
-  const {
-    title,
-    name,
-    handleClick,
-    children,
-    single,
-    selected,
-    isCollapsed,
-  } = props;
+const CollapseItem: FC<CollapseItemProps> = (props) => {
+  const { title, name, handleClick, children, single, selected, isCollapsed } =
+    props;
 
   const [open, setOpen] = useState(false);
 
@@ -37,7 +30,9 @@ const CollapseItem: FC<CollapseItemProps> = props => {
 
   const handleToggle = () => {
     setOpen(!open);
-    handleClick && handleClick();
+    if (single) {
+      handleClick && handleClick();
+    }
   };
 
   return (
@@ -52,14 +47,12 @@ const CollapseItem: FC<CollapseItemProps> = props => {
           style={{
             transform: `rotate(${
               (single ? isCollapsed : open) ? "90deg" : "0"
-            })`
+            })`,
           }}
         />
       </header>
       {/* 是否 single, 如果 true, 只看 自己的 state */}
-      {(single ? isCollapsed : open) && (
-        <main>{children}</main>
-      )}
+      {(single ? isCollapsed : open) && <main>{children}</main>}
     </div>
   );
 };

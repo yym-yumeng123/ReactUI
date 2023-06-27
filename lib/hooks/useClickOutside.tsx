@@ -4,21 +4,22 @@
 
 import { RefObject, useEffect } from "react";
 
-const useClickOutside = (ref: RefObject<HTMLElement>, handler: Function) => {
+const useClickOutside = (ref: RefObject<HTMLElement>, callback: Function) => {
+  // 点击后处理的事情
+  const listener = (event: MouseEvent) => {
+    // ref.current 不存在 or ref dom 包括点击的内容
+    if (!ref.current || ref.current.contains(event.target as HTMLElement)) {
+      return;
+    }
+    callback();
+  };
+
   useEffect(() => {
-    // 点击后处理的事情
-    const listener = (event: MouseEvent) => {
-      // ref.current 不存在 or ref dom 包括点击的内容
-      if (!ref.current || ref.current.contains(event.target as HTMLElement)) {
-        return;
-      }
-      handler();
-    };
     document.addEventListener("click", listener);
     return () => {
       document.removeEventListener("click", listener);
     };
-  }, [ref, handler]);
+  }, [ref, callback]);
 };
 
 export default useClickOutside;

@@ -1,4 +1,4 @@
-@import "lib/styles/variable.scss";
+@import "lib//assets/stylesheets/variable.scss";
 
 .yui-popover {
   // position: relative;
@@ -35,7 +35,7 @@
       box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06),
         0 8px 8px 0 rgba(0, 0, 0, 0.12);
       &::after {
-        bottom: -6px;
+        bottom: -5px;
         left: 12px;
         border-top: 6px solid #fff;
         border-bottom: none;
@@ -48,7 +48,7 @@
         -8px 0 8px 0 rgba(0, 0, 0, 0.12);
       &::after {
         top: 50%;
-        left: -6px;
+        left: -5px;
         transform: translateY(-50%);
         border-right: 6px solid #fff;
         border-left: none;
@@ -60,7 +60,7 @@
       box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.06),
         0 -8px 8px 0 rgba(0, 0, 0, 0.12);
       &::after {
-        top: -6px;
+        top: -5px;
         left: 12px;
         border-bottom: 6px solid #fff;
         border-top: none;
@@ -74,7 +74,7 @@
         8px 0 8px 0 rgba(0, 0, 0, 0.12);
       &::after {
         top: 50%;
-        right: -6px;
+        right: -5px;
         transform: translateY(-50%);
         border-left: 6px solid #fff;
         border-right: none;
