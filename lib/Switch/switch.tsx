@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
-
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+import "./switch.scss";
+
 const mergeClasss = addPrefixAndMergeClass("yui-switch");
 
-import "./switch.scss";
 interface SwitchProps {
   checked?: boolean;
   disabled?: boolean;
@@ -11,8 +11,8 @@ interface SwitchProps {
   onChange?: (value: boolean) => void;
 }
 
-const Switch: FC<SwitchProps> = props => {
-  const { checked = false, disabled = false, size, onChange } = props;
+const Switch: FC<SwitchProps> = (props) => {
+  const { size, onChange, checked = false, disabled = false } = props;
   const [toggle, setToggle] = useState(checked);
 
   const handleToggle = () => {
@@ -25,19 +25,14 @@ const Switch: FC<SwitchProps> = props => {
     wrap: true,
     checked: onChange ? checked : toggle,
     disabled: disabled,
-    [`${size}`]: !!size
+    [`${size}`]: !!size,
   };
+
   return (
     <button className={mergeClasss(wrapClasses)} onClick={handleToggle}>
       <span className={mergeClasss("square")}></span>
     </button>
   );
-};
-
-Switch.displayName = "switch";
-Switch.defaultProps = {
-  checked: false,
-  disabled: false
 };
 
 export default Switch;
