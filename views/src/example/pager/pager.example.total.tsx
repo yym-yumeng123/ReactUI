@@ -5,15 +5,11 @@ const PagerTotalExample = () => {
   const [current, setCurrent] = useState(1);
   const [current1, setCurrent1] = useState(10);
   const [current2, setCurrent2] = useState(30);
-  const handleChange = (n: number) => {
-    setCurrent(n);
-  };
-  const handleChange1 = (n: number) => {
-    setCurrent1(n);
-  };
-  const handleChange2 = (n: number) => {
-    setCurrent2(n);
-  };
+
+  const handleChange = (n: number) => setCurrent(n);
+  const handleChange1 = (n: number) => setCurrent1(n);
+  const handleChange2 = (n: number) => setCurrent2(n);
+
   return (
     <div className="pager-wrap">
       <Pager totalPage={10} current={current} onChange={handleChange} />

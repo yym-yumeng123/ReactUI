@@ -1,4 +1,6 @@
-@import 'lib/styles/variable.scss';
+@import 'lib/assets/stylesheets/variable.scss';
+
+$default_width: 24px;
 
 .yui-pager {
   display: flex;
@@ -9,8 +11,8 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
+    width: $default_width;
+    height: $default_width;
     font-size: 12px;
     cursor: pointer;
     border: 1px solid $default-border-color;
@@ -39,13 +41,13 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
     padding: 4px 8px;
     margin-left: 4px;
+    font-size: 12px;
     border: 1px solid $default-border-color;
     border-radius: 6px;
-    cursor: pointer;
     user-select: none;
+    cursor: pointer;
 
     &:hover {
       background: $B050;
