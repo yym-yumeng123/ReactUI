@@ -55,12 +55,16 @@ export const routeList: Array<{
     title: "Switch 开关",
   },
   {
-    path: "/carousel",
-    title: "Carousel 轮播",
-  },
-  {
     path: "/radio",
     title: "Radio 单选框",
+  },
+  {
+    path: "/slider",
+    title: "Slider 滑块",
+  },
+  {
+    path: "/carousel",
+    title: "Carousel 轮播",
   },
   // {
   //   path: "/checkbox",
@@ -82,10 +86,7 @@ export const routeList: Array<{
     path: "/scroll",
     title: "Scroll 滚动",
   },
-  {
-    path: "/slider",
-    title: "Slider 滑块",
-  },
+
   {
     path: "/autoComplete",
     title: "AutoComplete 自动完成",

@@ -1,4 +1,4 @@
-@import "lib/styles/variable.scss";
+@import "lib/assets/stylesheets/variable.scss";
 
 .yui-radio-wrapper {
   display: inline-flex;
@@ -66,12 +66,13 @@
       &.yui-radio-checked {
         background: $H100;
       }
+
+      &:hover {
+        border: 1px solid $radio-borderColor;
+      }
     }
     .yui-radio-label {
       color: $B400;
     }
   }
-}
-
-.yui-radio-group {
 }
