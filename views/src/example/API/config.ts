@@ -600,6 +600,22 @@ export const Api_Data_Switch = [
   },
 ];
 
+export const Api_Data_Slider = [
+  {
+    props: "initialValue",
+    explain: "Slider滑块组件的默认占比",
+    type: "number",
+    defaultValue: "0",
+    require: "false",
+  },
+  {
+    props: "onChange",
+    explain: "滑动或者点击对应长度回调",
+    type: "(value: number) => void",
+    defaultValue: "/",
+    require: "false",
+  },
+];
 export const Api_Data_Radio = [
   {
     props: "value",

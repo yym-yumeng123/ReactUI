@@ -1,26 +1,25 @@
-import React, { useState } from "react";
-import Slider from "lib/Slider/slider";
-import Input from "lib/Input/Input";
-import Row from "lib/Grid/row";
-import Col from "lib/Grid/col";
-import "./slider.demo.scss";
+import React from "react";
+import Demo from "views/src/components/demo";
+import API from "../API/api";
+import Card from "lib/Card/card";
+
+import SliderExample from "./Slider.example";
+
+// tslint:disable-next-line: no-var-requires
+const codeRadio = require("!!raw-loader!./Slider.example.tsx");
 
 const SliderDemo = () => {
-  const [initiValue, setInitiValue] = useState(10);
-  const handleChange = (value: number) => {
-    console.log(value, "value....");
-    setInitiValue(value);
-  };
   return (
-    <div>
-      <Row className="slider-wrap" gutter={30}>
-        <Col span={20}>
-          <Slider initialValue={initiValue} onChange={handleChange} />
-        </Col>
-        <Col span={4}>
-          <Input placeholder="请输入..." value={String(initiValue)} disabled />
-        </Col>
-      </Row>
+    <div className="content">
+      <Card title="Slider 滑块组件基本使用">
+        <Demo code={codeRadio.default}>
+          <SliderExample />
+        </Demo>
+      </Card>
+
+      <Card title="API">
+        <API type="slider" />
+      </Card>
     </div>
   );
 };

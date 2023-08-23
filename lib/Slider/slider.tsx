@@ -3,11 +3,11 @@ import React, {
   MouseEventHandler,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 import "./slider.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-slider");
 
 interface SliderProps {
@@ -58,7 +58,7 @@ const Slider: FC<SliderProps> = ({ onChange, initialValue = 0 }) => {
     }
   };
 
-  const onMouseDown: MouseEventHandler<HTMLDivElement> = e => {
+  const onMouseDown: MouseEventHandler<HTMLDivElement> = (e) => {
     dragging.current = true;
     startXRef.current = e.clientX;
     startBarLeftRef.current = barLeftInstance;
@@ -75,7 +75,7 @@ const Slider: FC<SliderProps> = ({ onChange, initialValue = 0 }) => {
     dragging.current = false;
   };
 
-  const handleSetTrackWidth: MouseEventHandler<HTMLDivElement> = e => {
+  const handleSetTrackWidth: MouseEventHandler<HTMLDivElement> = (e) => {
     const { left } = railRef.current!.getBoundingClientRect();
     setLeftBarPosition(e.clientX - left);
   };
