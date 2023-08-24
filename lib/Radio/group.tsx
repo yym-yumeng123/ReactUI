@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+import { getKey } from "lib/Helpers/key";
 import Radio from "./radio";
 
 const mergeClass = addPrefixAndMergeClass("yui-radio-group");
@@ -32,13 +33,14 @@ const RadioGroup: FC<IRadioGroupProps> = (props) => {
   };
 
   const renderGroup = () => {
-    return Children.map(children, (child) => {
+    return Children.map(children, (child, index) => {
       if (child.type !== Radio) {
         throw new Error("单选组的子元素必须是 Radio");
       }
 
       return React.cloneElement(child, {
         ...child.props,
+        key: getKey(index),
         selectedValue,
         onChange: handleGroupChange, // 回调事件
       });

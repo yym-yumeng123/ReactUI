@@ -1,9 +1,9 @@
 import React, {
-  ChangeEvent,
   FC,
-  ReactElement,
+  useState,
   useEffect,
-  useState
+  ChangeEvent,
+  ReactElement,
 } from "react";
 import Checkbox from "./checkbox";
 
@@ -13,7 +13,7 @@ interface IGroupProps {
   onChange?: (selected: string[]) => void;
 }
 
-const CheckboxGroup: FC<IGroupProps> = props => {
+const CheckboxGroup: FC<IGroupProps> = (props) => {
   const { children, selected = [], onChange } = props;
 
   const [selectedValue, setSelectedValue] = useState(selected);
@@ -23,7 +23,7 @@ const CheckboxGroup: FC<IGroupProps> = props => {
     if (checked) {
       setSelectedValue([...selectedValue, value]);
     } else {
-      setSelectedValue(arr => arr.filter(i => i !== value));
+      setSelectedValue((arr) => arr.filter((i) => i !== value));
     }
   };
 
@@ -41,7 +41,7 @@ const CheckboxGroup: FC<IGroupProps> = props => {
       key: index,
       selected,
       name: "group",
-      onChange: handleGroupChange // 回调事件
+      onChange: handleGroupChange, // 回调事件
     });
   });
 

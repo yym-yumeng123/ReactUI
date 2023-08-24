@@ -58,14 +58,12 @@ const CheckboxExampleBasic = () => {
 
       {numbers.map((i) => {
         return (
-          <>
-            <Checkbox
-              key={i}
-              value={i}
-              onChange={handleItemSelected}
-              checked={selected.filter((e) => e === i).length > 0}
-            />
-          </>
+          <Checkbox
+            key={i}
+            value={i}
+            onChange={handleItemSelected}
+            checked={selected.filter((e) => e === i).length > 0}
+          />
         );
       })}
     </>

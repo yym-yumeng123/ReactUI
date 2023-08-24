@@ -63,13 +63,13 @@ export const routeList: Array<{
     title: "Slider 滑块",
   },
   {
+    path: "/checkbox",
+    title: "CheckBox 多选框",
+  },
+  {
     path: "/carousel",
     title: "Carousel 轮播",
   },
-  // {
-  //   path: "/checkbox",
-  //   title: "CheckBox 多选框",
-  // },
   {
     path: "/table",
     title: "Table 表格",

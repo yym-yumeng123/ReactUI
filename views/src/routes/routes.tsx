@@ -26,6 +26,7 @@ import {
   AutoCompleteExample,
   DatePickerDemo,
   CarouselDemo,
+  CheckboxDemo,
 } from "views/src/example";
 
 const router = createHashRouter([
@@ -95,10 +96,10 @@ const router = createHashRouter([
         path: "radio",
         element: <RadioDemo />,
       },
-      // {
-      //   path: "checkbox",
-      //   element: <CheckboxDemo />,
-      // },
+      {
+        path: "checkbox",
+        element: <CheckboxDemo />,
+      },
       {
         path: "table",
         element: <TableDemo />,
