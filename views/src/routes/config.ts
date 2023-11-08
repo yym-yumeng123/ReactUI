@@ -71,6 +71,10 @@ export const routeList: Array<{
     title: "Scroll 滚动",
   },
   {
+    path: "/tree",
+    title: "Tree 树",
+  },
+  {
     path: "/",
     title: "下面未完成",
   },
@@ -86,11 +90,6 @@ export const routeList: Array<{
     path: "/form",
     title: "Form 表单",
   },
-  {
-    path: "/tree",
-    title: "Tree 树",
-  },
-
   {
     path: "/autoComplete",
     title: "AutoComplete 自动完成",

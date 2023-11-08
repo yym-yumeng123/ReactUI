@@ -4,7 +4,7 @@ const useUpdateCollapse = (dep: boolean, fn: () => void) => {
   const isFirst = useRef(true);
   // 是否第一次
   useEffect(() => {
-    if (isFirst.current === true) {
+    if (isFirst.current) {
       isFirst.current = false;
       return;
     }

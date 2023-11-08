@@ -1,25 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
 import TreeItem from "./tree-item";
-
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
-const mergeClass = addPrefixAndMergeClass("yui-tree");
-
 import "./tree.scss";
 
-const Tree: React.FC<TreeProps> = props => {
+const mergeClass = addPrefixAndMergeClass("yui-tree");
+
+const Tree: FC<TreeProps> = (props) => {
   const { sourceData } = props;
 
   const onItemChange = (values: string[]) => {
-    console.log("最终值", values);
     props.onChange(Array.from(new Set(values)) as string[]);
+    console.log("最终值", values);
   };
 
   return (
     <div className={mergeClass("")}>
-      {sourceData?.map(item => (
+      {sourceData?.map((item) => (
         <TreeItem
           onItemChange={onItemChange}
-          key={item.key}
+          key={item.value}
           item={item}
           level={0}
           treeProps={props}

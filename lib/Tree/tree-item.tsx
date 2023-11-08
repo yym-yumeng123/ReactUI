@@ -2,17 +2,17 @@ import React, { ChangeEventHandler, useRef } from "react";
 import Icon from "lib/Icon/icon";
 import useUpdateCollapse from "lib/hooks/useUpdateCollapse";
 import useToggle from "lib/hooks/useToggle";
-
 import flatten from "lib/Helpers/flatten";
 import intersect from "lib/Helpers/intersect";
+
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+
 const mergeClass = addPrefixAndMergeClass("yui-tree");
 
 interface TreeItemProps {
-  key: string;
   item: SourceDataItem;
   level: number; // 第几级
-  treeProps: TreeProps;
+  treeProps: TreeProps; // 树性组件需要的参数
   onItemChange: (value: string[]) => void;
 }
 
@@ -36,7 +36,6 @@ const collectChildrenValues = (item: SourceDataItem): any => {
  */
 const TreeItem: React.FC<TreeItemProps> = props => {
   const {
-    key,
     item,
     level = 0,
     treeProps,
@@ -92,11 +91,12 @@ const TreeItem: React.FC<TreeItemProps> = props => {
   });
 
   const onSelectChange: ChangeEventHandler<HTMLInputElement> = e => {
+    const { checked } = e.target
     // 当我选择时, 收集所有 children 的  value
     const childrenValues = collectChildrenValues(item);
 
     if (multiple) {
-      if (e.target.checked) {
+      if (checked) {
         // 当选中时, 添加所有的子元素
         props.onItemChange([...selected, item.title, ...childrenValues]);
       } else {
@@ -108,11 +108,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
         );
       }
     } else {
-      if (e.target.checked) {
-        onChange([item.title]);
-      } else {
-        onChange([""]);
-      }
+      checked ? onChange([item.title]) : onChange([""]);
     }
   };
 
@@ -142,7 +138,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     : selected[0] === item.title;
 
   return (
-    <div key={key} className={mergeClass(classes)}>
+    <div key={item.value} className={mergeClass(classes)}>
       <div className={mergeClass("title")}>
         {expanded ? (
           <Icon size="12" name="show_more" onClick={collapse} />
@@ -163,7 +159,7 @@ const TreeItem: React.FC<TreeItemProps> = props => {
       >
         {item.children?.map(subItem => (
           <TreeItem
-            key={subItem.key}
+            key={subItem.value}
             item={subItem}
             level={level + 1}
             onItemChange={onItemChange}
