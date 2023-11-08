@@ -67,6 +67,14 @@ export const routeList: Array<{
     title: "CheckBox 多选框",
   },
   {
+    path: "/scroll",
+    title: "Scroll 滚动",
+  },
+  {
+    path: "/",
+    title: "下面未完成",
+  },
+  {
     path: "/carousel",
     title: "Carousel 轮播",
   },
@@ -81,10 +89,6 @@ export const routeList: Array<{
   {
     path: "/tree",
     title: "Tree 树",
-  },
-  {
-    path: "/scroll",
-    title: "Scroll 滚动",
   },
 
   {

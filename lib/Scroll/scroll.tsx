@@ -1,32 +1,43 @@
-import React from "react";
-import {
+import React, {
+  FC,
+  useState,
+  useEffect,
+  useRef,
   TouchEventHandler,
   MouseEventHandler,
   HTMLAttributes,
   UIEventHandler,
-  useEffect,
-  useRef,
-  useState
 } from "react";
 import Icon from "../Icon/icon";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 import scrollbarWidth from "./scrollbar-width";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+import "./scroll.scss";
+
 const mergeClass = addPrefixAndMergeClass("yui-scroll");
 
-import "./scroll.scss";
+// 继承 HTML元素 的属性
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
   onPull?: () => void;
 }
 
-const Scroll: React.FC<ScrollProps> = props => {
-  const { children, onPull, ...restProps } = props;
+const Scroll: FC<ScrollProps> = ({ children, onPull, ...restProps }) => {
   const [barHeight, setBarHeight] = useState(0); // 块的高度
   const [barTopHeight, _setBarTopHeight] = useState(0); // 块距离上面的高度
   const [barVisible, setBarVisible] = useState<Boolean>(false); // 块的显示和隐藏
 
   const containerRef = useRef<HTMLDivElement>(null);
   const timerIdRef = useRef<number | null>(null);
+
+  // 手机下拉更新变量
+  // 下拉的值
+  const [translateY, _setTranslateY] = useState(0);
+  // 上一次 的 Y 坐标
+  const lastYRef = useRef(0);
+  // 记录第几次在运动
+  const moveCount = useRef(0);
+  // 正在下拉状态, 默认不拉
+  const pulling = useRef(false);
 
   // drag 滚动时 的 设置
   const setBarTopHeight = (number: number) => {
@@ -41,7 +52,7 @@ const Scroll: React.FC<ScrollProps> = props => {
   };
 
   // 滚动 set 滑块的高度 和 距离上面的高度
-  const onScroll: UIEventHandler = e => {
+  const onScroll: UIEventHandler = (e) => {
     setBarVisible(true);
     // 滚动全高
     const scrollHeight = e.currentTarget.scrollHeight;
@@ -55,9 +66,11 @@ const Scroll: React.FC<ScrollProps> = props => {
     setBarHeight(barHeight);
     setBarTopHeight(barTopHeight);
 
+    // 设置定时器, 已经设置了, 清除掉
     if (timerIdRef.current !== null) {
       window.clearTimeout(timerIdRef.current);
     }
+    // 1s 后让 bar 隐藏
     timerIdRef.current = window.setTimeout(() => {
       setBarVisible(false);
     }, 1000);
@@ -81,15 +94,17 @@ const Scroll: React.FC<ScrollProps> = props => {
   const startYRef = useRef(0);
   const startBarTopRef = useRef(0);
 
-  const onMouseDownBar: MouseEventHandler = e => {
+  const onMouseDownBar: MouseEventHandler = (e) => {
     draggingRef.current = true;
     startYRef.current = e.clientY;
     startBarTopRef.current = barTopHeight;
   };
+
   const onMouseMoveBar = (e: MouseEvent) => {
     const { current } = containerRef;
     if (draggingRef.current) {
       const delta = e.clientY - startYRef.current;
+      // 每次移动 最初的 top
       const newBarTop = delta + startBarTopRef.current;
       setBarTopHeight(newBarTop);
 
@@ -123,8 +138,8 @@ const Scroll: React.FC<ScrollProps> = props => {
     };
   }, []);
 
-  // 下拉的值
-  const [translateY, _setTranslateY] = useState(0);
+  // 下面是下拉更新的相关操作
+  // 对拉动的距离做一个限制
   const setTranslateY = (y: number) => {
     if (y < 0) {
       y = 0;
@@ -134,33 +149,28 @@ const Scroll: React.FC<ScrollProps> = props => {
     _setTranslateY(y);
   };
 
-  // 上一次 的 Y 坐标
-  const lastYRef = useRef(0);
-
-  // 记录第几次在运动
-  const moveCount = useRef(0);
-  // 正在下拉状态, 默认不拉
-  const pulling = useRef(false);
-
-  const onTouchStart: TouchEventHandler = e => {
+  const onTouchStart: TouchEventHandler = (e) => {
     // scrollTop 为 0时, 设置下拉状态
     const scrollTop = containerRef.current!.scrollTop;
     if (scrollTop !== 0) {
       return;
     }
     pulling.current = true;
+    // y 坐标
     lastYRef.current = e.touches[0].clientY;
+    console.log("lastYRef.current", lastYRef.current);
 
     moveCount.current = 0;
   };
-  const onTouchMove: TouchEventHandler = e => {
+  const onTouchMove: TouchEventHandler = (e) => {
     // 每次 move moveCount++
     moveCount.current++;
     const deltaY = e.touches[0].clientY - lastYRef.current;
     // 第一次滚 & 是往上, 看下面的内容
     if (moveCount.current === 1 && deltaY < 0) {
-      // 手指不是下拉, 是往上
+      // 手指不是下拉, 是往上, 重置 false
       pulling.current = false;
+      return
     }
 
     // 第二次看 状态
@@ -170,13 +180,14 @@ const Scroll: React.FC<ScrollProps> = props => {
 
     setTranslateY(translateY + deltaY);
 
+    // 每次移动, lastRef 都为第一个手指触摸的点, 更新 lastRef
     lastYRef.current = e.touches[0].clientY;
   };
 
-  const onTouchEnd: TouchEventHandler = e => {
+  const onTouchEnd: TouchEventHandler = (e) => {
     if (pulling.current === true) {
       setTranslateY(0);
-      onPull && onPull();
+      onPull?.();
       pulling.current = false;
     }
   };
@@ -189,7 +200,7 @@ const Scroll: React.FC<ScrollProps> = props => {
         className={mergeClass("inner")}
         style={{
           right: -scrollbarWidth(),
-          transform: `translateY(${translateY}px)`
+          transform: `translateY(${translateY}px)`,
         }}
         ref={containerRef}
         onScroll={onScroll}
@@ -209,7 +220,7 @@ const Scroll: React.FC<ScrollProps> = props => {
             className={mergeClass("bar")}
             style={{
               height: barHeight,
-              transform: `translateY(${barTopHeight}px)`
+              transform: `translateY(${barTopHeight}px)`,
             }}
           ></div>
         </div>

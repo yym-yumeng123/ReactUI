@@ -719,3 +719,20 @@ export const Api_Data_Checkbox = [
     require: "false",
   },
 ];
+
+export const Api_Data_Scroll = [
+  {
+    props: "style",
+    explain: "继承了 HTMLDivElement 的所有属性, 可以为滚动设置高度",
+    type: "any",
+    defaultValue: "/",
+    require: "true",
+  },
+  {
+    props: "onPull",
+    explain: "移动端设备, touch事件, 可以触发下拉更新",
+    type: "() => void",
+    defaultValue: "/",
+    require: "false",
+  },
+];

@@ -16,7 +16,7 @@ import CheckboxDemo from "./Checkbox/checkbox.demo";
 import TableDemo from "./Table/table.demo";
 import FormExample from "./Form/form.example";
 import TreeDemo from "./Tree/tree.example";
-import ScrollExample from "./Scroll/scroll.example";
+import ScrollDemo from "./Scroll/scroll.demo";
 import SliderDemo from "./Slider/Slider.demo";
 import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import DatePickerDemo from "./DatePicker/DatePicker.demo";
@@ -41,7 +41,7 @@ export {
   TableDemo,
   FormExample,
   TreeDemo,
-  ScrollExample,
+  ScrollDemo,
   SliderDemo,
   AutoCompleteExample,
   DatePickerDemo,

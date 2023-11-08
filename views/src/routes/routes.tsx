@@ -21,7 +21,7 @@ import {
   TableDemo,
   FormExample,
   TreeDemo,
-  ScrollExample,
+  ScrollDemo,
   SliderDemo,
   AutoCompleteExample,
   DatePickerDemo,
@@ -114,7 +114,7 @@ const router = createHashRouter([
       },
       {
         path: "scroll",
-        element: <ScrollExample />,
+        element: <ScrollDemo />,
       },
       {
         path: "slider",
