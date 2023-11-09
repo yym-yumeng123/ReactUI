@@ -22,9 +22,9 @@ interface TreeItemProps {
  */
 const collectChildrenValues = (item: SourceDataItem): any => {
   return flatten(
-    item.children?.map(subItem => [
+    item.children?.map((subItem) => [
       subItem.title,
-      collectChildrenValues(subItem)
+      collectChildrenValues(subItem),
     ])
   );
 };
@@ -34,17 +34,27 @@ const collectChildrenValues = (item: SourceDataItem): any => {
  * @param item 数组的每一项
  * @param level 处于第几层, 默认为0层
  */
-const TreeItem: React.FC<TreeItemProps> = props => {
+const TreeItem: React.FC<TreeItemProps> = (props) => {
   const {
     item,
     level = 0,
     treeProps,
-    treeProps: { multiple, selected, onChange }
+    treeProps: { multiple, selected = [], onChange, autoSelect = false },
   } = props;
 
   // 打开关闭的子元素
   const divRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // 每一个层级有一个不同的 class level
+  const classes = {
+    [`level-${level}`]: true,
+    item: true,
+  };
+
+  const checked = multiple
+    ? selected.indexOf(item.title) >= 0
+    : selected[0] === item.title;
 
   // collapse 折叠 expand 展开 expanded 是否展开
   const { expanded, expand, collapse } = useToggle(true);
@@ -90,22 +100,32 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     }
   });
 
-  const onSelectChange: ChangeEventHandler<HTMLInputElement> = e => {
-    const { checked } = e.target
-    // 当我选择时, 收集所有 children 的  value
+  const onSelectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { checked } = e.target;
+    // 当我选择时, 收集所有 children 的  value [child1, child2, ..., childn]
     const childrenValues = collectChildrenValues(item);
 
+    // 多选
     if (multiple) {
       if (checked) {
-        // 当选中时, 添加所有的子元素
-        props.onItemChange([...selected, item.title, ...childrenValues]);
+        // 是否开启子父元素关联
+        if (autoSelect) {
+          // 当选中时, 添加所有的子元素
+          props.onItemChange([...selected, item.title, ...childrenValues]);
+        } else {
+          onChange([...selected, item.title]);
+        }
       } else {
-        props.onItemChange(
-          selected.filter(
-            value =>
-              value !== item.title && childrenValues.indexOf(value) === -1
-          )
-        );
+        if (autoSelect) {
+          props.onItemChange(
+            selected.filter(
+              (value) =>
+                value !== item.title && childrenValues.indexOf(value) === -1
+            )
+          );
+        } else {
+          onChange(selected.filter((value) => value !== item.title));
+        }
       }
     } else {
       checked ? onChange([item.title]) : onChange([""]);
@@ -127,18 +147,8 @@ const TreeItem: React.FC<TreeItemProps> = props => {
     }
   };
 
-  // 每一个层级有一个不同的 class level
-  const classes = {
-    [`level-${level}`]: true,
-    item: true
-  };
-
-  const checked = multiple
-    ? selected.indexOf(item.title) >= 0
-    : selected[0] === item.title;
-
   return (
-    <div key={item.value} className={mergeClass(classes)}>
+    <div key={item.key} className={mergeClass(classes)}>
       <div className={mergeClass("title")}>
         {expanded ? (
           <Icon size="12" name="show_more" onClick={collapse} />
@@ -157,9 +167,9 @@ const TreeItem: React.FC<TreeItemProps> = props => {
         ref={divRef}
         className={mergeClass({ children: true, collapsed: !expanded })}
       >
-        {item.children?.map(subItem => (
+        {item.children?.map((subItem) => (
           <TreeItem
-            key={subItem.value}
+            key={subItem.key}
             item={subItem}
             level={level + 1}
             onItemChange={onItemChange}

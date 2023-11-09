@@ -736,3 +736,41 @@ export const Api_Data_Scroll = [
     require: "false",
   },
 ];
+
+export const Api_Data_Tree = [
+  {
+    props: "sourceData",
+    explain: "树的数据源, 树结构的数据",
+    type: "SourceDataItem{title: string;key: string;children?: SourceDataItem[]}",
+    defaultValue: "[]",
+    require: "true",
+  },
+  {
+    props: "selected",
+    explain: "默认选中的值",
+    type: "string[]",
+    defaultValue: "[]",
+    require: "false",
+  },
+  {
+    props: "multiple",
+    explain: "是否开启多选",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false",
+  },
+  {
+    props: "onChange",
+    explain: "树的数据变化",
+    type: "(values: string[]) => void;",
+    defaultValue: "/",
+    require: "true",
+  },
+  {
+    props: "autoSelect",
+    explain: "在多选下是否开启全选",
+    type: "boolean",
+    defaultValue: "false",
+    require: "false",
+  },
+];

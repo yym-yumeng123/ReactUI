@@ -15,12 +15,12 @@ import RadioDemo from "./Radio/radio.demo";
 import CheckboxDemo from "./Checkbox/checkbox.demo";
 import TableDemo from "./Table/table.demo";
 import FormExample from "./Form/form.example";
-import TreeDemo from "./Tree/tree.example";
 import ScrollDemo from "./Scroll/scroll.demo";
 import SliderDemo from "./Slider/Slider.demo";
 import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import DatePickerDemo from "./DatePicker/DatePicker.demo";
 import CarouselDemo from "./Carousel/carousel.demo";
+import TreeDemo from './Tree/tree.demo'
 
 export {
   IconDemo,

@@ -10,7 +10,6 @@ const Tree: FC<TreeProps> = (props) => {
 
   const onItemChange = (values: string[]) => {
     props.onChange(Array.from(new Set(values)) as string[]);
-    console.log("最终值", values);
   };
 
   return (
@@ -18,7 +17,7 @@ const Tree: FC<TreeProps> = (props) => {
       {sourceData?.map((item) => (
         <TreeItem
           onItemChange={onItemChange}
-          key={item.value}
+          key={item.key}
           item={item}
           level={0}
           treeProps={props}

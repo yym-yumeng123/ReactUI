@@ -19,7 +19,8 @@ import {
   Api_Data_Radio,
   Api_Data_Checkbox,
   Api_Data_Slider,
-  Api_Data_Scroll
+  Api_Data_Scroll,
+  Api_Data_Tree
 } from "./config";
 
 interface ApiProps {
@@ -58,7 +59,8 @@ const API: React.FC<ApiProps> = (props) => {
     slider: Api_Data_Slider,
     carousel: Api_Data_Carousel,
     checkbox: Api_Data_Checkbox,
-    scroll: Api_Data_Scroll
+    scroll: Api_Data_Scroll,
+    tree: Api_Data_Tree,
   };
 
   return (

@@ -20,13 +20,13 @@ import {
   RadioDemo,
   TableDemo,
   FormExample,
-  TreeDemo,
   ScrollDemo,
   SliderDemo,
   AutoCompleteExample,
   DatePickerDemo,
   CarouselDemo,
   CheckboxDemo,
+  TreeDemo,
 } from "views/src/example";
 
 const router = createHashRouter([
