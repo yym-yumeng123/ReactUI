@@ -4,18 +4,80 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 300px;
-  height: 500px;
+  width: 400px;
+  height: 600px;
   background: #fff;
   transform: translate(-50%, -50%);
   z-index: 1;
+  overflow: auto;
 
   header {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     padding: 16px 0;
     font-size: 14px;
     background: $yellow;
+  }
+
+  &-currentCity {
+    margin: 16px 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &-cityWord {
+    h2 {
+      margin-bottom: 4px;
+    }
+    &-cityIndex {
+      // 使用 grid
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      li {
+        text-align: center;
+        padding: 4px 0;
+        border: 1px solid rgb(221, 216, 206);
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-allCity {
+    h2 {
+      margin-top: 16px;
+      margin-bottom: 4px;
+    }
+    &-section {
+      // border: 1px solid red;
+      border-left: 1px solid rgb(237, 235, 229);
+      overflow: hidden;
+      h4 {
+        float: left;
+        width: 25%;
+        border: 1px solid rgb(237, 235, 229);
+        border-left: none;
+        border-bottom: none;
+        line-height: 80px;
+        text-align: center;
+      }
+
+      .yui-city-dialog-cityName {
+        float: left;
+        width: 25%;
+        font-size: 14px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid rgb(237, 235, 229);
+        border-left: none;
+        margin-bottom: -1px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+    }
   }
 
   // 遮罩
@@ -27,8 +89,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, 0.3);
   }
-
 }
-
