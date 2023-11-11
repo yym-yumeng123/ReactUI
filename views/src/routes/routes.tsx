@@ -27,6 +27,7 @@ import {
   CarouselDemo,
   CheckboxDemo,
   TreeDemo,
+  CitySelectDemo
 } from "views/src/example";
 
 const router = createHashRouter([
@@ -111,6 +112,10 @@ const router = createHashRouter([
       {
         path: "tree",
         element: <TreeDemo />,
+      },
+      {
+        path: "city",
+        element: <CitySelectDemo />,
       },
       {
         path: "scroll",

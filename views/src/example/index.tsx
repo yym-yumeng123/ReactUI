@@ -20,7 +20,8 @@ import SliderDemo from "./Slider/Slider.demo";
 import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
 import DatePickerDemo from "./DatePicker/DatePicker.demo";
 import CarouselDemo from "./Carousel/carousel.demo";
-import TreeDemo from './Tree/tree.demo'
+import TreeDemo from "./Tree/tree.demo";
+import CitySelectDemo from "./CitySelect/CitySelect.demo";
 
 export {
   IconDemo,
@@ -46,4 +47,5 @@ export {
   AutoCompleteExample,
   DatePickerDemo,
   CarouselDemo,
+  CitySelectDemo,
 };

@@ -75,6 +75,10 @@ export const routeList: Array<{
     title: "Tree 树",
   },
   {
+    path: "/city",
+    title: "选择城市",
+  },
+  {
     path: "/",
     title: "下面未完成",
   },
