@@ -27,7 +27,8 @@ import {
   CarouselDemo,
   CheckboxDemo,
   TreeDemo,
-  CitySelectDemo
+  CitySelectDemo,
+  NavDemo
 } from "views/src/example";
 
 const router = createHashRouter([
@@ -116,6 +117,10 @@ const router = createHashRouter([
       {
         path: "city",
         element: <CitySelectDemo />,
+      },
+      {
+        path: "nav",
+        element: <NavDemo />,
       },
       {
         path: "scroll",

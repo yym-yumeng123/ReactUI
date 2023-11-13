@@ -79,6 +79,10 @@ export const routeList: Array<{
     title: "CitySelect 城市选择",
   },
   {
+    path: "/nav",
+    title: "Nav 导航",
+  },
+  {
     path: "/",
     title: "下面未完成",
   },
@@ -102,8 +106,5 @@ export const routeList: Array<{
     path: "/date",
     title: "DatePicker 日期",
   },
-  // {
-  //   path: "/nav",
-  //   title: "Nav 导航",
-  // },
+
 ];
