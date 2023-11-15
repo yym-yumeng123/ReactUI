@@ -1,5 +1,5 @@
-@import "./helper";
 @import "./style.scss";
+@import "./helper";
 
 // common
 $radius: 6px;
@@ -55,7 +55,19 @@ $radio-borderColor: $B300;
 // table
 $tabel-border-color: $B100;
 
-
-
 // Card
 $card-border-color: $B200;
+
+// Nav
+$bar-default-bg: $B050;
+$bar-default-font: 14px;
+$bar-default-font-color: $B800;
+$bar-active-bg: $B200;
+$bar-hover-bg: $B100;
+$active-font: 14px;
+$active-font-color: $H700;
+
+$bar-primary-bg: $H500;
+$bar-primary-active-bg: $H700;
+$bar-primary-hover-bg: $H600;
+

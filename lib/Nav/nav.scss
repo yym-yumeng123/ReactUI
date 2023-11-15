@@ -1,0 +1,45 @@
+@import "lib/assets/stylesheets/variable.scss";
+
+.yui-nav {
+  background-color: $bar-default-bg;
+  &-item-wrap {
+    ul {
+      display: flex;
+      .yui-nav-item {
+        padding: 12px 16px;
+        margin-bottom: 0;
+        font-size: $bar-default-font;
+        color: $bar-default-font-color;
+        cursor: pointer;
+        &:hover {
+          background-color: $bar-hover-bg;
+        }
+
+        &.yui-nav-active{
+          color: $active-font-color;
+          background-color: $bar-active-bg;
+        }
+      }
+    }
+  }
+}
+
+.yui-nav.yui-nav-primary {
+  background-color: $bar-primary-bg;
+  .yui-nav-item-wrap {
+    ul {
+      .yui-nav-item {
+        color: #fff;
+        &:hover {
+          background-color: $bar-primary-hover-bg;
+        }
+
+        &.yui-nav-active{
+          color: #fff;
+          background-color: $bar-primary-active-bg;
+        }
+      }
+    }
+  }
+}
+
