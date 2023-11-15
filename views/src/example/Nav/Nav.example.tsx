@@ -9,6 +9,30 @@ const items: ItemProps[] = [
   {
     label: "游戏",
     key: "game",
+    children: [
+      {
+        label: "英雄联盟",
+        key: "lol",
+      },
+      {
+        label: "qq飞车",
+        key: "qq",
+      },
+      {
+        label: "穿越火线",
+        key: "cf",
+        children: [
+          {
+            label: "第三层",
+            key: "311",
+          },
+          {
+            label: "第三层",
+            key: "33211",
+          },
+        ],
+      },
+    ],
   },
   {
     label: "电脑",
@@ -27,6 +51,7 @@ const items: ItemProps[] = [
 const NavExample = () => {
   const [current, setCurrent] = useState("news");
   const handleChange = (val: string) => {
+    console.log("val", val);
     setCurrent(val);
   };
   return (
