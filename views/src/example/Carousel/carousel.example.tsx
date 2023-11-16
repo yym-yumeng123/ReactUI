@@ -9,7 +9,7 @@ import "./carousel.demo.scss";
 const CarouselExample = () => {
   return (
     <div className="yui-carousel-demo">
-      <Carousel selected="1" autoTime={2}>
+      <Carousel selected="3" autoTime={1}>
         <CarouselItem name="1">
           <div className="box">1</div>
         </CarouselItem>
@@ -21,7 +21,7 @@ const CarouselExample = () => {
         </CarouselItem>
       </Carousel>
 
-      <Carousel width={500} className="img">
+      <Carousel width={500} selected="33" className="img">
         <CarouselItem name="11">
           <div className="box">
             <img src={sz} />

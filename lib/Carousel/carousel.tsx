@@ -1,15 +1,15 @@
 import React, {
   FC,
+  useState,
+  useEffect,
   MouseEventHandler,
   ReactElement,
-  TouchEventHandler,
-  useEffect,
-  useState
+  useRef,
 } from "react";
 import CarouselItem from "./carouselItem";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 import "./carousel.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-carousel");
 
 interface CarouselProps {
@@ -22,7 +22,7 @@ interface CarouselProps {
   className?: string;
 }
 
-const Carousel: FC<CarouselProps> = props => {
+const Carousel: FC<CarouselProps> = (props) => {
   const {
     children,
     selected,
@@ -30,11 +30,13 @@ const Carousel: FC<CarouselProps> = props => {
     autoTime = 3,
     width,
     height,
-    className
+    className,
   } = props;
-  let [timerId, setTimerId] = useState<any>(undefined);
   const [select, setSelect] = useState(selected || children[0].props.name);
-  const names = React.Children.map(children, child => child.props.name);
+  let timerId = useRef<any>(undefined);
+
+  // 获取所有轮播子元素的 name
+  const names = React.Children.map(children, (child) => child.props.name);
 
   useEffect(() => {
     if (autoPlay) {
@@ -44,7 +46,7 @@ const Carousel: FC<CarouselProps> = props => {
 
   const playAutomatically = () => {
     // 用 setTimeout 模拟 setInterval
-    if (timerId) return;
+    if (timerId.current) return;
     let index = names.indexOf(select);
     let run = () => {
       if (index === names.length) {
@@ -53,15 +55,17 @@ const Carousel: FC<CarouselProps> = props => {
 
       setSelect(names[index]);
       index++;
-      setTimerId(setTimeout(run, autoTime * 1000));
+      timerId.current = setTimeout(run, autoTime * 1000);
     };
 
-    setTimerId(setTimeout(run, autoTime * 1000));
+    // 第一次就开始跳转
+    timerId.current = setTimeout(run, autoTime * 1000);
+    index++;
   };
 
   const pauseAutomatically = () => {
-    window.clearTimeout(timerId);
-    setTimerId(undefined);
+    window.clearTimeout(timerId.current);
+    timerId.current = undefined;
   };
 
   const handleMouseEnter = () => {
@@ -73,7 +77,7 @@ const Carousel: FC<CarouselProps> = props => {
   };
 
   // 设置选中的
-  const handleSelect: MouseEventHandler<HTMLSpanElement> = e => {
+  const handleSelect: MouseEventHandler<HTMLSpanElement> = (e) => {
     setSelect(e.currentTarget.getAttribute("data-name"));
   };
 
@@ -83,39 +87,26 @@ const Carousel: FC<CarouselProps> = props => {
     }
     return React.cloneElement(child, {
       // 设置选中的值 === name 没设置第一个
-      visible: select === child.props.name
+      visible: select === child.props.name,
     });
   });
 
-  const handleTouchStart: TouchEventHandler<HTMLDivElement> = e => {
-    console.log("开始触摸");
-    console.log(e.touches);
-  };
-  const handleTouchMove: TouchEventHandler<HTMLDivElement> = e => {
-    console.log("触摸中");
-  };
-  const handleTouchEnd: TouchEventHandler<HTMLDivElement> = e => {
-    console.log("触摸结束", e.changedTouches);
-  };
-
   return (
     <div
+      style={{ width: `${width}px`, height: `${height}px` }}
       className={mergeClass("", { extra: className })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      style={{ width: `${width}px`, height: `${height}px` }}
     >
       <div className={mergeClass("viewport")}>
         <div className={mergeClass("wrapper")}>{renderItem}</div>
       </div>
 
+      {/* 浮点 */}
       <div className={mergeClass("dots")}>
-        {React.Children.map(children, (child, index) => {
+        {React.Children.map(children, (child) => {
           const {
-            props: { name }
+            props: { name },
           } = child;
           return (
             <span
@@ -123,7 +114,7 @@ const Carousel: FC<CarouselProps> = props => {
               onClick={handleSelect}
               className={mergeClass({
                 dot: true,
-                active: select === name
+                active: select === name,
               })}
             ></span>
           );

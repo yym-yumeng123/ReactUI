@@ -83,12 +83,12 @@ export const routeList: Array<{
     title: "Nav 导航",
   },
   {
-    path: "/",
-    title: "下面未完成",
-  },
-  {
     path: "/carousel",
     title: "Carousel 轮播",
+  },
+  {
+    path: "/",
+    title: "下面未完成",
   },
   {
     path: "/table",
@@ -106,5 +106,4 @@ export const routeList: Array<{
     path: "/date",
     title: "DatePicker 日期",
   },
-
 ];
