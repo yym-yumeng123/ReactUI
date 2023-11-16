@@ -39,29 +39,3 @@
     }
   }
 }
-
-.yui-carousel-item-wrapper-leave-active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.yui-carousel-item-wrapper-enter {
-  transform: translateX(100%);
-}
-
-.yui-carousel-item-wrapper-enter.yui-carousel-item-wrapper-enter-active {
-  transform: translateX(0);
-  transition: all 500ms;
-}
-
-.yui-carousel-item-wrapper-leave {
-  transform: translateX(0);
-}
-
-.yui-carousel-item-wrapper-leave.yui-carousel-item-wrapper-leave-active {
-  transform: translateX(-100%);
-  transition: all 500ms;
-}
