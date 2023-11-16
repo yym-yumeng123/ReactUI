@@ -87,16 +87,12 @@ export const routeList: Array<{
     title: "Carousel 轮播",
   },
   {
-    path: "/",
-    title: "下面未完成",
-  },
-  {
     path: "/table",
     title: "Table 表格",
   },
   {
-    path: "/form",
-    title: "Form 表单",
+    path: "/",
+    title: "下面未完成",
   },
   {
     path: "/autoComplete",
@@ -106,4 +102,8 @@ export const routeList: Array<{
     path: "/date",
     title: "DatePicker 日期",
   },
+  // {
+  //   path: "/form",
+  //   title: "Form 表单",
+  // },
 ];

@@ -6,7 +6,8 @@ import { Icon } from "lib";
 interface Props {
   code: string;
   buttonVisible?: boolean;
-  children: any;
+  children?: any;
+  showCode?: boolean;
 }
 
 const style = {
@@ -19,7 +20,7 @@ const style = {
  * @description 代码高亮 demo
  */
 const Demo: FC<Props> = (props: any) => {
-  const { buttonVisible = true } = props;
+  const { buttonVisible = true, showCode = false } = props;
   const [codeVisible, setCodeVisible] = useState(false);
   const code = (
     <Highlight code={props.code} theme={themes.vsDark} language="tsx">
@@ -48,14 +49,23 @@ const Demo: FC<Props> = (props: any) => {
   return (
     <div>
       <div className="content-style">{props.children}</div>
-      {buttonVisible && (
-        <div className="code-style" style={style}>
-          <Button level="primary" onClick={() => setCodeVisible(!codeVisible)}>
-            查看代码 <Icon name="down_to_bottom" style={{marginLeft: '4px', fill: '#fff'}} />
-          </Button>
-          {codeVisible && code}
-        </div>
-      )}
+      {showCode
+        ? code
+        : buttonVisible && (
+            <div className="code-style" style={style}>
+              <Button
+                level="primary"
+                onClick={() => setCodeVisible(!codeVisible)}
+              >
+                查看代码{" "}
+                <Icon
+                  name="down_to_bottom"
+                  style={{ marginLeft: "4px", fill: "#fff" }}
+                />
+              </Button>
+              {codeVisible && code}
+            </div>
+          )}
     </div>
   );
 };

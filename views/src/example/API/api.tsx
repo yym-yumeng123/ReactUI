@@ -20,7 +20,8 @@ import {
   Api_Data_Checkbox,
   Api_Data_Slider,
   Api_Data_Scroll,
-  Api_Data_Tree
+  Api_Data_Tree,
+  Api_Data_Table
 } from "./config";
 
 interface ApiProps {
@@ -61,6 +62,7 @@ const API: React.FC<ApiProps> = (props) => {
     checkbox: Api_Data_Checkbox,
     scroll: Api_Data_Scroll,
     tree: Api_Data_Tree,
+    table: Api_Data_Table,
   };
 
   return (

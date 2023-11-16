@@ -1,108 +1,60 @@
-import React, { useState } from "react";
-import Table from "lib/Table/table";
-import { Button, Icon } from "lib";
+import React from "react";
+import Demo from "views/src/components/demo";
+import API from "../API/api";
+import Card from "lib/Card/card";
 
-import { data } from "./config";
-import Popover from "lib/Popover/popover";
-import toast from "lib/Toast/toast";
+import TableExampleBasic from "./table.example_basic";
+import TableExamplBorder from "./table.example_border";
+import TableExampleCheck from "./table.example_checked";
+import TableExampleEmpty from "./table.example_empty";
+import TableExampleHeight from "./table.example_height";
 
-const TableDemo = () => {
-  // const [current, setCurrent] = useState(1);
-  const [loading] = useState(false);
+// tslint:disable-next-line: no-var-requires
+const codeTableBasic = require("!!raw-loader!./table.example_basic.tsx");
+const codeTableBorder = require("!!raw-loader!./table.example_border.tsx");
+const codeTableChecked = require("!!raw-loader!./table.example_checked.tsx");
+const codeTableEmpty = require("!!raw-loader!./table.example_empty.tsx");
+const codeTableHeight = require("!!raw-loader!./table.example_height.tsx");
+const codeData = require("!!raw-loader!./data.ts");
 
-  const [columns] = useState([
-    {
-      title: "姓名",
-      key: "name",
-      width: 100,
-    },
-    {
-      title: "年龄",
-      key: "age",
-      order: "asc",
-      sorter: (val) => {
-        if (val === "asc") {
-          setData(dataSource.sort((a, b) => a.age - b.age));
-        } else if (val === "desc") {
-          setData(dataSource.sort((a, b) => b.age - a.age));
-        }
-      },
-      width: 200,
-    },
-    {
-      title: "住址",
-      key: "address",
-
-      render: (text: string) => {
-        return <Popover content={text}>{text}</Popover>;
-      },
-    },
-    {
-      title: "操作",
-      key: "action",
-      width: 200,
-      render: (_: string, record: any) => {
-        return (
-          <Button level="danger" onClick={() => handleDelete(record)}>
-            删除
-          </Button>
-        );
-      },
-    },
-  ]);
-  const [dataSource, setData] = useState(data);
-
-  const onSelecteItems = (val: any) => {
-    console.log(val, "2323");
-  };
-
-  const handleDelete = (record: any) => {
-    toast({
-      content: `${record.name} 删除成功`,
-    });
-  };
-
-  const empty = (
-    <>
-      <Icon name="like" />
-      <h2>我爱你</h2>
-    </>
-  );
-
+const SliderDemo = () => {
   return (
-    <div>
-      <Table
-        changeSeletedItems={onSelecteItems}
-        columns={columns}
-        dataSource={dataSource}
-        loading={loading}
-        bordered
-        height={400}
-        checkable
-        expandable
-      />
-      <br />
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        bordered
-        // pager={{ current, totalPage: 100, onChange: handleChange }}
-      />
+    <div className="content">
+      <Card title="指定数据源 dataSource 为一个数组">
+        <Demo code={codeData.default} showCode />
+      </Card>
+      <Card title="Table 组件基本使用">
+        <Demo code={codeTableBasic.default}>
+          <TableExampleBasic />
+        </Demo>
+      </Card>
+      <Card title="Table 组件 border compact props, 可以排序">
+        <Demo code={codeTableBorder.default}>
+          <TableExamplBorder />
+        </Demo>
+      </Card>
+      <Card title="Table 组件 可多选/全选">
+        <Demo code={codeTableChecked.default}>
+          <TableExampleCheck />
+        </Demo>
+      </Card>
+      <Card title="Table 组件 可多选/全选, Loading 状态">
+        <Demo code={codeTableEmpty.default}>
+          <TableExampleEmpty />
+        </Demo>
+      </Card>
 
-      <br />
-      <Table columns={columns} dataSource={[]} empty={empty} bordered compact />
-      <Table columns={columns} dataSource={[]} bordered compact />
-      {/*
-      <br />
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        bordered
-        compact
-        striped={false}
-      /> */}
+      <Card title="Table 组件可以设置高度, exapanded">
+        <Demo code={codeTableHeight.default}>
+          <TableExampleHeight />
+        </Demo>
+      </Card>
+
+      <Card title="API">
+        <API type="table" />
+      </Card>
     </div>
   );
 };
 
-export default TableDemo;
+export default SliderDemo;

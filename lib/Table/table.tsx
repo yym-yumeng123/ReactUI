@@ -1,5 +1,6 @@
 import React, {
   ChangeEvent,
+  Fragment,
   ReactElement,
   ReactNode,
   useEffect,
@@ -10,13 +11,17 @@ import React, {
 import Pager, { PagerProps } from "lib/Pager/pager";
 import { Checkbox } from "lib/Checkbox";
 import Icon from "lib/Icon/icon";
-
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
-const mergeClass = addPrefixAndMergeClass("yui-table");
-
 import "./table.scss";
 
+const mergeClass = addPrefixAndMergeClass("yui-table");
+
 type orderType = "asc" | "desc" | "unsc";
+
+type DataProps = {
+  key?: string;
+  description?: string; // 如果有展开操作, 默认值时 description
+};
 
 type column<T> = {
   title: string;
@@ -28,15 +33,16 @@ type column<T> = {
 };
 
 interface TableProps<T> {
-  columns: column<T>[];
-  dataSource: T[];
+  columns: column<T>[]; // 表头信息
+  dataSource: (T & DataProps)[]; // 数据源
 
   checkable?: boolean;
   changeSeletedItems?: (val: T[]) => void;
+  selectedItems?: T[]; // 当可多选时, 应该选中那些
 
   expandable?: boolean; // 可展开
 
-  numberVisible?: boolean;
+  numberVisible?: boolean; // 展示序号
   bordered?: boolean;
   compact?: boolean; // 紧凑减小 padding
   striped?: boolean; // 条纹间隔
@@ -54,6 +60,7 @@ function Table<T>(props: TableProps<T>) {
 
     checkable = false,
     changeSeletedItems,
+    selectedItems = [],
 
     expandable = false,
     numberVisible = true,
@@ -70,7 +77,7 @@ function Table<T>(props: TableProps<T>) {
   const [_, setUpdate] = useState(0); // 更新页面
 
   // 选中的行 state
-  const [selected, setSelected] = useState<any[]>([]);
+  const [selected, setSelected] = useState<any[]>(selectedItems);
   // columns state
   const order = useRef<"asc" | "desc" | "unsc">("unsc");
 
@@ -82,26 +89,6 @@ function Table<T>(props: TableProps<T>) {
   useEffect(() => {
     changeSeletedItems && changeSeletedItems(selected);
   }, [selected]);
-
-  // 固定表头计算
-  useEffect(() => {
-    let tableCarbon: any;
-    if (height) {
-      tableCarbon = tableRef.current.cloneNode(false);
-      tableCarbon.classList.add("yui-table-carbon");
-
-      const tHead = tableRef.current.children[0];
-      const { height } = tHead.getBoundingClientRect();
-      tableRef.current.style.marginTop = `${height}px`;
-      tableCarbon.appendChild(tHead);
-      wrapRef.current.appendChild(tableCarbon);
-    }
-
-    // 移除
-    return () => {
-      height && tableCarbon.remove();
-    };
-  }, []);
 
   // 选择单个
   const handleSelectItem = (e: ChangeEvent<HTMLInputElement>, item: any) => {
@@ -188,18 +175,19 @@ function Table<T>(props: TableProps<T>) {
                   <Checkbox
                     checked={areAllItemsSelected}
                     onChange={(e) => handleSelectAllItem(e)}
+                    indeterminate={
+                      dataSource.length !== selected.length &&
+                      selected.length > 0
+                    }
                   />
                 </th>
               )}
               {numberVisible && <th style={{ width: "50px" }}>序号</th>}
               {expandable && <th style={{ width: "50px" }}></th>}
 
-              {columns.map((row) => {
+              {columns.map((row, index) => {
                 return (
-                  <th
-                    key={row.key as string}
-                    style={{ width: `${row.width}px` }}
-                  >
+                  <th key={index} style={{ width: `${row.width}px` }}>
                     <span
                       className={mergeClass("order-wrap")}
                       onClick={() => handleOrderBy(row)}
@@ -231,64 +219,63 @@ function Table<T>(props: TableProps<T>) {
           </thead>
 
           <tbody className={mergeClass("body")}>
-            {dataSource.length > 0 &&
-              dataSource.map((item, index) => {
-                return (
-                  <>
-                    <tr key={index}>
-                      {checkable && (
-                        <td style={{ width: "50px" }}>
-                          <Checkbox
-                            checked={areItemSelected(item)}
-                            onChange={(e) => handleSelectItem(e, item)}
-                          />
-                        </td>
-                      )}
-                      {numberVisible && (
-                        <td style={{ width: "50px" }}>{index + 1}</td>
-                      )}
-                      {expandable && (
-                        <td style={{ width: "50px" }}>
-                          <Icon
-                            name={
-                              hasInExapndItems(item)
-                                ? "arrow_down"
-                                : "arrow_right"
-                            }
-                            size="12"
-                            onClick={() => changeExpandItems(item)}
-                          />
-                        </td>
-                      )}
+            {dataSource.map((item, index) => {
+              return (
+                <Fragment key={index}>
+                  <tr>
+                    {checkable && (
+                      <td style={{ width: "50px" }}>
+                        <Checkbox
+                          checked={areItemSelected(item)}
+                          onChange={(e) => handleSelectItem(e, item)}
+                        />
+                      </td>
+                    )}
+                    {numberVisible && (
+                      <td style={{ width: "50px" }}>{index + 1}</td>
+                    )}
+                    {expandable && (
+                      <td style={{ width: "50px" }}>
+                        <Icon
+                          name={
+                            hasInExapndItems(item)
+                              ? "arrow_down"
+                              : "arrow_right"
+                          }
+                          size="12"
+                          onClick={() => changeExpandItems(item)}
+                        />
+                      </td>
+                    )}
 
-                      {columns.map((row) => {
-                        return (
-                          <td
-                            key={row.key as string}
-                            style={{ width: `${row.width}px` }}
-                          >
-                            {row.render
-                              ? row.render(
-                                  item[row.key] as unknown as string,
-                                  item,
-                                  index
-                                )
-                              : (item[row.key] as unknown as string)}
-                          </td>
-                        );
-                      })}
+                    {columns.map((row) => {
+                      return (
+                        <td
+                          key={row.key as string}
+                          style={{ width: `${row.width}px` }}
+                        >
+                          {row.render
+                            ? row.render(
+                                item[row.key] as unknown as string,
+                                item,
+                                index
+                              )
+                            : (item[row.key] as unknown as string)}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                  {hasInExapndItems(item) && (
+                    <tr>
+                      <td colSpan={colSpan()}></td>
+                      <td colSpan={columns.length}>
+                        {item.description || "/"}
+                      </td>
                     </tr>
-                    <tr key={`${index}-expand`}>
-                      {hasInExapndItems(item) && (
-                        <>
-                          <td colSpan={colSpan()}></td>
-                          <td colSpan={columns.length}>/</td>
-                        </>
-                      )}
-                    </tr>
-                  </>
-                );
-              })}
+                  )}
+                </Fragment>
+              );
+            })}
             {dataSource.length === 0 && (
               <tr>
                 <td
