@@ -21,16 +21,7 @@ const items: ItemProps[] = [
       {
         label: "穿越火线",
         key: "cf",
-        children: [
-          {
-            label: "第三层",
-            key: "311",
-          },
-          {
-            label: "第三层",
-            key: "33211",
-          },
-        ],
+
       },
     ],
   },

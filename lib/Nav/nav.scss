@@ -24,6 +24,12 @@
           color: $active-font-color;
         }
 
+        .yui-nav-more-sub {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         .yui-nav-sub-item-wrap {
           display: none;
           position: absolute;

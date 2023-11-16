@@ -2,6 +2,7 @@ import * as React from "react";
 import { ReactNode } from "react";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 import "./nav.scss";
+import Icon from "lib/Icon/icon";
 const mergeClass = addPrefixAndMergeClass("yui-nav");
 
 export type ItemProps = {
@@ -11,11 +12,10 @@ export type ItemProps = {
 };
 
 interface NavProps {
-  type?: "default" | "primary";
-  // 垂直很是水平
-  mode?: "hortizontal" | "vertical";
+  type?: "default" | "primary"; // 主题色
+  mode?: "hortizontal" | "vertical"; // 垂直很是水平
   items: ItemProps[]; // 每一项的内容
-  activeKeys: string[];
+  activeKeys: string[]; // 默认激活项
   onClick?: (val: string) => void;
 }
 
@@ -33,12 +33,16 @@ const NavBar: React.FC<NavProps> = (props) => {
     e: React.MouseEvent<HTMLElement>,
     item: ItemProps
   ) => {
+    // console.log("item", item);
     if (item.children) return;
     e.stopPropagation();
     onClick?.(item.key);
   };
 
-  const subItem = (children: ItemProps[]) => {
+  const subItem = (children: ItemProps[], level: number) => {
+    if (level > 0) {
+      throw new Error("子导航暂时只支持两层嵌套");
+    }
     return (
       children.length > 0 && (
         <div className={mergeClass("sub-item-wrap")}>
@@ -53,7 +57,7 @@ const NavBar: React.FC<NavProps> = (props) => {
                 onClick={(e) => handleChangeActive(e, sub)}
               >
                 {sub.label}
-                {sub.children && subItem(sub.children)}
+                {sub.children && subItem(sub.children, level + 1)}
               </span>
             );
           })}
@@ -82,9 +86,17 @@ const NavBar: React.FC<NavProps> = (props) => {
                   active: activeKeys.indexOf(key) != -1,
                 })}
               >
-                <span>{label}</span>
-
-                {subItem(children)}
+                <span className={mergeClass("more-sub")}>
+                  {label}
+                  {children.length > 0 && (
+                    <Icon
+                      size={12}
+                      color={type === "primary" ? "#fff" : "#575757"}
+                      name="arrow_down"
+                    />
+                  )}
+                </span>
+                {subItem(children, 0)}
               </li>
             );
           })}
