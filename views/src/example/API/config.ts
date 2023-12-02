@@ -889,3 +889,34 @@ export const Api_Data_Table = [
     require: "false",
   },
 ];
+
+export const Api_Data_AutoComplete = [
+  {
+    props: "fetchSuggestions",
+    explain: "加载的数据数据源",
+    type: "(val: string) => object[] | Promise<object[]>",
+    defaultValue: "void",
+    require: "true",
+  },
+  {
+    props: "renderOption",
+    explain: "自定义渲染加载的下拉框里的内容显示",
+    type: "(item: object[]) => ReactElement",
+    defaultValue: "/",
+    require: "false",
+  },
+  {
+    props: "onSelect",
+    explain: "选中数据时, 拿到值",
+    type: "(item: object[]) => void",
+    defaultValue: "false",
+    require: "false",
+  },
+  {
+    props: "InputProps",
+    explain: "输入框的属性都可以使用",
+    type: "any",
+    defaultValue: "false",
+    require: "false",
+  },
+];

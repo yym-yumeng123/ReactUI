@@ -13,7 +13,6 @@ export type ItemProps = {
 
 interface NavProps {
   type?: "default" | "primary"; // 主题色
-  mode?: "hortizontal" | "vertical"; // 垂直很是水平
   items: ItemProps[]; // 每一项的内容
   activeKeys: string[]; // 默认激活项
   onClick?: (val: string) => void;
@@ -23,11 +22,10 @@ const NavBar: React.FC<NavProps> = (props) => {
   const {
     items,
     onClick,
-    mode = "hortizontal",
     activeKeys = [],
     type = "default",
   } = props;
-  console.log(items, mode, activeKeys, type);
+  console.log(items, activeKeys, type);
 
   const handleChangeActive = (
     e: React.MouseEvent<HTMLElement>,

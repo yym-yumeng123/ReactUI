@@ -11,6 +11,10 @@ export const routeList: Array<{
     title: "Button 按钮",
   },
   {
+    path: "/autoComplete",
+    title: "AutoComplete 自动完成",
+  },
+  {
     path: "/card",
     title: "Card 卡片",
   },
@@ -94,10 +98,7 @@ export const routeList: Array<{
     path: "/",
     title: "下面未完成",
   },
-  {
-    path: "/autoComplete",
-    title: "AutoComplete 自动完成",
-  },
+
   {
     path: "/date",
     title: "DatePicker 日期",

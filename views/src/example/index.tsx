@@ -17,7 +17,7 @@ import TableDemo from "./Table/table.demo";
 import FormExample from "./Form/form.example";
 import ScrollDemo from "./Scroll/scroll.demo";
 import SliderDemo from "./Slider/Slider.demo";
-import AutoCompleteExample from "./AutoComplete/AutoComplete.example";
+import AutoCompleteDemo from "./AutoComplete/AutoComplete.demo";
 import DatePickerDemo from "./DatePicker/DatePicker.demo";
 import CarouselDemo from "./Carousel/carousel.demo";
 import TreeDemo from "./Tree/tree.demo";
@@ -45,7 +45,7 @@ export {
   TreeDemo,
   ScrollDemo,
   SliderDemo,
-  AutoCompleteExample,
+  AutoCompleteDemo,
   DatePickerDemo,
   CarouselDemo,
   CitySelectDemo,

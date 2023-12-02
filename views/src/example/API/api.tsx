@@ -21,7 +21,8 @@ import {
   Api_Data_Slider,
   Api_Data_Scroll,
   Api_Data_Tree,
-  Api_Data_Table
+  Api_Data_Table,
+  Api_Data_AutoComplete
 } from "./config";
 
 interface ApiProps {
@@ -63,6 +64,7 @@ const API: React.FC<ApiProps> = (props) => {
     scroll: Api_Data_Scroll,
     tree: Api_Data_Tree,
     table: Api_Data_Table,
+    autoComplete: Api_Data_AutoComplete,
   };
 
   return (

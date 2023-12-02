@@ -6,11 +6,6 @@ interface Props {
   number: number;
 }
 
-interface AsyncProps {
-  value: string;
-  node_id: number;
-}
-
 const AutoCompleteExample = () => {
   const newData = [
     { value: "ajkdjf", number: 23 },
@@ -27,7 +22,7 @@ const AutoCompleteExample = () => {
   };
 
   const handleSelect = (item: DataSourceType) => {
-    console.log(item, "2112");
+    console.log(item, "item");
   };
 
   // 自定义模板
@@ -39,39 +34,14 @@ const AutoCompleteExample = () => {
     );
   };
 
-  const handleFetchAsync = (query: string) => {
-    return fetch(`https://api.github.com/search/users?q=${query}`)
-      .then(res => res.json())
-      .then(({ items }) => {
-        console.log(items, "item");
-        return items
-          .slice(0, 10)
-          .map((subItem: any) => ({ value: subItem.login, ...subItem }));
-      });
-  };
-
-  const renderOptionAsync = (item: DataSourceType<AsyncProps>) => {
-    return (
-      <em>
-        {item.value}~{item.node_id}
-      </em>
-    );
-  };
-
   return (
     <>
       <AutoComplete
         value="同步"
-        disabled
+        // disabled
         fetchSuggestions={handleFetch}
         onSelect={handleSelect}
         renderOption={renderOption}
-      />
-      <AutoComplete
-        value="异步"
-        fetchSuggestions={handleFetchAsync}
-        // onSelect={handleSelect}
-        renderOption={renderOptionAsync}
       />
     </>
   );

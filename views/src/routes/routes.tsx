@@ -22,7 +22,7 @@ import {
   FormExample,
   ScrollDemo,
   SliderDemo,
-  AutoCompleteExample,
+  AutoCompleteDemo,
   DatePickerDemo,
   CarouselDemo,
   CheckboxDemo,
@@ -132,7 +132,7 @@ const router = createHashRouter([
       },
       {
         path: "autoComplete",
-        element: <AutoCompleteExample />,
+        element: <AutoCompleteDemo />,
       },
       {
         path: "date",

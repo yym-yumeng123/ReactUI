@@ -5,15 +5,16 @@ import {
   ReactElement,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 import Input, { InputProps } from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
 import useDebounce from "lib/hooks/useDebounce";
 import useClickOutside from "lib/hooks/useClickOutside";
+import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+
 import "./autoComplete.scss";
 
-import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
 const mergeClass = addPrefixAndMergeClass("yui-auto");
 
 // 复杂的数据结构
@@ -33,14 +34,10 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
   renderOption?: (item: DataSourceType) => ReactElement;
 }
 
-const AutoComplete: React.FC<AutoCompleteProps> = props => {
-  const {
-    fetchSuggestions,
-    onSelect,
-    renderOption,
-    value,
-    ...restProps
-  } = props;
+const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
+  const { fetchSuggestions, onSelect, renderOption, value, ...restProps } =
+    props;
+
   // input 输入的值
   const [inputValue, setInputValue] = useState(value);
   // 数据源
@@ -65,7 +62,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
       // 返回结果是否是异步
       if (results instanceof Promise) {
         setLoading(true);
-        results.then(res => {
+        results.then((res) => {
           setLoading(false);
           setSuggestions(res);
         });
@@ -133,7 +130,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
         {suggestions.map((item, index) => {
           const classes = {
             "content-item": true,
-            "item-highlight": index === highlightIndex
+            "item-highlight": index === highlightIndex,
           };
           return (
             <li
@@ -157,7 +154,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = props => {
         {...restProps}
       />
       <section className={mergeClass("content")}>
-        {loading && <Icon spin name="refresh" />}
+        {loading && <Icon spin name="refresh" className={mergeClass("loading")} />}
         {suggestions.length > 0 && generateDropDown()}
       </section>
     </div>
