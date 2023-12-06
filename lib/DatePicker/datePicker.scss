@@ -52,6 +52,7 @@
           height: 30px;
         }
       }
+      // 日期
       .yui-date-picker-date-line {
         display: flex;
         justify-content: space-between;
@@ -77,7 +78,7 @@
 
           &.yui-date-picker-current-month {
             color: #c5c6c7;
-            // background: #f7f7fa;
+            background: #f7f7fa;
           }
         }
       }

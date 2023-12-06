@@ -95,11 +95,6 @@ export const routeList: Array<{
     title: "Table 表格",
   },
   {
-    path: "/",
-    title: "下面未完成",
-  },
-
-  {
     path: "/date",
     title: "DatePicker 日期",
   },
