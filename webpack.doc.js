@@ -17,7 +17,7 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       title: "YUI组件库",
       template: './views/view.html',
-      filename: "view.html"
+      filename: "index.html"
     }),
   ],
 })
