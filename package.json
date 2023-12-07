@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "doc": "webpack --config webpack.doc.js"
   },
   "repository": {
     "type": "git",
