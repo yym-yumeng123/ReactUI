@@ -920,3 +920,21 @@ export const Api_Data_AutoComplete = [
     require: "false",
   },
 ];
+
+
+export const Api_Data_Date = [
+  {
+    props: "value",
+    explain: "一个时间",
+    type: "Date",
+    defaultValue: "new Date()",
+    require: "true",
+  },
+  {
+    props: "onChange",
+    explain: "选择时间的回调",
+    type: "(val: Date) => void",
+    defaultValue: "false",
+    require: "true",
+  },
+];

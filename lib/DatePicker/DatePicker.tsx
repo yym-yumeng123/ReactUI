@@ -9,11 +9,9 @@ import "./datePicker.scss";
 
 const mergeClass = addPrefixAndMergeClass("yui-date-picker");
 
-
-
 interface DateProps {
-  value?: Date;
-  onChange?: (val: Date) => void;
+  value: Date;
+  onChange: (val: Date) => void;
 }
 
 const DatePicker: FC<DateProps> = (props) => {
@@ -36,6 +34,12 @@ const DatePicker: FC<DateProps> = (props) => {
     return (
       year !== dispalyYearAndMonth.year || month !== dispalyYearAndMonth.month
     );
+  };
+
+  const isCurrentDay = (date: Date) => {
+    const [year, month, day] = HelperDate.getYearMonthDate(date);
+    const [year1, month1, day1] = HelperDate.getYearMonthDate(new Date());
+    return year === year1 && month1 === month && day === day1;
   };
 
   // 获取显示在页面的总共 42 天的数组
@@ -71,6 +75,14 @@ const DatePicker: FC<DateProps> = (props) => {
   }, [dispalyYearAndMonth]);
 
   const handleClickDay = (j: number, i: number) => {
+    if (isCurrentMonth(getVisibleDay(i, j))) {
+      const [year, month] = HelperDate.getYearMonthDate(getVisibleDay(i, j));
+      setDisplayYearAndMonth({
+        ...dispalyYearAndMonth,
+        year,
+        month,
+      });
+    }
     // .toUTCString()        Fri, 19 Aug 2022 16:00:00 GMT
     // .toTimeString()       00:00:00 GMT+0800 (中国标准时间)
     // .toDateString()       Sat Aug 20 2022
@@ -165,7 +177,7 @@ const DatePicker: FC<DateProps> = (props) => {
                     className={mergeClass({
                       "date-cell": true,
                       "current-month": isCurrentMonth(getVisibleDay(i, day)),
-                      // "select-date":
+                      "is-current-day": isCurrentDay(getVisibleDay(i, day)),
                     })}
                     key={day}
                     onClick={() => handleClickDay(day, i)}

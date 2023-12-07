@@ -1,16 +1,28 @@
-import React, { useState } from "react";
-import DatePicker from "lib/DatePicker/DatePicker";
+import React from "react";
+import Demo from "views/src/components/demo";
+import API from "../API/api";
+import Card from "lib/Card/card";
+import DatePickerExample from "./datepicker.example";
+const dateDefaultDemo = require("!!raw-loader!./datepicker.example.tsx");
 
-const DatePickerDemo = () => {
-  const [value, setValue] = useState(new Date());
-  const onChange = (val: Date) => {
-    setValue(val);
-  };
+const CardDemo = () => {
   return (
-    <div>
-      <DatePicker value={value} onChange={onChange} />
-    </div>
+    <>
+      <pre>
+        已完成功能:
+        <br />
+        1. 选择日期
+        <br />
+        2. 上一月, 下一月, 上一年, 下一年
+      </pre>
+      <Demo code={dateDefaultDemo.default}>
+        <DatePickerExample />
+      </Demo>
+      <Card title="API">
+        <API type="date" />
+      </Card>
+    </>
   );
 };
 
-export default DatePickerDemo;
+export default CardDemo;

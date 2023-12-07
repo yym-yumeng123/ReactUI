@@ -22,7 +22,8 @@ import {
   Api_Data_Scroll,
   Api_Data_Tree,
   Api_Data_Table,
-  Api_Data_AutoComplete
+  Api_Data_AutoComplete,
+  Api_Data_Date
 } from "./config";
 
 interface ApiProps {
@@ -65,6 +66,7 @@ const API: React.FC<ApiProps> = (props) => {
     tree: Api_Data_Tree,
     table: Api_Data_Table,
     autoComplete: Api_Data_AutoComplete,
+    date: Api_Data_Date,
   };
 
   return (

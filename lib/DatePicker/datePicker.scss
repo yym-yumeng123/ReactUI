@@ -64,6 +64,13 @@
           font-size: 14px;
           width: 30px;
           height: 30px;
+
+          &.yui-date-picker-is-current-day {
+            background: #cce9ff;
+            border-radius: 4px;
+            color: #1675e0;
+          }
+
           &:hover {
             background: #cce9ff;
             border-radius: 4px;
@@ -80,6 +87,12 @@
           &.yui-date-picker-current-month {
             color: #c5c6c7;
             background: #f7f7fa;
+
+            &:hover {
+              background: #ffffff;
+              border: 1px solid #3498ff;
+              border-radius: 4px;
+            }
           }
         }
       }
