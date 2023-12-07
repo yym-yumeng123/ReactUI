@@ -1,25 +1,33 @@
 .v-home-wrap {
   width: 100vw;
   height: 100vh;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 
-  .v-home {
-    text-align: center;
-    h1 {
-      font-size: 34px;
-      margin: 0;
-      line-height: 48px;
-      color: var(--title-color);
+  header {
+    .v-home {
+      text-align: center;
+      h1 {
+        font-size: 34px;
+        margin: 0;
+        line-height: 48px;
+        color: var(--title-color);
+      }
+      p {
+        font-size: 18px;
+        color: var(--default-color);
+      }
     }
-    p {
-      font-size: 18px;
-      color: var(--default-color);
+    .v-home-link {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
     }
   }
 
-  .v-home-link {
+  .v-card {
     display: flex;
     justify-content: center;
     margin-top: 16px;
