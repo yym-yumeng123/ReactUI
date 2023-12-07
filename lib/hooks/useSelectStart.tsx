@@ -1,12 +1,13 @@
 import { RefObject, useEffect } from "react"
 
 // 防止选中
-const useSelectStart = (ref: RefObject<HTMLElement>) => {
+const useSelectStart = (ref: RefObject<HTMLElement> | null) => {
   const onSelectStart = (e: Event) => e.preventDefault()
   useEffect(() => {
-    ref.current!.addEventListener("selectstart", onSelectStart)
+    ref?.current!.addEventListener("selectstart", onSelectStart)
     return () => {
-      ref.current!.removeEventListener("selectstart", onSelectStart)
+      if (ref?.current === null) return
+      ref?.current!.removeEventListener("selectstart", onSelectStart)
     }
   }, [ref])
 }

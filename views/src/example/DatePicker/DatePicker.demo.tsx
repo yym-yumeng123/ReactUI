@@ -9,7 +9,6 @@ const DatePickerDemo = () => {
   return (
     <div>
       <DatePicker value={value} onChange={onChange} />
-      {/* <DatePicker /> */}
     </div>
   );
 };
