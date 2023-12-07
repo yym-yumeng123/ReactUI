@@ -17,6 +17,16 @@ const WeekDay: Record<WeekProps, number> = {
   Sunday: 7,
 };
 
+const MapWeek = {
+  [WeekDay.Monday]: "一",
+  [WeekDay.Thesday]: "二",
+  [WeekDay.Wednesday]: "三",
+  [WeekDay.Thursday]: "四",
+  [WeekDay.Friday]: "五",
+  [WeekDay.Saturday]: "六",
+  [WeekDay.Sunday]: "日",
+};
+
 const getYearMonthDate = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth();
@@ -65,4 +75,4 @@ export default {
   }
 };
 
-export { WeekDay };
+export { WeekDay, MapWeek };

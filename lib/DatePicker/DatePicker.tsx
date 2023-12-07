@@ -1,12 +1,15 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useMemo, useRef, useState } from "react";
 import Input from "lib/Input/Input";
 import Icon from "lib/Icon/icon";
-import HelperDate, { WeekDay } from "./helper";
+import HelperDate, { MapWeek } from "./helper";
 import addPrefixAndMergeClass from "lib/Helpers/addPrefixAndMergeClass";
+import useSelectStart from "lib/hooks/useSelectStart";
 import helper from "./helper";
 import "./datePicker.scss";
 
 const mergeClass = addPrefixAndMergeClass("yui-date-picker");
+
+
 
 interface DateProps {
   value?: Date;
@@ -17,22 +20,31 @@ const DatePicker: FC<DateProps> = (props) => {
   const { value = new Date(), onChange } = props;
   const [year, month] = HelperDate.getYearMonthDate(value); // 获取传入的年月
 
-  const [mode, setMode] = useState<"days" | "months" | "years">("days");
+  const [mode, setMode] = useState<"days" | "months">("days");
   const [dispalyYearAndMonth, setDisplayYearAndMonth] = useState<
     Record<"year" | "month", number>
   >({ year, month });
+
+  const datePopRef = useRef<null | HTMLDivElement>(null);
+  useSelectStart(datePopRef);
 
   /**
    * @returns 只要年或者月有一个不相等, 就返回true, 不是当前
    */
   const isCurrentMonth = (date: Date) => {
     const [year, month] = HelperDate.getYearMonthDate(date);
-    return year !== dispalyYearAndMonth.year || month !== dispalyYearAndMonth.month
+    return (
+      year !== dispalyYearAndMonth.year || month !== dispalyYearAndMonth.month
+    );
   };
 
   // 获取显示在页面的总共 42 天的数组
   const allDates = useMemo(() => {
-    const date = new Date(dispalyYearAndMonth.year, dispalyYearAndMonth.month, 1)
+    const date = new Date(
+      dispalyYearAndMonth.year,
+      dispalyYearAndMonth.month,
+      1
+    );
     const days: any[] = [];
     const first = HelperDate.firstDayOfMonth(date); // 一个月的第一天
     const n = first.getDay(); // 方法根据本地时间，返回一个具体日期中一周的第几天，0 表示星期天
@@ -79,16 +91,31 @@ const DatePicker: FC<DateProps> = (props) => {
     return allDates[(col - 1) * 7 + row - 1];
   };
 
-  const onClickYear = () => setMode("years");
-  const onClickMonth = () => setMode("months");
-  const onClickDay = () => setMode("days");
+  // 每次变化一年或者一个月
+  const changeYearAndMonth = (
+    type: "prev_mon" | "prev_year" | "next_mon" | "next_year"
+  ) => {
+    const oldDate = new Date(
+      dispalyYearAndMonth.year,
+      dispalyYearAndMonth.month
+    );
 
-  const onClickPrevYear = () => {
-    const oldDate = new Date(
-      dispalyYearAndMonth.year,
-      dispalyYearAndMonth.month
-    );
-    const newDate = helper.addYear(oldDate, -1);
+    let newDate: Date;
+    switch (type) {
+      case "prev_mon":
+        newDate = helper.addMonth(oldDate, -1);
+        break;
+      case "next_mon":
+        newDate = helper.addMonth(oldDate, 1);
+        break;
+      case "prev_year":
+        newDate = helper.addYear(oldDate, -1);
+        break;
+      case "next_year":
+        newDate = helper.addYear(oldDate, 1);
+        break;
+    }
+
     const [year, month] = helper.getYearMonthDate(newDate);
     setDisplayYearAndMonth((dispalyYearAndMonth) => {
       return {
@@ -98,72 +125,32 @@ const DatePicker: FC<DateProps> = (props) => {
       };
     });
   };
-  const onClickPrevMonth = () => {
-    const oldDate = new Date(
-      dispalyYearAndMonth.year,
-      dispalyYearAndMonth.month
-    );
-    const newDate = helper.addMonth(oldDate, -1);
-    const [year, month] = helper.getYearMonthDate(newDate);
-    setDisplayYearAndMonth((dispalyYearAndMonth) => {
-      return {
-        ...dispalyYearAndMonth,
-        month,
-        year,
-      };
-    });
-  };
-  const onClickNextMonth = () => {
-    const oldDate = new Date(
-      dispalyYearAndMonth.year,
-      dispalyYearAndMonth.month
-    );
-    const newDate = helper.addMonth(oldDate, 1);
-    const [year, month] = helper.getYearMonthDate(newDate);
-    setDisplayYearAndMonth((dispalyYearAndMonth) => {
-      return {
-        ...dispalyYearAndMonth,
-        month,
-        year,
-      };
-    });
-  };
-  const onClickNextYear = () => {
-    const oldDate = new Date(
-      dispalyYearAndMonth.year,
-      dispalyYearAndMonth.month
-    );
-    const newDate = helper.addYear(oldDate, 1);
-    const [year, month] = helper.getYearMonthDate(newDate);
-    setDisplayYearAndMonth((dispalyYearAndMonth) => {
-      return {
-        ...dispalyYearAndMonth,
-        month,
-        year,
-      };
+
+  const onClickPrevYear = () => changeYearAndMonth("prev_year");
+  const onClickPrevMonth = () => changeYearAndMonth("prev_mon");
+  const onClickNextMonth = () => changeYearAndMonth("next_mon");
+  const onClickNextYear = () => changeYearAndMonth("next_year");
+
+  const onSelectToday = () => {
+    const [year, month] = HelperDate.getYearMonthDate(new Date());
+    setMode("days");
+    setDisplayYearAndMonth({
+      ...dispalyYearAndMonth,
+      year,
+      month,
     });
   };
 
   const renderContent = () => {
-    const mapWeek = {
-      [WeekDay.Monday]: "一",
-      [WeekDay.Thesday]: "二",
-      [WeekDay.Wednesday]: "三",
-      [WeekDay.Thursday]: "四",
-      [WeekDay.Friday]: "五",
-      [WeekDay.Saturday]: "六",
-      [WeekDay.Sunday]: "日",
-    };
-
     const days = () => {
       return (
         <div className={mergeClass("content")}>
           {/* 周 */}
           <div className={mergeClass("week")}>
-            {HelperDate.range(1, 7).map((i: keyof typeof mapWeek) => {
+            {HelperDate.range(1, 7).map((i: keyof typeof MapWeek) => {
               return (
                 <span key={i} className={mergeClass("week-days")}>
-                  {mapWeek[i]}
+                  {MapWeek[i]}
                 </span>
               );
             })}
@@ -194,8 +181,6 @@ const DatePicker: FC<DateProps> = (props) => {
     };
     const mapMode = {
       days: days(),
-      months: <div className={mergeClass("content")}>月</div>,
-      years: <div className={mergeClass("content")}>年</div>,
     };
 
     return mapMode[mode];
@@ -204,7 +189,7 @@ const DatePicker: FC<DateProps> = (props) => {
   return (
     <>
       <Input value={value ? formattedValue(value) : ""} />
-      <div className={mergeClass("pop")}>
+      <div className={mergeClass("pop")} ref={datePopRef}>
         {/* 导航 */}
         <div className={mergeClass("nav")}>
           <div className="left-action">
@@ -225,10 +210,8 @@ const DatePicker: FC<DateProps> = (props) => {
             />
           </div>
           <div className="date-wrap">
-            <span onClick={onClickYear}>{dispalyYearAndMonth.year} 年</span>
-            <span onClick={onClickMonth}>
-              {dispalyYearAndMonth.month + 1} 月
-            </span>
+            <span>{dispalyYearAndMonth.year} 年</span>
+            <span>{dispalyYearAndMonth.month + 1} 月</span>
           </div>
           <div className="right-action">
             <Icon
@@ -249,7 +232,7 @@ const DatePicker: FC<DateProps> = (props) => {
         <div className={mergeClass("panels")}>{renderContent()}</div>
         {/* 今天 */}
         <div className={mergeClass("actions")}>
-          <span onClick={onClickDay}>今天</span>
+          <span onClick={onSelectToday}>今天</span>
         </div>
       </div>
     </>
